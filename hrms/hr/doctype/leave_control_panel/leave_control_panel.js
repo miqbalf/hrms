@@ -35,13 +35,6 @@ frappe.ui.form.on("Leave Control Panel", {
 				},
 			};
 		});
-		frm.set_query("leave_period", function () {
-			return {
-				filters: {
-					company: frm.doc.company,
-				},
-			};
-		});
 		frm.trigger("get_employees");
 	},
 
@@ -174,6 +167,7 @@ frappe.ui.form.on("Leave Control Panel", {
 			return {
 				filters: {
 					is_active: 1,
+					company: frm.doc.company,
 				},
 			};
 		});
