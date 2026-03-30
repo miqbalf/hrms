@@ -12,6 +12,9 @@ frappe.ui.form.on("Job Opening", {
 		});
 	},
 	designation: function (frm) {
+		if (frm.doc.designation) {
+			frm.set_value("job_title", frm.doc.designation);
+		}
 		if (frm.doc.designation && frm.doc.company) {
 			frappe.call({
 				method: "hrms.hr.doctype.staffing_plan.staffing_plan.get_active_staffing_plan_details",
@@ -48,6 +51,7 @@ frappe.ui.form.on("Job Opening", {
 
 		frappe.db.get_doc("Job Opening Template", frm.doc.job_opening_template).then((doc) => {
 			frm.set_value({
+				designation: doc.designation,
 				department: doc.department,
 				employment_type: doc.employment_type,
 				location: doc.location,

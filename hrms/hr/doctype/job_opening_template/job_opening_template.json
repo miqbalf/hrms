@@ -8,6 +8,7 @@
  "field_order": [
   "template_title",
   "department",
+  "designation",
   "column_break_wkcr",
   "employment_type",
   "location",
@@ -54,12 +55,18 @@
    "fieldname": "description",
    "fieldtype": "Text Editor",
    "label": "Description"
+  },
+  {
+   "fieldname": "designation",
+   "fieldtype": "Link",
+   "label": "Designation",
+   "options": "Designation"
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-12-12 12:52:12.217926",
+ "modified": "2026-03-30 14:42:46.967984",
  "modified_by": "Administrator",
  "module": "HR",
  "name": "Job Opening Template",
