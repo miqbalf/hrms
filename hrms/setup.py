@@ -874,6 +874,8 @@ def add_docperms():
 			docperm = add_permission(doctype, role)
 			if docperm:
 				update_custom_docperm(docperm, ptypes)
+
+
 def make_people_workspace_standard():
 	if frappe.db.exists("Workspace Sidebar", "People"):
 		frappe.db.set_value("Workspace Sidebar", "People", "standard", 1)
