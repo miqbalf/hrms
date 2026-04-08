@@ -968,6 +968,8 @@ def get_number_of_leave_days(
 
 @frappe.whitelist()
 def get_leave_details(employee: str, date: str | datetime.date, for_salary_slip: bool = False) -> dict:
+	frappe.has_permission("Employee", "read", employee, throw=True)
+
 	allocation_records = get_leave_allocation_records(employee, date)
 	leave_allocation = {}
 	precision = cint(frappe.db.get_single_value("System Settings", "float_precision")) or 2
@@ -1027,6 +1029,8 @@ def get_leave_balance_on(
 	        if True, returns a dict eg: {'leave_balance': 10, 'leave_balance_for_consumption': 1}
 	        else, returns leave_balance (in this case 10)
 	"""
+	if frappe.request:
+		frappe.has_permission("Employee", "read", employee, throw=True)
 
 	if not to_date:
 		to_date = nowdate()
