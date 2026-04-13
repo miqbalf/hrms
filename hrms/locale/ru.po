@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: frappe\n"
 "Report-Msgid-Bugs-To: contact@frappe.io\n"
-"POT-Creation-Date: 2026-04-05 09:45+0000\n"
-"PO-Revision-Date: 2026-04-06 14:49\n"
+"POT-Creation-Date: 2026-04-12 09:46+0000\n"
+"PO-Revision-Date: 2026-04-13 16:27\n"
 "Last-Translator: contact@frappe.io\n"
 "Language-Team: Russian\n"
 "MIME-Version: 1.0\n"
@@ -348,7 +348,7 @@ msgstr "Между {1} и {2} существует {0}("
 #: hrms/hr/doctype/attendance/attendance.json
 #: hrms/hr/doctype/employee_attendance_tool/employee_attendance_tool.json
 #: hrms/hr/doctype/training_event_employee/training_event_employee.json
-#: hrms/hr/report/monthly_attendance_sheet/monthly_attendance_sheet.py:732
+#: hrms/hr/report/monthly_attendance_sheet/monthly_attendance_sheet.py:736
 #: hrms/payroll/doctype/payroll_settings/payroll_settings.json
 msgid "Absent"
 msgstr "Отсутствующий"
@@ -651,11 +651,11 @@ msgstr "Все обязательные задачи по созданию со�
 msgid "Allocate Based On Leave Policy"
 msgstr "Распределить на основе политики отпусков"
 
-#: hrms/hr/doctype/leave_control_panel/leave_control_panel.js:176
+#: hrms/hr/doctype/leave_control_panel/leave_control_panel.js:177
 msgid "Allocate Leave"
 msgstr "Распределить отпуск"
 
-#: hrms/hr/doctype/leave_control_panel/leave_control_panel.js:192
+#: hrms/hr/doctype/leave_control_panel/leave_control_panel.js:193
 msgid "Allocate leaves to {0} employee(s)?"
 msgstr "Распределить отпуска для {0} сотрудника(ов)?"
 
@@ -681,7 +681,7 @@ msgstr "Распределенные отпуска"
 msgid "Allocated Via"
 msgstr "Выделено через"
 
-#: hrms/hr/doctype/leave_control_panel/leave_control_panel.js:205
+#: hrms/hr/doctype/leave_control_panel/leave_control_panel.js:206
 msgid "Allocating Leave"
 msgstr "Распределение отпуска"
 
@@ -1394,7 +1394,7 @@ msgstr "Настройки посещаемости"
 msgid "Attendance To Date"
 msgstr "Дата посещения"
 
-#: hrms/hr/doctype/attendance_request/attendance_request.py:144
+#: hrms/hr/doctype/attendance_request/attendance_request.py:187
 msgid "Attendance Updated"
 msgstr "Посещаемость обновлена"
 
@@ -1446,11 +1446,11 @@ msgstr "Посещаемость отмечена успешно"
 msgid "Attendance marked successfully."
 msgstr "Посещаемость отмечена успешно."
 
-#: hrms/hr/doctype/attendance_request/attendance_request.py:163
+#: hrms/hr/doctype/attendance_request/attendance_request.py:206
 msgid "Attendance not submitted for {0} as it is a Holiday."
 msgstr "Данные о посещении не были отправлены на {0}, так как это праздничный день."
 
-#: hrms/hr/doctype/attendance_request/attendance_request.py:172
+#: hrms/hr/doctype/attendance_request/attendance_request.py:215
 msgid "Attendance not submitted for {0} as {1} is on leave."
 msgstr "Отчет о посещении {0} не представлен, так как {1} находится в отпуске."
 
@@ -1562,7 +1562,7 @@ msgstr "Ожидание ответа"
 msgid "Backdated Leave Application is restricted. Please set the {} in {}"
 msgstr "Заявка на отпуск задним числом ограничена. Пожалуйста, установите {} в {}"
 
-#: hrms/hr/doctype/expense_claim/expense_claim.js:286
+#: hrms/hr/doctype/expense_claim/expense_claim.js:290
 msgid "Bank Entries"
 msgstr "Банковские записи"
 
@@ -1883,11 +1883,11 @@ msgstr "Неофициальный отпуск"
 msgid "Cause of Grievance"
 msgstr "Причина жалобы"
 
-#: hrms/hr/doctype/attendance_request/attendance_request.py:128
+#: hrms/hr/doctype/attendance_request/attendance_request.py:171
 msgid "Changed the status from {0} to {1} and Status for Other Half to {2} via Attendance Request"
 msgstr "Изменён статус с {0} на {1} и статус для второй половины на {2} через запрос на присутствие"
 
-#: hrms/hr/doctype/attendance_request/attendance_request.py:132
+#: hrms/hr/doctype/attendance_request/attendance_request.py:175
 msgid "Changed the status from {0} to {1} via Attendance Request"
 msgstr "Изменен статус с {0} на {1} через запрос на присутствие"
 
@@ -2238,6 +2238,10 @@ msgstr "Создать расчетные листы"
 msgid "Create Shifts After"
 msgstr "Создать смены после"
 
+#: hrms/public/js/templates/hierarchy_empty_state.html:25
+msgid "Create {0}"
+msgstr ""
+
 #: hrms/hr/doctype/appraisal_cycle/appraisal_cycle.py:217
 msgid "Creating Appraisals"
 msgstr "Создание оценки"
@@ -2400,7 +2404,7 @@ msgstr "Ежедневный пользователь группы по рабо
 msgid "Daily Work Summary Replies"
 msgstr "Ежедневные краткие ответы о работе"
 
-#: hrms/hr/report/monthly_attendance_sheet/monthly_attendance_sheet.js:167
+#: hrms/hr/report/monthly_attendance_sheet/monthly_attendance_sheet.js:187
 msgid "Date Range Exceeded"
 msgstr "Превышен диапазон дат"
 
@@ -2805,11 +2809,11 @@ msgstr "Начисления"
 msgid "Earnings & Deductions"
 msgstr "Начисления и удержания"
 
-#: frontend/src/components/ExpensesTable.vue:213
+#: frontend/src/components/ExpensesTable.vue:218
 msgid "Edit Expense Item"
 msgstr "Изменить статью расходов"
 
-#: frontend/src/components/ExpenseTaxesTable.vue:221
+#: frontend/src/components/ExpenseTaxesTable.vue:225
 msgid "Edit Expense Tax"
 msgstr "Изменить налог на расход"
 
@@ -3385,7 +3389,7 @@ msgstr "Сотрудник был отмечен отсутствующим на
 msgid "Employee {0} : {1}"
 msgstr "Сотрудник {0} : {1}"
 
-#: hrms/hr/doctype/attendance_request/attendance_request.py:90
+#: hrms/hr/doctype/attendance_request/attendance_request.py:133
 msgid "Employee {0} already has an Attendance Request {1} that overlaps with this period"
 msgstr "У сотрудника {0} уже есть запрос на посещаемость {1}, который пересекается с этим периодом"
 
@@ -3622,7 +3626,8 @@ msgstr "Введите количество дней отпуска, котор�
 msgid "Enter yearly benefit amounts"
 msgstr "Введите суммы годового пособия"
 
-#: frontend/src/components/FormField.vue:42
+#: frontend/src/components/FormField.vue:40
+#: frontend/src/components/FormField.vue:52
 msgid "Enter {0}"
 msgstr "Введите {0}"
 
@@ -3630,7 +3635,7 @@ msgstr "Введите {0}"
 msgid "Error creating {0}"
 msgstr "Ошибка создания {0}"
 
-#: frontend/src/components/FormView.vue:592
+#: frontend/src/components/FormView.vue:591
 msgid "Error deleting {0}"
 msgstr "Ошибка удаления {0}"
 
@@ -3650,7 +3655,7 @@ msgstr "Ошибка в формуле или условии: {0} в налог�
 msgid "Error in some rows"
 msgstr "Ошибка в некоторых строках"
 
-#: frontend/src/components/FormView.vue:570
+#: frontend/src/components/FormView.vue:569
 msgid "Error updating {0}"
 msgstr "Ошибка обновления {0}"
 
@@ -3956,7 +3961,7 @@ msgstr "Итоги заявки на возмещение расходов"
 #. Label of the expense_type (Data) field in DocType 'Expense Claim Type'
 #. Label of a Link in the Expenses Workspace
 #. Label of a Workspace Sidebar Item
-#: hrms/hr/doctype/expense_claim/expense_claim.py:743
+#: hrms/hr/doctype/expense_claim/expense_claim.py:747
 #: hrms/hr/doctype/expense_claim_detail/expense_claim_detail.json
 #: hrms/hr/doctype/expense_claim_type/expense_claim_type.json
 #: hrms/hr/workspace/expenses/expenses.json
@@ -3983,7 +3988,7 @@ msgstr "Заявки на возмещение расходов"
 msgid "Expense Date"
 msgstr "Дата расхода"
 
-#: frontend/src/components/ExpensesTable.vue:211
+#: frontend/src/components/ExpensesTable.vue:216
 msgid "Expense Item"
 msgstr "Элемент расхода"
 
@@ -3993,7 +3998,7 @@ msgstr "Элемент расхода"
 msgid "Expense Proof"
 msgstr "Подтверждение расходов"
 
-#: frontend/src/components/ExpenseTaxesTable.vue:219
+#: frontend/src/components/ExpenseTaxesTable.vue:223
 msgid "Expense Tax"
 msgstr "Налог"
 
@@ -4049,7 +4054,7 @@ msgstr "Истекшие дни отпуска"
 msgid "Explanation"
 msgstr "Объяснение"
 
-#: hrms/public/js/hierarchy_chart/hierarchy_chart_desktop.js:137
+#: hrms/public/js/hierarchy_chart/hierarchy_chart_desktop.js:136
 msgid "Exporting..."
 msgstr "Экспорт..."
 
@@ -4061,7 +4066,7 @@ msgstr "Не удалось создать/отправить {0} для сот�
 msgid "Failed to delete defaults for country {0}."
 msgstr "Не удалось удалить настройки по умолчанию для страны {0}."
 
-#: hrms/api/__init__.py:787
+#: hrms/api/__init__.py:783
 msgid "Failed to download PDF: {0}"
 msgstr "Не удалось загрузить PDF: {0}"
 
@@ -4755,7 +4760,7 @@ msgstr "Заголовок для сотрудников с полудневно
 msgid "Half Day Records"
 msgstr "Записи о половине дня"
 
-#: hrms/hr/doctype/attendance_request/attendance_request.py:54
+#: hrms/hr/doctype/attendance_request/attendance_request.py:55
 msgid "Half day date should be in between from date and to date"
 msgstr "Дата половины дня должна находиться между датами \"С\" и \"По\""
 
@@ -5056,7 +5061,7 @@ msgstr "Поощрения"
 msgid "Incentive Amount"
 msgstr "Сумма поощрения"
 
-#: hrms/hr/report/monthly_attendance_sheet/monthly_attendance_sheet.js:102
+#: hrms/hr/report/monthly_attendance_sheet/monthly_attendance_sheet.js:122
 msgid "Include Company Descendants"
 msgstr "Включить дочерние компании"
 
@@ -5425,7 +5430,7 @@ msgstr "Неверный счет для выплаты заработной п�
 msgid "Invalid Shift Times"
 msgstr "Недопустимое время смены"
 
-#: hrms/hr/doctype/expense_claim/expense_claim.py:991
+#: hrms/hr/doctype/expense_claim/expense_claim.py:995
 msgid "Invalid parameters provided. Please pass the required arguments."
 msgstr "Предоставлены неверные параметры. Пожалуйста, передайте необходимые аргументы."
 
@@ -5836,7 +5841,7 @@ msgstr "Широта: {0}°"
 
 #. Option for the 'Calculate Payroll Working Days Based On' (Select) field in
 #. DocType 'Payroll Settings'
-#: hrms/hr/report/monthly_attendance_sheet/monthly_attendance_sheet.py:734
+#: hrms/hr/report/monthly_attendance_sheet/monthly_attendance_sheet.py:738
 #: hrms/overrides/dashboard_overrides.py:12
 #: hrms/payroll/doctype/payroll_settings/payroll_settings.json
 msgid "Leave"
@@ -5975,7 +5980,7 @@ msgstr "Даты списка заблокированных отпусков"
 msgid "Leave Block List Name"
 msgstr "Название списка заблокированных отпусков"
 
-#: hrms/hr/doctype/leave_application/leave_application.py:1418
+#: hrms/hr/doctype/leave_application/leave_application.py:1423
 msgid "Leave Blocked"
 msgstr "Отпуск заблокирован"
 
@@ -6794,11 +6799,11 @@ msgstr "Чистая заработная плата не может быть о
 msgid "New Employee ID"
 msgstr "Новый идентификатор сотрудника"
 
-#: frontend/src/components/ExpensesTable.vue:213
+#: frontend/src/components/ExpensesTable.vue:218
 msgid "New Expense Item"
 msgstr "Новая статья расходов"
 
-#: frontend/src/components/ExpenseTaxesTable.vue:221
+#: frontend/src/components/ExpenseTaxesTable.vue:225
 msgid "New Expense Tax"
 msgstr "Новый налог на расходы"
 
@@ -6953,9 +6958,9 @@ msgstr "По данному критерию записи о посещаемо�
 msgid "No attendance records found."
 msgstr "Записи о посещаемости не найдены."
 
-#: hrms/hr/doctype/attendance_request/attendance_request.py:63
-msgid "No attendance records to create"
-msgstr "Нет необходимости создавать записи о посещаемости"
+#: hrms/hr/doctype/attendance_request/attendance_request.py:73
+msgid "No attendance records to create due to following reasons"
+msgstr ""
 
 #: hrms/hr/doctype/interview/interview.py:116
 msgid "No changes found in timings."
@@ -7250,7 +7255,7 @@ msgstr "Только интервьюеру разрешено оставлят�
 msgid "Only Interviews with Cleared or Rejected status can be submitted."
 msgstr "К участию допускаются только собеседования со статусом «Одобрено» или «Отклонено»."
 
-#: hrms/hr/doctype/leave_application/leave_application.py:136
+#: hrms/hr/doctype/leave_application/leave_application.py:137
 msgid "Only Leave Applications with status 'Approved' and 'Rejected' can be submitted"
 msgstr "Подавать можно только заявления на отпуск со статусом «Одобрено» и «Отклонено»"
 
@@ -7301,7 +7306,7 @@ msgid "Optional Leaves are holidays that Employees can choose to avail from a li
 msgstr "Необязательные отпуска — это выходные дни, которые сотрудники могут выбрать из списка выходных дней, опубликованного компанией."
 
 #. Label of a Workspace Sidebar Item
-#: hrms/hr/page/organizational_chart/organizational_chart.js:4
+#: hrms/hr/page/organizational_chart/organizational_chart.js:154
 #: hrms/workspace_sidebar/hr_setup.json
 msgid "Organizational Chart"
 msgstr "Организационная структура"
@@ -7331,7 +7336,7 @@ msgstr "Избыточное распределение"
 msgid "Overall Average Rating"
 msgstr "Общий средний рейтинг"
 
-#: hrms/hr/doctype/attendance_request/attendance_request.py:95
+#: hrms/hr/doctype/attendance_request/attendance_request.py:138
 msgid "Overlapping Attendance Request"
 msgstr "Запрос на перекрывающееся присутствие"
 
@@ -7851,10 +7856,6 @@ msgstr "Пожалуйста, сначала выберите компанию"
 msgid "Please assign a Salary Structure for Employee {0} applicable from or before {1} first"
 msgstr "Пожалуйста, сначала назначьте структуру заработной платы для сотрудника {0}, применимую с или до {1}"
 
-#: hrms/hr/doctype/attendance_request/attendance_request.py:64
-msgid "Please check if employee is on leave or attendance with the same status exists for selected day(s)."
-msgstr "Проверьте, находится ли сотрудник в отпуске или существует ли присутствие с таким же статусом для выбранного(ых) дня(дней)."
-
 #: hrms/templates/emails/training_event.html:17
 msgid "Please confirm once you have completed your training"
 msgstr "Пожалуйста, подтвердите, как только вы завершите обучение"
@@ -7920,12 +7921,12 @@ msgstr "Выберите график смен и дату(ы) назначен�
 msgid "Please select Shift Type and assignment date(s)."
 msgstr "Выберите тип смены и дату(ы) назначения."
 
-#: hrms/public/js/hierarchy_chart/hierarchy_chart_mobile.js:233
+#: hrms/public/js/hierarchy_chart/hierarchy_chart_mobile.js:240
 msgid "Please select a company first"
 msgstr "Пожалуйста, сначала выберите компанию"
 
-#: hrms/public/js/hierarchy_chart/hierarchy_chart_desktop.js:103
-#: hrms/public/js/hierarchy_chart/hierarchy_chart_desktop.js:299
+#: hrms/public/js/hierarchy_chart/hierarchy_chart_desktop.js:93
+#: hrms/public/js/hierarchy_chart/hierarchy_chart_desktop.js:293
 msgid "Please select a company first."
 msgstr "Сначала выберите компанию."
 
@@ -8010,7 +8011,7 @@ msgstr "Пожалуйста, установите расчет заработн
 msgid "Please set Relieving Date for employee: {0}"
 msgstr "Пожалуйста, установите дату увольнения сотрудника: {0}"
 
-#: hrms/hr/report/monthly_attendance_sheet/monthly_attendance_sheet.js:166
+#: hrms/hr/report/monthly_attendance_sheet/monthly_attendance_sheet.js:186
 #: hrms/hr/report/monthly_attendance_sheet/monthly_attendance_sheet.py:52
 msgid "Please set a date range less than 90 days."
 msgstr "Пожалуйста, установите диапазон дат менее 90 дней."
@@ -8035,7 +8036,7 @@ msgstr ""
 msgid "Please set the Appraisal Template for all the {0} or select the template in the Employees table below."
 msgstr "Пожалуйста, установите Шаблон оценки для всех {0} или выберите шаблон в таблице «Сотрудники» ниже."
 
-#: hrms/hr/doctype/expense_claim/expense_claim.js:523
+#: hrms/hr/doctype/expense_claim/expense_claim.js:527
 msgid "Please set the Company"
 msgstr "Пожалуйста, укажите компанию"
 
@@ -8131,7 +8132,7 @@ msgstr "Предпочтительный район для проживания"
 #: hrms/hr/doctype/attendance/attendance.json
 #: hrms/hr/doctype/employee_attendance_tool/employee_attendance_tool.json
 #: hrms/hr/doctype/training_event_employee/training_event_employee.json
-#: hrms/hr/report/monthly_attendance_sheet/monthly_attendance_sheet.py:733
+#: hrms/hr/report/monthly_attendance_sheet/monthly_attendance_sheet.py:737
 #: hrms/payroll/doctype/payroll_settings/payroll_settings.json
 msgid "Present"
 msgstr "Присутствует"
@@ -8792,11 +8793,11 @@ msgstr "Строка #{0}: компонент {1} имеет включенны�
 msgid "Row #{0}: Timesheet amount will overwrite the Earning component amount for the Salary Component {1}"
 msgstr "Строка #{0}: Сумма табеля учета рабочего времени заменит сумму компонента заработка для компонента зарплаты {1}"
 
-#: hrms/hr/doctype/expense_claim/expense_claim.py:959
+#: hrms/hr/doctype/expense_claim/expense_claim.py:963
 msgid "Row No {0}: Amount cannot be greater than the Outstanding Amount against Expense Claim {1}. Outstanding Amount is {2}"
 msgstr "Номер строки {0}: Сумма не может быть больше суммы задолженности по претензии на возмещение расходов {1}. Сумма задолженности составляет {2}"
 
-#: hrms/hr/doctype/expense_claim/expense_claim.py:557
+#: hrms/hr/doctype/expense_claim/expense_claim.py:561
 msgid "Row {0}# Allocated amount {1} cannot be greater than unclaimed amount {2}"
 msgstr "Строка {0}# Выделенная сумма {1} не может быть больше невостребованной суммы {2}"
 
@@ -9187,7 +9188,7 @@ msgstr "Санкционированная сумма"
 msgid "Sanctioned Amount (Company Currency)"
 msgstr "Санкционированная сумма (валюта компании)"
 
-#: hrms/hr/doctype/expense_claim/expense_claim.py:581
+#: hrms/hr/doctype/expense_claim/expense_claim.py:585
 msgid "Sanctioned Amount cannot be greater than Claim Amount in Row {0}."
 msgstr "Санкционированная сумма не может быть больше суммы иска в строке {0}."
 
@@ -9263,9 +9264,15 @@ msgstr "Выберите положения и условия"
 msgid "Select Users"
 msgstr "Выбрать пользователей"
 
-#: hrms/hr/doctype/expense_claim/expense_claim.js:568
+#: hrms/hr/doctype/expense_claim/expense_claim.js:572
 msgid "Select an employee to get the employee advance."
 msgstr "Выберите сотрудника, чтобы получить аванс."
+
+#. Description of the 'Include Holidays' (Check) field in DocType 'Attendance
+#. Request'
+#: hrms/hr/doctype/attendance_request/attendance_request.json
+msgid "Select if any of the days selected for request are holidays"
+msgstr ""
 
 #: hrms/hr/doctype/leave_allocation/leave_allocation.js:237
 msgid "Select the Employee for which you want to allocate leaves."
@@ -9315,6 +9322,14 @@ msgstr "Выберите тип отпуска, на который хочет �
 msgid "Select your Leave Approver i.e. the person who approves or rejects your leaves."
 msgstr "Выберите утверждающего отпуск, т.е. человека, который одобряет или отклоняет ваши отпуска."
 
+#: hrms/hr/doctype/expense_claim/expense_claim.js:607
+msgid "Selected employee advance is not of employee {0}"
+msgstr ""
+
+#: hrms/hr/doctype/expense_claim/expense_claim.py:554
+msgid "Selected employee advance is not of employee {}"
+msgstr ""
+
 #. Label of the self_appraisal_tab (Tab Break) field in DocType 'Appraisal'
 #: hrms/hr/doctype/appraisal/appraisal.json
 #: hrms/hr/doctype/employee_performance_feedback/employee_performance_feedback.py:61
@@ -9343,7 +9358,7 @@ msgstr "Самостоятельное обучение"
 msgid "Self-approval for Expense Claims is not allowed"
 msgstr "Самостоятельное одобрение заявок на возмещение расходов не допускается."
 
-#: hrms/hr/doctype/leave_application/leave_application.py:909
+#: hrms/hr/doctype/leave_application/leave_application.py:910
 msgid "Self-approval for leaves is not allowed"
 msgstr "Самостоятельное одобрение отпусков не допускается"
 
@@ -9461,7 +9476,7 @@ msgstr "Установить начальный баланс по доходам
 msgid "Set optional filters to fetch employees in the appraisee list"
 msgstr "Установите дополнительные фильтры для извлечения сотрудников из списка аттестуемых"
 
-#: hrms/hr/doctype/expense_claim/expense_claim.py:742
+#: hrms/hr/doctype/expense_claim/expense_claim.py:746
 msgid "Set the default account for the {0} {1}"
 msgstr "Установить учетную запись по умолчанию для {0} {1}"
 
@@ -10015,7 +10030,7 @@ msgstr "Сумма всех предыдущих слэбов"
 msgid "Sum of benefit amounts {0} exceeds maximum limit of {1}"
 msgstr "Сумма пособий {0} превышает максимальный предел {1}"
 
-#: hrms/hr/report/monthly_attendance_sheet/monthly_attendance_sheet.js:108
+#: hrms/hr/report/monthly_attendance_sheet/monthly_attendance_sheet.js:128
 msgid "Summarized View"
 msgstr "Обобщенный вид"
 
@@ -10244,6 +10259,10 @@ msgstr "Теория"
 #: hrms/payroll/doctype/salary_slip/salary_slip.py:577
 msgid "There are more holidays than working days this month."
 msgstr "В этом месяце праздников больше, чем рабочих дней."
+
+#: hrms/hr/doctype/attendance_request/attendance_request.py:87
+msgid "There are multiple shifts assigned to the employee for the same period. Please mention the shift"
+msgstr ""
 
 #: hrms/payroll/doctype/arrear/arrear.py:410
 msgid "There are no arrear differences between existing and new salary structure components."
@@ -10687,7 +10706,7 @@ msgstr "Общий балл"
 msgid "Total Self Score"
 msgstr "Общая самооценка"
 
-#: hrms/hr/doctype/expense_claim/expense_claim.py:575
+#: hrms/hr/doctype/expense_claim/expense_claim.py:579
 msgid "Total advance amount cannot be greater than total sanctioned amount"
 msgstr "Общая сумма аванса не может превышать общую санкционированную сумму"
 
@@ -11076,7 +11095,7 @@ msgstr "Обновить статус"
 msgid "Update Tax"
 msgstr "Обновление налога"
 
-#: hrms/hr/doctype/attendance_request/attendance_request.py:138
+#: hrms/hr/doctype/attendance_request/attendance_request.py:181
 msgid "Updated status from {0} to {1} for date {2} in the attendance record {3}"
 msgstr "Обновлен статус с {0} на {1} для даты {2} в записи посещаемости {3}"
 
@@ -11461,7 +11480,7 @@ msgstr "Вы можете запланировать не более {0} вак�
 msgid "You can only submit Leave Encashment for a valid encashment amount"
 msgstr "Вы можете подать заявку на получение Leave Encashment только на допустимую сумму инкассации"
 
-#: hrms/api/__init__.py:744
+#: hrms/api/__init__.py:740
 msgid "You can only upload JPG, PNG, PDF, TXT or Microsoft documents."
 msgstr "Вы можете загружать только документы в формате JPG, PNG, PDF, TXT или Microsoft."
 
@@ -11498,6 +11517,10 @@ msgstr "У вас нет предстоящих праздников"
 msgid "You have no upcoming shifts"
 msgstr "У вас нет предстоящих смен"
 
+#: hrms/public/js/templates/hierarchy_empty_state.html:9
+msgid "You haven't created a {0} for {1} yet."
+msgstr ""
+
 #: hrms/overrides/employee_master.py:83
 msgid "You may add additional details, if any, and submit the offer."
 msgstr "Вы можете добавить дополнительные сведения, если таковые имеются, и отправить предложение."
@@ -11517,6 +11540,10 @@ msgstr "Ваша сессия собеседования перенесена с
 #: frontend/src/views/Login.vue:63
 msgid "Your password has expired. Please reset your password to continue"
 msgstr "Срок действия вашего пароля истёк. Пожалуйста, сбросьте пароль, чтобы продолжить"
+
+#: hrms/hr/doctype/attendance_request/attendance_request.py:69
+msgid "action"
+msgstr "р”рµр№СЃС‚рІрёрµ"
 
 #: hrms/hr/doctype/compensatory_leave_request/compensatory_leave_request.py:121
 msgid "active"
@@ -11567,6 +11594,10 @@ msgstr "процесс"
 msgid "processed"
 msgstr "обработано"
 
+#: hrms/hr/doctype/attendance_request/attendance_request.py:68
+msgid "reason"
+msgstr "рџСЂРёС‡РёРЅР°"
+
 #: hrms/www/jobs/index.html:122
 msgid "result"
 msgstr "результат"
@@ -11587,6 +11618,10 @@ msgstr "обзоры"
 msgid "submitted"
 msgstr "утвержден"
 
+#: hrms/hr/page/organizational_chart/organizational_chart.js:30
+msgid "the selected company"
+msgstr ""
+
 #: hrms/payroll/doctype/salary_component/salary_component.py:187
 msgid "via Salary Component sync"
 msgstr "через синхронизацию компонентов зарплаты"
@@ -11605,7 +11640,7 @@ msgstr "годы"
 msgid "{0} & {1}"
 msgstr "{0} & {1}"
 
-#: frontend/src/components/ExpenseClaimItem.vue:84
+#: frontend/src/components/ExpenseClaimItem.vue:83
 msgid "{0} & {1} more"
 msgstr "{0} и {1} больше"
 
@@ -11670,7 +11705,7 @@ msgstr "{0} завершено {1} {2}"
 msgid "{0} created successfully!"
 msgstr "{0} успешно создан!"
 
-#: frontend/src/components/FormView.vue:583
+#: frontend/src/components/FormView.vue:582
 msgid "{0} deleted successfully!"
 msgstr "{0} успешно удален!"
 
@@ -11736,7 +11771,7 @@ msgstr "{0} успешно!"
 msgid "{0} to {1} employee(s)?"
 msgstr "{0} для {1} сотрудника(ов)?"
 
-#: frontend/src/components/FormView.vue:561
+#: frontend/src/components/FormView.vue:560
 msgid "{0} updated successfully!"
 msgstr "{0} успешно обновлено!"
 
