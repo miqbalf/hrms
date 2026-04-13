@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: frappe\n"
 "Report-Msgid-Bugs-To: contact@frappe.io\n"
-"POT-Creation-Date: 2026-04-05 09:45+0000\n"
-"PO-Revision-Date: 2026-04-06 14:50\n"
+"POT-Creation-Date: 2026-04-12 09:46+0000\n"
+"PO-Revision-Date: 2026-04-13 16:27\n"
 "Last-Translator: contact@frappe.io\n"
 "Language-Team: Serbian (Latin)\n"
 "MIME-Version: 1.0\n"
@@ -348,7 +348,7 @@ msgstr "Postoji {0} između {1} i {2} ("
 #: hrms/hr/doctype/attendance/attendance.json
 #: hrms/hr/doctype/employee_attendance_tool/employee_attendance_tool.json
 #: hrms/hr/doctype/training_event_employee/training_event_employee.json
-#: hrms/hr/report/monthly_attendance_sheet/monthly_attendance_sheet.py:732
+#: hrms/hr/report/monthly_attendance_sheet/monthly_attendance_sheet.py:736
 #: hrms/payroll/doctype/payroll_settings/payroll_settings.json
 msgid "Absent"
 msgstr "Izostanak"
@@ -651,11 +651,11 @@ msgstr "Svi obavezni zadaci za kreiranje zaposlenog lica još uvek nisu završen
 msgid "Allocate Based On Leave Policy"
 msgstr "Raspodeli u skladu sa politikom odsustva"
 
-#: hrms/hr/doctype/leave_control_panel/leave_control_panel.js:176
+#: hrms/hr/doctype/leave_control_panel/leave_control_panel.js:177
 msgid "Allocate Leave"
 msgstr "Dodeli odsustvo"
 
-#: hrms/hr/doctype/leave_control_panel/leave_control_panel.js:192
+#: hrms/hr/doctype/leave_control_panel/leave_control_panel.js:193
 msgid "Allocate leaves to {0} employee(s)?"
 msgstr "Dodeli odsustva za {0} zaposlenih lica?"
 
@@ -681,7 +681,7 @@ msgstr "Dodeljena odsustva"
 msgid "Allocated Via"
 msgstr "Dodeljeno putem"
 
-#: hrms/hr/doctype/leave_control_panel/leave_control_panel.js:205
+#: hrms/hr/doctype/leave_control_panel/leave_control_panel.js:206
 msgid "Allocating Leave"
 msgstr "Dodeljivanje odsustva"
 
@@ -1394,7 +1394,7 @@ msgstr "Podešavanje prisustva"
 msgid "Attendance To Date"
 msgstr "Datum završetka prisustva"
 
-#: hrms/hr/doctype/attendance_request/attendance_request.py:144
+#: hrms/hr/doctype/attendance_request/attendance_request.py:187
 msgid "Attendance Updated"
 msgstr "Prisustvo je ažurirano"
 
@@ -1446,11 +1446,11 @@ msgstr "Prisustvo je uspešno evidentirano"
 msgid "Attendance marked successfully."
 msgstr "Prisustvo je uspešno evidentirano."
 
-#: hrms/hr/doctype/attendance_request/attendance_request.py:163
+#: hrms/hr/doctype/attendance_request/attendance_request.py:206
 msgid "Attendance not submitted for {0} as it is a Holiday."
 msgstr "Prisustvo nije podneto za {0} jer je u pitanju praznik."
 
-#: hrms/hr/doctype/attendance_request/attendance_request.py:172
+#: hrms/hr/doctype/attendance_request/attendance_request.py:215
 msgid "Attendance not submitted for {0} as {1} is on leave."
 msgstr "Prisustvo nije podneto za {0} jer je {1} na odsustvu."
 
@@ -1562,7 +1562,7 @@ msgstr "Čeka se odgovor"
 msgid "Backdated Leave Application is restricted. Please set the {} in {}"
 msgstr "Zahtevi za odsustvo sa retroaktivnim datumima su ograničeni. Molimo Vas da postavite {} u {}"
 
-#: hrms/hr/doctype/expense_claim/expense_claim.js:286
+#: hrms/hr/doctype/expense_claim/expense_claim.js:290
 msgid "Bank Entries"
 msgstr "Bankarsko knjiženje"
 
@@ -1883,11 +1883,11 @@ msgstr "Slobodan dan"
 msgid "Cause of Grievance"
 msgstr "Uzrok pritužbe"
 
-#: hrms/hr/doctype/attendance_request/attendance_request.py:128
+#: hrms/hr/doctype/attendance_request/attendance_request.py:171
 msgid "Changed the status from {0} to {1} and Status for Other Half to {2} via Attendance Request"
 msgstr "Status je promenjen iz {0} u {1}, a status za drugu polovinu u {2}, putem zahteva za evidenciju prisustva"
 
-#: hrms/hr/doctype/attendance_request/attendance_request.py:132
+#: hrms/hr/doctype/attendance_request/attendance_request.py:175
 msgid "Changed the status from {0} to {1} via Attendance Request"
 msgstr "Je promenio status sa {0} na {1} putem zahteva za evidentiranJe prisustva"
 
@@ -2236,6 +2236,10 @@ msgstr "Kreiraj obračunske listiće"
 msgid "Create Shifts After"
 msgstr "Kreiraj smene nakon"
 
+#: hrms/public/js/templates/hierarchy_empty_state.html:25
+msgid "Create {0}"
+msgstr ""
+
 #: hrms/hr/doctype/appraisal_cycle/appraisal_cycle.py:217
 msgid "Creating Appraisals"
 msgstr "Kreiranje evaluacija"
@@ -2398,7 +2402,7 @@ msgstr "Korisnik grupe dnevnih izveštaja o radu"
 msgid "Daily Work Summary Replies"
 msgstr "Odgovori na dnevni izveštaj o radu"
 
-#: hrms/hr/report/monthly_attendance_sheet/monthly_attendance_sheet.js:167
+#: hrms/hr/report/monthly_attendance_sheet/monthly_attendance_sheet.js:187
 msgid "Date Range Exceeded"
 msgstr "Opseg datuma je prekoračen"
 
@@ -2803,11 +2807,11 @@ msgstr "Prihodi"
 msgid "Earnings & Deductions"
 msgstr "Prihodi i odbici"
 
-#: frontend/src/components/ExpensesTable.vue:213
+#: frontend/src/components/ExpensesTable.vue:218
 msgid "Edit Expense Item"
 msgstr "Uredi stavku troška"
 
-#: frontend/src/components/ExpenseTaxesTable.vue:221
+#: frontend/src/components/ExpenseTaxesTable.vue:225
 msgid "Edit Expense Tax"
 msgstr "Uredi porez na trošak"
 
@@ -3383,7 +3387,7 @@ msgstr "Zaposlenom licu je označen izostanak za drugi deo radnog vremena zbog n
 msgid "Employee {0} : {1}"
 msgstr "Zaposleno lice {0} : {1}"
 
-#: hrms/hr/doctype/attendance_request/attendance_request.py:90
+#: hrms/hr/doctype/attendance_request/attendance_request.py:133
 msgid "Employee {0} already has an Attendance Request {1} that overlaps with this period"
 msgstr "Zaposleno lice {0} već ima zahtev za evidentiranje prisustva {1} koji se preklapa sa ovim periodom"
 
@@ -3620,7 +3624,8 @@ msgstr "Unesite broj dana odsustva koji želite da dodelite za ovaj period."
 msgid "Enter yearly benefit amounts"
 msgstr "Unesite godišnje iznose beneficija"
 
-#: frontend/src/components/FormField.vue:42
+#: frontend/src/components/FormField.vue:40
+#: frontend/src/components/FormField.vue:52
 msgid "Enter {0}"
 msgstr "Unesite {0}"
 
@@ -3628,7 +3633,7 @@ msgstr "Unesite {0}"
 msgid "Error creating {0}"
 msgstr "Greška prilikom kreiranja {0}"
 
-#: frontend/src/components/FormView.vue:592
+#: frontend/src/components/FormView.vue:591
 msgid "Error deleting {0}"
 msgstr "Greška prilikom brisanja {0}"
 
@@ -3648,7 +3653,7 @@ msgstr "Greška u formuli ili uslovu: {0} u poreskom razredu poreza na dohodak"
 msgid "Error in some rows"
 msgstr "Greška u nekim redovima"
 
-#: frontend/src/components/FormView.vue:570
+#: frontend/src/components/FormView.vue:569
 msgid "Error updating {0}"
 msgstr "Greška prilikom ažuriranja {0}"
 
@@ -3954,7 +3959,7 @@ msgstr "Rezime zahteva za nadoknadu troškova"
 #. Label of the expense_type (Data) field in DocType 'Expense Claim Type'
 #. Label of a Link in the Expenses Workspace
 #. Label of a Workspace Sidebar Item
-#: hrms/hr/doctype/expense_claim/expense_claim.py:743
+#: hrms/hr/doctype/expense_claim/expense_claim.py:747
 #: hrms/hr/doctype/expense_claim_detail/expense_claim_detail.json
 #: hrms/hr/doctype/expense_claim_type/expense_claim_type.json
 #: hrms/hr/workspace/expenses/expenses.json
@@ -3981,7 +3986,7 @@ msgstr "Zahtevi za nadoknadu troškova"
 msgid "Expense Date"
 msgstr "Datum troška"
 
-#: frontend/src/components/ExpensesTable.vue:211
+#: frontend/src/components/ExpensesTable.vue:216
 msgid "Expense Item"
 msgstr "Stavka troška"
 
@@ -3991,7 +3996,7 @@ msgstr "Stavka troška"
 msgid "Expense Proof"
 msgstr "Dokaz o trošku"
 
-#: frontend/src/components/ExpenseTaxesTable.vue:219
+#: frontend/src/components/ExpenseTaxesTable.vue:223
 msgid "Expense Tax"
 msgstr "Porez na trošak"
 
@@ -4047,7 +4052,7 @@ msgstr "Istekla odsustva"
 msgid "Explanation"
 msgstr "Obrazloženje"
 
-#: hrms/public/js/hierarchy_chart/hierarchy_chart_desktop.js:137
+#: hrms/public/js/hierarchy_chart/hierarchy_chart_desktop.js:136
 msgid "Exporting..."
 msgstr "Izvoz..."
 
@@ -4059,7 +4064,7 @@ msgstr "Neuspešno kreiranje/podnošenje {0} za zaposlena lica:"
 msgid "Failed to delete defaults for country {0}."
 msgstr "Neuspešno brisanje podrazumevanih vrednosti za državu {0}."
 
-#: hrms/api/__init__.py:787
+#: hrms/api/__init__.py:783
 msgid "Failed to download PDF: {0}"
 msgstr "Neuspešno preuzimanje PDF: {0}"
 
@@ -4753,7 +4758,7 @@ msgstr "Zaglavlje za zaposlena lica označena sa polovinom radnog dana"
 msgid "Half Day Records"
 msgstr "Zapisi za polovinu radnog dana"
 
-#: hrms/hr/doctype/attendance_request/attendance_request.py:54
+#: hrms/hr/doctype/attendance_request/attendance_request.py:55
 msgid "Half day date should be in between from date and to date"
 msgstr "Datum polovine radnog dana treba da bude između datuma početka i datuma završetka"
 
@@ -5054,7 +5059,7 @@ msgstr "Podsticaj"
 msgid "Incentive Amount"
 msgstr "Iznos podsticaja"
 
-#: hrms/hr/report/monthly_attendance_sheet/monthly_attendance_sheet.js:102
+#: hrms/hr/report/monthly_attendance_sheet/monthly_attendance_sheet.js:122
 msgid "Include Company Descendants"
 msgstr "Uključi podređene entitete kompanije"
 
@@ -5423,7 +5428,7 @@ msgstr "Nevažeći račun za obračun zarade. Valuta računa mora biti {0} ili {
 msgid "Invalid Shift Times"
 msgstr "Nevažeći termini smene"
 
-#: hrms/hr/doctype/expense_claim/expense_claim.py:991
+#: hrms/hr/doctype/expense_claim/expense_claim.py:995
 msgid "Invalid parameters provided. Please pass the required arguments."
 msgstr "Prosleđeni su nevažeći parametri. Molimo Vas da uneste neophodne argumente."
 
@@ -5834,7 +5839,7 @@ msgstr "Geografska širina: {0}°"
 
 #. Option for the 'Calculate Payroll Working Days Based On' (Select) field in
 #. DocType 'Payroll Settings'
-#: hrms/hr/report/monthly_attendance_sheet/monthly_attendance_sheet.py:734
+#: hrms/hr/report/monthly_attendance_sheet/monthly_attendance_sheet.py:738
 #: hrms/overrides/dashboard_overrides.py:12
 #: hrms/payroll/doctype/payroll_settings/payroll_settings.json
 msgid "Leave"
@@ -5973,7 +5978,7 @@ msgstr "Datumi liste blokiranih odsustva"
 msgid "Leave Block List Name"
 msgstr "Naziv liste blokiranih odsustva"
 
-#: hrms/hr/doctype/leave_application/leave_application.py:1418
+#: hrms/hr/doctype/leave_application/leave_application.py:1423
 msgid "Leave Blocked"
 msgstr "Odsustvo je blokirano"
 
@@ -6792,11 +6797,11 @@ msgstr "Neto zarada ne može biti negativna"
 msgid "New Employee ID"
 msgstr "Novi ID zaposlenog lica"
 
-#: frontend/src/components/ExpensesTable.vue:213
+#: frontend/src/components/ExpensesTable.vue:218
 msgid "New Expense Item"
 msgstr "Nova stavka troška"
 
-#: frontend/src/components/ExpenseTaxesTable.vue:221
+#: frontend/src/components/ExpenseTaxesTable.vue:225
 msgid "New Expense Tax"
 msgstr "Novi porez na trošak"
 
@@ -6951,9 +6956,9 @@ msgstr "Nije pronađena evidencija prisustva koja odgovara ovim kriterijumima."
 msgid "No attendance records found."
 msgstr "Nije pronađena evidencija prisustva."
 
-#: hrms/hr/doctype/attendance_request/attendance_request.py:63
-msgid "No attendance records to create"
-msgstr "Ne postoji evidencija prisustva za kreiranje"
+#: hrms/hr/doctype/attendance_request/attendance_request.py:73
+msgid "No attendance records to create due to following reasons"
+msgstr ""
 
 #: hrms/hr/doctype/interview/interview.py:116
 msgid "No changes found in timings."
@@ -7248,7 +7253,7 @@ msgstr "Isključivo ispitivač može podneti povratnu informaciju"
 msgid "Only Interviews with Cleared or Rejected status can be submitted."
 msgstr "Isključivo intervjui sa statusom uspešno ili odbijeno mogu biti podneti."
 
-#: hrms/hr/doctype/leave_application/leave_application.py:136
+#: hrms/hr/doctype/leave_application/leave_application.py:137
 msgid "Only Leave Applications with status 'Approved' and 'Rejected' can be submitted"
 msgstr "Isključivo zahtev za odsustvom sa statusom 'Odobreno' ili 'Odbijeno' može biti podnet"
 
@@ -7299,7 +7304,7 @@ msgid "Optional Leaves are holidays that Employees can choose to avail from a li
 msgstr "Opcioni praznici su neradni dani koje zaposlena lica mogu da iskoriste sa liste praznika koju je objavila kompanija."
 
 #. Label of a Workspace Sidebar Item
-#: hrms/hr/page/organizational_chart/organizational_chart.js:4
+#: hrms/hr/page/organizational_chart/organizational_chart.js:154
 #: hrms/workspace_sidebar/hr_setup.json
 msgid "Organizational Chart"
 msgstr "Organizacioni dijagram"
@@ -7329,7 +7334,7 @@ msgstr "Prekoračena dodela"
 msgid "Overall Average Rating"
 msgstr "Ukupna prosečna ocena"
 
-#: hrms/hr/doctype/attendance_request/attendance_request.py:95
+#: hrms/hr/doctype/attendance_request/attendance_request.py:138
 msgid "Overlapping Attendance Request"
 msgstr "Preklapajući zahtev za evidentiranje prisustva"
 
@@ -7849,10 +7854,6 @@ msgstr "Molimo Vas da prvo izaberete kompaniju"
 msgid "Please assign a Salary Structure for Employee {0} applicable from or before {1} first"
 msgstr "Molimo Vas da prvo dodelite strukturu zarade zaposlenom licu {0} koja važi od ili pre {1}"
 
-#: hrms/hr/doctype/attendance_request/attendance_request.py:64
-msgid "Please check if employee is on leave or attendance with the same status exists for selected day(s)."
-msgstr "Molimo Vas da proverite da li je zaposleno lice na odsustvu ili već postoji prisustvo sa istim statusom za izabran dan(e)."
-
 #: hrms/templates/emails/training_event.html:17
 msgid "Please confirm once you have completed your training"
 msgstr "Molimo Vas da potvrdite kada završite obuku"
@@ -7918,12 +7919,12 @@ msgstr "Molimo Vas da izaberete raspored smena i datume dodeljivanja."
 msgid "Please select Shift Type and assignment date(s)."
 msgstr "Molimo Vas da izaberete vrstu smene i datume dodeljivanja."
 
-#: hrms/public/js/hierarchy_chart/hierarchy_chart_mobile.js:233
+#: hrms/public/js/hierarchy_chart/hierarchy_chart_mobile.js:240
 msgid "Please select a company first"
 msgstr "Molimo Vas da prvo izaberete kompaniju"
 
-#: hrms/public/js/hierarchy_chart/hierarchy_chart_desktop.js:103
-#: hrms/public/js/hierarchy_chart/hierarchy_chart_desktop.js:299
+#: hrms/public/js/hierarchy_chart/hierarchy_chart_desktop.js:93
+#: hrms/public/js/hierarchy_chart/hierarchy_chart_desktop.js:293
 msgid "Please select a company first."
 msgstr "Molimo Vas da prvo izaberete kompaniju."
 
@@ -8008,7 +8009,7 @@ msgstr "Molimo Vas da podesite osnovu za obračun zarade u podešavanjima obrač
 msgid "Please set Relieving Date for employee: {0}"
 msgstr "Molimo Vas da postavite datum prestanka radnog odnosa za zaposleno lice: {0}"
 
-#: hrms/hr/report/monthly_attendance_sheet/monthly_attendance_sheet.js:166
+#: hrms/hr/report/monthly_attendance_sheet/monthly_attendance_sheet.js:186
 #: hrms/hr/report/monthly_attendance_sheet/monthly_attendance_sheet.py:52
 msgid "Please set a date range less than 90 days."
 msgstr "Molimo Vas da postavite opseg datuma kraći od 90 dana."
@@ -8033,7 +8034,7 @@ msgstr "Molimo Vas da podesite akontacioni račun {0} ili u {1}"
 msgid "Please set the Appraisal Template for all the {0} or select the template in the Employees table below."
 msgstr "Molimo Vas da podesite šablon evaluacije za sve {0} ili da izaberete šablon u tabeli zaposlenih lica ispod."
 
-#: hrms/hr/doctype/expense_claim/expense_claim.js:523
+#: hrms/hr/doctype/expense_claim/expense_claim.js:527
 msgid "Please set the Company"
 msgstr "Molimo Vas da postavite kompaniju"
 
@@ -8129,7 +8130,7 @@ msgstr "Preferirana lokacija za noćenje"
 #: hrms/hr/doctype/attendance/attendance.json
 #: hrms/hr/doctype/employee_attendance_tool/employee_attendance_tool.json
 #: hrms/hr/doctype/training_event_employee/training_event_employee.json
-#: hrms/hr/report/monthly_attendance_sheet/monthly_attendance_sheet.py:733
+#: hrms/hr/report/monthly_attendance_sheet/monthly_attendance_sheet.py:737
 #: hrms/payroll/doctype/payroll_settings/payroll_settings.json
 msgid "Present"
 msgstr "Prisutan"
@@ -8790,11 +8791,11 @@ msgstr "Red #{0}: Komponenta {1} ima omogućene opcije {2} i {3}."
 msgid "Row #{0}: Timesheet amount will overwrite the Earning component amount for the Salary Component {1}"
 msgstr "Red #{0}: Iznos iz evidencije vremena će zameniti iznos komponente prihoda sa iznosom komponente zarade {1}"
 
-#: hrms/hr/doctype/expense_claim/expense_claim.py:959
+#: hrms/hr/doctype/expense_claim/expense_claim.py:963
 msgid "Row No {0}: Amount cannot be greater than the Outstanding Amount against Expense Claim {1}. Outstanding Amount is {2}"
 msgstr "Red broj {0}: Iznos ne može biti veći od neizmirenog iznosa u zahtevu za nadoknadu troškova {1}. Neizmireni iznos je {2}"
 
-#: hrms/hr/doctype/expense_claim/expense_claim.py:557
+#: hrms/hr/doctype/expense_claim/expense_claim.py:561
 msgid "Row {0}# Allocated amount {1} cannot be greater than unclaimed amount {2}"
 msgstr "Red {0}# dodeljeni iznos {1} ne može biti veći od neiskorišćenog iznosa {2}"
 
@@ -9185,7 +9186,7 @@ msgstr "Odobren iznos"
 msgid "Sanctioned Amount (Company Currency)"
 msgstr "Odobren iznos (valuta kompanije)"
 
-#: hrms/hr/doctype/expense_claim/expense_claim.py:581
+#: hrms/hr/doctype/expense_claim/expense_claim.py:585
 msgid "Sanctioned Amount cannot be greater than Claim Amount in Row {0}."
 msgstr "Odobreni iznos ne može biti veći od zahtevanog iznosa u redu {0}."
 
@@ -9261,9 +9262,15 @@ msgstr "Izaberite uslove i odredbe"
 msgid "Select Users"
 msgstr "Izaberite korisnike"
 
-#: hrms/hr/doctype/expense_claim/expense_claim.js:568
+#: hrms/hr/doctype/expense_claim/expense_claim.js:572
 msgid "Select an employee to get the employee advance."
 msgstr "Izaberite zaposleno lice za isplatu akontacije."
+
+#. Description of the 'Include Holidays' (Check) field in DocType 'Attendance
+#. Request'
+#: hrms/hr/doctype/attendance_request/attendance_request.json
+msgid "Select if any of the days selected for request are holidays"
+msgstr ""
 
 #: hrms/hr/doctype/leave_allocation/leave_allocation.js:237
 msgid "Select the Employee for which you want to allocate leaves."
@@ -9313,6 +9320,14 @@ msgstr "Izaberite vrstu odsustva za koju zaposleno lice želi da aplicira, kao �
 msgid "Select your Leave Approver i.e. the person who approves or rejects your leaves."
 msgstr "Izaberite odobravaoca odsustva, tj. osobu koja odobrava ili odbija Vaše zahteve za odsustvo."
 
+#: hrms/hr/doctype/expense_claim/expense_claim.js:607
+msgid "Selected employee advance is not of employee {0}"
+msgstr ""
+
+#: hrms/hr/doctype/expense_claim/expense_claim.py:554
+msgid "Selected employee advance is not of employee {}"
+msgstr ""
+
 #. Label of the self_appraisal_tab (Tab Break) field in DocType 'Appraisal'
 #: hrms/hr/doctype/appraisal/appraisal.json
 #: hrms/hr/doctype/employee_performance_feedback/employee_performance_feedback.py:61
@@ -9341,7 +9356,7 @@ msgstr "Samostalno učenje"
 msgid "Self-approval for Expense Claims is not allowed"
 msgstr "Samoodobravanje zahteva za troškove nije dozvoljeno"
 
-#: hrms/hr/doctype/leave_application/leave_application.py:909
+#: hrms/hr/doctype/leave_application/leave_application.py:910
 msgid "Self-approval for leaves is not allowed"
 msgstr "Samoodobravanje odsustva nije dozvoljeno"
 
@@ -9459,7 +9474,7 @@ msgstr "Postavite početna stanja za zarade i poreze od prethodnog poslodavca"
 msgid "Set optional filters to fetch employees in the appraisee list"
 msgstr "Postavite opcione filtere za pretragu zaposlenih lica u listi za ocenjivanje"
 
-#: hrms/hr/doctype/expense_claim/expense_claim.py:742
+#: hrms/hr/doctype/expense_claim/expense_claim.py:746
 msgid "Set the default account for the {0} {1}"
 msgstr "Postavite podrazumevani račun za {0} {1}"
 
@@ -10013,7 +10028,7 @@ msgstr "Zbir svih prethodnih razreda"
 msgid "Sum of benefit amounts {0} exceeds maximum limit of {1}"
 msgstr "Zbir iznosa beneficija {0} prelazi maksimalno ograničenje od {1}"
 
-#: hrms/hr/report/monthly_attendance_sheet/monthly_attendance_sheet.js:108
+#: hrms/hr/report/monthly_attendance_sheet/monthly_attendance_sheet.js:128
 msgid "Summarized View"
 msgstr "Sažeti prikaz"
 
@@ -10242,6 +10257,10 @@ msgstr "Teorija"
 #: hrms/payroll/doctype/salary_slip/salary_slip.py:577
 msgid "There are more holidays than working days this month."
 msgstr "Ovaj mesec ima više praznika nego radnih dana."
+
+#: hrms/hr/doctype/attendance_request/attendance_request.py:87
+msgid "There are multiple shifts assigned to the employee for the same period. Please mention the shift"
+msgstr ""
 
 #: hrms/payroll/doctype/arrear/arrear.py:410
 msgid "There are no arrear differences between existing and new salary structure components."
@@ -10685,7 +10704,7 @@ msgstr "Ukupan broj poena"
 msgid "Total Self Score"
 msgstr "Ukupan broj samoprocene"
 
-#: hrms/hr/doctype/expense_claim/expense_claim.py:575
+#: hrms/hr/doctype/expense_claim/expense_claim.py:579
 msgid "Total advance amount cannot be greater than total sanctioned amount"
 msgstr "Ukupan iznos akontacije ne može biti veći od ukupno odobrenog iznosa"
 
@@ -11074,7 +11093,7 @@ msgstr "Ažuriraj status"
 msgid "Update Tax"
 msgstr "Ažuriraj porez"
 
-#: hrms/hr/doctype/attendance_request/attendance_request.py:138
+#: hrms/hr/doctype/attendance_request/attendance_request.py:181
 msgid "Updated status from {0} to {1} for date {2} in the attendance record {3}"
 msgstr "Status je ažuriran sa {0} na {1} za datum {2} u evidenciji prisustva {3}"
 
@@ -11459,7 +11478,7 @@ msgstr "Možete planirati najviše do {0} nepopunjenih radnih mesta i budžet {1
 msgid "You can only submit Leave Encashment for a valid encashment amount"
 msgstr "Možete podneti naknadu za neiskorišćeno odsustvo samo uz važeći iznos uplate"
 
-#: hrms/api/__init__.py:744
+#: hrms/api/__init__.py:740
 msgid "You can only upload JPG, PNG, PDF, TXT or Microsoft documents."
 msgstr "Možete otpremiti isključivo JPG, PNG, PDF, TXT ili Majkrosoft dokumenta."
 
@@ -11496,6 +11515,10 @@ msgstr "Nemate predstojeće praznike"
 msgid "You have no upcoming shifts"
 msgstr "Nemate predstojeće smene"
 
+#: hrms/public/js/templates/hierarchy_empty_state.html:9
+msgid "You haven't created a {0} for {1} yet."
+msgstr ""
+
 #: hrms/overrides/employee_master.py:83
 msgid "You may add additional details, if any, and submit the offer."
 msgstr "Možete dodati dodatne informacije, ukoliko postoje, i poslati ponudu."
@@ -11515,6 +11538,10 @@ msgstr "Vaš intervju je pomeren sa {0} {1} - {2} na {3} {4} - {5}"
 #: frontend/src/views/Login.vue:63
 msgid "Your password has expired. Please reset your password to continue"
 msgstr "Vaša lozinka je istekla. Molimo Vas da je resetujete kako biste nastavili"
+
+#: hrms/hr/doctype/attendance_request/attendance_request.py:69
+msgid "action"
+msgstr "radnja"
 
 #: hrms/hr/doctype/compensatory_leave_request/compensatory_leave_request.py:121
 msgid "active"
@@ -11565,6 +11592,10 @@ msgstr "obrada"
 msgid "processed"
 msgstr "obrađeno"
 
+#: hrms/hr/doctype/attendance_request/attendance_request.py:68
+msgid "reason"
+msgstr "razlog"
+
 #: hrms/www/jobs/index.html:122
 msgid "result"
 msgstr "rezultat"
@@ -11585,6 +11616,10 @@ msgstr "pregledi"
 msgid "submitted"
 msgstr "podneto"
 
+#: hrms/hr/page/organizational_chart/organizational_chart.js:30
+msgid "the selected company"
+msgstr ""
+
 #: hrms/payroll/doctype/salary_component/salary_component.py:187
 msgid "via Salary Component sync"
 msgstr "putem sinhronizacije komponente zarade"
@@ -11603,7 +11638,7 @@ msgstr "godine"
 msgid "{0} & {1}"
 msgstr "{0} i {1}"
 
-#: frontend/src/components/ExpenseClaimItem.vue:84
+#: frontend/src/components/ExpenseClaimItem.vue:83
 msgid "{0} & {1} more"
 msgstr "{0} i još {1}"
 
@@ -11668,7 +11703,7 @@ msgstr "Ispunjeno je {1} {2} od strane {0}"
 msgid "{0} created successfully!"
 msgstr "{0} je uspešno kreirano!"
 
-#: frontend/src/components/FormView.vue:583
+#: frontend/src/components/FormView.vue:582
 msgid "{0} deleted successfully!"
 msgstr "{0} je uspešno obrisano!"
 
@@ -11734,7 +11769,7 @@ msgstr "{0} uspešno!"
 msgid "{0} to {1} employee(s)?"
 msgstr "{0} za {1} zaposlena lica?"
 
-#: frontend/src/components/FormView.vue:561
+#: frontend/src/components/FormView.vue:560
 msgid "{0} updated successfully!"
 msgstr "{0} uspešno ažurirano!"
 
