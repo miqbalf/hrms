@@ -40,7 +40,7 @@ frappe.ui.form.on("Job Applicant", {
 				<embed
 				style="background:#323639;"
 				width="100%"
-				height="1190"
+				height="1000px"
 				src="${src_url}" type="application/pdf"
 				>
 			</object>

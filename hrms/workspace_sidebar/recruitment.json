@@ -185,6 +185,17 @@
   {
    "child": 1,
    "collapsible": 1,
+   "indent": 0,
+   "keep_closed": 0,
+   "label": "Job Opening Template",
+   "link_to": "Job Opening Template",
+   "link_type": "DocType",
+   "show_arrow": 0,
+   "type": "Link"
+  },
+  {
+   "child": 1,
+   "collapsible": 1,
    "icon": "",
    "indent": 0,
    "keep_closed": 0,
@@ -230,7 +241,7 @@
    "type": "Link"
   }
  ],
- "modified": "2026-02-16 12:12:43.728243",
+ "modified": "2026-04-14 12:19:55.146861",
  "modified_by": "Administrator",
  "module": "HR",
  "name": "Recruitment",
