@@ -12,6 +12,7 @@ from frappe.utils import (
 from frappe.utils.user import add_role
 
 from hrms.hr.doctype.holiday_list_assignment.test_holiday_list_assignment import assign_holiday_list
+from hrms.hr.doctype.leave_allocation.leave_allocation import OverAllocationError
 from hrms.hr.doctype.leave_allocation.test_leave_allocation import create_leave_allocation
 from hrms.hr.doctype.leave_application.leave_application import (
 	get_leave_balance_on,
@@ -1118,6 +1119,7 @@ class TestLeaveAllocation(HRMSTestSuite):
 			annual_allocation=11,
 		)
 		frappe.flags.current_date = this_year_start
+		# 11 leaves get carried forward from last year with this assignment
 		make_policy_assignment(
 			self.employee,
 			allocate_on_day="Last Day",
@@ -1127,8 +1129,11 @@ class TestLeaveAllocation(HRMSTestSuite):
 			annual_allocation=24,
 			carry_forward=1,
 		)
+		# max leave allowed is 12
 		frappe.db.set_value("Leave Type", "Test Earned Leave", "max_leaves_allowed", 12)
 		frappe.flags.current_date = get_last_day(this_year_start)
+		# when the scheduler runs, the leaves being allocated are 2, but then the total exeeds the max limit
+		# set in leave type so it skips the allocation
 		allocate_earned_leaves()
 		leave_balance = get_leave_balance_on(self.employee.name, self.leave_type, frappe.flags.current_date)
 		leave_allocation = frappe.get_value(
@@ -1136,8 +1141,8 @@ class TestLeaveAllocation(HRMSTestSuite):
 			{"employee": self.employee.name, "leave_type": "Test Earned Leave", "from_date": this_year_start},
 			"total_leaves_allocated",
 		)
-		self.assertEqual(leave_allocation, 12)
-		self.assertEqual(leave_balance, 12)
+		self.assertEqual(leave_allocation, 11)
+		self.assertEqual(leave_balance, 11)
 
 
 def create_earned_leave_type(
