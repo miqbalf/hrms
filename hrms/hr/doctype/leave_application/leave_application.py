@@ -909,6 +909,9 @@ class LeaveApplication(Document, PWANotificationsMixin):
 
 	@frappe.whitelist()
 	def validate_half_day_date(self) -> bool:
+		if not self.half_day:
+			return
+
 		if is_holiday(employee=self.employee, date=self.half_day_date):
 			frappe.throw(_("Half Day Date cannot be a holiday"))
 
