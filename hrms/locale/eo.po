@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: frappe\n"
 "Report-Msgid-Bugs-To: contact@frappe.io\n"
-"POT-Creation-Date: 2026-04-12 09:46+0000\n"
-"PO-Revision-Date: 2026-04-13 16:27\n"
+"POT-Creation-Date: 2026-04-19 09:46+0000\n"
+"PO-Revision-Date: 2026-04-21 18:14\n"
 "Last-Translator: contact@frappe.io\n"
 "Language-Team: Esperanto\n"
 "MIME-Version: 1.0\n"
@@ -500,7 +500,7 @@ msgstr "crwdns140892:0crwdne140892:0"
 msgid "Add unused leaves from previous leave period's allocation to this allocation"
 msgstr "crwdns140894:0crwdne140894:0"
 
-#: hrms/payroll/doctype/salary_slip/salary_slip.py:1680
+#: hrms/payroll/doctype/salary_slip/salary_slip.py:1685
 msgid "Added tax components from the Salary Component master as the salary structure didn't have any tax component."
 msgstr "crwdns104932:0crwdne104932:0"
 
@@ -684,11 +684,11 @@ msgstr "crwdns159446:0{0}crwdnd159446:0{1}crwdne159446:0"
 msgid "Allocation to Adjust"
 msgstr "crwdns159448:0crwdne159448:0"
 
-#: hrms/hr/utils.py:440
+#: hrms/hr/utils.py:433
 msgid "Allocation was skipped due to exceeding annual allocation set in leave policy"
 msgstr "crwdns160866:0crwdne160866:0"
 
-#: hrms/hr/utils.py:430
+#: hrms/hr/utils.py:441
 msgid "Allocation was skipped due to maximum leave allocation limit set in leave type. Please increase the limit and retry failed allocation."
 msgstr "crwdns160868:0crwdne160868:0"
 
@@ -843,7 +843,7 @@ msgstr "crwdns140960:0crwdne140960:0"
 msgid "Annual Allocation Exceeded"
 msgstr "crwdns149070:0crwdne149070:0"
 
-#: hrms/setup.py:407
+#: hrms/setup.py:410
 msgid "Annual Salary"
 msgstr "crwdns105158:0crwdne105158:0"
 
@@ -886,11 +886,9 @@ msgid "Applicant Email Address"
 msgstr "crwdns140976:0crwdne140976:0"
 
 #. Label of the applicant_name (Data) field in DocType 'Appointment Letter'
-#. Label of the applicant_name (Data) field in DocType 'Job Applicant'
 #. Label of the applicant_name (Data) field in DocType 'Job Offer'
 #. Label of a field in the job-application Web Form
 #: hrms/hr/doctype/appointment_letter/appointment_letter.json
-#: hrms/hr/doctype/job_applicant/job_applicant.json
 #: hrms/hr/doctype/job_offer/job_offer.json
 #: hrms/hr/web_form/job_application/job_application.json
 msgid "Applicant Name"
@@ -918,6 +916,11 @@ msgstr "crwdns105186:0crwdne105186:0"
 #: hrms/hr/report/recruitment_analytics/recruitment_analytics.py:46
 msgid "Application Status"
 msgstr "crwdns105188:0crwdne105188:0"
+
+#. Label of the job_application_route (Data) field in DocType 'Job Opening'
+#: hrms/hr/doctype/job_opening/job_opening.json
+msgid "Application Web Form Route"
+msgstr "crwdns200366:0crwdne200366:0"
 
 #: hrms/hr/doctype/leave_application/leave_application.py:256
 msgid "Application period cannot be across two allocation records"
@@ -1051,7 +1054,7 @@ msgstr "crwdns105246:0crwdne105246:0"
 #. Label of a Workspace Sidebar Item
 #: hrms/hr/doctype/appraisal/appraisal.json
 #: hrms/hr/doctype/appraisal_template/appraisal_template.json
-#: hrms/hr/doctype/appraisee/appraisee.json hrms/setup.py:161
+#: hrms/hr/doctype/appraisee/appraisee.json hrms/setup.py:164
 #: hrms/workspace_sidebar/performance.json
 msgid "Appraisal Template"
 msgstr "crwdns105248:0crwdne105248:0"
@@ -1095,13 +1098,13 @@ msgstr "crwdns105270:0crwdne105270:0"
 msgid "Appraisees: {0}"
 msgstr "crwdns105272:0{0}crwdne105272:0"
 
-#: hrms/setup.py:399
+#: hrms/setup.py:402
 msgid "Apprentice"
 msgstr "crwdns105274:0crwdne105274:0"
 
 #. Label of the section_break_7 (Section Break) field in DocType 'Leave
 #. Application'
-#: frontend/src/components/RequestActionSheet.vue:290
+#: frontend/src/components/RequestActionSheet.vue:298
 #: hrms/hr/doctype/leave_application/leave_application.json
 msgid "Approval"
 msgstr "crwdns140994:0crwdne140994:0"
@@ -1140,7 +1143,7 @@ msgstr "crwdns141000:0crwdne141000:0"
 msgid "Approver"
 msgstr "crwdns141002:0crwdne141002:0"
 
-#: hrms/setup.py:132 hrms/setup.py:235
+#: hrms/setup.py:135 hrms/setup.py:238
 msgid "Approvers"
 msgstr "crwdns148888:0crwdne148888:0"
 
@@ -1471,7 +1474,7 @@ msgstr "crwdns141058:0crwdne141058:0"
 msgid "Automated Based on Goal Progress"
 msgstr "crwdns141060:0crwdne141060:0"
 
-#: hrms/hr/utils.py:484
+#: hrms/hr/utils.py:494
 msgid "Automatic Leave Allocation has failed for the following Earned Leaves: {0}. Please check {1} for more details."
 msgstr "crwdns160872:0{0}crwdnd160872:0{1}crwdne160872:0"
 
@@ -1758,7 +1761,7 @@ msgstr "crwdns141120:0crwdne141120:0"
 msgid "Calculated in days"
 msgstr "crwdns141122:0crwdne141122:0"
 
-#: hrms/setup.py:335
+#: hrms/setup.py:338
 msgid "Calls"
 msgstr "crwdns105530:0crwdne105530:0"
 
@@ -1849,7 +1852,7 @@ msgstr "crwdns141126:0crwdne141126:0"
 msgid "Carry Forwarded Leaves"
 msgstr "crwdns141128:0crwdne141128:0"
 
-#: hrms/setup.py:350 hrms/setup.py:351
+#: hrms/setup.py:353 hrms/setup.py:354
 msgid "Casual Leave"
 msgstr "crwdns105582:0crwdne105582:0"
 
@@ -1882,11 +1885,11 @@ msgstr "crwdns141134:0{0}crwdnd141134:0{1}crwdne141134:0"
 msgid "Check Error Log {0} for more details."
 msgstr "crwdns105594:0{0}crwdne105594:0"
 
-#: frontend/src/components/CheckInPanel.vue:123
+#: frontend/src/components/CheckInPanel.vue:120
 msgid "Check In"
 msgstr "crwdns151166:0crwdne151166:0"
 
-#: frontend/src/components/CheckInPanel.vue:122
+#: frontend/src/components/CheckInPanel.vue:119
 msgid "Check Out"
 msgstr "crwdns151168:0crwdne151168:0"
 
@@ -1896,11 +1899,11 @@ msgid "Check Vacancies On Job Offer Creation"
 msgstr "crwdns141136:0crwdne141136:0"
 
 #: hrms/hr/doctype/leave_policy_assignment/leave_policy_assignment.py:488
-#: hrms/hr/utils.py:937
+#: hrms/hr/utils.py:947
 msgid "Check {0} for more details"
 msgstr "crwdns105598:0{0}crwdne105598:0"
 
-#: frontend/src/components/CheckInPanel.vue:159
+#: frontend/src/components/CheckInPanel.vue:156
 msgid "Check-in"
 msgstr "crwdns151170:0crwdne151170:0"
 
@@ -1909,7 +1912,7 @@ msgstr "crwdns151170:0crwdne151170:0"
 msgid "Check-in Date"
 msgstr "crwdns141138:0crwdne141138:0"
 
-#: frontend/src/components/CheckInPanel.vue:159
+#: frontend/src/components/CheckInPanel.vue:156
 msgid "Check-out"
 msgstr "crwdns151172:0crwdne151172:0"
 
@@ -1931,10 +1934,10 @@ msgstr "crwdns105604:0crwdne105604:0"
 #. 'Overtime Type'
 #: hrms/hr/doctype/overtime_type/overtime_type.json
 msgid "Choose how the hourly overtime amount is calculated:\n"
-"<ol style=\"padding-left:15px;\"><li>Fixed Hourly Rate: A fixed, manually entered hourly rate.</li>\n"
+"<ol style=\"padding-left:15px\"><li>Fixed Hourly Rate: A fixed, manually entered hourly rate.</li>\n"
 "<li>Salary Component-Based:\n\n"
 "(Sum of selected component amounts) ÷ (Payment Days) ÷ (Standard Daily Hours)</li></ol>"
-msgstr "crwdns159478:0crwdne159478:0"
+msgstr "crwdns200368:0crwdne200368:0"
 
 #. Description of the 'Payroll Date' (Date) field in DocType 'Payroll
 #. Correction'
@@ -2032,7 +2035,7 @@ msgstr "crwdns151176:0crwdne151176:0"
 msgid "Compensatory Leave Request"
 msgstr "crwdns105768:0crwdne105768:0"
 
-#: hrms/setup.py:359 hrms/setup.py:360
+#: hrms/setup.py:362 hrms/setup.py:363
 msgid "Compensatory Off"
 msgstr "crwdns105774:0crwdne105774:0"
 
@@ -2166,8 +2169,9 @@ msgstr "crwdns105888:0crwdne105888:0"
 msgid "Create Appraisals"
 msgstr "crwdns105890:0crwdne105890:0"
 
-#: hrms/hr/doctype/interview_round/interview_round.js:7
-#: hrms/hr/doctype/job_applicant/job_applicant.js:95
+#: hrms/hr/doctype/interview_type/interview_type.js:7
+#: hrms/hr/doctype/job_applicant/job_applicant.js:68
+#: hrms/hr/doctype/job_applicant/job_applicant.js:137
 msgid "Create Interview"
 msgstr "crwdns105902:0crwdne105902:0"
 
@@ -2175,6 +2179,11 @@ msgstr "crwdns105902:0crwdne105902:0"
 msgid "Create Job Applicant"
 msgstr "crwdns105904:0crwdne105904:0"
 
+#: hrms/hr/doctype/job_applicant/job_applicant.js:84
+msgid "Create Job Offer"
+msgstr "crwdns200370:0crwdne200370:0"
+
+#: hrms/hr/doctype/job_opening_template/job_opening_template.js:7
 #: hrms/hr/doctype/job_requisition/job_requisition.js:39
 msgid "Create Job Opening"
 msgstr "crwdns105906:0crwdne105906:0"
@@ -2234,7 +2243,7 @@ msgstr "crwdns151976:0{0}crwdne151976:0"
 msgid "Creation Date"
 msgstr "crwdns141224:0crwdne141224:0"
 
-#: hrms/hr/utils.py:946
+#: hrms/hr/utils.py:956
 msgid "Creation Failed"
 msgstr "crwdns105938:0crwdne105938:0"
 
@@ -2399,7 +2408,7 @@ msgstr "crwdns141260:0crwdne141260:0"
 msgid "Dates Based On"
 msgstr "crwdns141262:0crwdne141262:0"
 
-#: hrms/setup.py:120
+#: hrms/setup.py:123
 msgid "Days for which Holidays are blocked for this department."
 msgstr "crwdns148890:0crwdne148890:0"
 
@@ -2510,15 +2519,15 @@ msgstr "crwdns141282:0crwdne141282:0"
 msgid "Default Base Pay"
 msgstr "crwdns141284:0crwdne141284:0"
 
-#: hrms/setup.py:80
+#: hrms/setup.py:83
 msgid "Default Employee Advance Account"
 msgstr "crwdns148892:0crwdne148892:0"
 
-#: hrms/setup.py:72
+#: hrms/setup.py:75
 msgid "Default Expense Claim Payable Account"
 msgstr "crwdns148894:0crwdne148894:0"
 
-#: hrms/overrides/company.py:133 hrms/setup.py:95
+#: hrms/overrides/company.py:133 hrms/setup.py:98
 msgid "Default Payroll Payable Account"
 msgstr "crwdns148486:0crwdne148486:0"
 
@@ -2529,7 +2538,7 @@ msgid "Default Salary Structure"
 msgstr "crwdns141286:0crwdne141286:0"
 
 #: hrms/hr/doctype/shift_assignment_tool/shift_assignment_tool.js:204
-#: hrms/setup.py:207
+#: hrms/setup.py:210
 msgid "Default Shift"
 msgstr "crwdns141288:0crwdne141288:0"
 
@@ -2640,7 +2649,7 @@ msgstr "crwdns141316:0crwdne141316:0"
 msgid "Do you want to update the Job Applicant {0} as {1} based on this interview result?"
 msgstr "crwdns106394:0{0}crwdnd106394:0{1}crwdne106394:0"
 
-#: frontend/src/components/RequestActionSheet.vue:292
+#: frontend/src/components/RequestActionSheet.vue:300
 msgid "Document {0} failed!"
 msgstr "crwdns151194:0{0}crwdne151194:0"
 
@@ -2831,7 +2840,7 @@ msgid "Employee A/C Number"
 msgstr "crwdns106578:0crwdne106578:0"
 
 #: hrms/patches/v16_0/create_custom_field_for_employee_advance_in_employee_master.py:11
-#: hrms/setup.py:270
+#: hrms/setup.py:273
 msgid "Employee Advance Account"
 msgstr "crwdns161222:0crwdne161222:0"
 
@@ -2899,7 +2908,7 @@ msgstr "crwdns159510:0crwdne159510:0"
 #. Label of the employee_benefits_section (Section Break) field in DocType
 #. 'Salary Structure Assignment'
 #: hrms/payroll/doctype/salary_structure_assignment/salary_structure_assignment.json
-#: hrms/setup.py:409
+#: hrms/setup.py:412
 msgid "Employee Benefits"
 msgstr "crwdns106606:0crwdne106606:0"
 
@@ -3113,7 +3122,7 @@ msgstr "crwdns106684:0crwdne106684:0"
 msgid "Employee Leave Balance Summary"
 msgstr "crwdns106686:0crwdne106686:0"
 
-#: hrms/setup.py:771
+#: hrms/setup.py:774
 msgid "Employee Loan"
 msgstr "crwdns148896:0crwdne148896:0"
 
@@ -3181,10 +3190,12 @@ msgstr "crwdns106806:0crwdne106806:0"
 #. Name of a DocType
 #. Label of the employee_referral (Link) field in DocType 'Job Applicant'
 #. Label of a Link in the Recruitment Workspace
+#. Label of a Workspace Sidebar Item
 #: hrms/hr/doctype/employee_referral/employee_referral.json
 #: hrms/hr/doctype/job_applicant/job_applicant.json
 #: hrms/hr/doctype/job_requisition/job_requisition.js:18
-#: hrms/hr/workspace/recruitment/recruitment.json hrms/setup.py:403
+#: hrms/hr/workspace/recruitment/recruitment.json hrms/setup.py:406
+#: hrms/workspace_sidebar/recruitment.json
 msgid "Employee Referral"
 msgstr "crwdns106808:0crwdne106808:0"
 
@@ -3483,7 +3494,7 @@ msgstr "crwdns106934:0crwdne106934:0"
 #: hrms/hr/doctype/leave_control_panel/leave_control_panel.json
 #: hrms/hr/doctype/shift_assignment_tool/shift_assignment_tool.json
 #: hrms/payroll/doctype/bulk_salary_structure_assignment/bulk_salary_structure_assignment.json
-#: hrms/setup.py:185 hrms/templates/generators/job_opening.html:141
+#: hrms/setup.py:188 hrms/templates/generators/job_opening.html:141
 msgid "Employment Type"
 msgstr "crwdns106936:0crwdne106936:0"
 
@@ -3570,9 +3581,9 @@ msgstr "crwdns106992:0{0}crwdne106992:0"
 msgid "End time cannot be before start time"
 msgstr "crwdns106994:0crwdne106994:0"
 
-#: hrms/hr/doctype/job_applicant/job_applicant.js:86
-msgid "Enter Interview Round"
-msgstr "crwdns160128:0crwdne160128:0"
+#: hrms/hr/doctype/job_applicant/job_applicant.js:123
+msgid "Enter Interview Type"
+msgstr "crwdns200372:0crwdne200372:0"
 
 #: hrms/hr/doctype/leave_adjustment/leave_adjustment.py:74
 msgid "Enter a non-zero value to adjust."
@@ -3619,7 +3630,7 @@ msgstr "crwdns159532:0crwdne159532:0"
 msgid "Error in formula or condition"
 msgstr "crwdns107014:0crwdne107014:0"
 
-#: hrms/payroll/doctype/salary_slip/salary_slip.py:2623
+#: hrms/payroll/doctype/salary_slip/salary_slip.py:2628
 msgid "Error in formula or condition: {0} in Income Tax Slab"
 msgstr "crwdns107016:0{0}crwdne107016:0"
 
@@ -3631,7 +3642,7 @@ msgstr "crwdns141420:0crwdne141420:0"
 msgid "Error updating {0}"
 msgstr "crwdns151218:0{0}crwdne151218:0"
 
-#: hrms/payroll/doctype/salary_slip/salary_slip.py:2702
+#: hrms/payroll/doctype/salary_slip/salary_slip.py:2707
 msgid "Error while evaluating the {doctype} {doclink} at row {row_id}. <br><br> <b>Error:</b> {error} <br><br> <b>Hint:</b> {description}"
 msgstr "crwdns107018:0{doctype}crwdnd107018:0{doclink}crwdnd107018:0{row_id}crwdnd107018:0{error}crwdnd107018:0{description}crwdne107018:0"
 
@@ -3833,8 +3844,8 @@ msgstr "crwdns107092:0crwdne107092:0"
 
 #: hrms/hr/doctype/exit_interview/test_exit_interview.py:110
 #: hrms/hr/doctype/exit_interview/test_exit_interview.py:120
-#: hrms/hr/doctype/exit_interview/test_exit_interview.py:122 hrms/setup.py:484
-#: hrms/setup.py:486 hrms/setup.py:507
+#: hrms/hr/doctype/exit_interview/test_exit_interview.py:122 hrms/setup.py:487
+#: hrms/setup.py:489 hrms/setup.py:510
 msgid "Exit Questionnaire Notification"
 msgstr "crwdns107096:0crwdne107096:0"
 
@@ -3862,9 +3873,9 @@ msgstr "crwdns159536:0crwdne159536:0"
 
 #. Label of the expected_average_rating (Rating) field in DocType 'Interview'
 #. Label of the expected_average_rating (Rating) field in DocType 'Interview
-#. Round'
+#. Type'
 #: hrms/hr/doctype/interview/interview.json
-#: hrms/hr/doctype/interview_round/interview_round.json
+#: hrms/hr/doctype/interview_type/interview_type.json
 msgid "Expected Average Rating"
 msgstr "crwdns141454:0crwdne141454:0"
 
@@ -3889,8 +3900,8 @@ msgstr "crwdns160130:0crwdne160130:0"
 msgid "Expected Skill Set"
 msgstr "crwdns107114:0crwdne107114:0"
 
-#. Label of the expected_skill_set (Table) field in DocType 'Interview Round'
-#: hrms/hr/doctype/interview_round/interview_round.json
+#. Label of the expected_skill_set (Table) field in DocType 'Interview Type'
+#: hrms/hr/doctype/interview_type/interview_type.json
 msgid "Expected Skillset"
 msgstr "crwdns141460:0crwdne141460:0"
 
@@ -3898,8 +3909,8 @@ msgstr "crwdns141460:0crwdne141460:0"
 #. Label of the expense_approver (Link) field in DocType 'Expense Claim'
 #: hrms/hr/doctype/employee_advance/employee_advance.json
 #: hrms/hr/doctype/expense_claim/expense_claim.json
-#: hrms/patches/v15_0/update_approver_custom_fields.py:11 hrms/setup.py:152
-#: hrms/setup.py:241
+#: hrms/patches/v15_0/update_approver_custom_fields.py:11 hrms/setup.py:155
+#: hrms/setup.py:244
 msgid "Expense Approver"
 msgstr "crwdns107124:0crwdne107124:0"
 
@@ -4030,7 +4041,7 @@ msgstr "crwdns141482:0crwdne141482:0"
 msgid "Exporting..."
 msgstr "crwdns107184:0crwdne107184:0"
 
-#: hrms/hr/utils.py:934
+#: hrms/hr/utils.py:944
 msgid "Failed to create/submit {0} for employees:"
 msgstr "crwdns107188:0{0}crwdne107188:0"
 
@@ -4038,7 +4049,7 @@ msgstr "crwdns107188:0{0}crwdne107188:0"
 msgid "Failed to delete defaults for country {0}."
 msgstr "crwdns141486:0{0}crwdne141486:0"
 
-#: hrms/api/__init__.py:783
+#: hrms/api/__init__.py:784
 msgid "Failed to download PDF: {0}"
 msgstr "crwdns159538:0{0}crwdne159538:0"
 
@@ -4074,7 +4085,7 @@ msgstr "crwdns141494:0crwdne141494:0"
 msgid "Failure Reason"
 msgstr "crwdns160880:0crwdne160880:0"
 
-#: hrms/hr/utils.py:483
+#: hrms/hr/utils.py:493
 msgid "Failure of Automatic Allocation of Earned Leaves"
 msgstr "crwdns160882:0crwdne160882:0"
 
@@ -4278,7 +4289,7 @@ msgstr "crwdns107284:0crwdne107284:0"
 msgid "Follow via Email"
 msgstr "crwdns141530:0crwdne141530:0"
 
-#: hrms/setup.py:336
+#: hrms/setup.py:339
 msgid "Food"
 msgstr "crwdns107288:0crwdne107288:0"
 
@@ -4420,7 +4431,7 @@ msgstr "crwdns107384:0crwdne107384:0"
 msgid "Full and Final Outstanding Statement"
 msgstr "crwdns107386:0crwdne107386:0"
 
-#: hrms/setup.py:392
+#: hrms/setup.py:395
 msgid "Full-time"
 msgstr "crwdns107392:0crwdne107392:0"
 
@@ -4454,7 +4465,7 @@ msgstr "crwdns161226:0crwdne161226:0"
 msgid "Geolocation Error"
 msgstr "crwdns141568:0crwdne141568:0"
 
-#: frontend/src/components/CheckInPanel.vue:143
+#: frontend/src/components/CheckInPanel.vue:140
 #: hrms/public/js/utils/index.js:185
 msgid "Geolocation is not supported by your current browser"
 msgstr "crwdns141570:0crwdne141570:0"
@@ -4557,7 +4568,7 @@ msgstr "crwdns107448:0crwdne107448:0"
 #: hrms/payroll/doctype/bulk_salary_structure_assignment/bulk_salary_structure_assignment.js:173
 #: hrms/payroll/doctype/payroll_entry/payroll_entry.json
 #: hrms/payroll/doctype/salary_structure_assignment/salary_structure_assignment.json
-#: hrms/setup.py:200
+#: hrms/setup.py:203
 msgid "Grade"
 msgstr "crwdns141584:0crwdne141584:0"
 
@@ -4654,15 +4665,15 @@ msgstr "crwdns141598:0crwdne141598:0"
 msgid "Group goal's progress is auto-calculated based on the child goals."
 msgstr "crwdns107500:0crwdne107500:0"
 
-#: hrms/setup.py:325
+#: hrms/setup.py:328
 msgid "HR"
 msgstr "crwdns107504:0crwdne107504:0"
 
-#: hrms/setup.py:58
+#: hrms/setup.py:61
 msgid "HR & Payroll"
 msgstr "crwdns148898:0crwdne148898:0"
 
-#: hrms/setup.py:64
+#: hrms/setup.py:67
 msgid "HR & Payroll Settings"
 msgstr "crwdns148900:0crwdne148900:0"
 
@@ -4741,7 +4752,7 @@ msgstr "crwdns107564:0crwdne107564:0"
 msgid "Has Certificate"
 msgstr "crwdns141608:0crwdne141608:0"
 
-#: hrms/setup.py:215
+#: hrms/setup.py:218
 msgid "Health Insurance"
 msgstr "crwdns148902:0crwdne148902:0"
 
@@ -4751,11 +4762,11 @@ msgstr "crwdns148902:0crwdne148902:0"
 msgid "Health Insurance Name"
 msgstr "crwdns141610:0crwdne141610:0"
 
-#: hrms/setup.py:229
+#: hrms/setup.py:232
 msgid "Health Insurance No"
 msgstr "crwdns148904:0crwdne148904:0"
 
-#: hrms/setup.py:221
+#: hrms/setup.py:224
 msgid "Health Insurance Provider"
 msgstr "crwdns148906:0crwdne148906:0"
 
@@ -5134,15 +5145,15 @@ msgstr "crwdns107724:0crwdne107724:0"
 msgid "Income Tax Slab is mandatory since the Salary Structure {0} has a tax component {1}"
 msgstr "crwdns141690:0{0}crwdnd141690:0{1}crwdne141690:0"
 
-#: hrms/payroll/doctype/salary_slip/salary_slip.py:1957
+#: hrms/payroll/doctype/salary_slip/salary_slip.py:1962
 msgid "Income Tax Slab must be effective on or before Payroll Period Start Date: {0}"
 msgstr "crwdns107726:0{0}crwdne107726:0"
 
-#: hrms/payroll/doctype/salary_slip/salary_slip.py:1945
+#: hrms/payroll/doctype/salary_slip/salary_slip.py:1950
 msgid "Income Tax Slab not set in Salary Structure Assignment: {0}"
 msgstr "crwdns107728:0{0}crwdne107728:0"
 
-#: hrms/payroll/doctype/salary_slip/salary_slip.py:1953
+#: hrms/payroll/doctype/salary_slip/salary_slip.py:1958
 msgid "Income Tax Slab: {0} is disabled"
 msgstr "crwdns107730:0{0}crwdne107730:0"
 
@@ -5195,7 +5206,7 @@ msgstr "crwdns141698:0crwdne141698:0"
 msgid "Interest Income Account"
 msgstr "crwdns141700:0crwdne141700:0"
 
-#: hrms/setup.py:398
+#: hrms/setup.py:401
 msgid "Intern"
 msgstr "crwdns107754:0crwdne107754:0"
 
@@ -5215,7 +5226,6 @@ msgstr "crwdns141706:0crwdne141706:0"
 #. Label of a Workspace Sidebar Item
 #: hrms/hr/doctype/interview/interview.json
 #: hrms/hr/doctype/interview_feedback/interview_feedback.json
-#: hrms/hr/doctype/job_applicant/job_applicant.js:25
 #: hrms/hr/doctype/job_applicant/job_applicant_dashboard.html:7
 #: hrms/hr/workspace/recruitment/recruitment.json
 #: hrms/workspace_sidebar/recruitment.json
@@ -5241,11 +5251,11 @@ msgstr "crwdns141708:0crwdne141708:0"
 msgid "Interview Feedback"
 msgstr "crwdns107770:0crwdne107770:0"
 
-#: hrms/hr/doctype/interview/test_interview.py:309
-#: hrms/hr/doctype/interview/test_interview.py:318
-#: hrms/hr/doctype/interview/test_interview.py:320
-#: hrms/hr/doctype/interview/test_interview.py:327 hrms/setup.py:470
-#: hrms/setup.py:472 hrms/setup.py:505
+#: hrms/hr/doctype/interview/test_interview.py:296
+#: hrms/hr/doctype/interview/test_interview.py:305
+#: hrms/hr/doctype/interview/test_interview.py:307
+#: hrms/hr/doctype/interview/test_interview.py:314 hrms/setup.py:473
+#: hrms/setup.py:475 hrms/setup.py:508
 msgid "Interview Feedback Reminder"
 msgstr "crwdns107776:0crwdne107776:0"
 
@@ -5257,11 +5267,11 @@ msgstr "crwdns107778:0{0}crwdne107778:0"
 msgid "Interview Not Rescheduled"
 msgstr "crwdns107780:0crwdne107780:0"
 
-#: hrms/hr/doctype/interview/test_interview.py:293
-#: hrms/hr/doctype/interview/test_interview.py:302
-#: hrms/hr/doctype/interview/test_interview.py:304
-#: hrms/hr/doctype/interview/test_interview.py:326 hrms/setup.py:458
-#: hrms/setup.py:460 hrms/setup.py:501
+#: hrms/hr/doctype/interview/test_interview.py:280
+#: hrms/hr/doctype/interview/test_interview.py:289
+#: hrms/hr/doctype/interview/test_interview.py:291
+#: hrms/hr/doctype/interview/test_interview.py:313 hrms/setup.py:461
+#: hrms/setup.py:463 hrms/setup.py:504
 msgid "Interview Reminder"
 msgstr "crwdns107782:0crwdne107782:0"
 
@@ -5274,28 +5284,6 @@ msgstr "crwdns141710:0crwdne141710:0"
 #: hrms/hr/doctype/interview/interview.py:151
 msgid "Interview Rescheduled successfully"
 msgstr "crwdns107786:0crwdne107786:0"
-
-#. Label of the interview_round (Link) field in DocType 'Interview'
-#. Label of the interview_round (Link) field in DocType 'Interview Feedback'
-#. Name of a DocType
-#. Label of a Link in the Recruitment Workspace
-#. Label of a Workspace Sidebar Item
-#: hrms/hr/doctype/interview/interview.json
-#: hrms/hr/doctype/interview_feedback/interview_feedback.json
-#: hrms/hr/doctype/interview_round/interview_round.json
-#: hrms/hr/doctype/job_applicant/job_applicant_dashboard.html:8
-#: hrms/hr/workspace/recruitment/recruitment.json
-#: hrms/workspace_sidebar/recruitment.json
-msgid "Interview Round"
-msgstr "crwdns107788:0crwdne107788:0"
-
-#: hrms/hr/doctype/job_applicant/job_applicant.py:96
-msgid "Interview Round {0} is only applicable for the Designation {1}"
-msgstr "crwdns107798:0{0}crwdnd107798:0{1}crwdne107798:0"
-
-#: hrms/hr/doctype/interview/interview.py:79
-msgid "Interview Round {0} is only for Designation {1}. Job Applicant has applied for the role {2}"
-msgstr "crwdns107800:0{0}crwdnd107800:0{1}crwdnd107800:0{2}crwdne107800:0"
 
 #: hrms/hr/doctype/interview_feedback/interview_feedback.py:61
 msgid "Interview Scheduled Date"
@@ -5311,20 +5299,36 @@ msgstr "crwdns107802:0crwdne107802:0"
 #. Label of the section_break_13 (Section Break) field in DocType 'Interview'
 #: hrms/hr/doctype/exit_interview/exit_interview.json
 #: hrms/hr/doctype/interview/interview.json
-#: hrms/hr/doctype/job_applicant/job_applicant.js:77
+#: hrms/hr/doctype/job_applicant/job_applicant.js:117
 msgid "Interview Summary"
 msgstr "crwdns107804:0crwdne107804:0"
 
-#. Label of the interview_type (Link) field in DocType 'Interview Round'
+#. Label of the interview_type (Link) field in DocType 'Interview'
+#. Label of the interview_type (Link) field in DocType 'Interview Feedback'
 #. Name of a DocType
 #. Label of a Link in the Recruitment Workspace
 #. Label of a Workspace Sidebar Item
-#: hrms/hr/doctype/interview_round/interview_round.json
+#: hrms/hr/doctype/interview/interview.json
+#: hrms/hr/doctype/interview_feedback/interview_feedback.json
 #: hrms/hr/doctype/interview_type/interview_type.json
+#: hrms/hr/doctype/job_applicant/job_applicant_dashboard.html:8
 #: hrms/hr/workspace/recruitment/recruitment.json
 #: hrms/workspace_sidebar/recruitment.json
 msgid "Interview Type"
 msgstr "crwdns107810:0crwdne107810:0"
+
+#. Label of the interview_type_name (Data) field in DocType 'Interview Type'
+#: hrms/hr/doctype/interview_type/interview_type.json
+msgid "Interview Type Name"
+msgstr "crwdns200374:0crwdne200374:0"
+
+#: hrms/hr/doctype/job_applicant/job_applicant.py:96
+msgid "Interview Type {0} is only applicable for the Designation {1}"
+msgstr "crwdns200376:0{0}crwdnd200376:0{1}crwdne200376:0"
+
+#: hrms/hr/doctype/interview/interview.py:79
+msgid "Interview Type {0} is only for Designation {1}. Job Applicant has applied for the role {2}"
+msgstr "crwdns200378:0{0}crwdnd200378:0{1}crwdnd200378:0{2}crwdne200378:0"
 
 #: hrms/hr/doctype/interview/interview.py:132
 msgid "Interview: {0} Rescheduled"
@@ -5337,7 +5341,7 @@ msgstr "crwdns107816:0{0}crwdne107816:0"
 #: hrms/hr/doctype/interview/interview.json
 #: hrms/hr/doctype/interview_detail/interview_detail.json
 #: hrms/hr/doctype/interview_feedback/interview_feedback.json
-#: hrms/hr/doctype/interview_round/interview_round.json
+#: hrms/hr/doctype/interview_type/interview_type.json
 #: hrms/hr/doctype/interviewer/interviewer.json
 msgid "Interviewer"
 msgstr "crwdns107818:0crwdne107818:0"
@@ -5346,10 +5350,10 @@ msgstr "crwdns107818:0crwdne107818:0"
 #. Interview'
 #. Label of the interview_details (Table) field in DocType 'Interview'
 #. Label of the interviewers (Table MultiSelect) field in DocType 'Interview
-#. Round'
+#. Type'
 #: hrms/hr/doctype/exit_interview/exit_interview.json
 #: hrms/hr/doctype/interview/interview.json
-#: hrms/hr/doctype/interview_round/interview_round.json
+#: hrms/hr/doctype/interview_type/interview_type.json
 msgid "Interviewers"
 msgstr "crwdns141712:0crwdne141712:0"
 
@@ -5385,7 +5389,7 @@ msgstr "crwdns159568:0crwdne159568:0"
 msgid "Invalid Dates"
 msgstr "crwdns151982:0crwdne151982:0"
 
-#: hrms/payroll/doctype/salary_slip/salary_slip.py:2734
+#: hrms/payroll/doctype/salary_slip/salary_slip.py:2739
 msgid "Invalid LWP Days Reversed"
 msgstr "crwdns160264:0crwdne160264:0"
 
@@ -5541,7 +5545,7 @@ msgstr "crwdns107906:0crwdne107906:0"
 #: hrms/hr/doctype/job_applicant/job_applicant.json
 #: hrms/hr/doctype/job_offer/job_offer.json
 #: hrms/hr/report/recruitment_analytics/recruitment_analytics.py:38
-#: hrms/hr/workspace/recruitment/recruitment.json hrms/setup.py:193
+#: hrms/hr/workspace/recruitment/recruitment.json hrms/setup.py:196
 #: hrms/workspace_sidebar/recruitment.json
 msgid "Job Applicant"
 msgstr "crwdns107908:0crwdne107908:0"
@@ -5556,23 +5560,18 @@ msgid "Job Applicant {0} created successfully."
 msgstr "crwdns107924:0{0}crwdne107924:0"
 
 #: hrms/hr/doctype/interview/interview.py:66
-msgid "Job Applicants are not allowed to appear twice for the same Interview round. Interview {0} already scheduled for Job Applicant {1}"
-msgstr "crwdns107926:0{0}crwdnd107926:0{1}crwdne107926:0"
+msgid "Job Applicants are not allowed to appear twice for the same Interview Type. Interview {0} already scheduled for Job Applicant {1}"
+msgstr "crwdns200380:0{0}crwdnd200380:0{1}crwdne200380:0"
 
 #. Title of the job-application Web Form
 #: hrms/hr/web_form/job_application/job_application.json
 msgid "Job Application"
 msgstr "crwdns160132:0crwdne160132:0"
 
-#. Label of the job_application_route (Data) field in DocType 'Job Opening'
-#: hrms/hr/doctype/job_opening/job_opening.json
-msgid "Job Application Route"
-msgstr "crwdns141760:0crwdne141760:0"
-
 #. Label of the job_description_tab (Tab Break) field in DocType 'Job
 #. Requisition'
 #. Label of the description (Text Editor) field in DocType 'Job Requisition'
-#: hrms/hr/doctype/job_requisition/job_requisition.json hrms/setup.py:413
+#: hrms/hr/doctype/job_requisition/job_requisition.json hrms/setup.py:416
 msgid "Job Description"
 msgstr "crwdns107930:0crwdne107930:0"
 
@@ -5581,8 +5580,6 @@ msgstr "crwdns107930:0crwdne107930:0"
 #. Label of a Link in the Recruitment Workspace
 #. Label of a Workspace Sidebar Item
 #: hrms/hr/doctype/employee_onboarding/employee_onboarding.json
-#: hrms/hr/doctype/job_applicant/job_applicant.js:38
-#: hrms/hr/doctype/job_applicant/job_applicant.js:48
 #: hrms/hr/doctype/job_offer/job_offer.json
 #: hrms/hr/report/recruitment_analytics/recruitment_analytics.py:52
 #: hrms/hr/workspace/recruitment/recruitment.json
@@ -5597,8 +5594,10 @@ msgstr "crwdns107940:0crwdne107940:0"
 
 #. Label of the job_offer_term_template (Link) field in DocType 'Job Offer'
 #. Name of a DocType
+#. Label of a Workspace Sidebar Item
 #: hrms/hr/doctype/job_offer/job_offer.json
 #: hrms/hr/doctype/job_offer_term_template/job_offer_term_template.json
+#: hrms/workspace_sidebar/recruitment.json
 msgid "Job Offer Term Template"
 msgstr "crwdns107942:0crwdne107942:0"
 
@@ -5638,8 +5637,10 @@ msgstr "crwdns107962:0crwdne107962:0"
 
 #. Label of the job_opening_template (Link) field in DocType 'Job Opening'
 #. Name of a DocType
+#. Label of a Workspace Sidebar Item
 #: hrms/hr/doctype/job_opening/job_opening.json
 #: hrms/hr/doctype/job_opening_template/job_opening_template.json
+#: hrms/workspace_sidebar/recruitment.json
 msgid "Job Opening Template"
 msgstr "crwdns163910:0crwdne163910:0"
 
@@ -5650,6 +5651,11 @@ msgstr "crwdns107964:0crwdne107964:0"
 #: hrms/hr/doctype/job_opening/job_opening.py:118
 msgid "Job Openings for the designation {0} are already open or the hiring is complete as per the Staffing Plan {1}"
 msgstr "crwdns107966:0{0}crwdnd107966:0{1}crwdne107966:0"
+
+#. Label of a Workspace Sidebar Item
+#: hrms/workspace_sidebar/recruitment.json
+msgid "Job Portal"
+msgstr "crwdns200382:0crwdne200382:0"
 
 #. Label of the job_requisition (Link) field in DocType 'Job Opening'
 #. Name of a DocType
@@ -5747,7 +5753,7 @@ msgstr "crwdns141778:0crwdne141778:0"
 msgid "Key Result Area"
 msgstr "crwdns141780:0crwdne141780:0"
 
-#: hrms/payroll/doctype/salary_slip/salary_slip.py:2731
+#: hrms/payroll/doctype/salary_slip/salary_slip.py:2736
 msgid "LWP Days Reversed ({0}) does not match actual Payroll Corrections total ({1}) for employee {2} from {3} to {4}"
 msgstr "crwdns160266:0{0}crwdnd160266:0{1}crwdnd160266:0{2}crwdnd160266:0{3}crwdnd160266:0{4}crwdne160266:0"
 
@@ -5807,7 +5813,7 @@ msgstr "crwdns141794:0crwdne141794:0"
 msgid "Latitude and longitude values are required for checking in."
 msgstr "crwdns149142:0crwdne149142:0"
 
-#: frontend/src/components/CheckInPanel.vue:131
+#: frontend/src/components/CheckInPanel.vue:128
 msgid "Latitude: {0}°"
 msgstr "crwdns151248:0{0}crwdne151248:0"
 
@@ -5867,7 +5873,7 @@ msgstr "crwdns108064:0crwdne108064:0"
 msgid "Leave Application period cannot be across two non-consecutive leave allocations {0} and {1}."
 msgstr "crwdns108070:0{0}crwdnd108070:0{1}crwdne108070:0"
 
-#: hrms/setup.py:435 hrms/setup.py:437 hrms/setup.py:497
+#: hrms/setup.py:438 hrms/setup.py:440 hrms/setup.py:500
 msgid "Leave Approval Notification"
 msgstr "crwdns108072:0crwdne108072:0"
 
@@ -5881,8 +5887,8 @@ msgstr "crwdns141800:0crwdne141800:0"
 #. Name of a role
 #: hrms/hr/doctype/leave_application/leave_application.json
 #: hrms/hr/doctype/overtime_slip/overtime_slip.json
-#: hrms/patches/v15_0/update_approver_custom_fields.py:19 hrms/setup.py:145
-#: hrms/setup.py:249
+#: hrms/patches/v15_0/update_approver_custom_fields.py:19 hrms/setup.py:148
+#: hrms/setup.py:252
 msgid "Leave Approver"
 msgstr "crwdns108076:0crwdne108076:0"
 
@@ -5919,7 +5925,7 @@ msgstr "crwdns196014:0crwdne196014:0"
 #. Label of a Link in the Leaves Workspace
 #. Label of a Workspace Sidebar Item
 #: hrms/hr/doctype/leave_block_list/leave_block_list.json
-#: hrms/hr/workspace/leaves/leaves.json hrms/setup.py:124
+#: hrms/hr/workspace/leaves/leaves.json hrms/setup.py:127
 #: hrms/workspace_sidebar/leaves.json
 msgid "Leave Block List"
 msgstr "crwdns108088:0crwdne108088:0"
@@ -6077,7 +6083,7 @@ msgstr "crwdns108152:0{0}crwdnd108152:0{1}crwdnd108152:0{2}crwdnd108152:0{3}crwd
 msgid "Leave Settings"
 msgstr "crwdns194902:0crwdne194902:0"
 
-#: hrms/setup.py:444 hrms/setup.py:446 hrms/setup.py:498
+#: hrms/setup.py:447 hrms/setup.py:449 hrms/setup.py:501
 msgid "Leave Status Notification"
 msgstr "crwdns108154:0crwdne108154:0"
 
@@ -6155,8 +6161,8 @@ msgstr "crwdns108194:0{0}crwdne108194:0"
 
 #. Label of the leave_without_pay (Float) field in DocType 'Salary Slip'
 #: hrms/payroll/doctype/salary_slip/salary_slip.json
-#: hrms/payroll/report/salary_register/salary_register.py:179 hrms/setup.py:384
-#: hrms/setup.py:385
+#: hrms/payroll/report/salary_register/salary_register.py:179 hrms/setup.py:387
+#: hrms/setup.py:388
 msgid "Leave Without Pay"
 msgstr "crwdns108196:0crwdne108196:0"
 
@@ -6259,7 +6265,7 @@ msgstr "crwdns141834:0crwdne141834:0"
 msgid "Leaves for the Leave Type {0} won't be carry-forwarded since carry-forwarding is disabled."
 msgstr "crwdns108230:0{0}crwdne108230:0"
 
-#: hrms/setup.py:415
+#: hrms/setup.py:418
 msgid "Leaves per Year"
 msgstr "crwdns108232:0crwdne108232:0"
 
@@ -6313,7 +6319,7 @@ msgstr "crwdns141848:0crwdne141848:0"
 msgid "Loan Product"
 msgstr "crwdns141850:0crwdne141850:0"
 
-#: hrms/payroll/report/salary_register/salary_register.py:233 hrms/setup.py:764
+#: hrms/payroll/report/salary_register/salary_register.py:233 hrms/setup.py:767
 msgid "Loan Repayment"
 msgstr "crwdns108270:0crwdne108270:0"
 
@@ -6322,11 +6328,11 @@ msgstr "crwdns108270:0crwdne108270:0"
 msgid "Loan Repayment Entry"
 msgstr "crwdns141852:0crwdne141852:0"
 
-#: hrms/hr/utils.py:821
+#: hrms/hr/utils.py:831
 msgid "Loan cannot be repayed from salary for Employee {0} because salary is processed in currency {1}"
 msgstr "crwdns108274:0{0}crwdnd108274:0{1}crwdne108274:0"
 
-#: frontend/src/components/CheckInPanel.vue:145
+#: frontend/src/components/CheckInPanel.vue:142
 msgid "Locating..."
 msgstr "crwdns151254:0crwdne151254:0"
 
@@ -6362,15 +6368,17 @@ msgstr "crwdns151260:0crwdne151260:0"
 msgid "Login to Frappe HR"
 msgstr "crwdns151262:0crwdne151262:0"
 
-#: frontend/src/components/CheckInPanel.vue:132
+#: frontend/src/components/CheckInPanel.vue:129
 msgid "Longitude: {0}°"
 msgstr "crwdns151264:0{0}crwdne151264:0"
 
 #. Label of the lower_range (Currency) field in DocType 'Job Applicant'
 #. Label of the lower_range (Currency) field in DocType 'Job Opening'
+#. Label of the lower_range (Currency) field in DocType 'Job Opening Template'
 #. Label of a field in the job-application Web Form
 #: hrms/hr/doctype/job_applicant/job_applicant.json
 #: hrms/hr/doctype/job_opening/job_opening.json
+#: hrms/hr/doctype/job_opening_template/job_opening_template.json
 #: hrms/hr/web_form/job_application/job_application.json
 msgid "Lower Range"
 msgstr "crwdns141862:0crwdne141862:0"
@@ -6610,7 +6618,7 @@ msgstr "crwdns108388:0crwdne108388:0"
 msgid "Meal Preference"
 msgstr "crwdns141906:0crwdne141906:0"
 
-#: hrms/setup.py:337
+#: hrms/setup.py:340
 msgid "Medical"
 msgstr "crwdns108392:0crwdne108392:0"
 
@@ -6657,7 +6665,7 @@ msgstr "crwdns108408:0crwdne108408:0"
 msgid "Missing Salary Components"
 msgstr "crwdns159592:0crwdne159592:0"
 
-#: hrms/payroll/doctype/salary_slip/salary_slip.py:1948
+#: hrms/payroll/doctype/salary_slip/salary_slip.py:1953
 msgid "Missing Tax Slab"
 msgstr "crwdns141918:0crwdne141918:0"
 
@@ -6726,7 +6734,7 @@ msgid "My Requests"
 msgstr "crwdns151276:0crwdne151276:0"
 
 #: hrms/payroll/doctype/salary_slip/salary_slip.py:1393
-#: hrms/payroll/doctype/salary_slip/salary_slip.py:2618
+#: hrms/payroll/doctype/salary_slip/salary_slip.py:2623
 msgid "Name error"
 msgstr "crwdns108470:0crwdne108470:0"
 
@@ -6821,7 +6829,7 @@ msgstr "crwdns108518:0crwdne108518:0"
 msgid "No Employee found for the given employee field value. '{}': {}"
 msgstr "crwdns108520:0crwdne108520:0"
 
-#: hrms/hr/doctype/appraisal_cycle/appraisal_cycle.py:136 hrms/hr/utils.py:924
+#: hrms/hr/doctype/appraisal_cycle/appraisal_cycle.py:136 hrms/hr/utils.py:934
 msgid "No Employees Selected"
 msgstr "crwdns108522:0crwdne108522:0"
 
@@ -6869,7 +6877,7 @@ msgstr "crwdns141958:0crwdne141958:0"
 msgid "No Shift Requests Selected"
 msgstr "crwdns141960:0crwdne141960:0"
 
-#: hrms/hr/doctype/job_opening/job_opening.js:32
+#: hrms/hr/doctype/job_opening/job_opening.js:35
 msgid "No Staffing Plans found for this Designation"
 msgstr "crwdns108532:0crwdne108532:0"
 
@@ -7062,7 +7070,7 @@ msgstr "crwdns141988:0crwdne141988:0"
 msgid "Note: Total allocated leaves {0} shouldn't be less than already approved leaves {1} for the period"
 msgstr "crwdns108590:0{0}crwdnd108590:0{1}crwdne108590:0"
 
-#: hrms/payroll/doctype/salary_slip/salary_slip.py:2257
+#: hrms/payroll/doctype/salary_slip/salary_slip.py:2262
 msgid "Note: Your salary slip is password protected, the password to unlock the PDF is of the format {0}."
 msgstr "crwdns141990:0{0}crwdne141990:0"
 
@@ -7070,7 +7078,7 @@ msgstr "crwdns141990:0{0}crwdne141990:0"
 msgid "Nothing to change"
 msgstr "crwdns108596:0crwdne108596:0"
 
-#: hrms/setup.py:416
+#: hrms/setup.py:419
 msgid "Notice Period"
 msgstr "crwdns108598:0crwdne108598:0"
 
@@ -7263,6 +7271,11 @@ msgstr "crwdns142028:0crwdne142028:0"
 #: hrms/hr/doctype/leave_application/leave_application_email_template.html:30
 msgid "Open Now"
 msgstr "crwdns108688:0crwdne108688:0"
+
+#. Label of the open_resume_button (Button) field in DocType 'Job Applicant'
+#: hrms/hr/doctype/job_applicant/job_applicant.json
+msgid "Open Resume in New Tab"
+msgstr "crwdns200384:0crwdne200384:0"
 
 #: hrms/templates/generators/job_opening.html:38
 #: hrms/templates/generators/job_opening.html:218
@@ -7492,7 +7505,7 @@ msgstr "crwdns142048:0crwdne142048:0"
 msgid "Parent Goal"
 msgstr "crwdns142050:0crwdne142050:0"
 
-#: hrms/setup.py:393
+#: hrms/setup.py:396
 msgid "Part-time"
 msgstr "crwdns108778:0crwdne108778:0"
 
@@ -7519,6 +7532,14 @@ msgstr "crwdns108790:0crwdne108790:0"
 #: hrms/payroll/doctype/payroll_settings/payroll_settings.py:50
 msgid "Password policy for Salary Slips is not set"
 msgstr "crwdns108792:0crwdne108792:0"
+
+#. Label of the pay_details_tab (Tab Break) field in DocType 'Job Opening'
+#. Label of the pay_details_section (Section Break) field in DocType 'Job
+#. Opening Template'
+#: hrms/hr/doctype/job_opening/job_opening.json
+#: hrms/hr/doctype/job_opening_template/job_opening_template.json
+msgid "Pay Details"
+msgstr "crwdns200386:0crwdne200386:0"
 
 #. Label of the pay_rate_multipliers_section (Section Break) field in DocType
 #. 'Overtime Type'
@@ -7626,7 +7647,7 @@ msgstr "crwdns159660:0crwdne159660:0"
 msgid "Payroll Correction Child"
 msgstr "crwdns159662:0crwdne159662:0"
 
-#: hrms/setup.py:110 hrms/setup.py:284
+#: hrms/setup.py:113 hrms/setup.py:287
 msgid "Payroll Cost Center"
 msgstr "crwdns148908:0crwdne148908:0"
 
@@ -7690,7 +7711,7 @@ msgstr "crwdns108866:0crwdne108866:0"
 #: hrms/payroll/doctype/bulk_salary_structure_assignment/bulk_salary_structure_assignment.json
 #: hrms/payroll/doctype/payroll_entry/payroll_entry.json
 #: hrms/payroll/doctype/salary_structure_assignment/salary_structure_assignment.json
-#: hrms/setup.py:837
+#: hrms/setup.py:840
 msgid "Payroll Payable Account"
 msgstr "crwdns108870:0crwdne108870:0"
 
@@ -7807,7 +7828,7 @@ msgstr "crwdns151296:0{0}crwdne151296:0"
 msgid "Permanently submit {0}"
 msgstr "crwdns151298:0{0}crwdne151298:0"
 
-#: hrms/setup.py:397
+#: hrms/setup.py:400
 msgid "Piecework"
 msgstr "crwdns108934:0crwdne108934:0"
 
@@ -7856,7 +7877,7 @@ msgstr "crwdns159666:0crwdne159666:0"
 msgid "Please reduce {0} to avoid shift time overlapping with itself"
 msgstr "crwdns152559:0{0}crwdne152559:0"
 
-#: hrms/payroll/doctype/salary_slip/salary_slip.py:2246
+#: hrms/payroll/doctype/salary_slip/salary_slip.py:2251
 msgid "Please see attachment"
 msgstr "crwdns142108:0crwdne142108:0"
 
@@ -7910,7 +7931,7 @@ msgstr "crwdns108970:0crwdne108970:0"
 msgid "Please select a date."
 msgstr "crwdns108972:0crwdne108972:0"
 
-#: hrms/hr/utils.py:812
+#: hrms/hr/utils.py:822
 msgid "Please select an Applicant"
 msgstr "crwdns108974:0crwdne108974:0"
 
@@ -7918,7 +7939,7 @@ msgstr "crwdns108974:0crwdne108974:0"
 msgid "Please select at least one Shift Request to perform this action."
 msgstr "crwdns142114:0crwdne142114:0"
 
-#: hrms/hr/utils.py:923
+#: hrms/hr/utils.py:933
 msgid "Please select at least one employee to perform this action."
 msgstr "crwdns142116:0crwdne142116:0"
 
@@ -8140,15 +8161,15 @@ msgstr "crwdns142128:0crwdne142128:0"
 msgid "Printed On {0}"
 msgstr "crwdns154514:0{0}crwdne154514:0"
 
-#: hrms/setup.py:376 hrms/setup.py:377
+#: hrms/setup.py:379 hrms/setup.py:380
 msgid "Privilege Leave"
 msgstr "crwdns109080:0crwdne109080:0"
 
-#: hrms/setup.py:394
+#: hrms/setup.py:397
 msgid "Probation"
 msgstr "crwdns109082:0crwdne109082:0"
 
-#: hrms/setup.py:408
+#: hrms/setup.py:411
 msgid "Probationary Period"
 msgstr "crwdns109084:0crwdne109084:0"
 
@@ -8160,7 +8181,7 @@ msgstr "crwdns142136:0crwdne142136:0"
 #. Label of the process_payroll_accounting_entry_based_on_employee (Check)
 #. field in DocType 'Payroll Settings'
 #: hrms/payroll/doctype/payroll_settings/payroll_settings.json
-#: hrms/setup.py:848
+#: hrms/setup.py:851
 msgid "Process Payroll Accounting Entry based on Employee"
 msgstr "crwdns142138:0crwdne142138:0"
 
@@ -8253,7 +8274,10 @@ msgid "Publish Applications Received"
 msgstr "crwdns142158:0crwdne142158:0"
 
 #. Label of the publish_salary_range (Check) field in DocType 'Job Opening'
+#. Label of the publish_salary_range (Check) field in DocType 'Job Opening
+#. Template'
 #: hrms/hr/doctype/job_opening/job_opening.json
+#: hrms/hr/doctype/job_opening_template/job_opening_template.json
 msgid "Publish Salary Range"
 msgstr "crwdns142160:0crwdne142160:0"
 
@@ -8468,6 +8492,7 @@ msgid "Refuelling Details"
 msgstr "crwdns142218:0crwdne142218:0"
 
 #: frontend/src/components/RequestActionSheet.vue:96
+#: hrms/hr/doctype/job_applicant/job_applicant.js:61
 #: hrms/hr/doctype/shift_assignment_tool/shift_assignment_tool.js:126
 msgid "Reject"
 msgstr "crwdns142220:0crwdne142220:0"
@@ -8476,7 +8501,7 @@ msgstr "crwdns142220:0crwdne142220:0"
 msgid "Reject Employee Referral"
 msgstr "crwdns109234:0crwdne109234:0"
 
-#: frontend/src/components/RequestActionSheet.vue:290
+#: frontend/src/components/RequestActionSheet.vue:298
 msgid "Rejection"
 msgstr "crwdns151316:0crwdne151316:0"
 
@@ -8533,11 +8558,11 @@ msgstr "crwdns142240:0crwdne142240:0"
 msgid "Rented Car"
 msgstr "crwdns142242:0crwdne142242:0"
 
-#: hrms/setup.py:821 hrms/setup.py:830
+#: hrms/setup.py:824 hrms/setup.py:833
 msgid "Repay From Salary"
 msgstr "crwdns148910:0crwdne148910:0"
 
-#: hrms/hr/utils.py:827
+#: hrms/hr/utils.py:837
 msgid "Repay From Salary can be selected only for term loans"
 msgstr "crwdns109284:0crwdne109284:0"
 
@@ -8604,7 +8629,7 @@ msgstr "crwdns142250:0crwdne142250:0"
 msgid "Require Full Funding"
 msgstr "crwdns142252:0crwdne142252:0"
 
-#: hrms/setup.py:169
+#: hrms/setup.py:172
 msgid "Required Skills"
 msgstr "crwdns148912:0crwdne148912:0"
 
@@ -8618,7 +8643,7 @@ msgstr "crwdns142254:0crwdne142254:0"
 msgid "Reschedule Interview"
 msgstr "crwdns109308:0crwdne109308:0"
 
-#: hrms/setup.py:414
+#: hrms/setup.py:417
 msgid "Responsibilities"
 msgstr "crwdns109320:0crwdne109320:0"
 
@@ -8628,16 +8653,9 @@ msgstr "crwdns109320:0crwdne109320:0"
 msgid "Restrict Backdated Leave Application"
 msgstr "crwdns142266:0crwdne142266:0"
 
-#. Label of the resume_attachment (Attach) field in DocType 'Job Applicant'
-#: hrms/hr/doctype/job_applicant/job_applicant.json
-msgid "Resume Attachment"
-msgstr "crwdns142270:0crwdne142270:0"
-
 #. Label of the resume_link (Data) field in DocType 'Employee Referral'
-#. Label of the resume_link (Data) field in DocType 'Job Applicant'
 #. Label of a field in the job-application Web Form
 #: hrms/hr/doctype/employee_referral/employee_referral.json
-#: hrms/hr/doctype/job_applicant/job_applicant.json
 #: hrms/hr/web_form/job_application/job_application.json
 msgid "Resume Link"
 msgstr "crwdns142272:0crwdne142272:0"
@@ -8725,11 +8743,6 @@ msgstr "crwdns148548:0crwdne148548:0"
 msgid "Roster Color"
 msgstr "crwdns148550:0crwdne148550:0"
 
-#. Label of the round_name (Data) field in DocType 'Interview Round'
-#: hrms/hr/doctype/interview_round/interview_round.json
-msgid "Round Name"
-msgstr "crwdns142296:0crwdne142296:0"
-
 #. Option for the 'Work Experience Calculation Method' (Select) field in
 #. DocType 'Gratuity Rule'
 #: hrms/payroll/doctype/gratuity_rule/gratuity_rule.json
@@ -8747,7 +8760,7 @@ msgstr "crwdns142300:0crwdne142300:0"
 msgid "Rounding"
 msgstr "crwdns142306:0crwdne142306:0"
 
-#. Description of the 'Job Application Route' (Data) field in DocType 'Job
+#. Description of the 'Application Web Form Route' (Data) field in DocType 'Job
 #. Opening'
 #: hrms/hr/doctype/job_opening/job_opening.json
 msgid "Route to the custom Job Application Webform"
@@ -8886,7 +8899,7 @@ msgstr "crwdns109438:0crwdne109438:0"
 msgid "Salary Details"
 msgstr "crwdns142328:0crwdne142328:0"
 
-#. Label of the section_break_16 (Section Break) field in DocType 'Job
+#. Label of the salary_expectation_tab (Tab Break) field in DocType 'Job
 #. Applicant'
 #: hrms/hr/doctype/job_applicant/job_applicant.json
 msgid "Salary Expectation"
@@ -8897,7 +8910,9 @@ msgid "Salary Information"
 msgstr "crwdns151332:0crwdne151332:0"
 
 #. Label of the salary_per (Select) field in DocType 'Job Opening'
+#. Label of the salary_per (Select) field in DocType 'Job Opening Template'
 #: hrms/hr/doctype/job_opening/job_opening.json
+#: hrms/hr/doctype/job_opening_template/job_opening_template.json
 msgid "Salary Paid Per"
 msgstr "crwdns142332:0crwdne142332:0"
 
@@ -8941,7 +8956,7 @@ msgstr "crwdns109454:0crwdne109454:0"
 #: hrms/payroll/doctype/employee_benefit_ledger/employee_benefit_ledger.json
 #: hrms/payroll/doctype/payroll_settings/payroll_settings.json
 #: hrms/payroll/doctype/salary_slip/salary_slip.json
-#: hrms/payroll/workspace/payroll/payroll.json hrms/setup.py:312
+#: hrms/payroll/workspace/payroll/payroll.json hrms/setup.py:315
 #: hrms/workspace_sidebar/payroll.json
 msgid "Salary Slip"
 msgstr "crwdns109456:0crwdne109456:0"
@@ -9143,7 +9158,7 @@ msgstr "crwdns159696:0crwdne159696:0"
 msgid "Salary components should be part of the Salary Structure."
 msgstr "crwdns142346:0crwdne142346:0"
 
-#: hrms/payroll/doctype/salary_slip/salary_slip.py:2798
+#: hrms/payroll/doctype/salary_slip/salary_slip.py:2803
 msgid "Salary slip emails have been enqueued for sending. Check {0} for status."
 msgstr "crwdns109534:0{0}crwdne109534:0"
 
@@ -9191,8 +9206,8 @@ msgid "Select Applicable Components for Overtime Type"
 msgstr "crwdns159698:0crwdne159698:0"
 
 #: hrms/hr/doctype/interview/interview.js:209
-msgid "Select Interview Round First"
-msgstr "crwdns109574:0crwdne109574:0"
+msgid "Select Interview Type First"
+msgstr "crwdns200388:0crwdne200388:0"
 
 #: hrms/hr/doctype/interview_feedback/interview_feedback.js:49
 msgid "Select Interview first"
@@ -9483,7 +9498,7 @@ msgstr "crwdns151342:0crwdne151342:0"
 msgid "Settle all Payables and Receivables before submission"
 msgstr "crwdns109702:0crwdne109702:0"
 
-#: hrms/hr/utils.py:775
+#: hrms/hr/utils.py:785
 msgid "Shared document with the user {0} with 'Submit' permission"
 msgstr "crwdns155426:0{0}crwdne155426:0"
 
@@ -9603,8 +9618,8 @@ msgstr "crwdns149148:0crwdne149148:0"
 msgid "Shift Request"
 msgstr "crwdns109742:0crwdne109742:0"
 
-#: hrms/patches/v15_0/update_approver_custom_fields.py:27 hrms/setup.py:138
-#: hrms/setup.py:262
+#: hrms/patches/v15_0/update_approver_custom_fields.py:27 hrms/setup.py:141
+#: hrms/setup.py:265
 msgid "Shift Request Approver"
 msgstr "crwdns148914:0crwdne148914:0"
 
@@ -9723,6 +9738,15 @@ msgstr "crwdns143576:0{0}crwdne143576:0"
 msgid "Shifts"
 msgstr "crwdns161510:0crwdne161510:0"
 
+#: hrms/hr/doctype/job_applicant/job_applicant.js:56
+msgid "Shortlist"
+msgstr "crwdns200390:0crwdne200390:0"
+
+#. Option for the 'Status' (Select) field in DocType 'Job Applicant'
+#: hrms/hr/doctype/job_applicant/job_applicant.json
+msgid "Shortlisted"
+msgstr "crwdns200392:0crwdne200392:0"
+
 #: hrms/hr/doctype/job_offer/job_offer.js:51
 msgid "Show Employee"
 msgstr "crwdns109764:0crwdne109764:0"
@@ -9747,7 +9771,7 @@ msgstr "crwdns109770:0crwdne109770:0"
 msgid "Showing"
 msgstr "crwdns109774:0crwdne109774:0"
 
-#: hrms/setup.py:368 hrms/setup.py:369
+#: hrms/setup.py:371 hrms/setup.py:372
 msgid "Sick Leave"
 msgstr "crwdns109776:0crwdne109776:0"
 
@@ -9784,7 +9808,7 @@ msgstr "crwdns142448:0crwdne142448:0"
 
 #. Label of the skills_section (Section Break) field in DocType 'Employee Skill
 #. Map'
-#: hrms/hr/doctype/employee_skill_map/employee_skill_map.json hrms/setup.py:175
+#: hrms/hr/doctype/employee_skill_map/employee_skill_map.json hrms/setup.py:178
 msgid "Skills"
 msgstr "crwdns142450:0crwdne142450:0"
 
@@ -9797,12 +9821,6 @@ msgstr "crwdns142452:0crwdne142452:0"
 #: hrms/payroll/doctype/salary_structure/salary_structure.py:360
 msgid "Skipping Salary Structure Assignment for the following employees, as Salary Structure Assignment records already exists against them. {0}"
 msgstr "crwdns109800:0{0}crwdne109800:0"
-
-#. Label of the source_and_rating_section (Section Break) field in DocType 'Job
-#. Applicant'
-#: hrms/hr/doctype/job_applicant/job_applicant.json
-msgid "Source and Rating"
-msgstr "crwdns142458:0crwdne142458:0"
 
 #: hrms/api/roster.py:95
 msgid "Source and target shifts cannot be the same"
@@ -9866,7 +9884,7 @@ msgstr "crwdns142464:0crwdne142464:0"
 msgid "Standard Working Hours"
 msgstr "crwdns142466:0crwdne142466:0"
 
-#: hrms/payroll/doctype/salary_slip/salary_slip.py:1884
+#: hrms/payroll/doctype/salary_slip/salary_slip.py:1889
 msgid "Start and end dates not in a valid Payroll Period, cannot calculate {0}."
 msgstr "crwdns109860:0{0}crwdne109860:0"
 
@@ -9902,7 +9920,7 @@ msgstr "crwdns142468:0crwdne142468:0"
 msgid "Status for Other Half"
 msgstr "crwdns154516:0crwdne154516:0"
 
-#: hrms/setup.py:411
+#: hrms/setup.py:414
 msgid "Stock Options"
 msgstr "crwdns109928:0crwdne109928:0"
 
@@ -9984,7 +10002,7 @@ msgstr "crwdns109968:0crwdne109968:0"
 msgid "Subsidiary companies have already planned for {1} vacancies at a budget of {2}. Staffing Plan for {0} should allocate more vacancies and budget for {3} than planned for its subsidiary companies"
 msgstr "crwdns109970:0{1}crwdnd109970:0{2}crwdnd109970:0{0}crwdnd109970:0{3}crwdne109970:0"
 
-#: hrms/hr/utils.py:951
+#: hrms/hr/utils.py:961
 msgid "Successfully created {0} for employees:"
 msgstr "crwdns142482:0{0}crwdne142482:0"
 
@@ -10014,7 +10032,7 @@ msgstr "crwdns142490:0{0}crwdne142490:0"
 msgid "Syntax error"
 msgstr "crwdns109990:0crwdne109990:0"
 
-#: hrms/payroll/doctype/salary_slip/salary_slip.py:2621
+#: hrms/payroll/doctype/salary_slip/salary_slip.py:2626
 msgid "Syntax error in condition: {0} in Income Tax Slab"
 msgstr "crwdns109992:0{0}crwdne109992:0"
 
@@ -10177,7 +10195,7 @@ msgstr "crwdns110060:0crwdne110060:0"
 msgid "The days between {0} to {1} are not valid holidays."
 msgstr "crwdns110062:0{0}crwdnd110062:0{1}crwdne110062:0"
 
-#: hrms/setup.py:129
+#: hrms/setup.py:132
 msgid "The first Approver in the list will be set as the default Approver."
 msgstr "crwdns148916:0crwdne148916:0"
 
@@ -10544,11 +10562,11 @@ msgstr "crwdns161238:0crwdne161238:0"
 msgid "Total Exemption Amount"
 msgstr "crwdns142594:0crwdne142594:0"
 
-#: hrms/setup.py:302
+#: hrms/setup.py:305
 msgid "Total Expense Claim (via Expense Claim)"
 msgstr "crwdns148918:0crwdne148918:0"
 
-#: hrms/setup.py:293
+#: hrms/setup.py:296
 msgid "Total Expense Claim (via Expense Claims)"
 msgstr "crwdns148920:0crwdne148920:0"
 
@@ -10571,7 +10589,7 @@ msgstr "crwdns110262:0crwdne110262:0"
 msgid "Total Income Tax"
 msgstr "crwdns142598:0crwdne142598:0"
 
-#: hrms/setup.py:794
+#: hrms/setup.py:797
 msgid "Total Interest Amount"
 msgstr "crwdns148922:0crwdne148922:0"
 
@@ -10604,7 +10622,7 @@ msgstr "crwdns142604:0crwdne142604:0"
 msgid "Total Leaves Encashed"
 msgstr "crwdns142606:0crwdne142606:0"
 
-#: hrms/setup.py:808
+#: hrms/setup.py:811
 msgid "Total Loan Repayment"
 msgstr "crwdns148924:0crwdne148924:0"
 
@@ -10641,7 +10659,7 @@ msgstr "crwdns159728:0crwdne159728:0"
 msgid "Total Present"
 msgstr "crwdns110284:0crwdne110284:0"
 
-#: hrms/setup.py:785
+#: hrms/setup.py:788
 msgid "Total Principal Amount"
 msgstr "crwdns148926:0crwdne148926:0"
 
@@ -10851,7 +10869,7 @@ msgstr "crwdns142644:0crwdne142644:0"
 msgid "Trainings (This Week)"
 msgstr "crwdns159732:0crwdne159732:0"
 
-#: hrms/hr/utils.py:798
+#: hrms/hr/utils.py:808
 msgid "Transactions cannot be created for an Inactive Employee {0}."
 msgstr "crwdns110398:0{0}crwdne110398:0"
 
@@ -10862,7 +10880,7 @@ msgstr "crwdns142652:0crwdne142652:0"
 
 #. Label of a Card Break in the Expenses Workspace
 #. Label of a Workspace Sidebar Item
-#: hrms/hr/workspace/expenses/expenses.json hrms/setup.py:339
+#: hrms/hr/workspace/expenses/expenses.json hrms/setup.py:342
 #: hrms/workspace_sidebar/expenses.json
 msgid "Travel"
 msgstr "crwdns110402:0crwdne110402:0"
@@ -11106,9 +11124,11 @@ msgstr "crwdns151368:0crwdne151368:0"
 
 #. Label of the upper_range (Currency) field in DocType 'Job Applicant'
 #. Label of the upper_range (Currency) field in DocType 'Job Opening'
+#. Label of the upper_range (Currency) field in DocType 'Job Opening Template'
 #. Label of a field in the job-application Web Form
 #: hrms/hr/doctype/job_applicant/job_applicant.json
 #: hrms/hr/doctype/job_opening/job_opening.json
+#: hrms/hr/doctype/job_opening_template/job_opening_template.json
 #: hrms/hr/web_form/job_application/job_application.json
 msgid "Upper Range"
 msgstr "crwdns142688:0crwdne142688:0"
@@ -11217,6 +11237,10 @@ msgstr "crwdns110568:0crwdne110568:0"
 msgid "View Goals"
 msgstr "crwdns110574:0crwdne110574:0"
 
+#: hrms/hr/doctype/job_applicant/job_applicant.js:78
+msgid "View Job Offer"
+msgstr "crwdns200394:0crwdne200394:0"
+
 #: frontend/src/components/LeaveBalance.vue:14
 msgid "View Leave History"
 msgstr "crwdns151372:0crwdne151372:0"
@@ -11250,7 +11274,7 @@ msgstr "crwdns110586:0crwdne110586:0"
 msgid "Warning: {0} already has an active Shift Assignment {1} for some/all of these dates."
 msgstr "crwdns110588:0{0}crwdnd110588:0{1}crwdne110588:0"
 
-#: hrms/setup.py:401
+#: hrms/setup.py:404
 msgid "Website Listing"
 msgstr "crwdns110590:0crwdne110590:0"
 
@@ -11452,7 +11476,7 @@ msgstr "crwdns110686:0{0}crwdnd110686:0{1}crwdnd110686:0{2}crwdnd110686:0{3}crwd
 msgid "You can only submit Leave Encashment for a valid encashment amount"
 msgstr "crwdns110688:0crwdne110688:0"
 
-#: hrms/api/__init__.py:740
+#: hrms/api/__init__.py:741
 msgid "You can only upload JPG, PNG, PDF, TXT or Microsoft documents."
 msgstr "crwdns110690:0crwdne110690:0"
 
@@ -11525,11 +11549,11 @@ msgstr "crwdns110698:0crwdne110698:0"
 msgid "based on"
 msgstr "crwdns142754:0crwdne142754:0"
 
-#: frontend/src/components/RequestActionSheet.vue:292
+#: frontend/src/components/RequestActionSheet.vue:300
 msgid "cancellation"
 msgstr "crwdns151384:0crwdne151384:0"
 
-#: frontend/src/components/RequestActionSheet.vue:283
+#: frontend/src/components/RequestActionSheet.vue:291
 msgid "cancelled"
 msgstr "crwdns151386:0crwdne151386:0"
 
@@ -11586,7 +11610,7 @@ msgstr "crwdns142768:0crwdne142768:0"
 msgid "reviews"
 msgstr "crwdns142770:0crwdne142770:0"
 
-#: frontend/src/components/RequestActionSheet.vue:283
+#: frontend/src/components/RequestActionSheet.vue:291
 msgid "submitted"
 msgstr "crwdns151388:0crwdne151388:0"
 
@@ -11620,7 +11644,7 @@ msgstr "crwdns151392:0{0}crwdnd151392:0{1}crwdne151392:0"
 msgid "{0} : {1}"
 msgstr "crwdns159744:0{0}crwdnd159744:0{1}crwdne159744:0"
 
-#: hrms/payroll/doctype/salary_slip/salary_slip.py:2617
+#: hrms/payroll/doctype/salary_slip/salary_slip.py:2622
 msgid "{0} <br> This error can be due to missing or deleted field."
 msgstr "crwdns110718:0{0}crwdne110718:0"
 
@@ -11681,8 +11705,8 @@ msgstr "crwdns151396:0{0}crwdne151396:0"
 msgid "{0} deleted successfully!"
 msgstr "crwdns151398:0{0}crwdne151398:0"
 
-#: frontend/src/components/CheckInPanel.vue:186
-#: frontend/src/components/RequestActionSheet.vue:290
+#: frontend/src/components/CheckInPanel.vue:183
+#: frontend/src/components/RequestActionSheet.vue:298
 msgid "{0} failed!"
 msgstr "crwdns151400:0{0}crwdne151400:0"
 
@@ -11731,11 +11755,11 @@ msgstr "crwdns110752:0{0}crwdne110752:0"
 msgid "{0} of {1} Completed"
 msgstr "crwdns110754:0{0}crwdnd110754:0{1}crwdne110754:0"
 
-#: frontend/src/components/CheckInPanel.vue:174
+#: frontend/src/components/CheckInPanel.vue:171
 msgid "{0} successful!"
 msgstr "crwdns151402:0{0}crwdne151402:0"
 
-#: frontend/src/components/RequestActionSheet.vue:280
+#: frontend/src/components/RequestActionSheet.vue:288
 msgid "{0} successfully!"
 msgstr "crwdns151404:0{0}crwdne151404:0"
 
@@ -11759,11 +11783,11 @@ msgstr "crwdns142780:0{0}crwdnd142780:0{1}crwdne142780:0"
 msgid "{0} {1} {2}?"
 msgstr "crwdns110760:0{0}crwdnd110760:0{1}crwdnd110760:0{2}crwdne110760:0"
 
-#: hrms/hr/utils.py:456
+#: hrms/hr/utils.py:466
 msgid "{0}. Check error log for more details."
 msgstr "crwdns160898:0{0}crwdne160898:0"
 
-#: hrms/payroll/doctype/salary_slip/salary_slip.py:2278
+#: hrms/payroll/doctype/salary_slip/salary_slip.py:2283
 msgid "{0}: Employee email not found, hence email not sent"
 msgstr "crwdns110762:0{0}crwdne110762:0"
 
