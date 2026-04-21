@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: frappe\n"
 "Report-Msgid-Bugs-To: contact@frappe.io\n"
-"POT-Creation-Date: 2026-04-12 09:46+0000\n"
-"PO-Revision-Date: 2026-04-13 16:27\n"
+"POT-Creation-Date: 2026-04-19 09:46+0000\n"
+"PO-Revision-Date: 2026-04-21 18:13\n"
 "Last-Translator: contact@frappe.io\n"
 "Language-Team: Chinese Simplified\n"
 "MIME-Version: 1.0\n"
@@ -525,7 +525,7 @@ msgstr "添加上次未使用假期"
 msgid "Add unused leaves from previous leave period's allocation to this allocation"
 msgstr "将上一假期周期未使用的假期添加至本次分配"
 
-#: hrms/payroll/doctype/salary_slip/salary_slip.py:1680
+#: hrms/payroll/doctype/salary_slip/salary_slip.py:1685
 msgid "Added tax components from the Salary Component master as the salary structure didn't have any tax component."
 msgstr "薪资结构未配置税费组件，已自动从主薪资组件中添加税费项"
 
@@ -709,11 +709,11 @@ msgstr "分配天数超过假期类型{1}允许的最大值{0}"
 msgid "Allocation to Adjust"
 msgstr "待调整分配"
 
-#: hrms/hr/utils.py:440
+#: hrms/hr/utils.py:433
 msgid "Allocation was skipped due to exceeding annual allocation set in leave policy"
 msgstr ""
 
-#: hrms/hr/utils.py:430
+#: hrms/hr/utils.py:441
 msgid "Allocation was skipped due to maximum leave allocation limit set in leave type. Please increase the limit and retry failed allocation."
 msgstr ""
 
@@ -868,7 +868,7 @@ msgstr "年度分配"
 msgid "Annual Allocation Exceeded"
 msgstr "超出年度分配额度"
 
-#: hrms/setup.py:407
+#: hrms/setup.py:410
 msgid "Annual Salary"
 msgstr "年薪"
 
@@ -911,11 +911,9 @@ msgid "Applicant Email Address"
 msgstr "申请人邮箱"
 
 #. Label of the applicant_name (Data) field in DocType 'Appointment Letter'
-#. Label of the applicant_name (Data) field in DocType 'Job Applicant'
 #. Label of the applicant_name (Data) field in DocType 'Job Offer'
 #. Label of a field in the job-application Web Form
 #: hrms/hr/doctype/appointment_letter/appointment_letter.json
-#: hrms/hr/doctype/job_applicant/job_applicant.json
 #: hrms/hr/doctype/job_offer/job_offer.json
 #: hrms/hr/web_form/job_application/job_application.json
 msgid "Applicant Name"
@@ -943,6 +941,11 @@ msgstr "申请"
 #: hrms/hr/report/recruitment_analytics/recruitment_analytics.py:46
 msgid "Application Status"
 msgstr "申请状态"
+
+#. Label of the job_application_route (Data) field in DocType 'Job Opening'
+#: hrms/hr/doctype/job_opening/job_opening.json
+msgid "Application Web Form Route"
+msgstr ""
 
 #: hrms/hr/doctype/leave_application/leave_application.py:256
 msgid "Application period cannot be across two allocation records"
@@ -1076,7 +1079,7 @@ msgstr "考核概览"
 #. Label of a Workspace Sidebar Item
 #: hrms/hr/doctype/appraisal/appraisal.json
 #: hrms/hr/doctype/appraisal_template/appraisal_template.json
-#: hrms/hr/doctype/appraisee/appraisee.json hrms/setup.py:161
+#: hrms/hr/doctype/appraisee/appraisee.json hrms/setup.py:164
 #: hrms/workspace_sidebar/performance.json
 msgid "Appraisal Template"
 msgstr "考核模板"
@@ -1120,13 +1123,13 @@ msgstr "被考核人"
 msgid "Appraisees: {0}"
 msgstr "被考核人：{0}"
 
-#: hrms/setup.py:399
+#: hrms/setup.py:402
 msgid "Apprentice"
 msgstr "实习生"
 
 #. Label of the section_break_7 (Section Break) field in DocType 'Leave
 #. Application'
-#: frontend/src/components/RequestActionSheet.vue:290
+#: frontend/src/components/RequestActionSheet.vue:298
 #: hrms/hr/doctype/leave_application/leave_application.json
 msgid "Approval"
 msgstr "审批"
@@ -1165,7 +1168,7 @@ msgstr "已批准"
 msgid "Approver"
 msgstr "审批人"
 
-#: hrms/setup.py:132 hrms/setup.py:235
+#: hrms/setup.py:135 hrms/setup.py:238
 msgid "Approvers"
 msgstr "审批人列表"
 
@@ -1496,7 +1499,7 @@ msgstr "自动假期折现"
 msgid "Automated Based on Goal Progress"
 msgstr "基于目标进度自动化"
 
-#: hrms/hr/utils.py:484
+#: hrms/hr/utils.py:494
 msgid "Automatic Leave Allocation has failed for the following Earned Leaves: {0}. Please check {1} for more details."
 msgstr ""
 
@@ -1783,7 +1786,7 @@ msgstr "薪资工作日计算依据"
 msgid "Calculated in days"
 msgstr "按天数计算"
 
-#: hrms/setup.py:335
+#: hrms/setup.py:338
 msgid "Calls"
 msgstr "通话记录"
 
@@ -1874,7 +1877,7 @@ msgstr "结转"
 msgid "Carry Forwarded Leaves"
 msgstr "结转假期"
 
-#: hrms/setup.py:350 hrms/setup.py:351
+#: hrms/setup.py:353 hrms/setup.py:354
 msgid "Casual Leave"
 msgstr "事假"
 
@@ -1907,11 +1910,11 @@ msgstr "查看<a href='/app/List/Error Log?reference_doctype={0}'>{1}</a>获取�
 msgid "Check Error Log {0} for more details."
 msgstr "查看错误日志{0}获取详情"
 
-#: frontend/src/components/CheckInPanel.vue:123
+#: frontend/src/components/CheckInPanel.vue:120
 msgid "Check In"
 msgstr "签到"
 
-#: frontend/src/components/CheckInPanel.vue:122
+#: frontend/src/components/CheckInPanel.vue:119
 msgid "Check Out"
 msgstr "签退"
 
@@ -1921,11 +1924,11 @@ msgid "Check Vacancies On Job Offer Creation"
 msgstr "创建录用通知时检查空缺"
 
 #: hrms/hr/doctype/leave_policy_assignment/leave_policy_assignment.py:488
-#: hrms/hr/utils.py:937
+#: hrms/hr/utils.py:947
 msgid "Check {0} for more details"
 msgstr "查看{0}获取详情"
 
-#: frontend/src/components/CheckInPanel.vue:159
+#: frontend/src/components/CheckInPanel.vue:156
 msgid "Check-in"
 msgstr "签到"
 
@@ -1934,7 +1937,7 @@ msgstr "签到"
 msgid "Check-in Date"
 msgstr "签到日期"
 
-#: frontend/src/components/CheckInPanel.vue:159
+#: frontend/src/components/CheckInPanel.vue:156
 msgid "Check-out"
 msgstr "签退"
 
@@ -1956,11 +1959,11 @@ msgstr "子节点只能在'组'类型节点下创建"
 #. 'Overtime Type'
 #: hrms/hr/doctype/overtime_type/overtime_type.json
 msgid "Choose how the hourly overtime amount is calculated:\n"
-"<ol style=\"padding-left:15px;\"><li>Fixed Hourly Rate: A fixed, manually entered hourly rate.</li>\n"
+"<ol style=\"padding-left:15px\"><li>Fixed Hourly Rate: A fixed, manually entered hourly rate.</li>\n"
 "<li>Salary Component-Based:\n\n"
 "(Sum of selected component amounts) ÷ (Payment Days) ÷ (Standard Daily Hours)</li></ol>"
 msgstr "选择小时加班费计算方式：\n"
-"<ol style=\"padding-left:15px;\"><li>固定小时费率：固定且手动输入的小时费率。</li>\n"
+"<ol style=\"padding-left:15px\"><li>固定小时费率：固定且手动输入的小时费率。</li>\n"
 "<li>基于工资组件\n\n"
 "（所选组件金额总和）÷（支付天数）÷（标准每日工时）</li></ol>"
 
@@ -2060,7 +2063,7 @@ msgstr "公司信息"
 msgid "Compensatory Leave Request"
 msgstr "补休申请"
 
-#: hrms/setup.py:359 hrms/setup.py:360
+#: hrms/setup.py:362 hrms/setup.py:363
 msgid "Compensatory Off"
 msgstr "调休"
 
@@ -2194,8 +2197,9 @@ msgstr "创建附加薪资"
 msgid "Create Appraisals"
 msgstr "创建绩效考核"
 
-#: hrms/hr/doctype/interview_round/interview_round.js:7
-#: hrms/hr/doctype/job_applicant/job_applicant.js:95
+#: hrms/hr/doctype/interview_type/interview_type.js:7
+#: hrms/hr/doctype/job_applicant/job_applicant.js:68
+#: hrms/hr/doctype/job_applicant/job_applicant.js:137
 msgid "Create Interview"
 msgstr "创建面试安排"
 
@@ -2203,6 +2207,11 @@ msgstr "创建面试安排"
 msgid "Create Job Applicant"
 msgstr "创建职位申请人"
 
+#: hrms/hr/doctype/job_applicant/job_applicant.js:84
+msgid "Create Job Offer"
+msgstr ""
+
+#: hrms/hr/doctype/job_opening_template/job_opening_template.js:7
 #: hrms/hr/doctype/job_requisition/job_requisition.js:39
 msgid "Create Job Opening"
 msgstr "创建职位空缺"
@@ -2262,7 +2271,7 @@ msgstr "正在创建{0}..."
 msgid "Creation Date"
 msgstr "创建日期"
 
-#: hrms/hr/utils.py:946
+#: hrms/hr/utils.py:956
 msgid "Creation Failed"
 msgstr "创建失败"
 
@@ -2427,7 +2436,7 @@ msgstr "日期及原因"
 msgid "Dates Based On"
 msgstr "日期依据"
 
-#: hrms/setup.py:120
+#: hrms/setup.py:123
 msgid "Days for which Holidays are blocked for this department."
 msgstr "本部门封存的假期天数"
 
@@ -2538,15 +2547,15 @@ msgstr "选择此模式时，银行/现金默认账户将自动更新至薪资�
 msgid "Default Base Pay"
 msgstr "默认基本工资"
 
-#: hrms/setup.py:80
+#: hrms/setup.py:83
 msgid "Default Employee Advance Account"
 msgstr "默认员工预支账户"
 
-#: hrms/setup.py:72
+#: hrms/setup.py:75
 msgid "Default Expense Claim Payable Account"
 msgstr "默认费用报销应付账户"
 
-#: hrms/overrides/company.py:133 hrms/setup.py:95
+#: hrms/overrides/company.py:133 hrms/setup.py:98
 msgid "Default Payroll Payable Account"
 msgstr "默认应付薪资账户"
 
@@ -2557,7 +2566,7 @@ msgid "Default Salary Structure"
 msgstr "默认薪资结构"
 
 #: hrms/hr/doctype/shift_assignment_tool/shift_assignment_tool.js:204
-#: hrms/setup.py:207
+#: hrms/setup.py:210
 msgid "Default Shift"
 msgstr "默认班次"
 
@@ -2668,7 +2677,7 @@ msgstr "不计入合计"
 msgid "Do you want to update the Job Applicant {0} as {1} based on this interview result?"
 msgstr "是否根据本次面试结果将职位申请人{0}状态更新为{1}？"
 
-#: frontend/src/components/RequestActionSheet.vue:292
+#: frontend/src/components/RequestActionSheet.vue:300
 msgid "Document {0} failed!"
 msgstr "单据{0}处理失败！"
 
@@ -2859,7 +2868,7 @@ msgid "Employee A/C Number"
 msgstr "员工银行账号"
 
 #: hrms/patches/v16_0/create_custom_field_for_employee_advance_in_employee_master.py:11
-#: hrms/setup.py:270
+#: hrms/setup.py:273
 msgid "Employee Advance Account"
 msgstr ""
 
@@ -2927,7 +2936,7 @@ msgstr "员工福利分类账"
 #. Label of the employee_benefits_section (Section Break) field in DocType
 #. 'Salary Structure Assignment'
 #: hrms/payroll/doctype/salary_structure_assignment/salary_structure_assignment.json
-#: hrms/setup.py:409
+#: hrms/setup.py:412
 msgid "Employee Benefits"
 msgstr "员工福利"
 
@@ -3141,7 +3150,7 @@ msgstr "员工假期余额"
 msgid "Employee Leave Balance Summary"
 msgstr "员工假期余额汇总"
 
-#: hrms/setup.py:771
+#: hrms/setup.py:774
 msgid "Employee Loan"
 msgstr "员工借款"
 
@@ -3209,10 +3218,12 @@ msgstr "员工属性变更历史"
 #. Name of a DocType
 #. Label of the employee_referral (Link) field in DocType 'Job Applicant'
 #. Label of a Link in the Recruitment Workspace
+#. Label of a Workspace Sidebar Item
 #: hrms/hr/doctype/employee_referral/employee_referral.json
 #: hrms/hr/doctype/job_applicant/job_applicant.json
 #: hrms/hr/doctype/job_requisition/job_requisition.js:18
-#: hrms/hr/workspace/recruitment/recruitment.json hrms/setup.py:403
+#: hrms/hr/workspace/recruitment/recruitment.json hrms/setup.py:406
+#: hrms/workspace_sidebar/recruitment.json
 msgid "Employee Referral"
 msgstr "员工推荐"
 
@@ -3511,7 +3522,7 @@ msgstr "节假日工作员工"
 #: hrms/hr/doctype/leave_control_panel/leave_control_panel.json
 #: hrms/hr/doctype/shift_assignment_tool/shift_assignment_tool.json
 #: hrms/payroll/doctype/bulk_salary_structure_assignment/bulk_salary_structure_assignment.json
-#: hrms/setup.py:185 hrms/templates/generators/job_opening.html:141
+#: hrms/setup.py:188 hrms/templates/generators/job_opening.html:141
 msgid "Employment Type"
 msgstr "雇佣类型"
 
@@ -3598,9 +3609,9 @@ msgstr "截止日期：{0}"
 msgid "End time cannot be before start time"
 msgstr "结束时间不得早于开始时间"
 
-#: hrms/hr/doctype/job_applicant/job_applicant.js:86
-msgid "Enter Interview Round"
-msgstr "输入面试轮次"
+#: hrms/hr/doctype/job_applicant/job_applicant.js:123
+msgid "Enter Interview Type"
+msgstr ""
 
 #: hrms/hr/doctype/leave_adjustment/leave_adjustment.py:74
 msgid "Enter a non-zero value to adjust."
@@ -3647,7 +3658,7 @@ msgstr "下载 PDF 时出错"
 msgid "Error in formula or condition"
 msgstr "公式或条件错误"
 
-#: hrms/payroll/doctype/salary_slip/salary_slip.py:2623
+#: hrms/payroll/doctype/salary_slip/salary_slip.py:2628
 msgid "Error in formula or condition: {0} in Income Tax Slab"
 msgstr "所得税税级公式或条件错误：{0}"
 
@@ -3659,7 +3670,7 @@ msgstr "部分行数据错误"
 msgid "Error updating {0}"
 msgstr "更新{0}时出错"
 
-#: hrms/payroll/doctype/salary_slip/salary_slip.py:2702
+#: hrms/payroll/doctype/salary_slip/salary_slip.py:2707
 msgid "Error while evaluating the {doctype} {doclink} at row {row_id}. <br><br> <b>Error:</b> {error} <br><br> <b>Hint:</b> {description}"
 msgstr "评估{doctype}{doclink}第{row_id}行时出错。<br><br><b>错误：</b>{error}<br><br><b>提示：</b>{description}"
 
@@ -3861,8 +3872,8 @@ msgstr "离职问卷"
 
 #: hrms/hr/doctype/exit_interview/test_exit_interview.py:110
 #: hrms/hr/doctype/exit_interview/test_exit_interview.py:120
-#: hrms/hr/doctype/exit_interview/test_exit_interview.py:122 hrms/setup.py:484
-#: hrms/setup.py:486 hrms/setup.py:507
+#: hrms/hr/doctype/exit_interview/test_exit_interview.py:122 hrms/setup.py:487
+#: hrms/setup.py:489 hrms/setup.py:510
 msgid "Exit Questionnaire Notification"
 msgstr "离职问卷通知"
 
@@ -3890,9 +3901,9 @@ msgstr "离职人数（本月）"
 
 #. Label of the expected_average_rating (Rating) field in DocType 'Interview'
 #. Label of the expected_average_rating (Rating) field in DocType 'Interview
-#. Round'
+#. Type'
 #: hrms/hr/doctype/interview/interview.json
-#: hrms/hr/doctype/interview_round/interview_round.json
+#: hrms/hr/doctype/interview_type/interview_type.json
 msgid "Expected Average Rating"
 msgstr "预期平均评分"
 
@@ -3917,8 +3928,8 @@ msgstr "期望月薪范围"
 msgid "Expected Skill Set"
 msgstr "预期技能要求"
 
-#. Label of the expected_skill_set (Table) field in DocType 'Interview Round'
-#: hrms/hr/doctype/interview_round/interview_round.json
+#. Label of the expected_skill_set (Table) field in DocType 'Interview Type'
+#: hrms/hr/doctype/interview_type/interview_type.json
 msgid "Expected Skillset"
 msgstr "预期技能组合"
 
@@ -3926,8 +3937,8 @@ msgstr "预期技能组合"
 #. Label of the expense_approver (Link) field in DocType 'Expense Claim'
 #: hrms/hr/doctype/employee_advance/employee_advance.json
 #: hrms/hr/doctype/expense_claim/expense_claim.json
-#: hrms/patches/v15_0/update_approver_custom_fields.py:11 hrms/setup.py:152
-#: hrms/setup.py:241
+#: hrms/patches/v15_0/update_approver_custom_fields.py:11 hrms/setup.py:155
+#: hrms/setup.py:244
 msgid "Expense Approver"
 msgstr "费用审批人"
 
@@ -4058,7 +4069,7 @@ msgstr "说明"
 msgid "Exporting..."
 msgstr "导出中..."
 
-#: hrms/hr/utils.py:934
+#: hrms/hr/utils.py:944
 msgid "Failed to create/submit {0} for employees:"
 msgstr "为员工创建/提交{0}失败："
 
@@ -4066,7 +4077,7 @@ msgstr "为员工创建/提交{0}失败："
 msgid "Failed to delete defaults for country {0}."
 msgstr "删除国家{0}默认设置失败"
 
-#: hrms/api/__init__.py:783
+#: hrms/api/__init__.py:784
 msgid "Failed to download PDF: {0}"
 msgstr "无法下载 PDF： {0}"
 
@@ -4102,7 +4113,7 @@ msgstr "故障详情"
 msgid "Failure Reason"
 msgstr ""
 
-#: hrms/hr/utils.py:483
+#: hrms/hr/utils.py:493
 msgid "Failure of Automatic Allocation of Earned Leaves"
 msgstr ""
 
@@ -4306,7 +4317,7 @@ msgstr "待处理离职结算"
 msgid "Follow via Email"
 msgstr "邮件关注"
 
-#: hrms/setup.py:336
+#: hrms/setup.py:339
 msgid "Food"
 msgstr "餐饮"
 
@@ -4448,7 +4459,7 @@ msgstr "完全资产结算"
 msgid "Full and Final Outstanding Statement"
 msgstr "完全未结清声明"
 
-#: hrms/setup.py:392
+#: hrms/setup.py:395
 msgid "Full-time"
 msgstr "全职"
 
@@ -4482,7 +4493,7 @@ msgstr ""
 msgid "Geolocation Error"
 msgstr "地理位置错误"
 
-#: frontend/src/components/CheckInPanel.vue:143
+#: frontend/src/components/CheckInPanel.vue:140
 #: hrms/public/js/utils/index.js:185
 msgid "Geolocation is not supported by your current browser"
 msgstr "当前浏览器不支持地理位置功能"
@@ -4585,7 +4596,7 @@ msgstr "目标批量更新成功"
 #: hrms/payroll/doctype/bulk_salary_structure_assignment/bulk_salary_structure_assignment.js:173
 #: hrms/payroll/doctype/payroll_entry/payroll_entry.json
 #: hrms/payroll/doctype/salary_structure_assignment/salary_structure_assignment.json
-#: hrms/setup.py:200
+#: hrms/setup.py:203
 msgid "Grade"
 msgstr "等级"
 
@@ -4682,15 +4693,15 @@ msgstr "年度累计总收入（公司币种）"
 msgid "Group goal's progress is auto-calculated based on the child goals."
 msgstr "组目标的进度根据子目标自动计算"
 
-#: hrms/setup.py:325
+#: hrms/setup.py:328
 msgid "HR"
 msgstr "人力资源"
 
-#: hrms/setup.py:58
+#: hrms/setup.py:61
 msgid "HR & Payroll"
 msgstr "人力资源与薪资"
 
-#: hrms/setup.py:64
+#: hrms/setup.py:67
 msgid "HR & Payroll Settings"
 msgstr "人力资源与薪资设置"
 
@@ -4769,7 +4780,7 @@ msgstr "半日假日期应在起止日期之间"
 msgid "Has Certificate"
 msgstr "持有证书"
 
-#: hrms/setup.py:215
+#: hrms/setup.py:218
 msgid "Health Insurance"
 msgstr "健康保险"
 
@@ -4779,11 +4790,11 @@ msgstr "健康保险"
 msgid "Health Insurance Name"
 msgstr "健康保险名称"
 
-#: hrms/setup.py:229
+#: hrms/setup.py:232
 msgid "Health Insurance No"
 msgstr "健康保险编号"
 
-#: hrms/setup.py:221
+#: hrms/setup.py:224
 msgid "Health Insurance Provider"
 msgstr "健康保险提供商"
 
@@ -5162,15 +5173,15 @@ msgstr "所得税税级其他费用"
 msgid "Income Tax Slab is mandatory since the Salary Structure {0} has a tax component {1}"
 msgstr "薪资结构{0}包含税费组件{1}，必须设置所得税税级"
 
-#: hrms/payroll/doctype/salary_slip/salary_slip.py:1957
+#: hrms/payroll/doctype/salary_slip/salary_slip.py:1962
 msgid "Income Tax Slab must be effective on or before Payroll Period Start Date: {0}"
 msgstr "所得税税级生效日期不得晚于薪资周期开始日期{0}"
 
-#: hrms/payroll/doctype/salary_slip/salary_slip.py:1945
+#: hrms/payroll/doctype/salary_slip/salary_slip.py:1950
 msgid "Income Tax Slab not set in Salary Structure Assignment: {0}"
 msgstr "薪资结构分配{0}未设置所得税税级"
 
-#: hrms/payroll/doctype/salary_slip/salary_slip.py:1953
+#: hrms/payroll/doctype/salary_slip/salary_slip.py:1958
 msgid "Income Tax Slab: {0} is disabled"
 msgstr "所得税税级{0}已禁用"
 
@@ -5223,7 +5234,7 @@ msgstr "利息金额"
 msgid "Interest Income Account"
 msgstr "利息收入账户"
 
-#: hrms/setup.py:398
+#: hrms/setup.py:401
 msgid "Intern"
 msgstr "实习生"
 
@@ -5243,7 +5254,6 @@ msgstr "互联网"
 #. Label of a Workspace Sidebar Item
 #: hrms/hr/doctype/interview/interview.json
 #: hrms/hr/doctype/interview_feedback/interview_feedback.json
-#: hrms/hr/doctype/job_applicant/job_applicant.js:25
 #: hrms/hr/doctype/job_applicant/job_applicant_dashboard.html:7
 #: hrms/hr/workspace/recruitment/recruitment.json
 #: hrms/workspace_sidebar/recruitment.json
@@ -5269,11 +5279,11 @@ msgstr "面试详情"
 msgid "Interview Feedback"
 msgstr "面试反馈"
 
-#: hrms/hr/doctype/interview/test_interview.py:309
-#: hrms/hr/doctype/interview/test_interview.py:318
-#: hrms/hr/doctype/interview/test_interview.py:320
-#: hrms/hr/doctype/interview/test_interview.py:327 hrms/setup.py:470
-#: hrms/setup.py:472 hrms/setup.py:505
+#: hrms/hr/doctype/interview/test_interview.py:296
+#: hrms/hr/doctype/interview/test_interview.py:305
+#: hrms/hr/doctype/interview/test_interview.py:307
+#: hrms/hr/doctype/interview/test_interview.py:314 hrms/setup.py:473
+#: hrms/setup.py:475 hrms/setup.py:508
 msgid "Interview Feedback Reminder"
 msgstr "面试反馈提醒"
 
@@ -5285,11 +5295,11 @@ msgstr "面试反馈{0}提交成功"
 msgid "Interview Not Rescheduled"
 msgstr "面试未改期"
 
-#: hrms/hr/doctype/interview/test_interview.py:293
-#: hrms/hr/doctype/interview/test_interview.py:302
-#: hrms/hr/doctype/interview/test_interview.py:304
-#: hrms/hr/doctype/interview/test_interview.py:326 hrms/setup.py:458
-#: hrms/setup.py:460 hrms/setup.py:501
+#: hrms/hr/doctype/interview/test_interview.py:280
+#: hrms/hr/doctype/interview/test_interview.py:289
+#: hrms/hr/doctype/interview/test_interview.py:291
+#: hrms/hr/doctype/interview/test_interview.py:313 hrms/setup.py:461
+#: hrms/setup.py:463 hrms/setup.py:504
 msgid "Interview Reminder"
 msgstr "面试提醒"
 
@@ -5302,28 +5312,6 @@ msgstr "面试提醒通知模板"
 #: hrms/hr/doctype/interview/interview.py:151
 msgid "Interview Rescheduled successfully"
 msgstr "面试改期成功"
-
-#. Label of the interview_round (Link) field in DocType 'Interview'
-#. Label of the interview_round (Link) field in DocType 'Interview Feedback'
-#. Name of a DocType
-#. Label of a Link in the Recruitment Workspace
-#. Label of a Workspace Sidebar Item
-#: hrms/hr/doctype/interview/interview.json
-#: hrms/hr/doctype/interview_feedback/interview_feedback.json
-#: hrms/hr/doctype/interview_round/interview_round.json
-#: hrms/hr/doctype/job_applicant/job_applicant_dashboard.html:8
-#: hrms/hr/workspace/recruitment/recruitment.json
-#: hrms/workspace_sidebar/recruitment.json
-msgid "Interview Round"
-msgstr "面试轮次"
-
-#: hrms/hr/doctype/job_applicant/job_applicant.py:96
-msgid "Interview Round {0} is only applicable for the Designation {1}"
-msgstr "面试轮次{0}仅适用于职级{1}"
-
-#: hrms/hr/doctype/interview/interview.py:79
-msgid "Interview Round {0} is only for Designation {1}. Job Applicant has applied for the role {2}"
-msgstr "面试轮次{0}仅限职级{1}，而职位申请人申请的是{2}"
 
 #: hrms/hr/doctype/interview_feedback/interview_feedback.py:61
 msgid "Interview Scheduled Date"
@@ -5339,20 +5327,36 @@ msgstr "面试状态"
 #. Label of the section_break_13 (Section Break) field in DocType 'Interview'
 #: hrms/hr/doctype/exit_interview/exit_interview.json
 #: hrms/hr/doctype/interview/interview.json
-#: hrms/hr/doctype/job_applicant/job_applicant.js:77
+#: hrms/hr/doctype/job_applicant/job_applicant.js:117
 msgid "Interview Summary"
 msgstr "面试汇总"
 
-#. Label of the interview_type (Link) field in DocType 'Interview Round'
+#. Label of the interview_type (Link) field in DocType 'Interview'
+#. Label of the interview_type (Link) field in DocType 'Interview Feedback'
 #. Name of a DocType
 #. Label of a Link in the Recruitment Workspace
 #. Label of a Workspace Sidebar Item
-#: hrms/hr/doctype/interview_round/interview_round.json
+#: hrms/hr/doctype/interview/interview.json
+#: hrms/hr/doctype/interview_feedback/interview_feedback.json
 #: hrms/hr/doctype/interview_type/interview_type.json
+#: hrms/hr/doctype/job_applicant/job_applicant_dashboard.html:8
 #: hrms/hr/workspace/recruitment/recruitment.json
 #: hrms/workspace_sidebar/recruitment.json
 msgid "Interview Type"
 msgstr "面试类型"
+
+#. Label of the interview_type_name (Data) field in DocType 'Interview Type'
+#: hrms/hr/doctype/interview_type/interview_type.json
+msgid "Interview Type Name"
+msgstr ""
+
+#: hrms/hr/doctype/job_applicant/job_applicant.py:96
+msgid "Interview Type {0} is only applicable for the Designation {1}"
+msgstr ""
+
+#: hrms/hr/doctype/interview/interview.py:79
+msgid "Interview Type {0} is only for Designation {1}. Job Applicant has applied for the role {2}"
+msgstr ""
 
 #: hrms/hr/doctype/interview/interview.py:132
 msgid "Interview: {0} Rescheduled"
@@ -5365,7 +5369,7 @@ msgstr "面试改期：{0}"
 #: hrms/hr/doctype/interview/interview.json
 #: hrms/hr/doctype/interview_detail/interview_detail.json
 #: hrms/hr/doctype/interview_feedback/interview_feedback.json
-#: hrms/hr/doctype/interview_round/interview_round.json
+#: hrms/hr/doctype/interview_type/interview_type.json
 #: hrms/hr/doctype/interviewer/interviewer.json
 msgid "Interviewer"
 msgstr "面试官"
@@ -5374,10 +5378,10 @@ msgstr "面试官"
 #. Interview'
 #. Label of the interview_details (Table) field in DocType 'Interview'
 #. Label of the interviewers (Table MultiSelect) field in DocType 'Interview
-#. Round'
+#. Type'
 #: hrms/hr/doctype/exit_interview/exit_interview.json
 #: hrms/hr/doctype/interview/interview.json
-#: hrms/hr/doctype/interview_round/interview_round.json
+#: hrms/hr/doctype/interview_type/interview_type.json
 msgid "Interviewers"
 msgstr "面试官列表"
 
@@ -5413,7 +5417,7 @@ msgstr "无效福利金额"
 msgid "Invalid Dates"
 msgstr "无效日期"
 
-#: hrms/payroll/doctype/salary_slip/salary_slip.py:2734
+#: hrms/payroll/doctype/salary_slip/salary_slip.py:2739
 msgid "Invalid LWP Days Reversed"
 msgstr "无效LWP天数冲销"
 
@@ -5569,7 +5573,7 @@ msgstr "一月"
 #: hrms/hr/doctype/job_applicant/job_applicant.json
 #: hrms/hr/doctype/job_offer/job_offer.json
 #: hrms/hr/report/recruitment_analytics/recruitment_analytics.py:38
-#: hrms/hr/workspace/recruitment/recruitment.json hrms/setup.py:193
+#: hrms/hr/workspace/recruitment/recruitment.json hrms/setup.py:196
 #: hrms/workspace_sidebar/recruitment.json
 msgid "Job Applicant"
 msgstr "职位申请人"
@@ -5584,23 +5588,18 @@ msgid "Job Applicant {0} created successfully."
 msgstr "职位申请人{0}创建成功"
 
 #: hrms/hr/doctype/interview/interview.py:66
-msgid "Job Applicants are not allowed to appear twice for the same Interview round. Interview {0} already scheduled for Job Applicant {1}"
-msgstr "同一面试轮次不得重复安排，职位申请人{1}已安排面试{0}"
+msgid "Job Applicants are not allowed to appear twice for the same Interview Type. Interview {0} already scheduled for Job Applicant {1}"
+msgstr ""
 
 #. Title of the job-application Web Form
 #: hrms/hr/web_form/job_application/job_application.json
 msgid "Job Application"
 msgstr "职位申请"
 
-#. Label of the job_application_route (Data) field in DocType 'Job Opening'
-#: hrms/hr/doctype/job_opening/job_opening.json
-msgid "Job Application Route"
-msgstr "职位申请路径"
-
 #. Label of the job_description_tab (Tab Break) field in DocType 'Job
 #. Requisition'
 #. Label of the description (Text Editor) field in DocType 'Job Requisition'
-#: hrms/hr/doctype/job_requisition/job_requisition.json hrms/setup.py:413
+#: hrms/hr/doctype/job_requisition/job_requisition.json hrms/setup.py:416
 msgid "Job Description"
 msgstr "职位描述"
 
@@ -5609,8 +5608,6 @@ msgstr "职位描述"
 #. Label of a Link in the Recruitment Workspace
 #. Label of a Workspace Sidebar Item
 #: hrms/hr/doctype/employee_onboarding/employee_onboarding.json
-#: hrms/hr/doctype/job_applicant/job_applicant.js:38
-#: hrms/hr/doctype/job_applicant/job_applicant.js:48
 #: hrms/hr/doctype/job_offer/job_offer.json
 #: hrms/hr/report/recruitment_analytics/recruitment_analytics.py:52
 #: hrms/hr/workspace/recruitment/recruitment.json
@@ -5625,8 +5622,10 @@ msgstr "录用条款"
 
 #. Label of the job_offer_term_template (Link) field in DocType 'Job Offer'
 #. Name of a DocType
+#. Label of a Workspace Sidebar Item
 #: hrms/hr/doctype/job_offer/job_offer.json
 #: hrms/hr/doctype/job_offer_term_template/job_offer_term_template.json
+#: hrms/workspace_sidebar/recruitment.json
 msgid "Job Offer Term Template"
 msgstr "录用条款模板"
 
@@ -5666,8 +5665,10 @@ msgstr "关联职位空缺"
 
 #. Label of the job_opening_template (Link) field in DocType 'Job Opening'
 #. Name of a DocType
+#. Label of a Workspace Sidebar Item
 #: hrms/hr/doctype/job_opening/job_opening.json
 #: hrms/hr/doctype/job_opening_template/job_opening_template.json
+#: hrms/workspace_sidebar/recruitment.json
 msgid "Job Opening Template"
 msgstr ""
 
@@ -5678,6 +5679,11 @@ msgstr "职位空缺列表"
 #: hrms/hr/doctype/job_opening/job_opening.py:118
 msgid "Job Openings for the designation {0} are already open or the hiring is complete as per the Staffing Plan {1}"
 msgstr "职级{0}的职位空缺已开放或按人员配置计划{1}已完成招聘"
+
+#. Label of a Workspace Sidebar Item
+#: hrms/workspace_sidebar/recruitment.json
+msgid "Job Portal"
+msgstr ""
 
 #. Label of the job_requisition (Link) field in DocType 'Job Opening'
 #. Name of a DocType
@@ -5775,7 +5781,7 @@ msgstr "关键责任区"
 msgid "Key Result Area"
 msgstr "关键成果领域"
 
-#: hrms/payroll/doctype/salary_slip/salary_slip.py:2731
+#: hrms/payroll/doctype/salary_slip/salary_slip.py:2736
 msgid "LWP Days Reversed ({0}) does not match actual Payroll Corrections total ({1}) for employee {2} from {3} to {4}"
 msgstr "员工{2}从{3}到{4}的LWP天数冲销（{0}）与实际薪资调整总额（{1}）不匹配"
 
@@ -5835,7 +5841,7 @@ msgstr "迟到宽限期"
 msgid "Latitude and longitude values are required for checking in."
 msgstr "签到需提供经纬度坐标"
 
-#: frontend/src/components/CheckInPanel.vue:131
+#: frontend/src/components/CheckInPanel.vue:128
 msgid "Latitude: {0}°"
 msgstr "纬度：{0}°"
 
@@ -5895,7 +5901,7 @@ msgstr "请假申请"
 msgid "Leave Application period cannot be across two non-consecutive leave allocations {0} and {1}."
 msgstr "请假期间不可跨越不连续的假期分配记录{0}和{1}"
 
-#: hrms/setup.py:435 hrms/setup.py:437 hrms/setup.py:497
+#: hrms/setup.py:438 hrms/setup.py:440 hrms/setup.py:500
 msgid "Leave Approval Notification"
 msgstr "请假审批通知"
 
@@ -5909,8 +5915,8 @@ msgstr "请假审批通知模板"
 #. Name of a role
 #: hrms/hr/doctype/leave_application/leave_application.json
 #: hrms/hr/doctype/overtime_slip/overtime_slip.json
-#: hrms/patches/v15_0/update_approver_custom_fields.py:19 hrms/setup.py:145
-#: hrms/setup.py:249
+#: hrms/patches/v15_0/update_approver_custom_fields.py:19 hrms/setup.py:148
+#: hrms/setup.py:252
 msgid "Leave Approver"
 msgstr "请假审批人"
 
@@ -5947,7 +5953,7 @@ msgstr ""
 #. Label of a Link in the Leaves Workspace
 #. Label of a Workspace Sidebar Item
 #: hrms/hr/doctype/leave_block_list/leave_block_list.json
-#: hrms/hr/workspace/leaves/leaves.json hrms/setup.py:124
+#: hrms/hr/workspace/leaves/leaves.json hrms/setup.py:127
 #: hrms/workspace_sidebar/leaves.json
 msgid "Leave Block List"
 msgstr "假期封存列表"
@@ -6105,7 +6111,7 @@ msgstr "员工{1}在{2}至{3}期间已分配休假政策{0}"
 msgid "Leave Settings"
 msgstr ""
 
-#: hrms/setup.py:444 hrms/setup.py:446 hrms/setup.py:498
+#: hrms/setup.py:447 hrms/setup.py:449 hrms/setup.py:501
 msgid "Leave Status Notification"
 msgstr "假期状态通知"
 
@@ -6183,8 +6189,8 @@ msgstr "假期类型{0}不可折现"
 
 #. Label of the leave_without_pay (Float) field in DocType 'Salary Slip'
 #: hrms/payroll/doctype/salary_slip/salary_slip.json
-#: hrms/payroll/report/salary_register/salary_register.py:179 hrms/setup.py:384
-#: hrms/setup.py:385
+#: hrms/payroll/report/salary_register/salary_register.py:179 hrms/setup.py:387
+#: hrms/setup.py:388
 msgid "Leave Without Pay"
 msgstr "无薪假"
 
@@ -6287,7 +6293,7 @@ msgstr "待审批假期"
 msgid "Leaves for the Leave Type {0} won't be carry-forwarded since carry-forwarding is disabled."
 msgstr "假期类型{0}禁用结转，假期余额不可结转"
 
-#: hrms/setup.py:415
+#: hrms/setup.py:418
 msgid "Leaves per Year"
 msgstr "年度假期天数"
 
@@ -6341,7 +6347,7 @@ msgstr "贷款账户"
 msgid "Loan Product"
 msgstr "贷款产品"
 
-#: hrms/payroll/report/salary_register/salary_register.py:233 hrms/setup.py:764
+#: hrms/payroll/report/salary_register/salary_register.py:233 hrms/setup.py:767
 msgid "Loan Repayment"
 msgstr "贷款还款"
 
@@ -6350,11 +6356,11 @@ msgstr "贷款还款"
 msgid "Loan Repayment Entry"
 msgstr "贷款还款分录"
 
-#: hrms/hr/utils.py:821
+#: hrms/hr/utils.py:831
 msgid "Loan cannot be repayed from salary for Employee {0} because salary is processed in currency {1}"
 msgstr "员工{0}薪资使用{1}币种处理，无法通过薪资扣款还贷"
 
-#: frontend/src/components/CheckInPanel.vue:145
+#: frontend/src/components/CheckInPanel.vue:142
 msgid "Locating..."
 msgstr "定位中..."
 
@@ -6390,15 +6396,17 @@ msgstr "登录失败"
 msgid "Login to Frappe HR"
 msgstr "登录Frappe HR系统"
 
-#: frontend/src/components/CheckInPanel.vue:132
+#: frontend/src/components/CheckInPanel.vue:129
 msgid "Longitude: {0}°"
 msgstr "经度：{0}°"
 
 #. Label of the lower_range (Currency) field in DocType 'Job Applicant'
 #. Label of the lower_range (Currency) field in DocType 'Job Opening'
+#. Label of the lower_range (Currency) field in DocType 'Job Opening Template'
 #. Label of a field in the job-application Web Form
 #: hrms/hr/doctype/job_applicant/job_applicant.json
 #: hrms/hr/doctype/job_opening/job_opening.json
+#: hrms/hr/doctype/job_opening_template/job_opening_template.json
 #: hrms/hr/web_form/job_application/job_application.json
 msgid "Lower Range"
 msgstr "下限"
@@ -6638,7 +6646,7 @@ msgstr "五月"
 msgid "Meal Preference"
 msgstr "餐饮偏好"
 
-#: hrms/setup.py:337
+#: hrms/setup.py:340
 msgid "Medical"
 msgstr "医疗"
 
@@ -6685,7 +6693,7 @@ msgstr "缺失离职日期"
 msgid "Missing Salary Components"
 msgstr "缺少工资组件"
 
-#: hrms/payroll/doctype/salary_slip/salary_slip.py:1948
+#: hrms/payroll/doctype/salary_slip/salary_slip.py:1953
 msgid "Missing Tax Slab"
 msgstr "缺失税级"
 
@@ -6754,7 +6762,7 @@ msgid "My Requests"
 msgstr "我的申请"
 
 #: hrms/payroll/doctype/salary_slip/salary_slip.py:1393
-#: hrms/payroll/doctype/salary_slip/salary_slip.py:2618
+#: hrms/payroll/doctype/salary_slip/salary_slip.py:2623
 msgid "Name error"
 msgstr "名称错误"
 
@@ -6849,7 +6857,7 @@ msgstr "未找到员工"
 msgid "No Employee found for the given employee field value. '{}': {}"
 msgstr "根据员工字段值'{}': {} 未找到对应员工"
 
-#: hrms/hr/doctype/appraisal_cycle/appraisal_cycle.py:136 hrms/hr/utils.py:924
+#: hrms/hr/doctype/appraisal_cycle/appraisal_cycle.py:136 hrms/hr/utils.py:934
 msgid "No Employees Selected"
 msgstr "未选择员工"
 
@@ -6897,7 +6905,7 @@ msgstr "无薪资结构"
 msgid "No Shift Requests Selected"
 msgstr "未选择班次申请"
 
-#: hrms/hr/doctype/job_opening/job_opening.js:32
+#: hrms/hr/doctype/job_opening/job_opening.js:35
 msgid "No Staffing Plans found for this Designation"
 msgstr "该职级未找到人员配置计划"
 
@@ -7090,7 +7098,7 @@ msgstr "注意：现有考勤记录中的班次不会被覆盖"
 msgid "Note: Total allocated leaves {0} shouldn't be less than already approved leaves {1} for the period"
 msgstr "注意：期间总分配假期{0}不得少于已批准假期{1}"
 
-#: hrms/payroll/doctype/salary_slip/salary_slip.py:2257
+#: hrms/payroll/doctype/salary_slip/salary_slip.py:2262
 msgid "Note: Your salary slip is password protected, the password to unlock the PDF is of the format {0}."
 msgstr "注意：工资条PDF密码格式为{0}"
 
@@ -7098,7 +7106,7 @@ msgstr "注意：工资条PDF密码格式为{0}"
 msgid "Nothing to change"
 msgstr "无变更内容"
 
-#: hrms/setup.py:416
+#: hrms/setup.py:419
 msgid "Notice Period"
 msgstr "通知期"
 
@@ -7291,6 +7299,11 @@ msgstr "开放反馈"
 #: hrms/hr/doctype/leave_application/leave_application_email_template.html:30
 msgid "Open Now"
 msgstr "立即开放"
+
+#. Label of the open_resume_button (Button) field in DocType 'Job Applicant'
+#: hrms/hr/doctype/job_applicant/job_applicant.json
+msgid "Open Resume in New Tab"
+msgstr ""
 
 #: hrms/templates/generators/job_opening.html:38
 #: hrms/templates/generators/job_opening.html:218
@@ -7520,7 +7533,7 @@ msgstr "通过工资条支付"
 msgid "Parent Goal"
 msgstr "父级目标"
 
-#: hrms/setup.py:393
+#: hrms/setup.py:396
 msgid "Part-time"
 msgstr "兼职"
 
@@ -7547,6 +7560,14 @@ msgstr "密码策略不能包含空格或连续连字符。格式将自动调整
 #: hrms/payroll/doctype/payroll_settings/payroll_settings.py:50
 msgid "Password policy for Salary Slips is not set"
 msgstr "未设置工资条密码策略"
+
+#. Label of the pay_details_tab (Tab Break) field in DocType 'Job Opening'
+#. Label of the pay_details_section (Section Break) field in DocType 'Job
+#. Opening Template'
+#: hrms/hr/doctype/job_opening/job_opening.json
+#: hrms/hr/doctype/job_opening_template/job_opening_template.json
+msgid "Pay Details"
+msgstr ""
 
 #. Label of the pay_rate_multipliers_section (Section Break) field in DocType
 #. 'Overtime Type'
@@ -7654,7 +7675,7 @@ msgstr "薪资调整"
 msgid "Payroll Correction Child"
 msgstr "薪资调整子项"
 
-#: hrms/setup.py:110 hrms/setup.py:284
+#: hrms/setup.py:113 hrms/setup.py:287
 msgid "Payroll Cost Center"
 msgstr "薪资成本中心"
 
@@ -7718,7 +7739,7 @@ msgstr "薪资编号"
 #: hrms/payroll/doctype/bulk_salary_structure_assignment/bulk_salary_structure_assignment.json
 #: hrms/payroll/doctype/payroll_entry/payroll_entry.json
 #: hrms/payroll/doctype/salary_structure_assignment/salary_structure_assignment.json
-#: hrms/setup.py:837
+#: hrms/setup.py:840
 msgid "Payroll Payable Account"
 msgstr "应付薪资账户"
 
@@ -7835,7 +7856,7 @@ msgstr "永久取消{0}"
 msgid "Permanently submit {0}"
 msgstr "永久提交{0}"
 
-#: hrms/setup.py:397
+#: hrms/setup.py:400
 msgid "Piecework"
 msgstr "计件工作"
 
@@ -7884,7 +7905,7 @@ msgstr "请在获取加班明细前填写员工、过账日期和公司。"
 msgid "Please reduce {0} to avoid shift time overlapping with itself"
 msgstr "请调整{0}以避免班次时间重叠"
 
-#: hrms/payroll/doctype/salary_slip/salary_slip.py:2246
+#: hrms/payroll/doctype/salary_slip/salary_slip.py:2251
 msgid "Please see attachment"
 msgstr "请查看附件"
 
@@ -7938,7 +7959,7 @@ msgstr "请选择CSV文件"
 msgid "Please select a date."
 msgstr "请选择日期"
 
-#: hrms/hr/utils.py:812
+#: hrms/hr/utils.py:822
 msgid "Please select an Applicant"
 msgstr "请选择申请人"
 
@@ -7946,7 +7967,7 @@ msgstr "请选择申请人"
 msgid "Please select at least one Shift Request to perform this action."
 msgstr "请至少选择一个班次申请执行此操作"
 
-#: hrms/hr/utils.py:923
+#: hrms/hr/utils.py:933
 msgid "Please select at least one employee to perform this action."
 msgstr "请至少选择一名员工执行此操作"
 
@@ -8168,15 +8189,15 @@ msgstr "本金金额"
 msgid "Printed On {0}"
 msgstr "打印时间：{0}"
 
-#: hrms/setup.py:376 hrms/setup.py:377
+#: hrms/setup.py:379 hrms/setup.py:380
 msgid "Privilege Leave"
 msgstr "特权假"
 
-#: hrms/setup.py:394
+#: hrms/setup.py:397
 msgid "Probation"
 msgstr "试用期"
 
-#: hrms/setup.py:408
+#: hrms/setup.py:411
 msgid "Probationary Period"
 msgstr "试用期间"
 
@@ -8188,7 +8209,7 @@ msgstr "处理考勤时间范围"
 #. Label of the process_payroll_accounting_entry_based_on_employee (Check)
 #. field in DocType 'Payroll Settings'
 #: hrms/payroll/doctype/payroll_settings/payroll_settings.json
-#: hrms/setup.py:848
+#: hrms/setup.py:851
 msgid "Process Payroll Accounting Entry based on Employee"
 msgstr "按员工处理薪资会计条目"
 
@@ -8281,7 +8302,10 @@ msgid "Publish Applications Received"
 msgstr "公开已收申请数"
 
 #. Label of the publish_salary_range (Check) field in DocType 'Job Opening'
+#. Label of the publish_salary_range (Check) field in DocType 'Job Opening
+#. Template'
 #: hrms/hr/doctype/job_opening/job_opening.json
+#: hrms/hr/doctype/job_opening_template/job_opening_template.json
 msgid "Publish Salary Range"
 msgstr "公开薪资范围"
 
@@ -8496,6 +8520,7 @@ msgid "Refuelling Details"
 msgstr "加油详情"
 
 #: frontend/src/components/RequestActionSheet.vue:96
+#: hrms/hr/doctype/job_applicant/job_applicant.js:61
 #: hrms/hr/doctype/shift_assignment_tool/shift_assignment_tool.js:126
 msgid "Reject"
 msgstr "拒绝"
@@ -8504,7 +8529,7 @@ msgstr "拒绝"
 msgid "Reject Employee Referral"
 msgstr "拒绝员工推荐"
 
-#: frontend/src/components/RequestActionSheet.vue:290
+#: frontend/src/components/RequestActionSheet.vue:298
 msgid "Rejection"
 msgstr "拒绝"
 
@@ -8561,11 +8586,11 @@ msgstr "零值时移除"
 msgid "Rented Car"
 msgstr "租用车辆"
 
-#: hrms/setup.py:821 hrms/setup.py:830
+#: hrms/setup.py:824 hrms/setup.py:833
 msgid "Repay From Salary"
 msgstr "从工资中偿还"
 
-#: hrms/hr/utils.py:827
+#: hrms/hr/utils.py:837
 msgid "Repay From Salary can be selected only for term loans"
 msgstr "仅定期贷款可选择从工资中偿还"
 
@@ -8632,7 +8657,7 @@ msgstr "申请人（姓名）"
 msgid "Require Full Funding"
 msgstr "需全额资助"
 
-#: hrms/setup.py:169
+#: hrms/setup.py:172
 msgid "Required Skills"
 msgstr "所需技能"
 
@@ -8646,7 +8671,7 @@ msgstr "员工建档必填"
 msgid "Reschedule Interview"
 msgstr "重新安排面试"
 
-#: hrms/setup.py:414
+#: hrms/setup.py:417
 msgid "Responsibilities"
 msgstr "职责"
 
@@ -8656,16 +8681,9 @@ msgstr "职责"
 msgid "Restrict Backdated Leave Application"
 msgstr "限制补请假申请"
 
-#. Label of the resume_attachment (Attach) field in DocType 'Job Applicant'
-#: hrms/hr/doctype/job_applicant/job_applicant.json
-msgid "Resume Attachment"
-msgstr "简历附件"
-
 #. Label of the resume_link (Data) field in DocType 'Employee Referral'
-#. Label of the resume_link (Data) field in DocType 'Job Applicant'
 #. Label of a field in the job-application Web Form
 #: hrms/hr/doctype/employee_referral/employee_referral.json
-#: hrms/hr/doctype/job_applicant/job_applicant.json
 #: hrms/hr/web_form/job_application/job_application.json
 msgid "Resume Link"
 msgstr "简历链接"
@@ -8753,11 +8771,6 @@ msgstr "排班表"
 msgid "Roster Color"
 msgstr "排班颜色"
 
-#. Label of the round_name (Data) field in DocType 'Interview Round'
-#: hrms/hr/doctype/interview_round/interview_round.json
-msgid "Round Name"
-msgstr "轮次名称"
-
 #. Option for the 'Work Experience Calculation Method' (Select) field in
 #. DocType 'Gratuity Rule'
 #: hrms/payroll/doctype/gratuity_rule/gratuity_rule.json
@@ -8775,7 +8788,7 @@ msgstr "四舍五入至整数"
 msgid "Rounding"
 msgstr "四舍五入"
 
-#. Description of the 'Job Application Route' (Data) field in DocType 'Job
+#. Description of the 'Application Web Form Route' (Data) field in DocType 'Job
 #. Opening'
 #: hrms/hr/doctype/job_opening/job_opening.json
 msgid "Route to the custom Job Application Webform"
@@ -8914,7 +8927,7 @@ msgstr "薪资明细"
 msgid "Salary Details"
 msgstr "薪资详情"
 
-#. Label of the section_break_16 (Section Break) field in DocType 'Job
+#. Label of the salary_expectation_tab (Tab Break) field in DocType 'Job
 #. Applicant'
 #: hrms/hr/doctype/job_applicant/job_applicant.json
 msgid "Salary Expectation"
@@ -8925,7 +8938,9 @@ msgid "Salary Information"
 msgstr "薪资信息"
 
 #. Label of the salary_per (Select) field in DocType 'Job Opening'
+#. Label of the salary_per (Select) field in DocType 'Job Opening Template'
 #: hrms/hr/doctype/job_opening/job_opening.json
+#: hrms/hr/doctype/job_opening_template/job_opening_template.json
 msgid "Salary Paid Per"
 msgstr "薪资支付周期"
 
@@ -8969,7 +8984,7 @@ msgstr "薪资登记表"
 #: hrms/payroll/doctype/employee_benefit_ledger/employee_benefit_ledger.json
 #: hrms/payroll/doctype/payroll_settings/payroll_settings.json
 #: hrms/payroll/doctype/salary_slip/salary_slip.json
-#: hrms/payroll/workspace/payroll/payroll.json hrms/setup.py:312
+#: hrms/payroll/workspace/payroll/payroll.json hrms/setup.py:315
 #: hrms/workspace_sidebar/payroll.json
 msgid "Salary Slip"
 msgstr "工资条"
@@ -9171,7 +9186,7 @@ msgstr "未设置公积金、附加公积金或公积金贷款类型的工资组
 msgid "Salary components should be part of the Salary Structure."
 msgstr "薪资组件应属于薪资结构的一部分"
 
-#: hrms/payroll/doctype/salary_slip/salary_slip.py:2798
+#: hrms/payroll/doctype/salary_slip/salary_slip.py:2803
 msgid "Salary slip emails have been enqueued for sending. Check {0} for status."
 msgstr "工资条邮件已加入发送队列，查看{0}了解状态"
 
@@ -9219,8 +9234,8 @@ msgid "Select Applicable Components for Overtime Type"
 msgstr "选择加班类型适用的组件"
 
 #: hrms/hr/doctype/interview/interview.js:209
-msgid "Select Interview Round First"
-msgstr "请先选择面试轮次"
+msgid "Select Interview Type First"
+msgstr ""
 
 #: hrms/hr/doctype/interview_feedback/interview_feedback.js:49
 msgid "Select Interview first"
@@ -9511,7 +9526,7 @@ msgstr "冲抵预支款"
 msgid "Settle all Payables and Receivables before submission"
 msgstr "提交前需结清所有应收应付"
 
-#: hrms/hr/utils.py:775
+#: hrms/hr/utils.py:785
 msgid "Shared document with the user {0} with 'Submit' permission"
 msgstr "已与用户{0}共享文档并授予“提交”权限"
 
@@ -9631,8 +9646,8 @@ msgstr "班次地点"
 msgid "Shift Request"
 msgstr "班次申请"
 
-#: hrms/patches/v15_0/update_approver_custom_fields.py:27 hrms/setup.py:138
-#: hrms/setup.py:262
+#: hrms/patches/v15_0/update_approver_custom_fields.py:27 hrms/setup.py:141
+#: hrms/setup.py:265
 msgid "Shift Request Approver"
 msgstr "班次申请审批人"
 
@@ -9751,6 +9766,15 @@ msgstr "班次已成功更新为{0}"
 msgid "Shifts"
 msgstr "班次列表"
 
+#: hrms/hr/doctype/job_applicant/job_applicant.js:56
+msgid "Shortlist"
+msgstr ""
+
+#. Option for the 'Status' (Select) field in DocType 'Job Applicant'
+#: hrms/hr/doctype/job_applicant/job_applicant.json
+msgid "Shortlisted"
+msgstr ""
+
 #: hrms/hr/doctype/job_offer/job_offer.js:51
 msgid "Show Employee"
 msgstr "显示员工"
@@ -9775,7 +9799,7 @@ msgstr "显示工资条"
 msgid "Showing"
 msgstr "显示中"
 
-#: hrms/setup.py:368 hrms/setup.py:369
+#: hrms/setup.py:371 hrms/setup.py:372
 msgid "Sick Leave"
 msgstr "病假"
 
@@ -9812,7 +9836,7 @@ msgstr "技能名称"
 
 #. Label of the skills_section (Section Break) field in DocType 'Employee Skill
 #. Map'
-#: hrms/hr/doctype/employee_skill_map/employee_skill_map.json hrms/setup.py:175
+#: hrms/hr/doctype/employee_skill_map/employee_skill_map.json hrms/setup.py:178
 msgid "Skills"
 msgstr "技能列表"
 
@@ -9825,12 +9849,6 @@ msgstr "跳过自动考勤"
 #: hrms/payroll/doctype/salary_structure/salary_structure.py:360
 msgid "Skipping Salary Structure Assignment for the following employees, as Salary Structure Assignment records already exists against them. {0}"
 msgstr "以下员工薪资结构分配记录已存在，跳过分配：{0}"
-
-#. Label of the source_and_rating_section (Section Break) field in DocType 'Job
-#. Applicant'
-#: hrms/hr/doctype/job_applicant/job_applicant.json
-msgid "Source and Rating"
-msgstr "来源与评分"
 
 #: hrms/api/roster.py:95
 msgid "Source and target shifts cannot be the same"
@@ -9894,7 +9912,7 @@ msgstr "标准免税额度"
 msgid "Standard Working Hours"
 msgstr "标准工时"
 
-#: hrms/payroll/doctype/salary_slip/salary_slip.py:1884
+#: hrms/payroll/doctype/salary_slip/salary_slip.py:1889
 msgid "Start and end dates not in a valid Payroll Period, cannot calculate {0}."
 msgstr "起止日期不在有效薪资周期内，无法计算{0}"
 
@@ -9930,7 +9948,7 @@ msgstr "统计组件"
 msgid "Status for Other Half"
 msgstr "其他部分状态"
 
-#: hrms/setup.py:411
+#: hrms/setup.py:414
 msgid "Stock Options"
 msgstr "股票期权"
 
@@ -10012,7 +10030,7 @@ msgstr "正在提交工资条..."
 msgid "Subsidiary companies have already planned for {1} vacancies at a budget of {2}. Staffing Plan for {0} should allocate more vacancies and budget for {3} than planned for its subsidiary companies"
 msgstr "子公司已规划{1}个空缺岗位，预算{2}。{0}的人员配置计划应为{3}分配更多空缺和预算"
 
-#: hrms/hr/utils.py:951
+#: hrms/hr/utils.py:961
 msgid "Successfully created {0} for employees:"
 msgstr "成功为员工创建{0}："
 
@@ -10042,7 +10060,7 @@ msgstr "同步{0}"
 msgid "Syntax error"
 msgstr "语法错误"
 
-#: hrms/payroll/doctype/salary_slip/salary_slip.py:2621
+#: hrms/payroll/doctype/salary_slip/salary_slip.py:2626
 msgid "Syntax error in condition: {0} in Income Tax Slab"
 msgstr "所得税税级条件语法错误：{0}"
 
@@ -10205,7 +10223,7 @@ msgstr "申请日期为节假日，无需请假"
 msgid "The days between {0} to {1} are not valid holidays."
 msgstr "{0}至{1}期间并非有效节假日"
 
-#: hrms/setup.py:129
+#: hrms/setup.py:132
 msgid "The first Approver in the list will be set as the default Approver."
 msgstr "列表首位审批人将设为默认审批人"
 
@@ -10572,11 +10590,11 @@ msgstr ""
 msgid "Total Exemption Amount"
 msgstr "免税额总计"
 
-#: hrms/setup.py:302
+#: hrms/setup.py:305
 msgid "Total Expense Claim (via Expense Claim)"
 msgstr "费用报销总额（通过费用报销单）"
 
-#: hrms/setup.py:293
+#: hrms/setup.py:296
 msgid "Total Expense Claim (via Expense Claims)"
 msgstr "费用报销总额（通过费用报销）"
 
@@ -10599,7 +10617,7 @@ msgstr "总工时（T）"
 msgid "Total Income Tax"
 msgstr "所得税总额"
 
-#: hrms/setup.py:794
+#: hrms/setup.py:797
 msgid "Total Interest Amount"
 msgstr "利息总金额"
 
@@ -10632,7 +10650,7 @@ msgstr "总分配假期"
 msgid "Total Leaves Encashed"
 msgstr "已兑现总假期"
 
-#: hrms/setup.py:808
+#: hrms/setup.py:811
 msgid "Total Loan Repayment"
 msgstr "贷款偿还总额"
 
@@ -10669,7 +10687,7 @@ msgstr "总支付额"
 msgid "Total Present"
 msgstr "总出勤数"
 
-#: hrms/setup.py:785
+#: hrms/setup.py:788
 msgid "Total Principal Amount"
 msgstr "本金总额"
 
@@ -10879,7 +10897,7 @@ msgstr "培训记录"
 msgid "Trainings (This Week)"
 msgstr "培训次数（本周）"
 
-#: hrms/hr/utils.py:798
+#: hrms/hr/utils.py:808
 msgid "Transactions cannot be created for an Inactive Employee {0}."
 msgstr "无法为离职员工{0}创建交易记录"
 
@@ -10890,7 +10908,7 @@ msgstr "调岗日期"
 
 #. Label of a Card Break in the Expenses Workspace
 #. Label of a Workspace Sidebar Item
-#: hrms/hr/workspace/expenses/expenses.json hrms/setup.py:339
+#: hrms/hr/workspace/expenses/expenses.json hrms/setup.py:342
 #: hrms/workspace_sidebar/expenses.json
 msgid "Travel"
 msgstr "差旅"
@@ -11134,9 +11152,11 @@ msgstr "上传中..."
 
 #. Label of the upper_range (Currency) field in DocType 'Job Applicant'
 #. Label of the upper_range (Currency) field in DocType 'Job Opening'
+#. Label of the upper_range (Currency) field in DocType 'Job Opening Template'
 #. Label of a field in the job-application Web Form
 #: hrms/hr/doctype/job_applicant/job_applicant.json
 #: hrms/hr/doctype/job_opening/job_opening.json
+#: hrms/hr/doctype/job_opening_template/job_opening_template.json
 #: hrms/hr/web_form/job_application/job_application.json
 msgid "Upper Range"
 msgstr "上限范围"
@@ -11245,6 +11265,10 @@ msgstr "车辆服务项目"
 msgid "View Goals"
 msgstr "查看目标"
 
+#: hrms/hr/doctype/job_applicant/job_applicant.js:78
+msgid "View Job Offer"
+msgstr ""
+
 #: frontend/src/components/LeaveBalance.vue:14
 msgid "View Leave History"
 msgstr "查看请假历史"
@@ -11278,7 +11302,7 @@ msgstr "警告：请假申请包含以下禁假日期"
 msgid "Warning: {0} already has an active Shift Assignment {1} for some/all of these dates."
 msgstr "警告：{0}在部分/全部日期已有生效的班次分配{1}"
 
-#: hrms/setup.py:401
+#: hrms/setup.py:404
 msgid "Website Listing"
 msgstr "官网职位列表"
 
@@ -11480,7 +11504,7 @@ msgstr "根据母公司{4}的编制计划{3}，您最多可规划{2}的{0}个空
 msgid "You can only submit Leave Encashment for a valid encashment amount"
 msgstr "仅当存在有效兑现金额时可提交假期折现申请"
 
-#: hrms/api/__init__.py:740
+#: hrms/api/__init__.py:741
 msgid "You can only upload JPG, PNG, PDF, TXT or Microsoft documents."
 msgstr "仅可上传JPG、PNG、PDF、TXT或Microsoft文档"
 
@@ -11553,11 +11577,11 @@ msgstr "生效中"
 msgid "based on"
 msgstr "基于"
 
-#: frontend/src/components/RequestActionSheet.vue:292
+#: frontend/src/components/RequestActionSheet.vue:300
 msgid "cancellation"
 msgstr "取消"
 
-#: frontend/src/components/RequestActionSheet.vue:283
+#: frontend/src/components/RequestActionSheet.vue:291
 msgid "cancelled"
 msgstr "已取消"
 
@@ -11614,7 +11638,7 @@ msgstr "评审"
 msgid "reviews"
 msgstr "评审"
 
-#: frontend/src/components/RequestActionSheet.vue:283
+#: frontend/src/components/RequestActionSheet.vue:291
 msgid "submitted"
 msgstr "已提交"
 
@@ -11648,7 +11672,7 @@ msgstr "{0} 及另外{1}项"
 msgid "{0} : {1}"
 msgstr "{0}：{1}"
 
-#: hrms/payroll/doctype/salary_slip/salary_slip.py:2617
+#: hrms/payroll/doctype/salary_slip/salary_slip.py:2622
 msgid "{0} <br> This error can be due to missing or deleted field."
 msgstr "{0} <br> 此错误可能由字段缺失或删除导致"
 
@@ -11709,8 +11733,8 @@ msgstr "{0}创建成功！"
 msgid "{0} deleted successfully!"
 msgstr "{0}删除成功！"
 
-#: frontend/src/components/CheckInPanel.vue:186
-#: frontend/src/components/RequestActionSheet.vue:290
+#: frontend/src/components/CheckInPanel.vue:183
+#: frontend/src/components/RequestActionSheet.vue:298
 msgid "{0} failed!"
 msgstr "{0}失败！"
 
@@ -11759,11 +11783,11 @@ msgstr "必须提交{0}"
 msgid "{0} of {1} Completed"
 msgstr "已完成{1}中的{0}"
 
-#: frontend/src/components/CheckInPanel.vue:174
+#: frontend/src/components/CheckInPanel.vue:171
 msgid "{0} successful!"
 msgstr "{0}成功！"
 
-#: frontend/src/components/RequestActionSheet.vue:280
+#: frontend/src/components/RequestActionSheet.vue:288
 msgid "{0} successfully!"
 msgstr "{0}成功！"
 
@@ -11787,11 +11811,11 @@ msgstr "将更新以下薪资结构{1}的{0}"
 msgid "{0} {1} {2}?"
 msgstr "{0} {1} {2}?"
 
-#: hrms/hr/utils.py:456
+#: hrms/hr/utils.py:466
 msgid "{0}. Check error log for more details."
 msgstr ""
 
-#: hrms/payroll/doctype/salary_slip/salary_slip.py:2278
+#: hrms/payroll/doctype/salary_slip/salary_slip.py:2283
 msgid "{0}: Employee email not found, hence email not sent"
 msgstr "{0}：未找到员工邮箱，邮件未发送"
 
