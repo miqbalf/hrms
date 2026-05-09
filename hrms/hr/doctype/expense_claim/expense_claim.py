@@ -741,19 +741,13 @@ def get_expense_claim_advances(expense_claim, employee_advance):
 			"event": "Submit",
 			"delinked": False,
 		},
-		fields=[
-			"voucher_type",
-			"voucher_no",
-			"amount",
-			"base_amount",
-			"exchange_rate",
-		],
+		fields=["voucher_type", "voucher_no", "amount", "base_amount", "exchange_rate", "creation"],
 	)
 
 	if not advance_payments:
 		return
 
-	advance_payments.sort(key=lambda x: x.get("voucher_no"))
+	advance_payments.sort(key=lambda x: x.get("creation"))
 	advance_payment_voucher_nos = [payment["voucher_no"] for payment in advance_payments]
 
 	claimed_payments = frappe.get_all(
