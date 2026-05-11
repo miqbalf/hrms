@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: frappe\n"
 "Report-Msgid-Bugs-To: contact@frappe.io\n"
-"POT-Creation-Date: 2026-04-26 09:47+0000\n"
-"PO-Revision-Date: 2026-04-27 18:20\n"
+"POT-Creation-Date: 2026-05-03 09:54+0000\n"
+"PO-Revision-Date: 2026-05-11 07:39\n"
 "Last-Translator: contact@frappe.io\n"
 "Language-Team: Swedish\n"
 "MIME-Version: 1.0\n"
@@ -348,7 +348,7 @@ msgstr "{0} finns mellan {1} och {2} ("
 #: hrms/hr/doctype/attendance/attendance.json
 #: hrms/hr/doctype/employee_attendance_tool/employee_attendance_tool.json
 #: hrms/hr/doctype/training_event_employee/training_event_employee.json
-#: hrms/hr/report/monthly_attendance_sheet/monthly_attendance_sheet.py:736
+#: hrms/hr/report/monthly_attendance_sheet/monthly_attendance_sheet.py:793
 #: hrms/payroll/doctype/payroll_settings/payroll_settings.json
 msgid "Absent"
 msgstr "Frånvarande"
@@ -5855,7 +5855,7 @@ msgstr "Latitud: {0}°"
 
 #. Option for the 'Calculate Payroll Working Days Based On' (Select) field in
 #. DocType 'Payroll Settings'
-#: hrms/hr/report/monthly_attendance_sheet/monthly_attendance_sheet.py:738
+#: hrms/hr/report/monthly_attendance_sheet/monthly_attendance_sheet.py:795
 #: hrms/overrides/dashboard_overrides.py:12
 #: hrms/payroll/doctype/payroll_settings/payroll_settings.json
 msgid "Leave"
@@ -5998,7 +5998,7 @@ msgstr "Frånvaro Spärr Lista Datum"
 msgid "Leave Block List Name"
 msgstr "Frånvaro Spärr Lista Namn"
 
-#: hrms/hr/doctype/leave_application/leave_application.py:1448
+#: hrms/hr/doctype/leave_application/leave_application.py:1447
 msgid "Leave Blocked"
 msgstr "Frånvaro Spärrad"
 
@@ -6970,11 +6970,11 @@ msgstr "Inga detaljer om efterskott hittades"
 msgid "No attendance records found for employee {0} between {1} and {2}"
 msgstr "Inga närvaro poster hittades för {0} mellan {1} och {2}"
 
-#: hrms/hr/report/monthly_attendance_sheet/monthly_attendance_sheet.py:71
+#: hrms/hr/report/monthly_attendance_sheet/monthly_attendance_sheet.py:75
 msgid "No attendance records found for this criteria."
 msgstr "Inga närvaro poster funna för dessa kriterier."
 
-#: hrms/hr/report/monthly_attendance_sheet/monthly_attendance_sheet.py:64
+#: hrms/hr/report/monthly_attendance_sheet/monthly_attendance_sheet.py:68
 msgid "No attendance records found."
 msgstr "Inga närvaro poster funna."
 
@@ -7938,7 +7938,7 @@ msgstr "Välj Personal"
 msgid "Please select Employee first."
 msgstr "Välj Personal"
 
-#: hrms/hr/report/monthly_attendance_sheet/monthly_attendance_sheet.py:41
+#: hrms/hr/report/monthly_attendance_sheet/monthly_attendance_sheet.py:45
 msgid "Please select Filter Based On"
 msgstr "Välj Filter Baserat På"
 
@@ -7995,7 +7995,7 @@ msgstr "Välj minst en i personal för att utföra denna åtgärd."
 msgid "Please select at least one row to perform this action."
 msgstr "Välj minst en rad för att utföra denna åtgärd."
 
-#: hrms/hr/report/monthly_attendance_sheet/monthly_attendance_sheet.py:55
+#: hrms/hr/report/monthly_attendance_sheet/monthly_attendance_sheet.py:59
 msgid "Please select company."
 msgstr "Välj Bolag."
 
@@ -8012,7 +8012,7 @@ msgstr "Välj Personal att skapa Utvärderingar för"
 msgid "Please select half day attendance status."
 msgstr "Ange status för halvdagsnärvaro."
 
-#: hrms/hr/report/monthly_attendance_sheet/monthly_attendance_sheet.py:44
+#: hrms/hr/report/monthly_attendance_sheet/monthly_attendance_sheet.py:48
 msgid "Please select month and year."
 msgstr "Välj månad och år"
 
@@ -8057,7 +8057,7 @@ msgid "Please set Relieving Date for employee: {0}"
 msgstr "Ange avgång datum för: {0}"
 
 #: hrms/hr/report/monthly_attendance_sheet/monthly_attendance_sheet.js:186
-#: hrms/hr/report/monthly_attendance_sheet/monthly_attendance_sheet.py:52
+#: hrms/hr/report/monthly_attendance_sheet/monthly_attendance_sheet.py:56
 msgid "Please set a date range less than 90 days."
 msgstr "Ange datum intervall som är kortare än 90 dagar."
 
@@ -8093,7 +8093,7 @@ msgstr "Ange Anställning Datum för Personal {0}"
 msgid "Please set the Holiday List."
 msgstr "Ange Helg Lista"
 
-#: hrms/hr/report/monthly_attendance_sheet/monthly_attendance_sheet.py:48
+#: hrms/hr/report/monthly_attendance_sheet/monthly_attendance_sheet.py:52
 msgid "Please set the date range."
 msgstr "Ange datum intervall."
 
@@ -8177,7 +8177,7 @@ msgstr "Prioriterad Område för Logi"
 #: hrms/hr/doctype/attendance/attendance.json
 #: hrms/hr/doctype/employee_attendance_tool/employee_attendance_tool.json
 #: hrms/hr/doctype/training_event_employee/training_event_employee.json
-#: hrms/hr/report/monthly_attendance_sheet/monthly_attendance_sheet.py:737
+#: hrms/hr/report/monthly_attendance_sheet/monthly_attendance_sheet.py:794
 #: hrms/payroll/doctype/payroll_settings/payroll_settings.json
 msgid "Present"
 msgstr "Närvarande"
@@ -9948,7 +9948,7 @@ msgstr "Start och Slut Datum inte i giltig Löneeriod, kan inte beräkna {0}."
 msgid "Start date cannot be greater than end date"
 msgstr "Startdatum kan inte vara senare än slutdatum"
 
-#: hrms/hr/report/monthly_attendance_sheet/monthly_attendance_sheet.py:50
+#: hrms/hr/report/monthly_attendance_sheet/monthly_attendance_sheet.py:54
 msgid "Start date cannot be greater than end date."
 msgstr "Startdatum kan inte vara senare än slutdatum."
 
@@ -10487,7 +10487,7 @@ msgstr "Idag {0} på vårt Bolag! 🎉"
 msgid "Today {0} completed {1} {2} at our Company! 🎉"
 msgstr "Idag {0} fyller {1} {2} hos oss! 🎉"
 
-#: hrms/hr/report/monthly_attendance_sheet/monthly_attendance_sheet.py:149
+#: hrms/hr/report/monthly_attendance_sheet/monthly_attendance_sheet.py:153
 msgid "Total Absent"
 msgstr "Totalt Frånvarande"
 
@@ -10577,7 +10577,7 @@ msgstr "Totalt Avdrag"
 msgid "Total Deduction (Company Currency)"
 msgstr "Totalt Avdrag (Bolag Valuta)"
 
-#: hrms/hr/report/monthly_attendance_sheet/monthly_attendance_sheet.py:174
+#: hrms/hr/report/monthly_attendance_sheet/monthly_attendance_sheet.py:178
 msgid "Total Early Exits"
 msgstr "Totalt Tidiga Avgångar"
 
@@ -10649,7 +10649,7 @@ msgstr "Totalt Inkomst Skatt"
 msgid "Total Interest Amount"
 msgstr "Räntebelopp"
 
-#: hrms/hr/report/monthly_attendance_sheet/monthly_attendance_sheet.py:168
+#: hrms/hr/report/monthly_attendance_sheet/monthly_attendance_sheet.py:172
 msgid "Total Late Entries"
 msgstr "Totalt Sena Ankomster"
 
@@ -10658,7 +10658,7 @@ msgstr "Totalt Sena Ankomster"
 msgid "Total Leave Days"
 msgstr "Totalt Frånvaro Dagar"
 
-#: hrms/hr/report/monthly_attendance_sheet/monthly_attendance_sheet.py:148
+#: hrms/hr/report/monthly_attendance_sheet/monthly_attendance_sheet.py:152
 msgid "Total Leaves"
 msgstr "Totalt Frånvaro"
 
@@ -10711,7 +10711,7 @@ msgstr "Totalt Betalning"
 msgid "Total Payout"
 msgstr "Total Utbetalning"
 
-#: hrms/hr/report/monthly_attendance_sheet/monthly_attendance_sheet.py:143
+#: hrms/hr/report/monthly_attendance_sheet/monthly_attendance_sheet.py:147
 msgid "Total Present"
 msgstr "Totalt Närvarande"
 
@@ -11043,7 +11043,7 @@ msgstr "Oregistrerad Närvaro för dagar"
 msgid "Unmarked Check-in Logs Found"
 msgstr "Omärkta stämplingsloggar hittade"
 
-#: hrms/hr/report/monthly_attendance_sheet/monthly_attendance_sheet.py:157
+#: hrms/hr/report/monthly_attendance_sheet/monthly_attendance_sheet.py:161
 #: hrms/public/js/templates/employees_with_unmarked_attendance.html:19
 msgid "Unmarked Days"
 msgstr "Oanmälda Dagar"

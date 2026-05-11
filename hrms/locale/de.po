@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: frappe\n"
 "Report-Msgid-Bugs-To: contact@frappe.io\n"
-"POT-Creation-Date: 2026-04-26 09:47+0000\n"
-"PO-Revision-Date: 2026-04-26 18:15\n"
+"POT-Creation-Date: 2026-05-03 09:54+0000\n"
+"PO-Revision-Date: 2026-05-11 07:39\n"
 "Last-Translator: contact@frappe.io\n"
 "Language-Team: German\n"
 "MIME-Version: 1.0\n"
@@ -329,7 +329,7 @@ msgstr "Ein {0} existiert zwischen {1} und {2} ("
 #: hrms/hr/doctype/attendance/attendance.json
 #: hrms/hr/doctype/employee_attendance_tool/employee_attendance_tool.json
 #: hrms/hr/doctype/training_event_employee/training_event_employee.json
-#: hrms/hr/report/monthly_attendance_sheet/monthly_attendance_sheet.py:736
+#: hrms/hr/report/monthly_attendance_sheet/monthly_attendance_sheet.py:793
 #: hrms/payroll/doctype/payroll_settings/payroll_settings.json
 msgid "Absent"
 msgstr "Abwesend"
@@ -5833,7 +5833,7 @@ msgstr "Breitengrad: {0}°"
 
 #. Option for the 'Calculate Payroll Working Days Based On' (Select) field in
 #. DocType 'Payroll Settings'
-#: hrms/hr/report/monthly_attendance_sheet/monthly_attendance_sheet.py:738
+#: hrms/hr/report/monthly_attendance_sheet/monthly_attendance_sheet.py:795
 #: hrms/overrides/dashboard_overrides.py:12
 #: hrms/payroll/doctype/payroll_settings/payroll_settings.json
 msgid "Leave"
@@ -5976,7 +5976,7 @@ msgstr "Urlaubssperrenliste Termine"
 msgid "Leave Block List Name"
 msgstr "Name der Urlaubssperrenliste"
 
-#: hrms/hr/doctype/leave_application/leave_application.py:1448
+#: hrms/hr/doctype/leave_application/leave_application.py:1447
 msgid "Leave Blocked"
 msgstr "Abwesenheit gesperrt"
 
@@ -6948,11 +6948,11 @@ msgstr ""
 msgid "No attendance records found for employee {0} between {1} and {2}"
 msgstr ""
 
-#: hrms/hr/report/monthly_attendance_sheet/monthly_attendance_sheet.py:71
+#: hrms/hr/report/monthly_attendance_sheet/monthly_attendance_sheet.py:75
 msgid "No attendance records found for this criteria."
 msgstr "Für dieses Kriterium wurden keine Anwesenheiten gefunden."
 
-#: hrms/hr/report/monthly_attendance_sheet/monthly_attendance_sheet.py:64
+#: hrms/hr/report/monthly_attendance_sheet/monthly_attendance_sheet.py:68
 msgid "No attendance records found."
 msgstr "Keine Anwesenheiten gefunden."
 
@@ -7916,7 +7916,7 @@ msgstr "Bitte wählen Sie Mitarbeiter"
 msgid "Please select Employee first."
 msgstr "Bitte wählen Sie zuerst Mitarbeiter."
 
-#: hrms/hr/report/monthly_attendance_sheet/monthly_attendance_sheet.py:41
+#: hrms/hr/report/monthly_attendance_sheet/monthly_attendance_sheet.py:45
 msgid "Please select Filter Based On"
 msgstr ""
 
@@ -7973,7 +7973,7 @@ msgstr "Bitte wählen Sie mindestens einen Mitarbeiter aus, um diese Aktion ausz
 msgid "Please select at least one row to perform this action."
 msgstr "Bitte wählen Sie mindestens eine Zeile aus, um diese Aktion auszuführen."
 
-#: hrms/hr/report/monthly_attendance_sheet/monthly_attendance_sheet.py:55
+#: hrms/hr/report/monthly_attendance_sheet/monthly_attendance_sheet.py:59
 msgid "Please select company."
 msgstr "Bitte wählen Sie ein Unternehmen aus."
 
@@ -7990,7 +7990,7 @@ msgstr "Bitte wählen Sie Mitarbeiter aus, für die Sie Beurteilungen erstellen 
 msgid "Please select half day attendance status."
 msgstr ""
 
-#: hrms/hr/report/monthly_attendance_sheet/monthly_attendance_sheet.py:44
+#: hrms/hr/report/monthly_attendance_sheet/monthly_attendance_sheet.py:48
 msgid "Please select month and year."
 msgstr "Bitte wählen Sie Monat und Jahr aus."
 
@@ -8035,7 +8035,7 @@ msgid "Please set Relieving Date for employee: {0}"
 msgstr "Bitte legen Sie das Austrittsdatum für den Mitarbeiter fest: {0}"
 
 #: hrms/hr/report/monthly_attendance_sheet/monthly_attendance_sheet.js:186
-#: hrms/hr/report/monthly_attendance_sheet/monthly_attendance_sheet.py:52
+#: hrms/hr/report/monthly_attendance_sheet/monthly_attendance_sheet.py:56
 msgid "Please set a date range less than 90 days."
 msgstr ""
 
@@ -8071,7 +8071,7 @@ msgstr "Bitte setzen Sie das Datum des Beitritts für Mitarbeiter {0}"
 msgid "Please set the Holiday List."
 msgstr "Bitte stellen Sie die Liste der arbeitsfreien Tage ein."
 
-#: hrms/hr/report/monthly_attendance_sheet/monthly_attendance_sheet.py:48
+#: hrms/hr/report/monthly_attendance_sheet/monthly_attendance_sheet.py:52
 msgid "Please set the date range."
 msgstr ""
 
@@ -8155,7 +8155,7 @@ msgstr "Bevorzugte Wohngegend"
 #: hrms/hr/doctype/attendance/attendance.json
 #: hrms/hr/doctype/employee_attendance_tool/employee_attendance_tool.json
 #: hrms/hr/doctype/training_event_employee/training_event_employee.json
-#: hrms/hr/report/monthly_attendance_sheet/monthly_attendance_sheet.py:737
+#: hrms/hr/report/monthly_attendance_sheet/monthly_attendance_sheet.py:794
 #: hrms/payroll/doctype/payroll_settings/payroll_settings.json
 msgid "Present"
 msgstr "Anwesend"
@@ -9926,7 +9926,7 @@ msgstr "Start- und Enddatum, die nicht in einer gültigen Abrechnungsperiode sin
 msgid "Start date cannot be greater than end date"
 msgstr ""
 
-#: hrms/hr/report/monthly_attendance_sheet/monthly_attendance_sheet.py:50
+#: hrms/hr/report/monthly_attendance_sheet/monthly_attendance_sheet.py:54
 msgid "Start date cannot be greater than end date."
 msgstr ""
 
@@ -10465,7 +10465,7 @@ msgstr "Heute {0} in unserem Unternehmen! 🎉"
 msgid "Today {0} completed {1} {2} at our Company! 🎉"
 msgstr ""
 
-#: hrms/hr/report/monthly_attendance_sheet/monthly_attendance_sheet.py:149
+#: hrms/hr/report/monthly_attendance_sheet/monthly_attendance_sheet.py:153
 msgid "Total Absent"
 msgstr "Summe Abwesenheit"
 
@@ -10555,7 +10555,7 @@ msgstr "Gesamtabzug"
 msgid "Total Deduction (Company Currency)"
 msgstr "Gesamtabzug (Währung des Unternehmens)"
 
-#: hrms/hr/report/monthly_attendance_sheet/monthly_attendance_sheet.py:174
+#: hrms/hr/report/monthly_attendance_sheet/monthly_attendance_sheet.py:178
 msgid "Total Early Exits"
 msgstr "Gesamtzahl vorzeitiger Feierabend"
 
@@ -10627,7 +10627,7 @@ msgstr "Einkommensteuer Gesamt"
 msgid "Total Interest Amount"
 msgstr "Gesamtzinsbetrag"
 
-#: hrms/hr/report/monthly_attendance_sheet/monthly_attendance_sheet.py:168
+#: hrms/hr/report/monthly_attendance_sheet/monthly_attendance_sheet.py:172
 msgid "Total Late Entries"
 msgstr "Gesamtzahl verspäteter Einträge"
 
@@ -10636,7 +10636,7 @@ msgstr "Gesamtzahl verspäteter Einträge"
 msgid "Total Leave Days"
 msgstr "Urlaubstage insgesamt"
 
-#: hrms/hr/report/monthly_attendance_sheet/monthly_attendance_sheet.py:148
+#: hrms/hr/report/monthly_attendance_sheet/monthly_attendance_sheet.py:152
 msgid "Total Leaves"
 msgstr "Abwesenheiten insgesamt"
 
@@ -10689,7 +10689,7 @@ msgstr "Gesamte Zahlung"
 msgid "Total Payout"
 msgstr ""
 
-#: hrms/hr/report/monthly_attendance_sheet/monthly_attendance_sheet.py:143
+#: hrms/hr/report/monthly_attendance_sheet/monthly_attendance_sheet.py:147
 msgid "Total Present"
 msgstr "Summe Anwesend"
 
@@ -11021,7 +11021,7 @@ msgstr "Unmarkierte Anwesenheit für Tage"
 msgid "Unmarked Check-in Logs Found"
 msgstr "Unmarkierte Check-in-Protokolle gefunden"
 
-#: hrms/hr/report/monthly_attendance_sheet/monthly_attendance_sheet.py:157
+#: hrms/hr/report/monthly_attendance_sheet/monthly_attendance_sheet.py:161
 #: hrms/public/js/templates/employees_with_unmarked_attendance.html:19
 msgid "Unmarked Days"
 msgstr "Nicht markierte Tage"
