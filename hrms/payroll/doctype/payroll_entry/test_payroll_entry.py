@@ -15,7 +15,7 @@ from hrms.hr.doctype.employee_advance.employee_advance import (
 )
 from hrms.hr.doctype.employee_advance.test_employee_advance import (
 	make_employee_advance,
-	make_journal_entry_for_advance,
+	make_payment_entry,
 )
 from hrms.payroll.doctype.payroll_entry.payroll_entry import (
 	PayrollEntry,
@@ -574,8 +574,7 @@ class TestPayrollEntry(HRMSTestSuite):
 
 		# create employee advance
 		advance = make_employee_advance(employee, {"repay_unclaimed_amount_from_salary": 1})
-		journal_entry = make_journal_entry_for_advance(advance)
-		journal_entry.submit()
+		make_payment_entry(advance)
 		advance.reload()
 
 		# return advance through additional salary (deduction)

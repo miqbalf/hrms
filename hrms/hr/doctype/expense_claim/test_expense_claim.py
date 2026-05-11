@@ -4,16 +4,15 @@
 import frappe
 from frappe.utils import flt, nowdate, random_string, today
 
+import erpnext
 from erpnext import get_company_currency
 from erpnext.accounts.doctype.account.test_account import create_account
-from erpnext.accounts.doctype.payment_entry.test_payment_entry import get_payment_entry
 from erpnext.setup.doctype.employee.test_employee import make_employee
 from erpnext.setup.utils import get_exchange_rate
 
 from hrms.hr.doctype.expense_claim.expense_claim import (
 	MismatchError,
 	get_outstanding_amount_for_claim,
-	make_bank_entry,
 	make_expense_claim_for_delivery_trip,
 )
 from hrms.tests.utils import HRMSTestSuite
@@ -135,7 +134,7 @@ class TestExpenseClaim(HRMSTestSuite):
 				employee1 = entry.party
 
 			if not entry.party_type:
-				entry.credit += 200
+				entry.credit = flt(entry.credit) + 200
 				entry.credit_in_account_currency += 200
 
 		je.append(
@@ -193,7 +192,7 @@ class TestExpenseClaim(HRMSTestSuite):
 		from hrms.hr.doctype.employee_advance.test_employee_advance import (
 			get_advances_for_claim,
 			make_employee_advance,
-			make_journal_entry_for_advance,
+			make_payment_entry,
 		)
 
 		frappe.db.delete("Employee Advance")
@@ -204,8 +203,7 @@ class TestExpenseClaim(HRMSTestSuite):
 		)
 
 		advance = make_employee_advance(claim.employee)
-		pe = make_journal_entry_for_advance(advance)
-		pe.submit()
+		pe = make_payment_entry(advance)
 
 		# claim for already paid out advances
 		claim = get_advances_for_claim(claim, advance.name)
@@ -214,12 +212,19 @@ class TestExpenseClaim(HRMSTestSuite):
 
 		self.assertEqual(claim.grand_total, 0)
 		self.assertEqual(claim.status, "Paid")
+		advance_row = claim.advances[0]
+		self.assertEqual(advance_row.employee_advance, advance.name)
+		self.assertEqual(advance_row.reference_type, "Payment Entry")
+		self.assertEqual(advance_row.reference_name, pe.name)
+		self.assertEqual(advance_row.advance_paid, 1000)
+		self.assertEqual(advance_row.unclaimed_amount, 1000)
+		self.assertEqual(advance_row.allocated_amount, 1000)
 
 	def test_advance_amount_allocation_against_claim_with_taxes(self):
 		from hrms.hr.doctype.employee_advance.test_employee_advance import (
 			get_advances_for_claim,
 			make_employee_advance,
-			make_journal_entry_for_advance,
+			make_payment_entry,
 		)
 
 		frappe.db.delete("Employee Advance")
@@ -238,8 +243,7 @@ class TestExpenseClaim(HRMSTestSuite):
 		claim.save()
 
 		advance = make_employee_advance(claim.employee)
-		pe = make_journal_entry_for_advance(advance)
-		pe.submit()
+		make_payment_entry(advance)
 
 		# claim for already paid out advances
 		claim = get_advances_for_claim(claim, advance.name, 763)
@@ -253,7 +257,7 @@ class TestExpenseClaim(HRMSTestSuite):
 		from hrms.hr.doctype.employee_advance.test_employee_advance import (
 			get_advances_for_claim,
 			make_employee_advance,
-			make_journal_entry_for_advance,
+			make_payment_entry,
 		)
 
 		frappe.db.delete("Employee Advance")
@@ -265,8 +269,7 @@ class TestExpenseClaim(HRMSTestSuite):
 
 		# link advance for partial amount
 		advance = make_employee_advance(claim.employee, {"advance_amount": 500})
-		pe = make_journal_entry_for_advance(advance)
-		pe.submit()
+		make_payment_entry(advance)
 
 		claim = get_advances_for_claim(claim, advance.name)
 		claim.save()
@@ -281,13 +284,18 @@ class TestExpenseClaim(HRMSTestSuite):
 
 		self.assertEqual(claim.total_amount_reimbursed, 500)
 		self.assertEqual(claim.status, "Paid")
+		self.assertEqual(claim.total_claimed_amount, 1000)
+		advance_row = claim.advances[0]
+		self.assertEqual(advance_row.advance_paid, 500)
+		self.assertEqual(advance_row.unclaimed_amount, 500)
+		self.assertEqual(advance_row.allocated_amount, 500)
 
 	def test_expense_claim_with_deducted_returned_advance(self):
 		from hrms.hr.doctype.employee_advance.test_employee_advance import (
 			create_return_through_additional_salary,
 			get_advances_for_claim,
 			make_employee_advance,
-			make_journal_entry_for_advance,
+			make_payment_entry,
 		)
 		from hrms.hr.doctype.expense_claim.expense_claim import get_allocation_amount
 		from hrms.payroll.doctype.salary_component.test_salary_component import create_salary_component
@@ -296,8 +304,7 @@ class TestExpenseClaim(HRMSTestSuite):
 		# create employee and employee advance
 		employee_name = make_employee("_T@employee.advance", "_Test Company")
 		advance = make_employee_advance(employee_name, {"repay_unclaimed_amount_from_salary": 1})
-		journal_entry = make_journal_entry_for_advance(advance)
-		journal_entry.submit()
+		make_payment_entry(advance)
 		advance.reload()
 
 		# set up salary components and structure
@@ -339,6 +346,10 @@ class TestExpenseClaim(HRMSTestSuite):
 			),
 			600,
 		)
+		advance_row = claim.advances[0]
+		self.assertEqual(advance_row.advance_paid, 1000)
+		self.assertEqual(advance_row.return_amount, 400)
+		self.assertEqual(advance_row.allocated_amount, 200)
 
 	def test_expense_claim_gl_entry(self):
 		payable_account = get_payable_account(company_name)
@@ -953,6 +964,53 @@ class TestExpenseClaim(HRMSTestSuite):
 		expense_claim.reload()
 		self.assertEqual(expense_claim.status, "Cancelled")
 
+	def test_expense_claim_advance_payment_via_journal_entry(self):
+		from hrms.hr.doctype.employee_advance.test_employee_advance import (
+			get_advances_for_claim,
+			make_employee_advance,
+			manual_journal_entry_for_advance,
+		)
+
+		payable_account = get_payable_account("_Test Company")
+		claim = make_expense_claim(
+			payable_account,
+			1000,
+			1000,
+			"_Test Company",
+			"Travel Expenses - _TC",
+			do_not_submit=True,
+		)
+
+		advance = make_employee_advance(claim.employee)
+		je = manual_journal_entry_for_advance(advance)
+		je.submit()
+		advance.reload()
+		self.assertEqual(advance.status, "Paid")
+
+		claim = get_advances_for_claim(claim, advance.name)
+		claim.save().submit()
+		claim.reload()
+		advance.reload()
+
+		self.assertEqual(claim.status, "Paid")
+		self.assertEqual(advance.status, "Claimed")
+		self.assertEqual(len(claim.advances), 1)
+
+		advance_row = claim.advances[0]
+		self.assertEqual(advance_row.employee_advance, advance.name)
+		self.assertEqual(advance_row.reference_type, "Journal Entry")
+		self.assertEqual(advance_row.reference_name, je.name)
+		self.assertEqual(advance_row.advance_paid, 1000)
+		self.assertEqual(advance_row.unclaimed_amount, 1000)
+		self.assertEqual(advance_row.allocated_amount, 1000)
+
+		claim.cancel()
+		claim.reload()
+		advance.reload()
+
+		self.assertEqual(advance.status, "Paid")
+		self.assertEqual(advance.claimed_amount, 0)
+
 
 def get_payable_account(company):
 	return frappe.get_cached_value("Company", company, "default_payable_account")
@@ -1056,15 +1114,51 @@ def make_claim_payment_entry(expense_claim, amount):
 
 
 def make_journal_entry(expense_claim, do_not_submit=False):
-	je_dict = make_bank_entry("Expense Claim", expense_claim.name)
-	je = frappe.get_doc(je_dict)
+	from erpnext.accounts.doctype.journal_entry.journal_entry import get_default_bank_cash_account
+
+	expense_claim = frappe.get_doc("Expense Claim", expense_claim.name)
+	default_bank_cash_account = get_default_bank_cash_account(expense_claim.company, "Bank")
+	if not default_bank_cash_account:
+		default_bank_cash_account = get_default_bank_cash_account(expense_claim.company, "Cash")
+
+	payable_amount = get_outstanding_amount_for_claim(expense_claim)
+
+	je = frappe.new_doc("Journal Entry")
+	je.voucher_type = "Bank Entry"
+	je.company = expense_claim.company
+	je.remark = "Payment against Expense Claim: " + expense_claim.name
+
+	je.append(
+		"accounts",
+		{
+			"account": expense_claim.payable_account,
+			"debit_in_account_currency": payable_amount,
+			"reference_type": "Expense Claim",
+			"party_type": "Employee",
+			"party": expense_claim.employee,
+			"cost_center": erpnext.get_default_cost_center(expense_claim.company),
+			"reference_name": expense_claim.name,
+		},
+	)
+
+	je.append(
+		"accounts",
+		{
+			"account": default_bank_cash_account.account,
+			"credit_in_account_currency": payable_amount,
+			"balance": default_bank_cash_account.balance,
+			"account_currency": default_bank_cash_account.account_currency,
+			"cost_center": erpnext.get_default_cost_center(expense_claim.company),
+			"account_type": default_bank_cash_account.account_type,
+		},
+	)
+
 	je.posting_date = nowdate()
 	je.cheque_no = random_string(5)
 	je.cheque_date = nowdate()
 
 	if not do_not_submit:
 		je.submit()
-
 	return je
 
 
