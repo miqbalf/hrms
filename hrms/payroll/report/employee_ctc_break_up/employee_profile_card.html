@@ -103,9 +103,9 @@
                 <span class="text-small" style="white-space: nowrap;">{{designation}}</span>
             {% endif %}
             <div class="text-small">
-            <div style="white-space: nowrap; margin-right: 4px;">Salary Structure: {{salary_structure}}</div>
-            {% if income_tax_slab %}<div style="white-space: nowrap;">Income Tax Slab: {{income_tax_slab}}</div>{% endif %}
-            <div style="white-space: nowrap;">Assignment Date: {{assignment_date}} </div>
+            <div style="white-space: nowrap; margin-right: 4px;"> {{_("Salary Structure: ") + salary_structure}}</div>
+            {% if income_tax_slab %}<div style="white-space: nowrap;">{{_("Income Tax Slab: ") + income_tax_slab}}</div>{% endif %}
+            <div style="white-space: nowrap;">{{ _("Assignment Date: ") + assignment_date}} </div>
             </div>
 		</div>
 	</div>
@@ -120,7 +120,7 @@
                     {{ annual_ctc }}
                 </div>
                 <div class="mt-1 text-small no-wrap">
-                    Annual CTC
+                   {{_("Annual CTC")}}
                 </div>
 		    </div>
 
@@ -132,7 +132,7 @@
                 </div>
 
                 <div class="mt-1 text-small no-wrap">
-                    {{per_cycle}} CTC
+                    {{_(per_cycle + " CTC")}}
                 </div>
 		    </div>
         </div>
@@ -145,7 +145,7 @@
 			</div>
 
 			<div class="mt-1 text-small no-wrap">
-				{{per_cycle}} Gross Pay
+				{{_(per_cycle +" Gross Pay")}}
 			</div>
 		    </div>
 
@@ -157,7 +157,7 @@
                 </div>
 
                 <div class="mt-1 text-small no-wrap">
-                    {{per_cycle}} Net Pay
+                    {{_(per_cycle + " Net Pay")}}
                 </div>
             </div>
 
