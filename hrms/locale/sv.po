@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: frappe\n"
 "Report-Msgid-Bugs-To: contact@frappe.io\n"
 "POT-Creation-Date: 2026-05-17 10:03+0000\n"
-"PO-Revision-Date: 2026-05-18 11:19\n"
+"PO-Revision-Date: 2026-05-21 11:30\n"
 "Last-Translator: contact@frappe.io\n"
 "Language-Team: Swedish\n"
 "MIME-Version: 1.0\n"
@@ -749,7 +749,7 @@ msgstr "Tillåt Flera Skift Tilldelningar för Samma Datum"
 #. Label of the allow_negative (Check) field in DocType 'Leave Type'
 #: hrms/hr/doctype/leave_type/leave_type.json
 msgid "Allow Negative Balance"
-msgstr "Tillåt Negativt Balans"
+msgstr "Tillåt Negativt Saldo"
 
 #. Label of the allow_over_allocation (Check) field in DocType 'Leave Type'
 #: hrms/hr/doctype/leave_type/leave_type.json
@@ -2705,7 +2705,7 @@ msgstr "Kopiera Överskriven Lön"
 
 #: hrms/payroll/doctype/salary_withholding/salary_withholding.py:71
 msgid "Duplicate Salary Withholding"
-msgstr "Dubbla Lön Kvarhållning"
+msgstr "Dubbla Lön Innehåll"
 
 #: hrms/public/js/utils/index.js:210
 msgid "ERROR({0}): {1}"
@@ -5545,7 +5545,7 @@ msgstr "Är Lön Släppt"
 #. Detail'
 #: hrms/payroll/doctype/payroll_employee_detail/payroll_employee_detail.json
 msgid "Is Salary Withheld"
-msgstr "Är Lön Kvarhållen"
+msgstr "Är Lön Innehållen"
 
 #. Label of the is_tax_applicable (Check) field in DocType 'Salary Component'
 #. Label of the is_tax_applicable (Check) field in DocType 'Salary Detail'
@@ -7154,7 +7154,7 @@ msgstr "Antal Frånvaro"
 #. Withholding'
 #: hrms/payroll/doctype/salary_withholding/salary_withholding.json
 msgid "Number of Withholding Cycles"
-msgstr "Antal Kvarhållna Cykler"
+msgstr "Antal Innehållna Perioder"
 
 #. Description of the 'Actual Encashable Days' (Float) field in DocType 'Leave
 #. Encashment'
@@ -7348,7 +7348,7 @@ msgstr "Utgående Tid"
 #. Label of a chart in the Payroll Workspace
 #: hrms/payroll/workspace/payroll/payroll.json
 msgid "Outgoing Salary"
-msgstr "Utbetald Lön"
+msgstr "Lönestatistik"
 
 #: hrms/hr/doctype/leave_allocation/leave_allocation.py:327
 msgid "Over Allocation"
@@ -8424,7 +8424,7 @@ msgstr "Anledning till Förfråga"
 #. 'Salary Withholding'
 #: hrms/payroll/doctype/salary_withholding/salary_withholding.json
 msgid "Reason for Withholding Salary"
-msgstr "Anledning till Kvarhållande av Lön"
+msgstr "Anledning till Innehåll"
 
 #: hrms/hr/doctype/employee_checkin/employee_checkin.py:470
 msgid "Reason for skipping auto attendance:"
@@ -8551,7 +8551,7 @@ msgstr "Avslag"
 
 #: hrms/payroll/doctype/payroll_entry/payroll_entry.js:188
 msgid "Release Withheld Salaries"
-msgstr "Släpp Kvarhållna Löner"
+msgstr "Frigör Innehållna Löner"
 
 #. Option for the 'Status' (Select) field in DocType 'Salary Withholding'
 #: hrms/payroll/doctype/salary_withholding/salary_withholding.json
@@ -9169,18 +9169,18 @@ msgstr "Lönearter uppdaterades"
 #: hrms/payroll/workspace/payroll/payroll.json
 #: hrms/workspace_sidebar/payroll.json
 msgid "Salary Withholding"
-msgstr "Lön Kvarhållande"
+msgstr "Löneinnehåll"
 
 #. Label of the salary_withholding_cycle (Data) field in DocType 'Salary Slip'
 #. Name of a DocType
 #: hrms/payroll/doctype/salary_slip/salary_slip.json
 #: hrms/payroll/doctype/salary_withholding_cycle/salary_withholding_cycle.json
 msgid "Salary Withholding Cycle"
-msgstr "Lön Kvarhållning Cykel"
+msgstr "Lön Innehåll Period"
 
 #: hrms/payroll/doctype/salary_withholding/salary_withholding.py:67
 msgid "Salary Withholding {0} already exists for employee {1} for the selected period"
-msgstr "Lön Kvarhållande {0} finns redan för {1} för valda period"
+msgstr "Lön innehåll {0} finns redan för {1} för valda period"
 
 #: hrms/hr/doctype/leave_application/leave_application.py:395
 msgid "Salary already processed for period between {0} and {1}, Leave application period cannot be between this date range."
@@ -11349,7 +11349,7 @@ msgstr "Varför är denna kandidat kvalificerad för denna position?"
 #: hrms/payroll/doctype/salary_slip/salary_slip.json
 #: hrms/payroll/doctype/salary_withholding/salary_withholding.json
 msgid "Withheld"
-msgstr "Kvarhållen"
+msgstr "Innehållen"
 
 #. Label of the send_work_anniversary_reminders (Check) field in DocType 'HR
 #. Settings'
