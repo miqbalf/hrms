@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: frappe\n"
 "Report-Msgid-Bugs-To: contact@frappe.io\n"
 "POT-Creation-Date: 2026-05-17 10:03+0000\n"
-"PO-Revision-Date: 2026-05-22 11:29\n"
+"PO-Revision-Date: 2026-05-23 11:32\n"
 "Last-Translator: contact@frappe.io\n"
 "Language-Team: Swedish\n"
 "MIME-Version: 1.0\n"
@@ -4902,7 +4902,7 @@ msgstr "IN"
 #. Label of the personal_id_number (Data) field in DocType 'Travel Request'
 #: hrms/hr/doctype/travel_request/travel_request.json
 msgid "Identification Document Number"
-msgstr "Identifikation Handling Nummer"
+msgstr "Identifikation Dokument Nummer"
 
 #. Name of a DocType
 #. Label of the identification_document_type (Data) field in DocType
@@ -4911,7 +4911,7 @@ msgstr "Identifikation Handling Nummer"
 #: hrms/hr/doctype/identification_document_type/identification_document_type.json
 #: hrms/hr/doctype/travel_request/travel_request.json
 msgid "Identification Document Type"
-msgstr "Identifikation Handling"
+msgstr "Identifikation Dokument Typ"
 
 #. Description of the 'Process Payroll Accounting Entry based on Employee'
 #. (Check) field in DocType 'Payroll Settings'
@@ -8808,7 +8808,7 @@ msgstr "Avrundning"
 #. Opening'
 #: hrms/hr/doctype/job_opening/job_opening.json
 msgid "Route to the custom Job Application Webform"
-msgstr "Sökväg till anpassad Jobb Erbjudande Webförmulär"
+msgstr "Sökväg till anpassad Jobb Erbjudande Formulär"
 
 #: hrms/payroll/doctype/salary_structure/salary_structure.py:120
 msgid "Row #{0}: Cannot set amount or formula for Salary Component {1} with Variable Based On Taxable Salary"
