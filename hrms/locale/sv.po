@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: frappe\n"
 "Report-Msgid-Bugs-To: contact@frappe.io\n"
-"POT-Creation-Date: 2026-05-17 10:03+0000\n"
-"PO-Revision-Date: 2026-05-24 11:43\n"
+"POT-Creation-Date: 2026-05-24 10:09+0000\n"
+"PO-Revision-Date: 2026-05-25 11:49\n"
 "Last-Translator: contact@frappe.io\n"
 "Language-Team: Swedish\n"
 "MIME-Version: 1.0\n"
@@ -424,7 +424,7 @@ msgstr "Beräkning Komponent kan endast anges för Flexibla Förmån Lönekompon
 msgid "Accrual Component must be set for Flexible Benefit Salary Components with accrual payout methods."
 msgstr "Beräkning Komponent måste anges för Flexibla Förmån Lönekomponenter med beräknade utbetalning metoder."
 
-#: hrms/payroll/doctype/payroll_entry/payroll_entry.py:667
+#: hrms/payroll/doctype/payroll_entry/payroll_entry.py:673
 msgid "Accrual Journal Entry for salaries from {0} to {1}"
 msgstr "Beräknad Journal Post för Löner från {0} till {1}"
 
@@ -868,6 +868,10 @@ msgstr "Årlig Tilldelning"
 msgid "Annual Allocation Exceeded"
 msgstr "Årlig Tilldelning Överskriden"
 
+#: hrms/payroll/report/employee_ctc_break_up/employee_profile_card.html:123
+msgid "Annual CTC"
+msgstr "Årslön"
+
 #: hrms/setup.py:410
 msgid "Annual Salary"
 msgstr "Årslön"
@@ -1267,6 +1271,10 @@ msgstr "Tilldelar Löneart..."
 #: hrms/payroll/doctype/salary_structure/salary_structure.py:291
 msgid "Assigning Structures..."
 msgstr "Tilldelar Lönearter..."
+
+#: hrms/payroll/report/employee_ctc_break_up/employee_profile_card.html:108
+msgid "Assignment Date: "
+msgstr "Tilldelning Datum: "
 
 #. Label of the from_date (Date) field in DocType 'Holiday List Assignment'
 #: hrms/hr/doctype/holiday_list_assignment/holiday_list_assignment.json
@@ -1724,7 +1732,7 @@ msgstr "Bonus Betalning Datum"
 msgid "Bonus Payment Date cannot be a past date"
 msgstr "Bonus Betalning Datum kan inte vara tidigare datum"
 
-#: hrms/payroll/doctype/payroll_entry/payroll_entry.py:273
+#: hrms/payroll/doctype/payroll_entry/payroll_entry.py:279
 msgid "Branch: {0}"
 msgstr "Branch: {0}"
 
@@ -1762,6 +1770,10 @@ msgstr "Som standard beräknas slut resultat som genomsnitt av mål resultat, å
 #: hrms/payroll/doctype/salary_slip/salary_slip.json
 msgid "CTC"
 msgstr "Årslön"
+
+#: hrms/payroll/report/employee_ctc_break_up/employee_ctc_break_up.py:61
+msgid "CTC Missing for Employee"
+msgstr "Årslön Saknas för"
 
 #. Label of the calculate_final_score_based_on_formula (Check) field in DocType
 #. 'Appraisal Cycle'
@@ -1906,7 +1918,7 @@ msgstr "Om du ändrar Nyckel Resultat Område i överordnad mål kommer alla und
 msgid "Check <a href='/app/List/Error Log?reference_doctype={0}'>{1}</a> for more details"
 msgstr "Se <a href='/app/List/Error Log?reference_doctype={0}'>{1}</a> för mer information"
 
-#: hrms/payroll/doctype/payroll_entry/payroll_entry.py:1582
+#: hrms/payroll/doctype/payroll_entry/payroll_entry.py:1588
 msgid "Check Error Log {0} for more details."
 msgstr "Se Fel Logg {0} för mer detaljer."
 
@@ -2142,7 +2154,7 @@ msgstr "Kontakt Nummer"
 msgid "Copy of Invitation/Announcement"
 msgstr "Kopia av Inbjudan / Tillkännagivande"
 
-#: hrms/payroll/doctype/payroll_entry/payroll_entry.py:1647
+#: hrms/payroll/doctype/payroll_entry/payroll_entry.py:1653
 msgid "Could not submit some Salary Slips: {}"
 msgstr "Kunde inte godkänna vissa Lönespecifikationer: {}"
 
@@ -2252,7 +2264,7 @@ msgstr "Skapa Utvärderingar"
 msgid "Creating Payment Entries......"
 msgstr "......Skapar Betalning Poster......"
 
-#: hrms/payroll/doctype/payroll_entry/payroll_entry.py:1605
+#: hrms/payroll/doctype/payroll_entry/payroll_entry.py:1611
 msgid "Creating Salary Slips..."
 msgstr "Skapar Lönespecifikationer..."
 
@@ -2288,7 +2300,7 @@ msgstr "Kriterier baserade på vilken Personal som ska Bedömas i Prestation Åt
 msgid "Currency "
 msgstr "Valuta"
 
-#: hrms/payroll/doctype/salary_structure_assignment/salary_structure_assignment.py:127
+#: hrms/payroll/doctype/salary_structure_assignment/salary_structure_assignment.py:128
 msgid "Currency of selected Income Tax Slab should be {0} instead of {1}"
 msgstr "Valuta för vald Inkomst Skatt Tabell ska vara {0} istället för {1}"
 
@@ -2585,7 +2597,7 @@ msgstr "Lediga Jobb per Avdelning"
 msgid "Department {0} does not belong to company: {1}"
 msgstr "Avdelning {0} tillhör inte bolag: {1}"
 
-#: hrms/payroll/doctype/payroll_entry/payroll_entry.py:275
+#: hrms/payroll/doctype/payroll_entry/payroll_entry.py:281
 msgid "Department: {0}"
 msgstr "Avdelning: {0}"
 
@@ -2618,7 +2630,7 @@ msgstr "Beskrivning av ett Jobb Erbjudande"
 msgid "Designation Skill"
 msgstr "Befattning Färdighet"
 
-#: hrms/payroll/doctype/payroll_entry/payroll_entry.py:277
+#: hrms/payroll/doctype/payroll_entry/payroll_entry.py:283
 msgid "Designation: {0}"
 msgstr "Befattning: {0}"
 
@@ -2947,6 +2959,13 @@ msgstr "Födelsedag"
 #: hrms/hr/doctype/employee_boarding_activity/employee_boarding_activity.json
 msgid "Employee Boarding Activity"
 msgstr "Introduktion Aktivitet"
+
+#. Name of a report
+#. Label of a Workspace Sidebar Item
+#: hrms/payroll/report/employee_ctc_break_up/employee_ctc_break_up.json
+#: hrms/workspace_sidebar/payroll.json
+msgid "Employee CTC Break-up"
+msgstr "Årslön Uppdelning"
 
 #. Name of a DocType
 #. Label of a Link in the HR Setup Workspace
@@ -3598,7 +3617,7 @@ msgstr "Kryptera Lönespecifikationer i E-post"
 msgid "End Date cannot be before Start Date"
 msgstr "Slut Datum kan inte vara före Start Datum"
 
-#: hrms/payroll/doctype/payroll_entry/payroll_entry.py:281
+#: hrms/payroll/doctype/payroll_entry/payroll_entry.py:287
 msgid "End date: {0}"
 msgstr "Slut Datum: {0}"
 
@@ -4260,7 +4279,7 @@ msgstr "Första Dag"
 msgid "First Name "
 msgstr "Förnamn"
 
-#: hrms/payroll/doctype/payroll_entry/payroll_entry.py:1565
+#: hrms/payroll/doctype/payroll_entry/payroll_entry.py:1571
 msgid "Fiscal Year {0} not found"
 msgstr "Bokföringsår {0} hittades inte"
 
@@ -4344,6 +4363,10 @@ msgstr "För uttagen frånvaro dag, om du fortfarande betalar (säg) 50 % av dag
 msgid "Formula"
 msgstr "Formel"
 
+#: hrms/payroll/report/employee_ctc_break_up/employee_ctc_break_up.py:227
+msgid "Formula/Amount"
+msgstr "Formel/Belopp"
+
 #. Label of the fraction_of_applicable_earnings (Float) field in DocType
 #. 'Gratuity Rule Slab'
 #: hrms/payroll/doctype/gratuity_rule_slab/gratuity_rule_slab.json
@@ -4384,7 +4407,7 @@ msgstr "Från Datum kan inte vara senare än Till Datum"
 msgid "From Date {0} cannot be after Payroll Period end date {1}"
 msgstr "Från datum {0} kan inte vara efter löneperiod slut datum {1}"
 
-#: hrms/payroll/doctype/salary_structure_assignment/salary_structure_assignment.py:92
+#: hrms/payroll/doctype/salary_structure_assignment/salary_structure_assignment.py:93
 msgid "From Date {0} cannot be after employee's relieving Date {1}"
 msgstr "Från Datum {0} kan inte vara efter Personal avgång Datum {1}"
 
@@ -4392,7 +4415,7 @@ msgstr "Från Datum {0} kan inte vara efter Personal avgång Datum {1}"
 msgid "From Date {0} cannot be before Payroll Period start date {1}"
 msgstr "Från datum {0} kan inte vara före löneperiod start datum {1}"
 
-#: hrms/payroll/doctype/salary_structure_assignment/salary_structure_assignment.py:84
+#: hrms/payroll/doctype/salary_structure_assignment/salary_structure_assignment.py:85
 msgid "From Date {0} cannot be before employee's joining Date {1}"
 msgstr "Från Datum {0} kan inte vara före Personal anställning Datum {1}"
 
@@ -4902,7 +4925,7 @@ msgstr "IN"
 #. Label of the personal_id_number (Data) field in DocType 'Travel Request'
 #: hrms/hr/doctype/travel_request/travel_request.json
 msgid "Identification Document Number"
-msgstr "Identifikation Dokument Nummer"
+msgstr "Identifikation Handling Nummer"
 
 #. Name of a DocType
 #. Label of the identification_document_type (Data) field in DocType
@@ -4911,7 +4934,7 @@ msgstr "Identifikation Dokument Nummer"
 #: hrms/hr/doctype/identification_document_type/identification_document_type.json
 #: hrms/hr/doctype/travel_request/travel_request.json
 msgid "Identification Document Type"
-msgstr "Identifikation Dokument Typ"
+msgstr "Identifikation Handling Typ"
 
 #. Description of the 'Process Payroll Accounting Entry based on Employee'
 #. (Check) field in DocType 'Payroll Settings'
@@ -5170,7 +5193,7 @@ msgstr "Inkomst Skatt Tabell"
 msgid "Income Tax Slab Other Charges"
 msgstr "Inkomst Skatt Tabell Övriga Avgifter"
 
-#: hrms/payroll/doctype/salary_structure_assignment/salary_structure_assignment.py:112
+#: hrms/payroll/doctype/salary_structure_assignment/salary_structure_assignment.py:113
 msgid "Income Tax Slab is mandatory since the Salary Structure {0} has a tax component {1}"
 msgstr "Inkomst Skatt Tabell erfordras eftersom Löneart {0} har skattkomponent {1}"
 
@@ -5181,6 +5204,10 @@ msgstr "Inkomst Skatt Tabell måste vara aktiv före eller före start datum fö
 #: hrms/payroll/doctype/salary_slip/salary_slip.py:1950
 msgid "Income Tax Slab not set in Salary Structure Assignment: {0}"
 msgstr "Inkomst Skatt Tabell inte angiven i Löneart Tilldelning: {0}"
+
+#: hrms/payroll/report/employee_ctc_break_up/employee_profile_card.html:107
+msgid "Income Tax Slab: "
+msgstr "Inkomst Skatt Tabell: "
 
 #: hrms/payroll/doctype/salary_slip/salary_slip.py:1958
 msgid "Income Tax Slab: {0} is disabled"
@@ -6682,11 +6709,11 @@ msgstr "Minimum antal arbetsdagar som erfordras sedan tillträde för att ansök
 msgid "Missing Advance Account"
 msgstr "Förskott Konto saknas"
 
-#: hrms/payroll/doctype/salary_structure_assignment/salary_structure_assignment.py:118
+#: hrms/payroll/doctype/salary_structure_assignment/salary_structure_assignment.py:119
 msgid "Missing Mandatory Field"
 msgstr "Erfordrad fält saknas"
 
-#: hrms/payroll/doctype/salary_structure_assignment/salary_structure_assignment.py:200
+#: hrms/payroll/doctype/salary_structure_assignment/salary_structure_assignment.py:201
 msgid "Missing Opening Entries"
 msgstr "Öppning poster saknas"
 
@@ -6701,6 +6728,10 @@ msgstr "Lönekomponenter saknas"
 #: hrms/payroll/doctype/salary_slip/salary_slip.py:1953
 msgid "Missing Tax Slab"
 msgstr "Inkomst Skatt Tabell saknas"
+
+#: hrms/payroll/report/employee_ctc_break_up/employee_ctc_break_up.py:307
+msgid "Missing value for filters"
+msgstr "Saknar värde för filter"
 
 #. Label of the mode_of_travel (Select) field in DocType 'Travel Itinerary'
 #: hrms/hr/doctype/travel_itinerary/travel_itinerary.json
@@ -6979,11 +7010,11 @@ msgstr "Inga närvaro poster att skapa av följande skäl"
 msgid "No changes found in timings."
 msgstr "Inga ändringar hittades i tider."
 
-#: hrms/payroll/doctype/payroll_entry/payroll_entry.py:282
+#: hrms/payroll/doctype/payroll_entry/payroll_entry.py:288
 msgid "No employees found"
 msgstr "Ingen personal hittad"
 
-#: hrms/payroll/doctype/payroll_entry/payroll_entry.py:265
+#: hrms/payroll/doctype/payroll_entry/payroll_entry.py:271
 msgid "No employees found for the mentioned criteria:<br>Company: {0}<br> Currency: {1}<br>Payroll Payable Account: {2}"
 msgstr "Ingen personal hittades för angivna kriterier:<br>Bolag: {0}<br> Valuta: {1}<br>Löne Konto: {2}"
 
@@ -7036,7 +7067,7 @@ msgstr "Antal Positioner"
 msgid "No replies from"
 msgstr "Inga svar från"
 
-#: hrms/payroll/doctype/payroll_entry/payroll_entry.py:1633
+#: hrms/payroll/doctype/payroll_entry/payroll_entry.py:1639
 msgid "No salary slip found to submit for the above selected criteria OR salary slip already submitted"
 msgstr "Ingen Lönespecifikation hittad att godkänna för ovanstående valda kriterier eller Lönespecifikation är redan godkänd"
 
@@ -7453,11 +7484,11 @@ msgstr "Övertid Specifikation Godkänd"
 msgid "Overtime Slip created for {0} employee(s)"
 msgstr "Övertid Specifikation skapad för {0}"
 
-#: hrms/payroll/doctype/payroll_entry/payroll_entry.py:1290
+#: hrms/payroll/doctype/payroll_entry/payroll_entry.py:1296
 msgid "Overtime Slip creation is queued. It may take a few minutes"
 msgstr "Skapandet av Övertid Specifikation står i kö. Det kan ta några minuter"
 
-#: hrms/payroll/doctype/payroll_entry/payroll_entry.py:1314
+#: hrms/payroll/doctype/payroll_entry/payroll_entry.py:1320
 msgid "Overtime Slip submission is queued. It may take a few minutes"
 msgstr "Godkännande av Övertid Specifikation står i kö. Det kan ta några minuter"
 
@@ -7635,7 +7666,7 @@ msgstr "Lönedagar beräkning baseras på dessa Löneinställningar"
 msgid "Payment and Accounting"
 msgstr "Betalning och Bokföring"
 
-#: hrms/payroll/doctype/payroll_entry/payroll_entry.py:1140
+#: hrms/payroll/doctype/payroll_entry/payroll_entry.py:1146
 msgid "Payment of {0} from {1} to {2}"
 msgstr "Betalning av {0} från {1} till {2}"
 
@@ -7848,6 +7879,10 @@ msgstr "Pågående Frågeformulär"
 msgid "Percent Deduction"
 msgstr "Procent Avdrag"
 
+#: hrms/payroll/report/employee_ctc_break_up/employee_ctc_break_up.py:250
+msgid "Percent of CTC (%)"
+msgstr "Procent av Årslön (%)"
+
 #. Label of a Desktop Icon
 #. Name of a Workspace
 #. Title of a Workspace Sidebar
@@ -8054,9 +8089,13 @@ msgstr "Ange avgång datum för: {0}"
 msgid "Please set a date range less than 90 days."
 msgstr "Ange datum intervall som är kortare än 90 dagar."
 
-#: hrms/payroll/doctype/payroll_entry/payroll_entry.py:397
+#: hrms/payroll/doctype/payroll_entry/payroll_entry.py:403
 msgid "Please set account in Salary Component {0}"
 msgstr "Ange konto i Lönekomponent {0}"
+
+#: hrms/payroll/report/employee_ctc_break_up/employee_ctc_break_up.py:53
+msgid "Please set cost to company(CTC) for employee {0} in the {1}"
+msgstr "Ange kostnad för bolag (Årslön) för {0} i {1}"
 
 #: hrms/hr/doctype/leave_application/leave_application.py:712
 msgid "Please set default template for Leave Approval Notification in HR Settings."
@@ -8065,6 +8104,10 @@ msgstr "Ange Standard Mall för Frånvaro Godkännande Avisering i Personal Inst
 #: hrms/hr/doctype/leave_application/leave_application.py:687
 msgid "Please set default template for Leave Status Notification in HR Settings."
 msgstr "Ange Standard Mall för Frånvaro Status Avisering i Personal Inställningar."
+
+#: hrms/payroll/doctype/salary_structure_assignment/salary_structure_assignment.js:78
+msgid "Please set employee's total cost to company to see CTC breakup."
+msgstr "Ange personal totala kostnad för bolag för att se Årslön uppdelning."
 
 #: hrms/hr/doctype/employee_advance/employee_advance.py:74
 msgid "Please set the Advance Account {0} or in {1}"
@@ -8107,6 +8150,10 @@ msgstr "Ange {0} för Personal: {1}"
 msgid "Please set {0} for the Employee: {1}"
 msgstr "Ange {0} för Personal: {1}"
 
+#: hrms/payroll/report/employee_ctc_break_up/employee_ctc_break_up.py:306
+msgid "Please set {0} to get CTC report"
+msgstr "Ange {0} för att skapa Årslön rapport"
+
 #: hrms/hr/doctype/shift_type/shift_type.js:21
 #: hrms/hr/doctype/shift_type/shift_type.js:26
 msgid "Please set {0}."
@@ -8128,7 +8175,7 @@ msgstr "Dela din återkoppling till utbildning genom att klicka på 'Utbildning 
 msgid "Please specify the job applicant to be updated."
 msgstr "Ange jobbsökande som ska uppdateras."
 
-#: hrms/payroll/doctype/salary_structure_assignment/salary_structure_assignment.py:191
+#: hrms/payroll/doctype/salary_structure_assignment/salary_structure_assignment.py:192
 msgid "Please specify {0} and {1} (if any), for the correct tax calculation in future salary slips."
 msgstr "Ange {0} och {1} (om sådana finns), för korrekt skatteberäkning i framtida lönespecifikationer."
 
@@ -8188,7 +8235,7 @@ msgstr "Förhindra självgodkännande för frånvaro även om användare har beh
 
 #: hrms/payroll/doctype/salary_structure/salary_structure.js:155
 #: hrms/payroll/doctype/salary_structure/salary_structure.js:193
-#: hrms/payroll/doctype/salary_structure_assignment/salary_structure_assignment.js:73
+#: hrms/payroll/doctype/salary_structure_assignment/salary_structure_assignment.js:89
 msgid "Preview Salary Slip"
 msgstr "Förhandsgranska Lönespecifikation"
 
@@ -8767,7 +8814,7 @@ msgstr "Recensent Namn"
 #. Label of the revised_ctc (Currency) field in DocType 'Employee Promotion'
 #: hrms/hr/doctype/employee_promotion/employee_promotion.json
 msgid "Revised CTC"
-msgstr "Reviderad Årslön (CTC)"
+msgstr "Reviderad Årslön"
 
 #. Label of the role_allowed_to_create_backdated_leave_application (Link) field
 #. in DocType 'HR Settings'
@@ -9048,7 +9095,7 @@ msgstr "Lönespecifikation Tidrapport"
 msgid "Salary Slip already exists for {0} for the given dates"
 msgstr "Lönespecifikation finns redan för {0} för angivna datum"
 
-#: hrms/payroll/doctype/payroll_entry/payroll_entry.py:330
+#: hrms/payroll/doctype/payroll_entry/payroll_entry.py:336
 msgid "Salary Slip creation is queued. It may take a few minutes"
 msgstr "Lönespecifikation skapande i kö. Det kan ta några minuter"
 
@@ -9064,11 +9111,11 @@ msgstr "Lönespecifikation för {0} redan skapad för denna period"
 msgid "Salary Slip of employee {0} already created for time sheet {1}"
 msgstr "Lönespecifikation för {0} redan skapad för Tidrapport {1}"
 
-#: hrms/payroll/doctype/payroll_entry/payroll_entry.py:375
+#: hrms/payroll/doctype/payroll_entry/payroll_entry.py:381
 msgid "Salary Slip submission is queued. It may take a few minutes"
 msgstr "Lönespecifikation godkännade i kö. Det kan ta några minuter"
 
-#: hrms/payroll/doctype/payroll_entry/payroll_entry.py:1570
+#: hrms/payroll/doctype/payroll_entry/payroll_entry.py:1576
 msgid "Salary Slip {0} failed for Payroll Entry {1}"
 msgstr "Lönespecifikation {0} misslyckades för Lönepost {1}"
 
@@ -9090,11 +9137,11 @@ msgstr "Lönespecifikationer Skapade"
 msgid "Salary Slips Submitted"
 msgstr "Lönespecifikationer Godkända"
 
-#: hrms/payroll/doctype/payroll_entry/payroll_entry.py:1612
+#: hrms/payroll/doctype/payroll_entry/payroll_entry.py:1618
 msgid "Salary Slips already exist for employees {}, and will not be processed by this payroll."
 msgstr "Lönespecifikation finns redan för {} och kommer inte att behandlas på denna lönelista."
 
-#: hrms/payroll/doctype/payroll_entry/payroll_entry.py:1639
+#: hrms/payroll/doctype/payroll_entry/payroll_entry.py:1645
 msgid "Salary Slips submitted for period from {0} to {1}"
 msgstr "Lönespecifikationer godkända för period från {0} till {1}"
 
@@ -9123,6 +9170,7 @@ msgstr "Löneart"
 #. Label of a Workspace Sidebar Item
 #: hrms/payroll/doctype/income_tax_slab/income_tax_slab.js:8
 #: hrms/payroll/doctype/salary_structure_assignment/salary_structure_assignment.json
+#: hrms/payroll/report/employee_ctc_break_up/employee_ctc_break_up.js:34
 #: hrms/payroll/workspace/payroll/payroll.json
 #: hrms/workspace_sidebar/payroll.json
 msgid "Salary Structure Assignment"
@@ -9132,7 +9180,7 @@ msgstr "Löneart Tilldelning"
 msgid "Salary Structure Assignment field"
 msgstr "Löneart Tilldelning fält"
 
-#: hrms/payroll/doctype/salary_structure_assignment/salary_structure_assignment.py:79
+#: hrms/payroll/doctype/salary_structure_assignment/salary_structure_assignment.py:80
 msgid "Salary Structure Assignment for Employee already exists"
 msgstr "Löneart Tilldelning för Personal finns redan"
 
@@ -9152,9 +9200,13 @@ msgstr "Löneart måste godkännas innan {0} godkänns"
 msgid "Salary Structure not assigned for employee {0} for date {1}"
 msgstr "Löneart är inte tilldelad för {0} per den {1}"
 
-#: hrms/payroll/doctype/salary_structure_assignment/salary_structure_assignment.py:103
+#: hrms/payroll/doctype/salary_structure_assignment/salary_structure_assignment.py:104
 msgid "Salary Structure {0} does not belong to company {1}"
 msgstr "Löneart {0} tillhör inte bolag {1}"
+
+#: hrms/payroll/report/employee_ctc_break_up/employee_profile_card.html:106
+msgid "Salary Structure: "
+msgstr "Löneart: "
 
 #: hrms/payroll/doctype/salary_component/salary_component.js:150
 msgid "Salary Structures updated successfully"
@@ -9245,6 +9297,10 @@ msgstr "Resultat"
 msgid "Search for Jobs"
 msgstr "Sök för Jobb"
 
+#: hrms/payroll/doctype/salary_structure_assignment/salary_structure_assignment.js:73
+msgid "See CTC Break-up"
+msgstr "Visa Årslön Uppdelning"
+
 #: hrms/hr/doctype/overtime_type/overtime_type.py:40
 msgid "Select Applicable Components for Overtime Type"
 msgstr "Välj Tillämpliga Komponenter för Övertidstyp"
@@ -9268,7 +9324,7 @@ msgstr "Välj Månad för Obetald Frånvaro Återföring"
 msgid "Select Payment Account to make Bank Entry"
 msgstr "Välj Betalning Konto att skapa Bank Post"
 
-#: hrms/payroll/doctype/payroll_entry/payroll_entry.py:1783
+#: hrms/payroll/doctype/payroll_entry/payroll_entry.py:1789
 msgid "Select Payroll Frequency."
 msgstr "Välj Löneintervall"
 
@@ -9940,7 +9996,7 @@ msgstr "Startdatum kan inte vara senare än slutdatum"
 msgid "Start date cannot be greater than end date."
 msgstr "Startdatum kan inte vara senare än slutdatum."
 
-#: hrms/payroll/doctype/payroll_entry/payroll_entry.py:279
+#: hrms/payroll/doctype/payroll_entry/payroll_entry.py:285
 msgid "Start date: {0}"
 msgstr "Start Datum:{0}"
 
@@ -10038,7 +10094,7 @@ msgstr "Godkänn via Lönepost"
 msgid "Submitting Salary Slips and creating Journal Entry..."
 msgstr "Godkänner Lönespecifikationer och skapar Journal Post..."
 
-#: hrms/payroll/doctype/payroll_entry/payroll_entry.py:1694
+#: hrms/payroll/doctype/payroll_entry/payroll_entry.py:1700
 msgid "Submitting Salary Slips..."
 msgstr "Godkänner Lönespecifikationer..."
 
@@ -10098,7 +10154,7 @@ msgstr " Skatt & Förmåner"
 #. Label of the tax_deducted_till_date (Currency) field in DocType 'Salary
 #. Structure Assignment'
 #: hrms/payroll/doctype/salary_structure_assignment/salary_structure_assignment.json
-#: hrms/payroll/doctype/salary_structure_assignment/salary_structure_assignment.py:195
+#: hrms/payroll/doctype/salary_structure_assignment/salary_structure_assignment.py:196
 msgid "Tax Deducted Till Date"
 msgstr "Skatt Avdragen Till Datum"
 
@@ -10143,7 +10199,7 @@ msgstr "Skatt på Flexibel Förmån"
 #. Label of the taxable_earnings_till_date (Currency) field in DocType 'Salary
 #. Structure Assignment'
 #: hrms/payroll/doctype/salary_structure_assignment/salary_structure_assignment.json
-#: hrms/payroll/doctype/salary_structure_assignment/salary_structure_assignment.py:194
+#: hrms/payroll/doctype/salary_structure_assignment/salary_structure_assignment.py:195
 msgid "Taxable Earnings Till Date"
 msgstr "Beskattningbar Inkomst Till Datum"
 
@@ -10308,7 +10364,7 @@ msgstr "Det finns inga lediga jobb inom bemanning plan {0}"
 
 #: hrms/payroll/doctype/additional_salary/additional_salary.py:82
 #: hrms/payroll/doctype/employee_incentive/employee_incentive.py:39
-#: hrms/payroll/doctype/salary_structure_assignment/salary_structure_assignment.py:240
+#: hrms/payroll/doctype/salary_structure_assignment/salary_structure_assignment.py:241
 msgid "There is no Salary Structure assigned to {0}. First assign a Salary Structure."
 msgstr "Det finns ingen Löneart tilldelad till {0}. Tilldela Löneart först."
 
@@ -10535,6 +10591,11 @@ msgstr "Totalt Fordrad Belopp"
 #: hrms/hr/doctype/expense_claim/expense_claim.json
 msgid "Total Claimed Amount (Company Currency)"
 msgstr "Totalt Begärd Belopp (Bolag Valuta)"
+
+#. Label of the ctc (Currency) field in DocType 'Salary Structure Assignment'
+#: hrms/payroll/doctype/salary_structure_assignment/salary_structure_assignment.json
+msgid "Total Cost To Company (CTC)"
+msgstr "Total Kostnad för Bolag (CTC)"
 
 #. Label of the lwp_days (Float) field in DocType 'Payroll Correction'
 #: hrms/payroll/doctype/payroll_correction/payroll_correction.json
@@ -11066,11 +11127,11 @@ msgstr "Obetald Utlägg"
 #. Outstanding Statement'
 #: hrms/hr/doctype/full_and_final_outstanding_statement/full_and_final_outstanding_statement.json
 msgid "Unsettled"
-msgstr "Oreglerad"
+msgstr "Ej Avräknad"
 
 #: hrms/hr/doctype/full_and_final_statement/full_and_final_statement.py:87
 msgid "Unsettled Transactions"
-msgstr "Oreglerade Transaktioner"
+msgstr "Ej Avräknade Transaktioner"
 
 #: hrms/hr/doctype/appraisal_cycle/appraisal_cycle.py:183
 msgid "Unsubmitted Appraisals"

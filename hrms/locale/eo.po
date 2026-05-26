@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: frappe\n"
 "Report-Msgid-Bugs-To: contact@frappe.io\n"
-"POT-Creation-Date: 2026-05-17 10:03+0000\n"
-"PO-Revision-Date: 2026-05-18 11:19\n"
+"POT-Creation-Date: 2026-05-24 10:09+0000\n"
+"PO-Revision-Date: 2026-05-25 11:50\n"
 "Last-Translator: contact@frappe.io\n"
 "Language-Team: Esperanto\n"
 "MIME-Version: 1.0\n"
@@ -399,7 +399,7 @@ msgstr "crwdns159416:0crwdne159416:0"
 msgid "Accrual Component must be set for Flexible Benefit Salary Components with accrual payout methods."
 msgstr "crwdns159418:0crwdne159418:0"
 
-#: hrms/payroll/doctype/payroll_entry/payroll_entry.py:667
+#: hrms/payroll/doctype/payroll_entry/payroll_entry.py:673
 msgid "Accrual Journal Entry for salaries from {0} to {1}"
 msgstr "crwdns104888:0{0}crwdnd104888:0{1}crwdne104888:0"
 
@@ -843,6 +843,10 @@ msgstr "crwdns140960:0crwdne140960:0"
 msgid "Annual Allocation Exceeded"
 msgstr "crwdns149070:0crwdne149070:0"
 
+#: hrms/payroll/report/employee_ctc_break_up/employee_profile_card.html:123
+msgid "Annual CTC"
+msgstr "crwdns201895:0crwdne201895:0"
+
 #: hrms/setup.py:410
 msgid "Annual Salary"
 msgstr "crwdns105158:0crwdne105158:0"
@@ -1242,6 +1246,10 @@ msgstr "crwdns141028:0crwdne141028:0"
 #: hrms/payroll/doctype/salary_structure/salary_structure.py:291
 msgid "Assigning Structures..."
 msgstr "crwdns105316:0crwdne105316:0"
+
+#: hrms/payroll/report/employee_ctc_break_up/employee_profile_card.html:108
+msgid "Assignment Date: "
+msgstr "crwdns201897:0crwdne201897:0"
 
 #. Label of the from_date (Date) field in DocType 'Holiday List Assignment'
 #: hrms/hr/doctype/holiday_list_assignment/holiday_list_assignment.json
@@ -1699,7 +1707,7 @@ msgstr "crwdns141108:0crwdne141108:0"
 msgid "Bonus Payment Date cannot be a past date"
 msgstr "crwdns105494:0crwdne105494:0"
 
-#: hrms/payroll/doctype/payroll_entry/payroll_entry.py:273
+#: hrms/payroll/doctype/payroll_entry/payroll_entry.py:279
 msgid "Branch: {0}"
 msgstr "crwdns105512:0{0}crwdne105512:0"
 
@@ -1737,6 +1745,10 @@ msgstr "crwdns141114:0crwdne141114:0"
 #: hrms/payroll/doctype/salary_slip/salary_slip.json
 msgid "CTC"
 msgstr "crwdns105520:0crwdne105520:0"
+
+#: hrms/payroll/report/employee_ctc_break_up/employee_ctc_break_up.py:61
+msgid "CTC Missing for Employee"
+msgstr "crwdns201899:0crwdne201899:0"
 
 #. Label of the calculate_final_score_based_on_formula (Check) field in DocType
 #. 'Appraisal Cycle'
@@ -1881,7 +1893,7 @@ msgstr "crwdns105588:0crwdne105588:0"
 msgid "Check <a href='/app/List/Error Log?reference_doctype={0}'>{1}</a> for more details"
 msgstr "crwdns141134:0{0}crwdnd141134:0{1}crwdne141134:0"
 
-#: hrms/payroll/doctype/payroll_entry/payroll_entry.py:1582
+#: hrms/payroll/doctype/payroll_entry/payroll_entry.py:1588
 msgid "Check Error Log {0} for more details."
 msgstr "crwdns105594:0{0}crwdne105594:0"
 
@@ -2114,7 +2126,7 @@ msgstr "crwdns141194:0crwdne141194:0"
 msgid "Copy of Invitation/Announcement"
 msgstr "crwdns141198:0crwdne141198:0"
 
-#: hrms/payroll/doctype/payroll_entry/payroll_entry.py:1647
+#: hrms/payroll/doctype/payroll_entry/payroll_entry.py:1653
 msgid "Could not submit some Salary Slips: {}"
 msgstr "crwdns105872:0crwdne105872:0"
 
@@ -2224,7 +2236,7 @@ msgstr "crwdns105932:0crwdne105932:0"
 msgid "Creating Payment Entries......"
 msgstr "crwdns105934:0crwdne105934:0"
 
-#: hrms/payroll/doctype/payroll_entry/payroll_entry.py:1605
+#: hrms/payroll/doctype/payroll_entry/payroll_entry.py:1611
 msgid "Creating Salary Slips..."
 msgstr "crwdns105936:0crwdne105936:0"
 
@@ -2260,7 +2272,7 @@ msgstr "crwdns141230:0crwdne141230:0"
 msgid "Currency "
 msgstr "crwdns141232:0crwdne141232:0"
 
-#: hrms/payroll/doctype/salary_structure_assignment/salary_structure_assignment.py:127
+#: hrms/payroll/doctype/salary_structure_assignment/salary_structure_assignment.py:128
 msgid "Currency of selected Income Tax Slab should be {0} instead of {1}"
 msgstr "crwdns105988:0{0}crwdnd105988:0{1}crwdne105988:0"
 
@@ -2557,7 +2569,7 @@ msgstr "crwdns106238:0crwdne106238:0"
 msgid "Department {0} does not belong to company: {1}"
 msgstr "crwdns152304:0{0}crwdnd152304:0{1}crwdne152304:0"
 
-#: hrms/payroll/doctype/payroll_entry/payroll_entry.py:275
+#: hrms/payroll/doctype/payroll_entry/payroll_entry.py:281
 msgid "Department: {0}"
 msgstr "crwdns106240:0{0}crwdne106240:0"
 
@@ -2590,7 +2602,7 @@ msgstr "crwdns141300:0crwdne141300:0"
 msgid "Designation Skill"
 msgstr "crwdns106348:0crwdne106348:0"
 
-#: hrms/payroll/doctype/payroll_entry/payroll_entry.py:277
+#: hrms/payroll/doctype/payroll_entry/payroll_entry.py:283
 msgid "Designation: {0}"
 msgstr "crwdns106350:0{0}crwdne106350:0"
 
@@ -2919,6 +2931,13 @@ msgstr "crwdns106610:0crwdne106610:0"
 #: hrms/hr/doctype/employee_boarding_activity/employee_boarding_activity.json
 msgid "Employee Boarding Activity"
 msgstr "crwdns106612:0crwdne106612:0"
+
+#. Name of a report
+#. Label of a Workspace Sidebar Item
+#: hrms/payroll/report/employee_ctc_break_up/employee_ctc_break_up.json
+#: hrms/workspace_sidebar/payroll.json
+msgid "Employee CTC Break-up"
+msgstr "crwdns201901:0crwdne201901:0"
 
 #. Name of a DocType
 #. Label of a Link in the HR Setup Workspace
@@ -3570,7 +3589,7 @@ msgstr "crwdns141416:0crwdne141416:0"
 msgid "End Date cannot be before Start Date"
 msgstr "crwdns151210:0crwdne151210:0"
 
-#: hrms/payroll/doctype/payroll_entry/payroll_entry.py:281
+#: hrms/payroll/doctype/payroll_entry/payroll_entry.py:287
 msgid "End date: {0}"
 msgstr "crwdns106992:0{0}crwdne106992:0"
 
@@ -4232,7 +4251,7 @@ msgstr "crwdns141522:0crwdne141522:0"
 msgid "First Name "
 msgstr "crwdns141524:0crwdne141524:0"
 
-#: hrms/payroll/doctype/payroll_entry/payroll_entry.py:1565
+#: hrms/payroll/doctype/payroll_entry/payroll_entry.py:1571
 msgid "Fiscal Year {0} not found"
 msgstr "crwdns107274:0{0}crwdne107274:0"
 
@@ -4316,6 +4335,10 @@ msgstr "crwdns141534:0crwdne141534:0"
 msgid "Formula"
 msgstr "crwdns141536:0crwdne141536:0"
 
+#: hrms/payroll/report/employee_ctc_break_up/employee_ctc_break_up.py:227
+msgid "Formula/Amount"
+msgstr "crwdns201903:0crwdne201903:0"
+
 #. Label of the fraction_of_applicable_earnings (Float) field in DocType
 #. 'Gratuity Rule Slab'
 #: hrms/payroll/doctype/gratuity_rule_slab/gratuity_rule_slab.json
@@ -4356,7 +4379,7 @@ msgstr "crwdns107348:0crwdne107348:0"
 msgid "From Date {0} cannot be after Payroll Period end date {1}"
 msgstr "crwdns160024:0{0}crwdnd160024:0{1}crwdne160024:0"
 
-#: hrms/payroll/doctype/salary_structure_assignment/salary_structure_assignment.py:92
+#: hrms/payroll/doctype/salary_structure_assignment/salary_structure_assignment.py:93
 msgid "From Date {0} cannot be after employee's relieving Date {1}"
 msgstr "crwdns107350:0{0}crwdnd107350:0{1}crwdne107350:0"
 
@@ -4364,7 +4387,7 @@ msgstr "crwdns107350:0{0}crwdnd107350:0{1}crwdne107350:0"
 msgid "From Date {0} cannot be before Payroll Period start date {1}"
 msgstr "crwdns160026:0{0}crwdnd160026:0{1}crwdne160026:0"
 
-#: hrms/payroll/doctype/salary_structure_assignment/salary_structure_assignment.py:84
+#: hrms/payroll/doctype/salary_structure_assignment/salary_structure_assignment.py:85
 msgid "From Date {0} cannot be before employee's joining Date {1}"
 msgstr "crwdns107352:0{0}crwdnd107352:0{1}crwdne107352:0"
 
@@ -5142,7 +5165,7 @@ msgstr "crwdns107718:0crwdne107718:0"
 msgid "Income Tax Slab Other Charges"
 msgstr "crwdns107724:0crwdne107724:0"
 
-#: hrms/payroll/doctype/salary_structure_assignment/salary_structure_assignment.py:112
+#: hrms/payroll/doctype/salary_structure_assignment/salary_structure_assignment.py:113
 msgid "Income Tax Slab is mandatory since the Salary Structure {0} has a tax component {1}"
 msgstr "crwdns141690:0{0}crwdnd141690:0{1}crwdne141690:0"
 
@@ -5153,6 +5176,10 @@ msgstr "crwdns107726:0{0}crwdne107726:0"
 #: hrms/payroll/doctype/salary_slip/salary_slip.py:1950
 msgid "Income Tax Slab not set in Salary Structure Assignment: {0}"
 msgstr "crwdns107728:0{0}crwdne107728:0"
+
+#: hrms/payroll/report/employee_ctc_break_up/employee_profile_card.html:107
+msgid "Income Tax Slab: "
+msgstr "crwdns201905:0crwdne201905:0"
 
 #: hrms/payroll/doctype/salary_slip/salary_slip.py:1958
 msgid "Income Tax Slab: {0} is disabled"
@@ -6654,11 +6681,11 @@ msgstr "crwdns201807:0crwdne201807:0"
 msgid "Missing Advance Account"
 msgstr "crwdns159590:0crwdne159590:0"
 
-#: hrms/payroll/doctype/salary_structure_assignment/salary_structure_assignment.py:118
+#: hrms/payroll/doctype/salary_structure_assignment/salary_structure_assignment.py:119
 msgid "Missing Mandatory Field"
 msgstr "crwdns141916:0crwdne141916:0"
 
-#: hrms/payroll/doctype/salary_structure_assignment/salary_structure_assignment.py:200
+#: hrms/payroll/doctype/salary_structure_assignment/salary_structure_assignment.py:201
 msgid "Missing Opening Entries"
 msgstr "crwdns149172:0crwdne149172:0"
 
@@ -6673,6 +6700,10 @@ msgstr "crwdns159592:0crwdne159592:0"
 #: hrms/payroll/doctype/salary_slip/salary_slip.py:1953
 msgid "Missing Tax Slab"
 msgstr "crwdns141918:0crwdne141918:0"
+
+#: hrms/payroll/report/employee_ctc_break_up/employee_ctc_break_up.py:307
+msgid "Missing value for filters"
+msgstr "crwdns201907:0crwdne201907:0"
 
 #. Label of the mode_of_travel (Select) field in DocType 'Travel Itinerary'
 #: hrms/hr/doctype/travel_itinerary/travel_itinerary.json
@@ -6951,11 +6982,11 @@ msgstr "crwdns200144:0crwdne200144:0"
 msgid "No changes found in timings."
 msgstr "crwdns108544:0crwdne108544:0"
 
-#: hrms/payroll/doctype/payroll_entry/payroll_entry.py:282
+#: hrms/payroll/doctype/payroll_entry/payroll_entry.py:288
 msgid "No employees found"
 msgstr "crwdns108548:0crwdne108548:0"
 
-#: hrms/payroll/doctype/payroll_entry/payroll_entry.py:265
+#: hrms/payroll/doctype/payroll_entry/payroll_entry.py:271
 msgid "No employees found for the mentioned criteria:<br>Company: {0}<br> Currency: {1}<br>Payroll Payable Account: {2}"
 msgstr "crwdns108550:0{0}crwdnd108550:0{1}crwdnd108550:0{2}crwdne108550:0"
 
@@ -7008,7 +7039,7 @@ msgstr "crwdns141972:0crwdne141972:0"
 msgid "No replies from"
 msgstr "crwdns108566:0crwdne108566:0"
 
-#: hrms/payroll/doctype/payroll_entry/payroll_entry.py:1633
+#: hrms/payroll/doctype/payroll_entry/payroll_entry.py:1639
 msgid "No salary slip found to submit for the above selected criteria OR salary slip already submitted"
 msgstr "crwdns108568:0crwdne108568:0"
 
@@ -7425,11 +7456,11 @@ msgstr "crwdns159634:0crwdne159634:0"
 msgid "Overtime Slip created for {0} employee(s)"
 msgstr "crwdns159636:0{0}crwdne159636:0"
 
-#: hrms/payroll/doctype/payroll_entry/payroll_entry.py:1290
+#: hrms/payroll/doctype/payroll_entry/payroll_entry.py:1296
 msgid "Overtime Slip creation is queued. It may take a few minutes"
 msgstr "crwdns159638:0crwdne159638:0"
 
-#: hrms/payroll/doctype/payroll_entry/payroll_entry.py:1314
+#: hrms/payroll/doctype/payroll_entry/payroll_entry.py:1320
 msgid "Overtime Slip submission is queued. It may take a few minutes"
 msgstr "crwdns159640:0crwdne159640:0"
 
@@ -7607,7 +7638,7 @@ msgstr "crwdns142072:0crwdne142072:0"
 msgid "Payment and Accounting"
 msgstr "crwdns142076:0crwdne142076:0"
 
-#: hrms/payroll/doctype/payroll_entry/payroll_entry.py:1140
+#: hrms/payroll/doctype/payroll_entry/payroll_entry.py:1146
 msgid "Payment of {0} from {1} to {2}"
 msgstr "crwdns108834:0{0}crwdnd108834:0{1}crwdnd108834:0{2}crwdne108834:0"
 
@@ -7820,6 +7851,10 @@ msgstr "crwdns108922:0crwdne108922:0"
 msgid "Percent Deduction"
 msgstr "crwdns142100:0crwdne142100:0"
 
+#: hrms/payroll/report/employee_ctc_break_up/employee_ctc_break_up.py:250
+msgid "Percent of CTC (%)"
+msgstr "crwdns201909:0crwdne201909:0"
+
 #. Label of a Desktop Icon
 #. Name of a Workspace
 #. Title of a Workspace Sidebar
@@ -8026,9 +8061,13 @@ msgstr "crwdns109000:0{0}crwdne109000:0"
 msgid "Please set a date range less than 90 days."
 msgstr "crwdns160444:0crwdne160444:0"
 
-#: hrms/payroll/doctype/payroll_entry/payroll_entry.py:397
+#: hrms/payroll/doctype/payroll_entry/payroll_entry.py:403
 msgid "Please set account in Salary Component {0}"
 msgstr "crwdns109004:0{0}crwdne109004:0"
+
+#: hrms/payroll/report/employee_ctc_break_up/employee_ctc_break_up.py:53
+msgid "Please set cost to company(CTC) for employee {0} in the {1}"
+msgstr "crwdns201911:0{0}crwdnd201911:0{1}crwdne201911:0"
 
 #: hrms/hr/doctype/leave_application/leave_application.py:712
 msgid "Please set default template for Leave Approval Notification in HR Settings."
@@ -8037,6 +8076,10 @@ msgstr "crwdns109006:0crwdne109006:0"
 #: hrms/hr/doctype/leave_application/leave_application.py:687
 msgid "Please set default template for Leave Status Notification in HR Settings."
 msgstr "crwdns109008:0crwdne109008:0"
+
+#: hrms/payroll/doctype/salary_structure_assignment/salary_structure_assignment.js:78
+msgid "Please set employee's total cost to company to see CTC breakup."
+msgstr "crwdns201913:0crwdne201913:0"
 
 #: hrms/hr/doctype/employee_advance/employee_advance.py:74
 msgid "Please set the Advance Account {0} or in {1}"
@@ -8079,6 +8122,10 @@ msgstr "crwdns109022:0{0}crwdnd109022:0{1}crwdne109022:0"
 msgid "Please set {0} for the Employee: {1}"
 msgstr "crwdns109024:0{0}crwdnd109024:0{1}crwdne109024:0"
 
+#: hrms/payroll/report/employee_ctc_break_up/employee_ctc_break_up.py:306
+msgid "Please set {0} to get CTC report"
+msgstr "crwdns201915:0{0}crwdne201915:0"
+
 #: hrms/hr/doctype/shift_type/shift_type.js:21
 #: hrms/hr/doctype/shift_type/shift_type.js:26
 msgid "Please set {0}."
@@ -8100,7 +8147,7 @@ msgstr "crwdns109032:0crwdne109032:0"
 msgid "Please specify the job applicant to be updated."
 msgstr "crwdns109034:0crwdne109034:0"
 
-#: hrms/payroll/doctype/salary_structure_assignment/salary_structure_assignment.py:191
+#: hrms/payroll/doctype/salary_structure_assignment/salary_structure_assignment.py:192
 msgid "Please specify {0} and {1} (if any), for the correct tax calculation in future salary slips."
 msgstr "crwdns149176:0{0}crwdnd149176:0{1}crwdne149176:0"
 
@@ -8160,7 +8207,7 @@ msgstr "crwdns152408:0crwdne152408:0"
 
 #: hrms/payroll/doctype/salary_structure/salary_structure.js:155
 #: hrms/payroll/doctype/salary_structure/salary_structure.js:193
-#: hrms/payroll/doctype/salary_structure_assignment/salary_structure_assignment.js:73
+#: hrms/payroll/doctype/salary_structure_assignment/salary_structure_assignment.js:89
 msgid "Preview Salary Slip"
 msgstr "crwdns109072:0crwdne109072:0"
 
@@ -9020,7 +9067,7 @@ msgstr "crwdns109478:0crwdne109478:0"
 msgid "Salary Slip already exists for {0} for the given dates"
 msgstr "crwdns109482:0{0}crwdne109482:0"
 
-#: hrms/payroll/doctype/payroll_entry/payroll_entry.py:330
+#: hrms/payroll/doctype/payroll_entry/payroll_entry.py:336
 msgid "Salary Slip creation is queued. It may take a few minutes"
 msgstr "crwdns109484:0crwdne109484:0"
 
@@ -9036,11 +9083,11 @@ msgstr "crwdns109486:0{0}crwdne109486:0"
 msgid "Salary Slip of employee {0} already created for time sheet {1}"
 msgstr "crwdns109488:0{0}crwdnd109488:0{1}crwdne109488:0"
 
-#: hrms/payroll/doctype/payroll_entry/payroll_entry.py:375
+#: hrms/payroll/doctype/payroll_entry/payroll_entry.py:381
 msgid "Salary Slip submission is queued. It may take a few minutes"
 msgstr "crwdns109490:0crwdne109490:0"
 
-#: hrms/payroll/doctype/payroll_entry/payroll_entry.py:1570
+#: hrms/payroll/doctype/payroll_entry/payroll_entry.py:1576
 msgid "Salary Slip {0} failed for Payroll Entry {1}"
 msgstr "crwdns109492:0{0}crwdnd109492:0{1}crwdne109492:0"
 
@@ -9062,11 +9109,11 @@ msgstr "crwdns142336:0crwdne142336:0"
 msgid "Salary Slips Submitted"
 msgstr "crwdns142338:0crwdne142338:0"
 
-#: hrms/payroll/doctype/payroll_entry/payroll_entry.py:1612
+#: hrms/payroll/doctype/payroll_entry/payroll_entry.py:1618
 msgid "Salary Slips already exist for employees {}, and will not be processed by this payroll."
 msgstr "crwdns109500:0crwdne109500:0"
 
-#: hrms/payroll/doctype/payroll_entry/payroll_entry.py:1639
+#: hrms/payroll/doctype/payroll_entry/payroll_entry.py:1645
 msgid "Salary Slips submitted for period from {0} to {1}"
 msgstr "crwdns109502:0{0}crwdnd109502:0{1}crwdne109502:0"
 
@@ -9095,6 +9142,7 @@ msgstr "crwdns109504:0crwdne109504:0"
 #. Label of a Workspace Sidebar Item
 #: hrms/payroll/doctype/income_tax_slab/income_tax_slab.js:8
 #: hrms/payroll/doctype/salary_structure_assignment/salary_structure_assignment.json
+#: hrms/payroll/report/employee_ctc_break_up/employee_ctc_break_up.js:34
 #: hrms/payroll/workspace/payroll/payroll.json
 #: hrms/workspace_sidebar/payroll.json
 msgid "Salary Structure Assignment"
@@ -9104,7 +9152,7 @@ msgstr "crwdns109512:0crwdne109512:0"
 msgid "Salary Structure Assignment field"
 msgstr "crwdns142340:0crwdne142340:0"
 
-#: hrms/payroll/doctype/salary_structure_assignment/salary_structure_assignment.py:79
+#: hrms/payroll/doctype/salary_structure_assignment/salary_structure_assignment.py:80
 msgid "Salary Structure Assignment for Employee already exists"
 msgstr "crwdns109516:0crwdne109516:0"
 
@@ -9124,9 +9172,13 @@ msgstr "crwdns109520:0{0}crwdne109520:0"
 msgid "Salary Structure not assigned for employee {0} for date {1}"
 msgstr "crwdns159694:0{0}crwdnd159694:0{1}crwdne159694:0"
 
-#: hrms/payroll/doctype/salary_structure_assignment/salary_structure_assignment.py:103
+#: hrms/payroll/doctype/salary_structure_assignment/salary_structure_assignment.py:104
 msgid "Salary Structure {0} does not belong to company {1}"
 msgstr "crwdns109526:0{0}crwdnd109526:0{1}crwdne109526:0"
+
+#: hrms/payroll/report/employee_ctc_break_up/employee_profile_card.html:106
+msgid "Salary Structure: "
+msgstr "crwdns201917:0crwdne201917:0"
 
 #: hrms/payroll/doctype/salary_component/salary_component.js:150
 msgid "Salary Structures updated successfully"
@@ -9217,6 +9269,10 @@ msgstr "crwdns109564:0crwdne109564:0"
 msgid "Search for Jobs"
 msgstr "crwdns109566:0crwdne109566:0"
 
+#: hrms/payroll/doctype/salary_structure_assignment/salary_structure_assignment.js:73
+msgid "See CTC Break-up"
+msgstr "crwdns201919:0crwdne201919:0"
+
 #: hrms/hr/doctype/overtime_type/overtime_type.py:40
 msgid "Select Applicable Components for Overtime Type"
 msgstr "crwdns159698:0crwdne159698:0"
@@ -9240,7 +9296,7 @@ msgstr "crwdns159700:0crwdne159700:0"
 msgid "Select Payment Account to make Bank Entry"
 msgstr "crwdns142358:0crwdne142358:0"
 
-#: hrms/payroll/doctype/payroll_entry/payroll_entry.py:1783
+#: hrms/payroll/doctype/payroll_entry/payroll_entry.py:1789
 msgid "Select Payroll Frequency."
 msgstr "crwdns109580:0crwdne109580:0"
 
@@ -9912,7 +9968,7 @@ msgstr "crwdns159714:0crwdne159714:0"
 msgid "Start date cannot be greater than end date."
 msgstr "crwdns160448:0crwdne160448:0"
 
-#: hrms/payroll/doctype/payroll_entry/payroll_entry.py:279
+#: hrms/payroll/doctype/payroll_entry/payroll_entry.py:285
 msgid "Start date: {0}"
 msgstr "crwdns109862:0{0}crwdne109862:0"
 
@@ -10010,7 +10066,7 @@ msgstr "crwdns159718:0crwdne159718:0"
 msgid "Submitting Salary Slips and creating Journal Entry..."
 msgstr "crwdns109966:0crwdne109966:0"
 
-#: hrms/payroll/doctype/payroll_entry/payroll_entry.py:1694
+#: hrms/payroll/doctype/payroll_entry/payroll_entry.py:1700
 msgid "Submitting Salary Slips..."
 msgstr "crwdns109968:0crwdne109968:0"
 
@@ -10070,7 +10126,7 @@ msgstr "crwdns110006:0crwdne110006:0"
 #. Label of the tax_deducted_till_date (Currency) field in DocType 'Salary
 #. Structure Assignment'
 #: hrms/payroll/doctype/salary_structure_assignment/salary_structure_assignment.json
-#: hrms/payroll/doctype/salary_structure_assignment/salary_structure_assignment.py:195
+#: hrms/payroll/doctype/salary_structure_assignment/salary_structure_assignment.py:196
 msgid "Tax Deducted Till Date"
 msgstr "crwdns110008:0crwdne110008:0"
 
@@ -10115,7 +10171,7 @@ msgstr "crwdns142504:0crwdne142504:0"
 #. Label of the taxable_earnings_till_date (Currency) field in DocType 'Salary
 #. Structure Assignment'
 #: hrms/payroll/doctype/salary_structure_assignment/salary_structure_assignment.json
-#: hrms/payroll/doctype/salary_structure_assignment/salary_structure_assignment.py:194
+#: hrms/payroll/doctype/salary_structure_assignment/salary_structure_assignment.py:195
 msgid "Taxable Earnings Till Date"
 msgstr "crwdns110026:0crwdne110026:0"
 
@@ -10280,7 +10336,7 @@ msgstr "crwdns110082:0{0}crwdne110082:0"
 
 #: hrms/payroll/doctype/additional_salary/additional_salary.py:82
 #: hrms/payroll/doctype/employee_incentive/employee_incentive.py:39
-#: hrms/payroll/doctype/salary_structure_assignment/salary_structure_assignment.py:240
+#: hrms/payroll/doctype/salary_structure_assignment/salary_structure_assignment.py:241
 msgid "There is no Salary Structure assigned to {0}. First assign a Salary Structure."
 msgstr "crwdns162092:0{0}crwdne162092:0"
 
@@ -10507,6 +10563,11 @@ msgstr "crwdns142580:0crwdne142580:0"
 #: hrms/hr/doctype/expense_claim/expense_claim.json
 msgid "Total Claimed Amount (Company Currency)"
 msgstr "crwdns161236:0crwdne161236:0"
+
+#. Label of the ctc (Currency) field in DocType 'Salary Structure Assignment'
+#: hrms/payroll/doctype/salary_structure_assignment/salary_structure_assignment.json
+msgid "Total Cost To Company (CTC)"
+msgstr "crwdns201921:0crwdne201921:0"
 
 #. Label of the lwp_days (Float) field in DocType 'Payroll Correction'
 #: hrms/payroll/doctype/payroll_correction/payroll_correction.json

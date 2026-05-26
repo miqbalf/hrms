@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: frappe\n"
 "Report-Msgid-Bugs-To: contact@frappe.io\n"
-"POT-Creation-Date: 2026-05-17 10:03+0000\n"
-"PO-Revision-Date: 2026-05-18 11:19\n"
+"POT-Creation-Date: 2026-05-24 10:09+0000\n"
+"PO-Revision-Date: 2026-05-25 11:50\n"
 "Last-Translator: contact@frappe.io\n"
 "Language-Team: Bosnian\n"
 "MIME-Version: 1.0\n"
@@ -424,7 +424,7 @@ msgstr "Obračunska Komponenta može se postaviti samo za Fleksibilne Komponente
 msgid "Accrual Component must be set for Flexible Benefit Salary Components with accrual payout methods."
 msgstr "Za Fleksibilne Komponente Plate s obračunskim metodama isplate mora se postaviti Obračunska Komponenta."
 
-#: hrms/payroll/doctype/payroll_entry/payroll_entry.py:667
+#: hrms/payroll/doctype/payroll_entry/payroll_entry.py:673
 msgid "Accrual Journal Entry for salaries from {0} to {1}"
 msgstr "Obračunski Nalog Knjiženja za plate od {0} do {1}"
 
@@ -868,6 +868,10 @@ msgstr "Godišnja Dodjela"
 msgid "Annual Allocation Exceeded"
 msgstr "Godišnja Dodjela je premašena"
 
+#: hrms/payroll/report/employee_ctc_break_up/employee_profile_card.html:123
+msgid "Annual CTC"
+msgstr "Godišnji Plata"
+
 #: hrms/setup.py:410
 msgid "Annual Salary"
 msgstr "Godišnja Plata"
@@ -1267,6 +1271,10 @@ msgstr "Dodjela Strukture u toku..."
 #: hrms/payroll/doctype/salary_structure/salary_structure.py:291
 msgid "Assigning Structures..."
 msgstr "Dodjela Struktura u toku..."
+
+#: hrms/payroll/report/employee_ctc_break_up/employee_profile_card.html:108
+msgid "Assignment Date: "
+msgstr "Datum Dodjele: "
 
 #. Label of the from_date (Date) field in DocType 'Holiday List Assignment'
 #: hrms/hr/doctype/holiday_list_assignment/holiday_list_assignment.json
@@ -1724,7 +1732,7 @@ msgstr "Datum Uplate Bonusa"
 msgid "Bonus Payment Date cannot be a past date"
 msgstr "Datum Uplate Bonusa ne može biti prošli datum"
 
-#: hrms/payroll/doctype/payroll_entry/payroll_entry.py:273
+#: hrms/payroll/doctype/payroll_entry/payroll_entry.py:279
 msgid "Branch: {0}"
 msgstr "Grana: {0}"
 
@@ -1762,6 +1770,10 @@ msgstr "Prema standard postavkama, Konačni Rezultat izračunava se kao prosjek 
 #: hrms/payroll/doctype/salary_slip/salary_slip.json
 msgid "CTC"
 msgstr "Godišnja Plata"
+
+#: hrms/payroll/report/employee_ctc_break_up/employee_ctc_break_up.py:61
+msgid "CTC Missing for Employee"
+msgstr "Nedostaje Godišnja Plata za"
 
 #. Label of the calculate_final_score_based_on_formula (Check) field in DocType
 #. 'Appraisal Cycle'
@@ -1906,7 +1918,7 @@ msgstr "Promjena KRA u ovom roditeljskom cilju će uskladiti sve podređene cilj
 msgid "Check <a href='/app/List/Error Log?reference_doctype={0}'>{1}</a> for more details"
 msgstr "Provjeri <a href='/app/List/Error Log?reference_doctype={0}'>{1}</a> za više detalja"
 
-#: hrms/payroll/doctype/payroll_entry/payroll_entry.py:1582
+#: hrms/payroll/doctype/payroll_entry/payroll_entry.py:1588
 msgid "Check Error Log {0} for more details."
 msgstr "Provjeri Zapisnik Grešaka {0} za više detalja."
 
@@ -2142,7 +2154,7 @@ msgstr "Kontakt Broj"
 msgid "Copy of Invitation/Announcement"
 msgstr "Kopija Poziva/Objave"
 
-#: hrms/payroll/doctype/payroll_entry/payroll_entry.py:1647
+#: hrms/payroll/doctype/payroll_entry/payroll_entry.py:1653
 msgid "Could not submit some Salary Slips: {}"
 msgstr "Nije moguče potvrditi neke Platne Liste: {}"
 
@@ -2252,7 +2264,7 @@ msgstr "Kreiranje Procjena u toku"
 msgid "Creating Payment Entries......"
 msgstr "Kreiranje unosa plaćanja u toku......"
 
-#: hrms/payroll/doctype/payroll_entry/payroll_entry.py:1605
+#: hrms/payroll/doctype/payroll_entry/payroll_entry.py:1611
 msgid "Creating Salary Slips..."
 msgstr "Kreiranje Platnih Listića u toku..."
 
@@ -2288,7 +2300,7 @@ msgstr "Kriterijum na osnovu kojeg personal treba procijeniti u Povratnim Inform
 msgid "Currency "
 msgstr "Valuta "
 
-#: hrms/payroll/doctype/salary_structure_assignment/salary_structure_assignment.py:127
+#: hrms/payroll/doctype/salary_structure_assignment/salary_structure_assignment.py:128
 msgid "Currency of selected Income Tax Slab should be {0} instead of {1}"
 msgstr "Valuta odabrane Tabele Poreza na Platu bi trebala biti {0} umjesto {1}"
 
@@ -2585,7 +2597,7 @@ msgstr "Otvorena Radna Mjesta po Odjelu"
 msgid "Department {0} does not belong to company: {1}"
 msgstr "Odjel {0} ne pripada: {1}"
 
-#: hrms/payroll/doctype/payroll_entry/payroll_entry.py:275
+#: hrms/payroll/doctype/payroll_entry/payroll_entry.py:281
 msgid "Department: {0}"
 msgstr "Odjel: {0}"
 
@@ -2618,7 +2630,7 @@ msgstr "Opis Otvorenog Radnog Mjesta"
 msgid "Designation Skill"
 msgstr "Vještina Imenovanja"
 
-#: hrms/payroll/doctype/payroll_entry/payroll_entry.py:277
+#: hrms/payroll/doctype/payroll_entry/payroll_entry.py:283
 msgid "Designation: {0}"
 msgstr "Naziv: {0}"
 
@@ -2947,6 +2959,13 @@ msgstr "Rođendan"
 #: hrms/hr/doctype/employee_boarding_activity/employee_boarding_activity.json
 msgid "Employee Boarding Activity"
 msgstr "Introdukcijske Aktivnosti"
+
+#. Name of a report
+#. Label of a Workspace Sidebar Item
+#: hrms/payroll/report/employee_ctc_break_up/employee_ctc_break_up.json
+#: hrms/workspace_sidebar/payroll.json
+msgid "Employee CTC Break-up"
+msgstr "Raspodjela Godišnje Plate"
 
 #. Name of a DocType
 #. Label of a Link in the HR Setup Workspace
@@ -3598,7 +3617,7 @@ msgstr "Šifriraj Platne Liste u e-pošti"
 msgid "End Date cannot be before Start Date"
 msgstr "Datum završetka ne može biti prije datuma početka"
 
-#: hrms/payroll/doctype/payroll_entry/payroll_entry.py:281
+#: hrms/payroll/doctype/payroll_entry/payroll_entry.py:287
 msgid "End date: {0}"
 msgstr "Datum Završetka: {0}"
 
@@ -4260,7 +4279,7 @@ msgstr "Prvi Dan"
 msgid "First Name "
 msgstr "Ime "
 
-#: hrms/payroll/doctype/payroll_entry/payroll_entry.py:1565
+#: hrms/payroll/doctype/payroll_entry/payroll_entry.py:1571
 msgid "Fiscal Year {0} not found"
 msgstr "Fiskalna Godina {0} nije pronađena"
 
@@ -4344,6 +4363,10 @@ msgstr "Za dan uzetog odsustva, ako i dalje plaćate (recimo) 50% dnevne plate, 
 msgid "Formula"
 msgstr "Formula"
 
+#: hrms/payroll/report/employee_ctc_break_up/employee_ctc_break_up.py:227
+msgid "Formula/Amount"
+msgstr "Formula/Iznos"
+
 #. Label of the fraction_of_applicable_earnings (Float) field in DocType
 #. 'Gratuity Rule Slab'
 #: hrms/payroll/doctype/gratuity_rule_slab/gratuity_rule_slab.json
@@ -4384,7 +4407,7 @@ msgstr "Od datuma mora biti prije Do datuma"
 msgid "From Date {0} cannot be after Payroll Period end date {1}"
 msgstr "Datum od {0} ne može biti nakon datuma završetka perioda obračuna plata {1}"
 
-#: hrms/payroll/doctype/salary_structure_assignment/salary_structure_assignment.py:92
+#: hrms/payroll/doctype/salary_structure_assignment/salary_structure_assignment.py:93
 msgid "From Date {0} cannot be after employee's relieving Date {1}"
 msgstr "Od datuma {0} ne može biti nakon datuma razrješenja {1}"
 
@@ -4392,7 +4415,7 @@ msgstr "Od datuma {0} ne može biti nakon datuma razrješenja {1}"
 msgid "From Date {0} cannot be before Payroll Period start date {1}"
 msgstr "Datum od {0} ne može biti prije datuma početka perioda obračuna plata {1}"
 
-#: hrms/payroll/doctype/salary_structure_assignment/salary_structure_assignment.py:84
+#: hrms/payroll/doctype/salary_structure_assignment/salary_structure_assignment.py:85
 msgid "From Date {0} cannot be before employee's joining Date {1}"
 msgstr "Od datuma {0} ne može biti prije datuma zapošljenja {1}"
 
@@ -5170,7 +5193,7 @@ msgstr "Tabela Poreza na Platu"
 msgid "Income Tax Slab Other Charges"
 msgstr "Tabela Porez na Platu Ostale Naknade"
 
-#: hrms/payroll/doctype/salary_structure_assignment/salary_structure_assignment.py:112
+#: hrms/payroll/doctype/salary_structure_assignment/salary_structure_assignment.py:113
 msgid "Income Tax Slab is mandatory since the Salary Structure {0} has a tax component {1}"
 msgstr "Tabela Poreza na Platu je obavezna jer Struktura Plate {0} ima poresku komponentu {1}"
 
@@ -5181,6 +5204,10 @@ msgstr "Tabela Poreza na Platu mora biti na snazi na ili prije datuma početka o
 #: hrms/payroll/doctype/salary_slip/salary_slip.py:1950
 msgid "Income Tax Slab not set in Salary Structure Assignment: {0}"
 msgstr "Tabela Poreza na Platu nije postavljena u Dodjeli Strukture Plata: {0}"
+
+#: hrms/payroll/report/employee_ctc_break_up/employee_profile_card.html:107
+msgid "Income Tax Slab: "
+msgstr "Tabela Poreza na Platu: "
 
 #: hrms/payroll/doctype/salary_slip/salary_slip.py:1958
 msgid "Income Tax Slab: {0} is disabled"
@@ -6682,11 +6709,11 @@ msgstr "Minimalni broj kalendarskih dana obaveznih od datuma pridruživanja da b
 msgid "Missing Advance Account"
 msgstr "Nedostaje Račun Predujma"
 
-#: hrms/payroll/doctype/salary_structure_assignment/salary_structure_assignment.py:118
+#: hrms/payroll/doctype/salary_structure_assignment/salary_structure_assignment.py:119
 msgid "Missing Mandatory Field"
 msgstr "Nedostaje Obavezno Polje"
 
-#: hrms/payroll/doctype/salary_structure_assignment/salary_structure_assignment.py:200
+#: hrms/payroll/doctype/salary_structure_assignment/salary_structure_assignment.py:201
 msgid "Missing Opening Entries"
 msgstr "Nedostaju Početni Unosi"
 
@@ -6701,6 +6728,10 @@ msgstr "Nedostaju Komponente Plate"
 #: hrms/payroll/doctype/salary_slip/salary_slip.py:1953
 msgid "Missing Tax Slab"
 msgstr "Nedostaje Porezna Tabela"
+
+#: hrms/payroll/report/employee_ctc_break_up/employee_ctc_break_up.py:307
+msgid "Missing value for filters"
+msgstr "Nedostaje vrijednost za filtere"
 
 #. Label of the mode_of_travel (Select) field in DocType 'Travel Itinerary'
 #: hrms/hr/doctype/travel_itinerary/travel_itinerary.json
@@ -6979,11 +7010,11 @@ msgstr "Nema evidencije prisustva zbog sljedećih razloga"
 msgid "No changes found in timings."
 msgstr "Nisu pronađene promjene u terminima."
 
-#: hrms/payroll/doctype/payroll_entry/payroll_entry.py:282
+#: hrms/payroll/doctype/payroll_entry/payroll_entry.py:288
 msgid "No employees found"
 msgstr "Nije pronađen personal"
 
-#: hrms/payroll/doctype/payroll_entry/payroll_entry.py:265
+#: hrms/payroll/doctype/payroll_entry/payroll_entry.py:271
 msgid "No employees found for the mentioned criteria:<br>Company: {0}<br> Currency: {1}<br>Payroll Payable Account: {2}"
 msgstr "Nije pronađen personal za navedene kriterije:<br>Poduzeće: {0}<br> Valuta: {1}<br>Račun Isplate Plate: {2}"
 
@@ -7036,7 +7067,7 @@ msgstr "Broj Pozicija"
 msgid "No replies from"
 msgstr "Nema odgovora od"
 
-#: hrms/payroll/doctype/payroll_entry/payroll_entry.py:1633
+#: hrms/payroll/doctype/payroll_entry/payroll_entry.py:1639
 msgid "No salary slip found to submit for the above selected criteria OR salary slip already submitted"
 msgstr "Nije pronađen platni list za podnošenje za gore odabrane kriterije ILI je platni list već podnešen"
 
@@ -7453,11 +7484,11 @@ msgstr "Specifikacija Prekovremenog Rada podnešena"
 msgid "Overtime Slip created for {0} employee(s)"
 msgstr "Specifikacija Prekovremenog Rada kreirana je za {0}"
 
-#: hrms/payroll/doctype/payroll_entry/payroll_entry.py:1290
+#: hrms/payroll/doctype/payroll_entry/payroll_entry.py:1296
 msgid "Overtime Slip creation is queued. It may take a few minutes"
 msgstr "Kreiranje Specifikacije Prekovremenog Rada je u redu čekanja. Može potrajati nekoliko minuta"
 
-#: hrms/payroll/doctype/payroll_entry/payroll_entry.py:1314
+#: hrms/payroll/doctype/payroll_entry/payroll_entry.py:1320
 msgid "Overtime Slip submission is queued. It may take a few minutes"
 msgstr "Podnošenje Specifikacije Prekovremenog Rada je u redu čekanja. Može potrajati nekoliko minuta"
 
@@ -7635,7 +7666,7 @@ msgstr "Obračun Plaćenih Dana su zasnovani na ovim Postavkama Obračuna Plata"
 msgid "Payment and Accounting"
 msgstr "Plaćanje i Knjigovodstvo"
 
-#: hrms/payroll/doctype/payroll_entry/payroll_entry.py:1140
+#: hrms/payroll/doctype/payroll_entry/payroll_entry.py:1146
 msgid "Payment of {0} from {1} to {2}"
 msgstr "Plaćanje {0} od {1} do {2}"
 
@@ -7848,6 +7879,10 @@ msgstr "Upitnici na Čekanju"
 msgid "Percent Deduction"
 msgstr "Postotak Odbitka"
 
+#: hrms/payroll/report/employee_ctc_break_up/employee_ctc_break_up.py:250
+msgid "Percent of CTC (%)"
+msgstr "Procenat Godišnje Plate (%)"
+
 #. Label of a Desktop Icon
 #. Name of a Workspace
 #. Title of a Workspace Sidebar
@@ -8054,9 +8089,13 @@ msgstr "Postavi Datum Otkaza za: {0}"
 msgid "Please set a date range less than 90 days."
 msgstr "Postavi raspon datuma kraći od 90 dana."
 
-#: hrms/payroll/doctype/payroll_entry/payroll_entry.py:397
+#: hrms/payroll/doctype/payroll_entry/payroll_entry.py:403
 msgid "Please set account in Salary Component {0}"
 msgstr "Postavi Račun u Komponenti Plate {0}"
+
+#: hrms/payroll/report/employee_ctc_break_up/employee_ctc_break_up.py:53
+msgid "Please set cost to company(CTC) for employee {0} in the {1}"
+msgstr "Postavi trošak za poduzeće (Godišnja Plata) za {0} u {1}"
 
 #: hrms/hr/doctype/leave_application/leave_application.py:712
 msgid "Please set default template for Leave Approval Notification in HR Settings."
@@ -8065,6 +8104,10 @@ msgstr "Postavi standard šablon Obavijesti Odobrenju Odsustva u Postavkama Pers
 #: hrms/hr/doctype/leave_application/leave_application.py:687
 msgid "Please set default template for Leave Status Notification in HR Settings."
 msgstr "Postavi standard šablon Obavijesti Statusa Odsustva u Postavkama Personala."
+
+#: hrms/payroll/doctype/salary_structure_assignment/salary_structure_assignment.js:78
+msgid "Please set employee's total cost to company to see CTC breakup."
+msgstr "Postavi ukupne troškove osoblja za poduzeće kako biste vidjeli raspodjelu godišnje plate."
 
 #: hrms/hr/doctype/employee_advance/employee_advance.py:74
 msgid "Please set the Advance Account {0} or in {1}"
@@ -8107,6 +8150,10 @@ msgstr "Postavi {0} za Personal {1}"
 msgid "Please set {0} for the Employee: {1}"
 msgstr "Postavi {0} za Personal {1}"
 
+#: hrms/payroll/report/employee_ctc_break_up/employee_ctc_break_up.py:306
+msgid "Please set {0} to get CTC report"
+msgstr "Postavi {0} za preuzimanje izvještaja godišnje plaće"
+
 #: hrms/hr/doctype/shift_type/shift_type.js:21
 #: hrms/hr/doctype/shift_type/shift_type.js:26
 msgid "Please set {0}."
@@ -8128,7 +8175,7 @@ msgstr "Podijeli Povratne Informacije obuke klikom na 'Povratne Informacije Obuk
 msgid "Please specify the job applicant to be updated."
 msgstr "Navedi kandidata za posao kojeg treba ažurirati."
 
-#: hrms/payroll/doctype/salary_structure_assignment/salary_structure_assignment.py:191
+#: hrms/payroll/doctype/salary_structure_assignment/salary_structure_assignment.py:192
 msgid "Please specify {0} and {1} (if any), for the correct tax calculation in future salary slips."
 msgstr "Navedi {0} i {1} (ako ih ima), za tačan obračun poreza u budućim platnim listovima."
 
@@ -8188,7 +8235,7 @@ msgstr "Spriječi samoodobrenje za odsustvo čak i ako korisnik ima dozvole"
 
 #: hrms/payroll/doctype/salary_structure/salary_structure.js:155
 #: hrms/payroll/doctype/salary_structure/salary_structure.js:193
-#: hrms/payroll/doctype/salary_structure_assignment/salary_structure_assignment.js:73
+#: hrms/payroll/doctype/salary_structure_assignment/salary_structure_assignment.js:89
 msgid "Preview Salary Slip"
 msgstr "Pregled Platnog Lista"
 
@@ -9048,7 +9095,7 @@ msgstr "Radna Lista Platne Liste"
 msgid "Salary Slip already exists for {0} for the given dates"
 msgstr "Platni List već postoji za {0} za date datume"
 
-#: hrms/payroll/doctype/payroll_entry/payroll_entry.py:330
+#: hrms/payroll/doctype/payroll_entry/payroll_entry.py:336
 msgid "Salary Slip creation is queued. It may take a few minutes"
 msgstr "Kreiranje Platnog Lista je u redu čekanja. Može potrajati nekoliko minuta"
 
@@ -9064,11 +9111,11 @@ msgstr "Platni List {0} je već kreiran za ovaj period"
 msgid "Salary Slip of employee {0} already created for time sheet {1}"
 msgstr "Platni List {0} je već kreiran za radni list {1}"
 
-#: hrms/payroll/doctype/payroll_entry/payroll_entry.py:375
+#: hrms/payroll/doctype/payroll_entry/payroll_entry.py:381
 msgid "Salary Slip submission is queued. It may take a few minutes"
 msgstr "Potvrda Platnog Lista je u redu čekanja. Može potrajati nekoliko minuta"
 
-#: hrms/payroll/doctype/payroll_entry/payroll_entry.py:1570
+#: hrms/payroll/doctype/payroll_entry/payroll_entry.py:1576
 msgid "Salary Slip {0} failed for Payroll Entry {1}"
 msgstr "Platni List {0} nije uspio za Unos Platnog Spiska {1}"
 
@@ -9090,11 +9137,11 @@ msgstr "Platni Listovi kreirani"
 msgid "Salary Slips Submitted"
 msgstr "Platni Listovi Potvrđeni"
 
-#: hrms/payroll/doctype/payroll_entry/payroll_entry.py:1612
+#: hrms/payroll/doctype/payroll_entry/payroll_entry.py:1618
 msgid "Salary Slips already exist for employees {}, and will not be processed by this payroll."
 msgstr "Platni Listovi već postoje za {} i neće ih obrađivati ovaj Obračun Plata."
 
-#: hrms/payroll/doctype/payroll_entry/payroll_entry.py:1639
+#: hrms/payroll/doctype/payroll_entry/payroll_entry.py:1645
 msgid "Salary Slips submitted for period from {0} to {1}"
 msgstr "Platne Liste potvrđene za period od {0} do {1}"
 
@@ -9123,6 +9170,7 @@ msgstr "Struktura Plate"
 #. Label of a Workspace Sidebar Item
 #: hrms/payroll/doctype/income_tax_slab/income_tax_slab.js:8
 #: hrms/payroll/doctype/salary_structure_assignment/salary_structure_assignment.json
+#: hrms/payroll/report/employee_ctc_break_up/employee_ctc_break_up.js:34
 #: hrms/payroll/workspace/payroll/payroll.json
 #: hrms/workspace_sidebar/payroll.json
 msgid "Salary Structure Assignment"
@@ -9132,7 +9180,7 @@ msgstr "Dodjela Strukture Plata"
 msgid "Salary Structure Assignment field"
 msgstr "Polje Dodjele Strukture Plate"
 
-#: hrms/payroll/doctype/salary_structure_assignment/salary_structure_assignment.py:79
+#: hrms/payroll/doctype/salary_structure_assignment/salary_structure_assignment.py:80
 msgid "Salary Structure Assignment for Employee already exists"
 msgstr "Struktura Plate za Personal već postoji"
 
@@ -9152,9 +9200,13 @@ msgstr "Struktura Plate mora biti dostavljena prije podnošenja {0}"
 msgid "Salary Structure not assigned for employee {0} for date {1}"
 msgstr "Struktura Plate nije dodijeljena za {0} za datum {1}"
 
-#: hrms/payroll/doctype/salary_structure_assignment/salary_structure_assignment.py:103
+#: hrms/payroll/doctype/salary_structure_assignment/salary_structure_assignment.py:104
 msgid "Salary Structure {0} does not belong to company {1}"
 msgstr "Struktura Plate {0} ne pripada {1}"
+
+#: hrms/payroll/report/employee_ctc_break_up/employee_profile_card.html:106
+msgid "Salary Structure: "
+msgstr "Struktura Plate: "
 
 #: hrms/payroll/doctype/salary_component/salary_component.js:150
 msgid "Salary Structures updated successfully"
@@ -9245,6 +9297,10 @@ msgstr "Rezultati"
 msgid "Search for Jobs"
 msgstr "Traži Poslove"
 
+#: hrms/payroll/doctype/salary_structure_assignment/salary_structure_assignment.js:73
+msgid "See CTC Break-up"
+msgstr "Pogledaj respored gdišnje plate"
+
 #: hrms/hr/doctype/overtime_type/overtime_type.py:40
 msgid "Select Applicable Components for Overtime Type"
 msgstr "Odaberite primjenjive komponente za tip prekovremenog rada"
@@ -9268,7 +9324,7 @@ msgstr "Odaberite mjesec za poništavanje neplačenog odsustva"
 msgid "Select Payment Account to make Bank Entry"
 msgstr "Odaberi Račun Isplate Plate da izvršite Bankovni Unos"
 
-#: hrms/payroll/doctype/payroll_entry/payroll_entry.py:1783
+#: hrms/payroll/doctype/payroll_entry/payroll_entry.py:1789
 msgid "Select Payroll Frequency."
 msgstr "Odaberi Učestalost Obračuna Plata."
 
@@ -9940,7 +9996,7 @@ msgstr "Datum početka ne može biti kasnije od datuma završetka"
 msgid "Start date cannot be greater than end date."
 msgstr "Datum početka ne može biti kasnije od datuma završetka."
 
-#: hrms/payroll/doctype/payroll_entry/payroll_entry.py:279
+#: hrms/payroll/doctype/payroll_entry/payroll_entry.py:285
 msgid "Start date: {0}"
 msgstr "Datum Početka: {0}"
 
@@ -10038,7 +10094,7 @@ msgstr "Podnešeno putem Unosa Plate"
 msgid "Submitting Salary Slips and creating Journal Entry..."
 msgstr "Podnose se Platni Listovi i kreiraju Nalozi Knjiženja..."
 
-#: hrms/payroll/doctype/payroll_entry/payroll_entry.py:1694
+#: hrms/payroll/doctype/payroll_entry/payroll_entry.py:1700
 msgid "Submitting Salary Slips..."
 msgstr "Podnošenje Platnih Listova u toku..."
 
@@ -10098,7 +10154,7 @@ msgstr "Porez&Beneficije"
 #. Label of the tax_deducted_till_date (Currency) field in DocType 'Salary
 #. Structure Assignment'
 #: hrms/payroll/doctype/salary_structure_assignment/salary_structure_assignment.json
-#: hrms/payroll/doctype/salary_structure_assignment/salary_structure_assignment.py:195
+#: hrms/payroll/doctype/salary_structure_assignment/salary_structure_assignment.py:196
 msgid "Tax Deducted Till Date"
 msgstr "Odbijen Porez do Datuma"
 
@@ -10143,7 +10199,7 @@ msgstr "Porez na Fleksibilne Beneficije"
 #. Label of the taxable_earnings_till_date (Currency) field in DocType 'Salary
 #. Structure Assignment'
 #: hrms/payroll/doctype/salary_structure_assignment/salary_structure_assignment.json
-#: hrms/payroll/doctype/salary_structure_assignment/salary_structure_assignment.py:194
+#: hrms/payroll/doctype/salary_structure_assignment/salary_structure_assignment.py:195
 msgid "Taxable Earnings Till Date"
 msgstr "Oporeziva Zarada do Datuma"
 
@@ -10308,7 +10364,7 @@ msgstr "Nema slobodnih radnih mjesta prema planu zapošljavanja {0}"
 
 #: hrms/payroll/doctype/additional_salary/additional_salary.py:82
 #: hrms/payroll/doctype/employee_incentive/employee_incentive.py:39
-#: hrms/payroll/doctype/salary_structure_assignment/salary_structure_assignment.py:240
+#: hrms/payroll/doctype/salary_structure_assignment/salary_structure_assignment.py:241
 msgid "There is no Salary Structure assigned to {0}. First assign a Salary Structure."
 msgstr "Nije dodijeljena struktura plata za {0}. Prvo dodijeli strukturu plata."
 
@@ -10535,6 +10591,11 @@ msgstr "Ukupan Iznos potraživanja"
 #: hrms/hr/doctype/expense_claim/expense_claim.json
 msgid "Total Claimed Amount (Company Currency)"
 msgstr "Ukupni Zatraženi Iznos (Valuta Poduzeća)"
+
+#. Label of the ctc (Currency) field in DocType 'Salary Structure Assignment'
+#: hrms/payroll/doctype/salary_structure_assignment/salary_structure_assignment.json
+msgid "Total Cost To Company (CTC)"
+msgstr "Ukupni trošak za poduzeće (Godišnja Plata)"
 
 #. Label of the lwp_days (Float) field in DocType 'Payroll Correction'
 #: hrms/payroll/doctype/payroll_correction/payroll_correction.json
@@ -11066,11 +11127,11 @@ msgstr "Neplaćeno Potraživanje Troška"
 #. Outstanding Statement'
 #: hrms/hr/doctype/full_and_final_outstanding_statement/full_and_final_outstanding_statement.json
 msgid "Unsettled"
-msgstr "Neizmireno"
+msgstr "Neusaglašeno"
 
 #: hrms/hr/doctype/full_and_final_statement/full_and_final_statement.py:87
 msgid "Unsettled Transactions"
-msgstr "Neizmirene Transakcije"
+msgstr "Neusaglašene Transakcije"
 
 #: hrms/hr/doctype/appraisal_cycle/appraisal_cycle.py:183
 msgid "Unsubmitted Appraisals"

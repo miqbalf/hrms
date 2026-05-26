@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: frappe\n"
 "Report-Msgid-Bugs-To: contact@frappe.io\n"
-"POT-Creation-Date: 2026-05-17 10:03+0000\n"
-"PO-Revision-Date: 2026-05-18 11:19\n"
+"POT-Creation-Date: 2026-05-24 10:09+0000\n"
+"PO-Revision-Date: 2026-05-25 11:50\n"
 "Last-Translator: contact@frappe.io\n"
 "Language-Team: German\n"
 "MIME-Version: 1.0\n"
@@ -405,7 +405,7 @@ msgstr ""
 msgid "Accrual Component must be set for Flexible Benefit Salary Components with accrual payout methods."
 msgstr ""
 
-#: hrms/payroll/doctype/payroll_entry/payroll_entry.py:667
+#: hrms/payroll/doctype/payroll_entry/payroll_entry.py:673
 msgid "Accrual Journal Entry for salaries from {0} to {1}"
 msgstr "Abgrenzungsjournalbuchung für Gehälter von {0} bis {1}"
 
@@ -849,6 +849,10 @@ msgstr "Jährliche Zuteilung"
 msgid "Annual Allocation Exceeded"
 msgstr "Jährliche Zuteilung überschritten"
 
+#: hrms/payroll/report/employee_ctc_break_up/employee_profile_card.html:123
+msgid "Annual CTC"
+msgstr ""
+
 #: hrms/setup.py:410
 msgid "Annual Salary"
 msgstr "Jahresgehalt"
@@ -1248,6 +1252,10 @@ msgstr "Struktur zuweisen..."
 #: hrms/payroll/doctype/salary_structure/salary_structure.py:291
 msgid "Assigning Structures..."
 msgstr "Zuordnung von Strukturen....."
+
+#: hrms/payroll/report/employee_ctc_break_up/employee_profile_card.html:108
+msgid "Assignment Date: "
+msgstr ""
 
 #. Label of the from_date (Date) field in DocType 'Holiday List Assignment'
 #: hrms/hr/doctype/holiday_list_assignment/holiday_list_assignment.json
@@ -1705,7 +1713,7 @@ msgstr "Bonuszahlungsdatum"
 msgid "Bonus Payment Date cannot be a past date"
 msgstr "Das Bonuszahlungsdatum kann kein vergangenes Datum sein"
 
-#: hrms/payroll/doctype/payroll_entry/payroll_entry.py:273
+#: hrms/payroll/doctype/payroll_entry/payroll_entry.py:279
 msgid "Branch: {0}"
 msgstr "Zweigstelle: {0}"
 
@@ -1743,6 +1751,10 @@ msgstr "Standardmäßig wird das Endergebnis als Durchschnitt aus Zielergebnis, 
 #: hrms/payroll/doctype/salary_slip/salary_slip.json
 msgid "CTC"
 msgstr "CTC"
+
+#: hrms/payroll/report/employee_ctc_break_up/employee_ctc_break_up.py:61
+msgid "CTC Missing for Employee"
+msgstr ""
 
 #. Label of the calculate_final_score_based_on_formula (Check) field in DocType
 #. 'Appraisal Cycle'
@@ -1887,7 +1899,7 @@ msgstr "Wenn Sie die KRA in diesem übergeordneten Ziel ändern, werden alle unt
 msgid "Check <a href='/app/List/Error Log?reference_doctype={0}'>{1}</a> for more details"
 msgstr "Weitere Einzelheiten finden Sie unter <a href='/app/List/Error Log?reference_doctype={0}'>{1}</a>"
 
-#: hrms/payroll/doctype/payroll_entry/payroll_entry.py:1582
+#: hrms/payroll/doctype/payroll_entry/payroll_entry.py:1588
 msgid "Check Error Log {0} for more details."
 msgstr "Weitere Details finden Sie im Fehlerprotokoll {0}."
 
@@ -2120,7 +2132,7 @@ msgstr "Kontaktnummer"
 msgid "Copy of Invitation/Announcement"
 msgstr "Kopie der Einladung / Ankündigung"
 
-#: hrms/payroll/doctype/payroll_entry/payroll_entry.py:1647
+#: hrms/payroll/doctype/payroll_entry/payroll_entry.py:1653
 msgid "Could not submit some Salary Slips: {}"
 msgstr "Konnte einige Gehaltsabrechnungen nicht buchen: {}"
 
@@ -2230,7 +2242,7 @@ msgstr "Beurteilungen erstellen"
 msgid "Creating Payment Entries......"
 msgstr "Zahlungseinträge erstellen ......"
 
-#: hrms/payroll/doctype/payroll_entry/payroll_entry.py:1605
+#: hrms/payroll/doctype/payroll_entry/payroll_entry.py:1611
 msgid "Creating Salary Slips..."
 msgstr "Lohnzettel erstellen ..."
 
@@ -2266,7 +2278,7 @@ msgstr "Kriterien, anhand derer der Mitarbeiter im Leistungsfeedback und in der 
 msgid "Currency "
 msgstr "Währung "
 
-#: hrms/payroll/doctype/salary_structure_assignment/salary_structure_assignment.py:127
+#: hrms/payroll/doctype/salary_structure_assignment/salary_structure_assignment.py:128
 msgid "Currency of selected Income Tax Slab should be {0} instead of {1}"
 msgstr "Die Währung des ausgewählten Einkommensteuertarifs sollte {0} statt {1} sein"
 
@@ -2563,7 +2575,7 @@ msgstr "Offene Stellen je Abteilung"
 msgid "Department {0} does not belong to company: {1}"
 msgstr "Die Abteilung {0} gehört nicht zum Unternehmen: {1}"
 
-#: hrms/payroll/doctype/payroll_entry/payroll_entry.py:275
+#: hrms/payroll/doctype/payroll_entry/payroll_entry.py:281
 msgid "Department: {0}"
 msgstr "Abteilung: {0}"
 
@@ -2596,7 +2608,7 @@ msgstr "Beschreibung einer Stellenausschreibung"
 msgid "Designation Skill"
 msgstr "Positionsfähigkeit"
 
-#: hrms/payroll/doctype/payroll_entry/payroll_entry.py:277
+#: hrms/payroll/doctype/payroll_entry/payroll_entry.py:283
 msgid "Designation: {0}"
 msgstr "Position: {0}"
 
@@ -2925,6 +2937,13 @@ msgstr "Geburtstag des Mitarbeiters"
 #: hrms/hr/doctype/employee_boarding_activity/employee_boarding_activity.json
 msgid "Employee Boarding Activity"
 msgstr "Mitarbeitereinstiegsaktivität"
+
+#. Name of a report
+#. Label of a Workspace Sidebar Item
+#: hrms/payroll/report/employee_ctc_break_up/employee_ctc_break_up.json
+#: hrms/workspace_sidebar/payroll.json
+msgid "Employee CTC Break-up"
+msgstr ""
 
 #. Name of a DocType
 #. Label of a Link in the HR Setup Workspace
@@ -3576,7 +3595,7 @@ msgstr "Gehaltsabrechnungen in E-Mails verschlüsseln"
 msgid "End Date cannot be before Start Date"
 msgstr "Das Enddatum darf nicht vor dem Startdatum liegen"
 
-#: hrms/payroll/doctype/payroll_entry/payroll_entry.py:281
+#: hrms/payroll/doctype/payroll_entry/payroll_entry.py:287
 msgid "End date: {0}"
 msgstr "Enddatum: {0}"
 
@@ -4238,7 +4257,7 @@ msgstr "Erster Tag"
 msgid "First Name "
 msgstr "Vorname "
 
-#: hrms/payroll/doctype/payroll_entry/payroll_entry.py:1565
+#: hrms/payroll/doctype/payroll_entry/payroll_entry.py:1571
 msgid "Fiscal Year {0} not found"
 msgstr "Das Geschäftsjahr {0} nicht gefunden"
 
@@ -4322,6 +4341,10 @@ msgstr "Wenn Sie für einen Abwesenheitstag dennoch (z. B.) 50 % des Tagesgehalt
 msgid "Formula"
 msgstr "Formel"
 
+#: hrms/payroll/report/employee_ctc_break_up/employee_ctc_break_up.py:227
+msgid "Formula/Amount"
+msgstr ""
+
 #. Label of the fraction_of_applicable_earnings (Float) field in DocType
 #. 'Gratuity Rule Slab'
 #: hrms/payroll/doctype/gratuity_rule_slab/gratuity_rule_slab.json
@@ -4362,7 +4385,7 @@ msgstr "Von-Datum muss vor Bis-Datum liegen"
 msgid "From Date {0} cannot be after Payroll Period end date {1}"
 msgstr ""
 
-#: hrms/payroll/doctype/salary_structure_assignment/salary_structure_assignment.py:92
+#: hrms/payroll/doctype/salary_structure_assignment/salary_structure_assignment.py:93
 msgid "From Date {0} cannot be after employee's relieving Date {1}"
 msgstr "Ab Datum {0} kann nicht nach dem Entlastungsdatum des Mitarbeiters sein {1}"
 
@@ -4370,7 +4393,7 @@ msgstr "Ab Datum {0} kann nicht nach dem Entlastungsdatum des Mitarbeiters sein 
 msgid "From Date {0} cannot be before Payroll Period start date {1}"
 msgstr ""
 
-#: hrms/payroll/doctype/salary_structure_assignment/salary_structure_assignment.py:84
+#: hrms/payroll/doctype/salary_structure_assignment/salary_structure_assignment.py:85
 msgid "From Date {0} cannot be before employee's joining Date {1}"
 msgstr "Von Datum {0} kann nicht vor dem Beitrittsdatum des Mitarbeiters sein {1}"
 
@@ -5148,7 +5171,7 @@ msgstr "Einkommensteuerplatte"
 msgid "Income Tax Slab Other Charges"
 msgstr "Einkommensteuerplatte Sonstige Gebühren"
 
-#: hrms/payroll/doctype/salary_structure_assignment/salary_structure_assignment.py:112
+#: hrms/payroll/doctype/salary_structure_assignment/salary_structure_assignment.py:113
 msgid "Income Tax Slab is mandatory since the Salary Structure {0} has a tax component {1}"
 msgstr "Die Einkommensteuerklasse ist obligatorisch, da die Gehaltsstruktur {0} eine Steuerkomponente {1} hat"
 
@@ -5159,6 +5182,10 @@ msgstr "Die Einkommensteuerplatte muss am oder vor dem Startdatum der Abrechnung
 #: hrms/payroll/doctype/salary_slip/salary_slip.py:1950
 msgid "Income Tax Slab not set in Salary Structure Assignment: {0}"
 msgstr "Einkommensteuerplatte nicht in Gehaltsstrukturzuordnung festgelegt: {0}"
+
+#: hrms/payroll/report/employee_ctc_break_up/employee_profile_card.html:107
+msgid "Income Tax Slab: "
+msgstr "Einkommensteuerplatte: "
 
 #: hrms/payroll/doctype/salary_slip/salary_slip.py:1958
 msgid "Income Tax Slab: {0} is disabled"
@@ -6660,11 +6687,11 @@ msgstr ""
 msgid "Missing Advance Account"
 msgstr ""
 
-#: hrms/payroll/doctype/salary_structure_assignment/salary_structure_assignment.py:118
+#: hrms/payroll/doctype/salary_structure_assignment/salary_structure_assignment.py:119
 msgid "Missing Mandatory Field"
 msgstr "Fehlendes Pflichtfeld"
 
-#: hrms/payroll/doctype/salary_structure_assignment/salary_structure_assignment.py:200
+#: hrms/payroll/doctype/salary_structure_assignment/salary_structure_assignment.py:201
 msgid "Missing Opening Entries"
 msgstr ""
 
@@ -6678,6 +6705,10 @@ msgstr ""
 
 #: hrms/payroll/doctype/salary_slip/salary_slip.py:1953
 msgid "Missing Tax Slab"
+msgstr ""
+
+#: hrms/payroll/report/employee_ctc_break_up/employee_ctc_break_up.py:307
+msgid "Missing value for filters"
 msgstr ""
 
 #. Label of the mode_of_travel (Select) field in DocType 'Travel Itinerary'
@@ -6957,11 +6988,11 @@ msgstr ""
 msgid "No changes found in timings."
 msgstr "Keine Änderungen in den Zeitangaben gefunden."
 
-#: hrms/payroll/doctype/payroll_entry/payroll_entry.py:282
+#: hrms/payroll/doctype/payroll_entry/payroll_entry.py:288
 msgid "No employees found"
 msgstr "Keine Mitarbeiter gefunden"
 
-#: hrms/payroll/doctype/payroll_entry/payroll_entry.py:265
+#: hrms/payroll/doctype/payroll_entry/payroll_entry.py:271
 msgid "No employees found for the mentioned criteria:<br>Company: {0}<br> Currency: {1}<br>Payroll Payable Account: {2}"
 msgstr "Keine Mitarbeiter für die genannten Kriterien gefunden:<br>Unternehmen: {0}<br> Währung: {1}<br>Gehaltsabrechnungskonto: {2}"
 
@@ -7014,7 +7045,7 @@ msgstr "Anzahl Stellen"
 msgid "No replies from"
 msgstr "Keine Antworten"
 
-#: hrms/payroll/doctype/payroll_entry/payroll_entry.py:1633
+#: hrms/payroll/doctype/payroll_entry/payroll_entry.py:1639
 msgid "No salary slip found to submit for the above selected criteria OR salary slip already submitted"
 msgstr "Es wurde kein Lohnzettel für die oben ausgewählten Kriterien oder den bereits eingereichten Gehaltsbeleg gefunden"
 
@@ -7431,11 +7462,11 @@ msgstr ""
 msgid "Overtime Slip created for {0} employee(s)"
 msgstr ""
 
-#: hrms/payroll/doctype/payroll_entry/payroll_entry.py:1290
+#: hrms/payroll/doctype/payroll_entry/payroll_entry.py:1296
 msgid "Overtime Slip creation is queued. It may take a few minutes"
 msgstr ""
 
-#: hrms/payroll/doctype/payroll_entry/payroll_entry.py:1314
+#: hrms/payroll/doctype/payroll_entry/payroll_entry.py:1320
 msgid "Overtime Slip submission is queued. It may take a few minutes"
 msgstr ""
 
@@ -7613,7 +7644,7 @@ msgstr ""
 msgid "Payment and Accounting"
 msgstr "Zahlung und Buchhaltung"
 
-#: hrms/payroll/doctype/payroll_entry/payroll_entry.py:1140
+#: hrms/payroll/doctype/payroll_entry/payroll_entry.py:1146
 msgid "Payment of {0} from {1} to {2}"
 msgstr "Zahlung von {0} von {1} an {2}"
 
@@ -7826,6 +7857,10 @@ msgstr "Ausstehende Fragebögen"
 msgid "Percent Deduction"
 msgstr "Prozentabzug"
 
+#: hrms/payroll/report/employee_ctc_break_up/employee_ctc_break_up.py:250
+msgid "Percent of CTC (%)"
+msgstr ""
+
 #. Label of a Desktop Icon
 #. Name of a Workspace
 #. Title of a Workspace Sidebar
@@ -8032,9 +8067,13 @@ msgstr "Bitte legen Sie das Austrittsdatum für den Mitarbeiter fest: {0}"
 msgid "Please set a date range less than 90 days."
 msgstr ""
 
-#: hrms/payroll/doctype/payroll_entry/payroll_entry.py:397
+#: hrms/payroll/doctype/payroll_entry/payroll_entry.py:403
 msgid "Please set account in Salary Component {0}"
 msgstr "Bitte legen Sie das Konto in der Gehaltskomponente {0} fest"
+
+#: hrms/payroll/report/employee_ctc_break_up/employee_ctc_break_up.py:53
+msgid "Please set cost to company(CTC) for employee {0} in the {1}"
+msgstr ""
 
 #: hrms/hr/doctype/leave_application/leave_application.py:712
 msgid "Please set default template for Leave Approval Notification in HR Settings."
@@ -8043,6 +8082,10 @@ msgstr "Bitte legen Sie eine Email-Vorlage für Benachrichtigung über neuen Url
 #: hrms/hr/doctype/leave_application/leave_application.py:687
 msgid "Please set default template for Leave Status Notification in HR Settings."
 msgstr "Bitte legen Sie die Email-Vorlage für Statusänderung eines Urlaubsantrags in den HR-Einstellungen fest."
+
+#: hrms/payroll/doctype/salary_structure_assignment/salary_structure_assignment.js:78
+msgid "Please set employee's total cost to company to see CTC breakup."
+msgstr ""
 
 #: hrms/hr/doctype/employee_advance/employee_advance.py:74
 msgid "Please set the Advance Account {0} or in {1}"
@@ -8085,6 +8128,10 @@ msgstr "Bitte setzen Sie {0} für Mitarbeiter {1}"
 msgid "Please set {0} for the Employee: {1}"
 msgstr "Bitte stellen Sie {0} für den Mitarbeiter ein: {1}"
 
+#: hrms/payroll/report/employee_ctc_break_up/employee_ctc_break_up.py:306
+msgid "Please set {0} to get CTC report"
+msgstr ""
+
 #: hrms/hr/doctype/shift_type/shift_type.js:21
 #: hrms/hr/doctype/shift_type/shift_type.js:26
 msgid "Please set {0}."
@@ -8106,7 +8153,7 @@ msgstr "Bitte teilen Sie Ihr Feedback mit dem Training ab, indem Sie auf &#39;Tr
 msgid "Please specify the job applicant to be updated."
 msgstr "Bitte geben Sie den Bewerber an, der aktualisiert werden soll."
 
-#: hrms/payroll/doctype/salary_structure_assignment/salary_structure_assignment.py:191
+#: hrms/payroll/doctype/salary_structure_assignment/salary_structure_assignment.py:192
 msgid "Please specify {0} and {1} (if any), for the correct tax calculation in future salary slips."
 msgstr ""
 
@@ -8166,7 +8213,7 @@ msgstr "Verhindert die Selbstgenehmigung für Urlaub, auch wenn der Benutzer üb
 
 #: hrms/payroll/doctype/salary_structure/salary_structure.js:155
 #: hrms/payroll/doctype/salary_structure/salary_structure.js:193
-#: hrms/payroll/doctype/salary_structure_assignment/salary_structure_assignment.js:73
+#: hrms/payroll/doctype/salary_structure_assignment/salary_structure_assignment.js:89
 msgid "Preview Salary Slip"
 msgstr "Vorschau Gehaltsabrechnung"
 
@@ -9026,7 +9073,7 @@ msgstr "Gehaltszettel Timesheet"
 msgid "Salary Slip already exists for {0} for the given dates"
 msgstr "Die Gehaltsabrechnung existiert bereits für {0} für die angegebenen Daten"
 
-#: hrms/payroll/doctype/payroll_entry/payroll_entry.py:330
+#: hrms/payroll/doctype/payroll_entry/payroll_entry.py:336
 msgid "Salary Slip creation is queued. It may take a few minutes"
 msgstr "Die Erstellung der Gehaltsabrechnung befindet sich in der Warteschlange. Es kann einige Minuten dauern"
 
@@ -9042,11 +9089,11 @@ msgstr "Gehaltsabrechnung der Mitarbeiter {0} für diesen Zeitraum bereits erste
 msgid "Salary Slip of employee {0} already created for time sheet {1}"
 msgstr "Gehaltsabrechnung der Mitarbeiter {0} bereits für Zeitblatt erstellt {1}"
 
-#: hrms/payroll/doctype/payroll_entry/payroll_entry.py:375
+#: hrms/payroll/doctype/payroll_entry/payroll_entry.py:381
 msgid "Salary Slip submission is queued. It may take a few minutes"
 msgstr "Die Buchung der Gehaltsabrechnung steht in der Warteschlange. Es kann ein paar Minuten dauern"
 
-#: hrms/payroll/doctype/payroll_entry/payroll_entry.py:1570
+#: hrms/payroll/doctype/payroll_entry/payroll_entry.py:1576
 msgid "Salary Slip {0} failed for Payroll Entry {1}"
 msgstr ""
 
@@ -9068,11 +9115,11 @@ msgstr "Lohnzettel erstellt"
 msgid "Salary Slips Submitted"
 msgstr "Gehaltszettel eingereicht"
 
-#: hrms/payroll/doctype/payroll_entry/payroll_entry.py:1612
+#: hrms/payroll/doctype/payroll_entry/payroll_entry.py:1618
 msgid "Salary Slips already exist for employees {}, and will not be processed by this payroll."
 msgstr ""
 
-#: hrms/payroll/doctype/payroll_entry/payroll_entry.py:1639
+#: hrms/payroll/doctype/payroll_entry/payroll_entry.py:1645
 msgid "Salary Slips submitted for period from {0} to {1}"
 msgstr "Gehaltsabrechnungen gebucht für den Zeitraum von {0} bis {1}"
 
@@ -9101,6 +9148,7 @@ msgstr "Gehaltsstruktur"
 #. Label of a Workspace Sidebar Item
 #: hrms/payroll/doctype/income_tax_slab/income_tax_slab.js:8
 #: hrms/payroll/doctype/salary_structure_assignment/salary_structure_assignment.json
+#: hrms/payroll/report/employee_ctc_break_up/employee_ctc_break_up.js:34
 #: hrms/payroll/workspace/payroll/payroll.json
 #: hrms/workspace_sidebar/payroll.json
 msgid "Salary Structure Assignment"
@@ -9110,7 +9158,7 @@ msgstr "Zuordnung der Gehaltsstruktur"
 msgid "Salary Structure Assignment field"
 msgstr ""
 
-#: hrms/payroll/doctype/salary_structure_assignment/salary_structure_assignment.py:79
+#: hrms/payroll/doctype/salary_structure_assignment/salary_structure_assignment.py:80
 msgid "Salary Structure Assignment for Employee already exists"
 msgstr "Die Gehaltsstrukturzuordnung für den Mitarbeiter ist bereits vorhanden"
 
@@ -9130,9 +9178,13 @@ msgstr "Die Gehaltsstruktur muss vor der Einreichung von {0} gebucht werden"
 msgid "Salary Structure not assigned for employee {0} for date {1}"
 msgstr ""
 
-#: hrms/payroll/doctype/salary_structure_assignment/salary_structure_assignment.py:103
+#: hrms/payroll/doctype/salary_structure_assignment/salary_structure_assignment.py:104
 msgid "Salary Structure {0} does not belong to company {1}"
 msgstr "Gehaltsstruktur {0} gehört nicht zum Unternehmen {1}"
+
+#: hrms/payroll/report/employee_ctc_break_up/employee_profile_card.html:106
+msgid "Salary Structure: "
+msgstr "Gehaltsstruktur: "
 
 #: hrms/payroll/doctype/salary_component/salary_component.js:150
 msgid "Salary Structures updated successfully"
@@ -9223,6 +9275,10 @@ msgstr "Punktzahl"
 msgid "Search for Jobs"
 msgstr "Nach Stellen suchen"
 
+#: hrms/payroll/doctype/salary_structure_assignment/salary_structure_assignment.js:73
+msgid "See CTC Break-up"
+msgstr ""
+
 #: hrms/hr/doctype/overtime_type/overtime_type.py:40
 msgid "Select Applicable Components for Overtime Type"
 msgstr ""
@@ -9246,7 +9302,7 @@ msgstr ""
 msgid "Select Payment Account to make Bank Entry"
 msgstr "Wählen Sie ein Zahlungskonto für die Buchung"
 
-#: hrms/payroll/doctype/payroll_entry/payroll_entry.py:1783
+#: hrms/payroll/doctype/payroll_entry/payroll_entry.py:1789
 msgid "Select Payroll Frequency."
 msgstr "Wählen Sie die Häufigkeit der Lohn- und Gehaltsabrechnung."
 
@@ -9918,7 +9974,7 @@ msgstr ""
 msgid "Start date cannot be greater than end date."
 msgstr ""
 
-#: hrms/payroll/doctype/payroll_entry/payroll_entry.py:279
+#: hrms/payroll/doctype/payroll_entry/payroll_entry.py:285
 msgid "Start date: {0}"
 msgstr "Startdatum: {0}"
 
@@ -10016,7 +10072,7 @@ msgstr ""
 msgid "Submitting Salary Slips and creating Journal Entry..."
 msgstr "Gehaltsabrechnungen werden gebucht und Buchungssätze erstellt..."
 
-#: hrms/payroll/doctype/payroll_entry/payroll_entry.py:1694
+#: hrms/payroll/doctype/payroll_entry/payroll_entry.py:1700
 msgid "Submitting Salary Slips..."
 msgstr "Lohnzettel einreichen ..."
 
@@ -10076,7 +10132,7 @@ msgstr "Steuern & Sozialleistungen"
 #. Label of the tax_deducted_till_date (Currency) field in DocType 'Salary
 #. Structure Assignment'
 #: hrms/payroll/doctype/salary_structure_assignment/salary_structure_assignment.json
-#: hrms/payroll/doctype/salary_structure_assignment/salary_structure_assignment.py:195
+#: hrms/payroll/doctype/salary_structure_assignment/salary_structure_assignment.py:196
 msgid "Tax Deducted Till Date"
 msgstr "Abgezogene Steuern bis Datum"
 
@@ -10121,7 +10177,7 @@ msgstr "Steuer auf flexiblen Vorteil"
 #. Label of the taxable_earnings_till_date (Currency) field in DocType 'Salary
 #. Structure Assignment'
 #: hrms/payroll/doctype/salary_structure_assignment/salary_structure_assignment.json
-#: hrms/payroll/doctype/salary_structure_assignment/salary_structure_assignment.py:194
+#: hrms/payroll/doctype/salary_structure_assignment/salary_structure_assignment.py:195
 msgid "Taxable Earnings Till Date"
 msgstr "Steuerpflichtiges Einkommen bis heute"
 
@@ -10286,7 +10342,7 @@ msgstr "Es gibt keine offenen Stellen im Besetzungsplan {0}"
 
 #: hrms/payroll/doctype/additional_salary/additional_salary.py:82
 #: hrms/payroll/doctype/employee_incentive/employee_incentive.py:39
-#: hrms/payroll/doctype/salary_structure_assignment/salary_structure_assignment.py:240
+#: hrms/payroll/doctype/salary_structure_assignment/salary_structure_assignment.py:241
 msgid "There is no Salary Structure assigned to {0}. First assign a Salary Structure."
 msgstr ""
 
@@ -10512,6 +10568,11 @@ msgstr "Gesamtforderung"
 #. Claim'
 #: hrms/hr/doctype/expense_claim/expense_claim.json
 msgid "Total Claimed Amount (Company Currency)"
+msgstr ""
+
+#. Label of the ctc (Currency) field in DocType 'Salary Structure Assignment'
+#: hrms/payroll/doctype/salary_structure_assignment/salary_structure_assignment.json
+msgid "Total Cost To Company (CTC)"
 msgstr ""
 
 #. Label of the lwp_days (Float) field in DocType 'Payroll Correction'
