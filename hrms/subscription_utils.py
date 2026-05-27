@@ -27,7 +27,7 @@ STANDARD_ROLES = [
 ]
 
 
-@frappe.whitelist(allow_guest=True)
+@frappe.whitelist()
 def get_add_on_details(plan: str) -> dict[str, int]:
 	"""
 	Returns the number of employees to be billed under add-ons for SAAS subscription
