@@ -253,7 +253,7 @@
  ],
  "is_submittable": 1,
  "links": [],
- "modified": "2026-05-14 13:33:55.869281",
+ "modified": "2026-06-05 13:20:40.794089",
  "modified_by": "Administrator",
  "module": "Payroll",
  "name": "Salary Structure Assignment",
@@ -298,6 +298,11 @@
    "share": 1,
    "submit": 1,
    "write": 1
+  },
+  {
+   "read": 1,
+   "role": "Employee",
+   "select": 1
   }
  ],
  "row_format": "Dynamic",
