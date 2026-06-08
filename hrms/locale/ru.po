@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: frappe\n"
 "Report-Msgid-Bugs-To: contact@frappe.io\n"
-"POT-Creation-Date: 2026-05-31 10:16+0000\n"
-"PO-Revision-Date: 2026-06-01 14:00\n"
+"POT-Creation-Date: 2026-06-07 10:18+0000\n"
+"PO-Revision-Date: 2026-06-08 15:41\n"
 "Last-Translator: contact@frappe.io\n"
 "Language-Team: Russian\n"
 "MIME-Version: 1.0\n"
@@ -1405,8 +1405,8 @@ msgstr "Настройки посещаемости"
 msgid "Attendance To Date"
 msgstr "Дата посещения"
 
-#: hrms/hr/doctype/attendance_request/attendance_request.py:187
-#: hrms/hr/doctype/attendance_request/attendance_request.py:206
+#: hrms/hr/doctype/attendance_request/attendance_request.py:189
+#: hrms/hr/doctype/attendance_request/attendance_request.py:208
 msgid "Attendance Updated"
 msgstr "Посещаемость обновлена"
 
@@ -1458,11 +1458,11 @@ msgstr "Посещаемость отмечена успешно"
 msgid "Attendance marked successfully."
 msgstr "Посещаемость отмечена успешно."
 
-#: hrms/hr/doctype/attendance_request/attendance_request.py:225
+#: hrms/hr/doctype/attendance_request/attendance_request.py:227
 msgid "Attendance not submitted for {0} as it is a Holiday."
 msgstr "Данные о посещении не были отправлены на {0}, так как это праздничный день."
 
-#: hrms/hr/doctype/attendance_request/attendance_request.py:234
+#: hrms/hr/doctype/attendance_request/attendance_request.py:236
 msgid "Attendance not submitted for {0} as {1} is on leave."
 msgstr "Отчет о посещении {0} не представлен, так как {1} находится в отпуске."
 
@@ -1557,11 +1557,11 @@ msgstr "Средний рейтинг демонстрируемых навык�
 msgid "Avg Feedback Score"
 msgstr "Средний балл обратной связи"
 
-#: hrms/hr/report/employee_hours_utilization_based_on_timesheet/employee_hours_utilization_based_on_timesheet.py:218
+#: hrms/hr/report/employee_hours_utilization_based_on_timesheet/employee_hours_utilization_based_on_timesheet.py:220
 msgid "Avg Utilization"
 msgstr "Средняя загрузка"
 
-#: hrms/hr/report/employee_hours_utilization_based_on_timesheet/employee_hours_utilization_based_on_timesheet.py:224
+#: hrms/hr/report/employee_hours_utilization_based_on_timesheet/employee_hours_utilization_based_on_timesheet.py:226
 msgid "Avg Utilization (Billed Only)"
 msgstr "Средняя загрузка (только оплачиваемая)"
 
@@ -1659,7 +1659,7 @@ msgstr "Льготы"
 msgid "Bill Amount"
 msgstr "Сумма счета"
 
-#: hrms/hr/report/employee_hours_utilization_based_on_timesheet/employee_hours_utilization_based_on_timesheet.py:249
+#: hrms/hr/report/employee_hours_utilization_based_on_timesheet/employee_hours_utilization_based_on_timesheet.py:251
 msgid "Billed Hours"
 msgstr "Оплаченные часы"
 
@@ -1772,7 +1772,7 @@ msgstr "По умолчанию итоговый счет рассчитывае
 msgid "CTC"
 msgstr "СТС"
 
-#: hrms/payroll/report/employee_ctc_break_up/employee_ctc_break_up.py:61
+#: hrms/payroll/report/employee_ctc_break_up/employee_ctc_break_up.py:62
 msgid "CTC Missing for Employee"
 msgstr ""
 
@@ -1899,15 +1899,15 @@ msgstr "Неофициальный отпуск"
 msgid "Cause of Grievance"
 msgstr "Причина жалобы"
 
-#: hrms/hr/doctype/attendance_request/attendance_request.py:192
+#: hrms/hr/doctype/attendance_request/attendance_request.py:194
 msgid "Changed the Status for Other Half from {0} to {1} via Attendance Request as the status is Half Day"
 msgstr ""
 
-#: hrms/hr/doctype/attendance_request/attendance_request.py:171
+#: hrms/hr/doctype/attendance_request/attendance_request.py:173
 msgid "Changed the status from {0} to {1} and Status for Other Half to {2} via Attendance Request"
 msgstr "Изменён статус с {0} на {1} и статус для второй половины на {2} через запрос на присутствие"
 
-#: hrms/hr/doctype/attendance_request/attendance_request.py:175
+#: hrms/hr/doctype/attendance_request/attendance_request.py:177
 msgid "Changed the status from {0} to {1} via Attendance Request"
 msgstr "Изменен статус с {0} на {1} через запрос на присутствие"
 
@@ -2058,7 +2058,7 @@ msgstr "Закрывается на:"
 msgid "Closing Notes"
 msgstr "Закрытые заметки"
 
-#: frontend/src/views/Profile.vue:177
+#: frontend/src/views/Profile.vue:178
 msgid "Company Information"
 msgstr "Информация о компании"
 
@@ -2348,6 +2348,10 @@ msgstr "Текущее значение одометра "
 #: hrms/hr/doctype/staffing_plan_detail/staffing_plan_detail.json
 msgid "Current Openings"
 msgstr "Актуальные вакансии"
+
+#: frontend/src/views/ChangePassword.vue:22
+msgid "Current Password"
+msgstr ""
 
 #. Label of the current_payroll_period (Link) field in DocType 'Salary Slip'
 #: hrms/payroll/doctype/salary_slip/salary_slip.json
@@ -2658,7 +2662,7 @@ msgstr "Отключите {0} для компонента {1}, чтобы пр�
 msgid "Disable {0} or {1} to proceed."
 msgstr "Отключите {0} или {1} чтобы продолжить."
 
-#: frontend/src/views/AppSettings.vue:40
+#: frontend/src/views/AppSettings.vue:65
 msgid "Disabling Push Notifications..."
 msgstr "Отключение push-уведомлений..."
 
@@ -3012,7 +3016,7 @@ msgstr "Центр затрат сотрудников"
 #. Other Income'
 #. Label of the section_break_24 (Section Break) field in DocType 'Payroll
 #. Entry'
-#: frontend/src/views/Profile.vue:165
+#: frontend/src/views/Profile.vue:166
 #: hrms/hr/doctype/employee_onboarding/employee_onboarding.json
 #: hrms/hr/doctype/employee_performance_feedback/employee_performance_feedback.json
 #: hrms/hr/doctype/exit_interview/exit_interview.json
@@ -3413,11 +3417,11 @@ msgstr "Сотрудник был отмечен как отсутствующи
 msgid "Employee was marked Absent for other half due to missing Employee Checkins."
 msgstr "Сотрудник был отмечен отсутствующим на второй половине дня из-за отсутствующих отметок о входе/выходе."
 
-#: hrms/hr/doctype/overtime_slip/overtime_slip.py:480
+#: hrms/hr/doctype/overtime_slip/overtime_slip.py:479
 msgid "Employee {0} : {1}"
 msgstr "Сотрудник {0} : {1}"
 
-#: hrms/hr/doctype/attendance_request/attendance_request.py:133
+#: hrms/hr/doctype/attendance_request/attendance_request.py:135
 msgid "Employee {0} already has an Attendance Request {1} that overlaps with this period"
 msgstr "У сотрудника {0} уже есть запрос на посещаемость {1}, который пересекается с этим периодом"
 
@@ -3558,7 +3562,7 @@ msgstr "Включить раннюю отметку выхода"
 msgid "Enable Late Entry Marking"
 msgstr "Включить отметку о позднем входе"
 
-#: frontend/src/views/AppSettings.vue:25
+#: frontend/src/views/AppSettings.vue:50
 msgid "Enable Push Notifications"
 msgstr "Включить push-уведомления"
 
@@ -3580,7 +3584,7 @@ msgstr "Включите этот параметр, чтобы использо�
 msgid "Enabled only for Employee Benefit components from Salary Structure Assignment"
 msgstr "Доступно только для компонентов пособий сотрудникам из назначения структуры заработной платы"
 
-#: frontend/src/views/AppSettings.vue:40
+#: frontend/src/views/AppSettings.vue:65
 msgid "Enabling Push Notifications..."
 msgstr "Включение Push-уведомлений..."
 
@@ -3653,6 +3657,10 @@ msgstr "Введите количество дней отпуска, котор�
 #: hrms/payroll/doctype/salary_structure/salary_structure.json
 msgid "Enter yearly benefit amounts"
 msgstr "Введите суммы годового пособия"
+
+#: frontend/src/views/ForgotPassword.vue:22
+msgid "Enter your email address and we'll send you a link to reset your password."
+msgstr ""
 
 #: frontend/src/components/FormField.vue:40
 #: frontend/src/components/FormField.vue:52
@@ -4094,9 +4102,13 @@ msgstr "Не удалось создать/отправить {0} для сот�
 msgid "Failed to delete defaults for country {0}."
 msgstr "Не удалось удалить настройки по умолчанию для страны {0}."
 
-#: hrms/api/__init__.py:784
+#: hrms/api/__init__.py:796
 msgid "Failed to download PDF: {0}"
 msgstr "Не удалось загрузить PDF: {0}"
+
+#: frontend/src/views/ForgotPassword.vue:83
+msgid "Failed to send reset link"
+msgstr ""
 
 #: hrms/hr/doctype/interview/interview.py:146
 msgid "Failed to send the Interview Reschedule notification. Please configure your email account."
@@ -4109,6 +4121,10 @@ msgstr "Не удалось установить значения по умол�
 #: hrms/hr/doctype/leave_policy_assignment/leave_policy_assignment.py:489
 msgid "Failed to submit some leave policy assignments:"
 msgstr "Не удалось отправить некоторые задания по политике отпусков:"
+
+#: frontend/src/views/ChangePassword.vue:94
+msgid "Failed to update password"
+msgstr "Не удалось обновить пароль"
 
 #: hrms/hr/doctype/interview/interview.py:239
 msgid "Failed to update the Job Applicant status"
@@ -4364,7 +4380,7 @@ msgstr "Для дня взятого отпуска, если вы все еще
 msgid "Formula"
 msgstr "Формула"
 
-#: hrms/payroll/report/employee_ctc_break_up/employee_ctc_break_up.py:227
+#: hrms/payroll/report/employee_ctc_break_up/employee_ctc_break_up.py:229
 msgid "Formula/Amount"
 msgstr ""
 
@@ -4562,7 +4578,7 @@ msgstr "Без глютена"
 msgid "Go to Login"
 msgstr "Перейти к входу"
 
-#: frontend/src/views/Login.vue:72
+#: frontend/src/views/Login.vue:29
 msgid "Go to Reset Password page"
 msgstr "Перейти на страницу сброса пароля"
 
@@ -4900,15 +4916,15 @@ msgstr "Почасовая ставка (валюта компании)"
 msgid "Hourly Rate"
 msgstr "Почасовая ставка"
 
-#: hrms/regional/india/utils.py:184
+#: hrms/regional/india/utils.py:183
 msgid "House rent paid days overlapping with {0}"
 msgstr "Дни оплаты аренды жилья пересекаются с {0}"
 
-#: hrms/regional/india/utils.py:162
+#: hrms/regional/india/utils.py:161
 msgid "House rented dates required for exemption calculation"
 msgstr "Даты аренды жилья необходимы для расчета вычета"
 
-#: hrms/regional/india/utils.py:165
+#: hrms/regional/india/utils.py:164
 msgid "House rented dates should be atleast 15 days apart"
 msgstr "Даты аренды жилья должны отличаться как минимум на 15 дней"
 
@@ -6417,7 +6433,7 @@ msgstr "Местоположение/ID устройства"
 msgid "Lodging Required"
 msgstr "Требуется проживание"
 
-#: frontend/src/views/Profile.vue:107
+#: frontend/src/views/Profile.vue:106
 msgid "Log Out"
 msgstr "Выйти"
 
@@ -6435,7 +6451,7 @@ msgstr "Для регистраций, попадающих на смену, т�
 msgid "Login Failed"
 msgstr "Ошибка входа"
 
-#: frontend/src/views/Login.vue:8
+#: frontend/src/views/Login.vue:38
 msgid "Login to Frappe HR"
 msgstr "Войти в Frappe HR"
 
@@ -6471,6 +6487,10 @@ msgstr "Заявление на получение обязательного п
 #: hrms/public/js/utils/index.js:37
 msgid "Mandatory fields required for this action:"
 msgstr "Обязательные поля, необходимые для этого действия:"
+
+#: hrms/payroll/doctype/payroll_entry/payroll_entry.js:213
+msgid "Mandatory fields required in {0}"
+msgstr "Обязательные поля в {0}"
 
 #. Option for the 'KRA Evaluation Method' (Select) field in DocType 'Appraisal
 #. Cycle'
@@ -6740,7 +6760,7 @@ msgstr "Отсутствующие компоненты заработной п�
 msgid "Missing Tax Slab"
 msgstr "Отсутствует налоговая плита"
 
-#: hrms/payroll/report/employee_ctc_break_up/employee_ctc_break_up.py:311
+#: hrms/payroll/report/employee_ctc_break_up/employee_ctc_break_up.py:313
 msgid "Missing value for filters"
 msgstr ""
 
@@ -6885,6 +6905,10 @@ msgstr "Выделены новые листы"
 #: hrms/hr/doctype/leave_control_panel/leave_control_panel.json
 msgid "New Leaves Allocated (In Days)"
 msgstr "Выделено новых отпусков (в днях)"
+
+#: frontend/src/views/ChangePassword.vue:112
+msgid "New passwords do not match"
+msgstr ""
 
 #. Description of the 'Create Shifts After' (Date) field in DocType 'Shift
 #. Schedule Assignment'
@@ -7061,7 +7085,7 @@ msgstr "Не найдена запись об отпуске для сотруд
 msgid "No leaves have been allocated."
 msgstr "Отпуска не выделены."
 
-#: frontend/src/views/Login.vue:53
+#: frontend/src/views/Login.vue:91
 msgid "No login methods are available. Please contact your administrator."
 msgstr ""
 
@@ -7117,7 +7141,7 @@ msgstr "Не дневник"
 msgid "Non Taxable Earnings"
 msgstr "Необлагаемые налогом доходы"
 
-#: hrms/hr/report/employee_hours_utilization_based_on_timesheet/employee_hours_utilization_based_on_timesheet.py:250
+#: hrms/hr/report/employee_hours_utilization_based_on_timesheet/employee_hours_utilization_based_on_timesheet.py:252
 msgid "Non-Billed Hours"
 msgstr "Неоплачиваемые часы"
 
@@ -7204,11 +7228,11 @@ msgstr "Количество циклов удержания"
 msgid "Number of leaves eligible for encashment based on leave type settings"
 msgstr "Количество отпусков, подлежащих инкассации, в зависимости от настроек типа отпуска"
 
-#: frontend/src/views/Login.vue:88
+#: frontend/src/views/Login.vue:105
 msgid "OTP Code"
 msgstr "OTP-код"
 
-#: frontend/src/views/Login.vue:79
+#: frontend/src/views/Login.vue:96
 msgid "OTP Verification"
 msgstr "Проверка одноразовых паролей"
 
@@ -7400,7 +7424,7 @@ msgstr "Избыточное распределение"
 msgid "Overall Average Rating"
 msgstr "Общий средний рейтинг"
 
-#: hrms/hr/doctype/attendance_request/attendance_request.py:138
+#: hrms/hr/doctype/attendance_request/attendance_request.py:140
 msgid "Overlapping Attendance Request"
 msgstr "Запрос на перекрывающееся присутствие"
 
@@ -7466,11 +7490,11 @@ msgstr "Компонент заработной платы за сверхуро
 msgid "Overtime Slip"
 msgstr "Скидка за сверхурочную работу"
 
-#: hrms/hr/doctype/overtime_slip/overtime_slip.py:481
+#: hrms/hr/doctype/overtime_slip/overtime_slip.py:480
 msgid "Overtime Slip Creation Error for {0}"
 msgstr "Ошибка создания пропуска сверхурочной работы для {0}"
 
-#: hrms/hr/doctype/overtime_slip/overtime_slip.py:492
+#: hrms/hr/doctype/overtime_slip/overtime_slip.py:491
 msgid "Overtime Slip Creation Failed"
 msgstr "Не удалось создать квитанцию об оплате сверхурочных часов"
 
@@ -7479,19 +7503,19 @@ msgstr "Не удалось создать квитанцию об оплате 
 msgid "Overtime Slip Step"
 msgstr "Сверхурочный шаг"
 
-#: hrms/hr/doctype/overtime_slip/overtime_slip.py:515
+#: hrms/hr/doctype/overtime_slip/overtime_slip.py:514
 msgid "Overtime Slip Submission Error for {0}"
 msgstr "Ошибка подачи квитанции о сверхурочной работе для {0}"
 
-#: hrms/hr/doctype/overtime_slip/overtime_slip.py:526
+#: hrms/hr/doctype/overtime_slip/overtime_slip.py:525
 msgid "Overtime Slip Submission Failed"
 msgstr "Не удалось подать квитанцию об оплате сверхурочных часов"
 
-#: hrms/hr/doctype/overtime_slip/overtime_slip.py:521
+#: hrms/hr/doctype/overtime_slip/overtime_slip.py:520
 msgid "Overtime Slip Submitted"
 msgstr "Подана заявка на сверхурочную работу"
 
-#: hrms/hr/doctype/overtime_slip/overtime_slip.py:485
+#: hrms/hr/doctype/overtime_slip/overtime_slip.py:484
 msgid "Overtime Slip created for {0} employee(s)"
 msgstr "Создан талон сверхурочной работы для {0} сотрудников"
 
@@ -7507,11 +7531,11 @@ msgstr "Подача заявления на сверхурочную работ
 msgid "Overtime Slip:{0} has been created between {1} and {2}"
 msgstr "Пробел сверхурочного времени:{0} был создан между {1} и {2}"
 
-#: hrms/hr/doctype/overtime_slip/overtime_slip.py:487
+#: hrms/hr/doctype/overtime_slip/overtime_slip.py:486
 msgid "Overtime Slips Created"
 msgstr "Создано квитанций о сверхурочной работе"
 
-#: hrms/hr/doctype/overtime_slip/overtime_slip.py:519
+#: hrms/hr/doctype/overtime_slip/overtime_slip.py:518
 msgid "Overtime Slips submitted for {0} employee(s)"
 msgstr "Квитанции о сверхурочной работе предоставлены для {0} сотрудников"
 
@@ -7611,6 +7635,10 @@ msgstr "Политика паролей не может содержать пр�
 #: hrms/payroll/doctype/payroll_settings/payroll_settings.py:50
 msgid "Password policy for Salary Slips is not set"
 msgstr "Политика паролей для зарплатных листков не установлена."
+
+#: frontend/src/views/ForgotPassword.vue:74
+msgid "Password reset link has been sent to your email."
+msgstr ""
 
 #. Label of the pay_details_tab (Tab Break) field in DocType 'Job Opening'
 #. Label of the pay_details_section (Section Break) field in DocType 'Job
@@ -7890,7 +7918,7 @@ msgstr "Ожидаемые анкеты"
 msgid "Percent Deduction"
 msgstr "Процентный вычет"
 
-#: hrms/payroll/report/employee_ctc_break_up/employee_ctc_break_up.py:250
+#: hrms/payroll/report/employee_ctc_break_up/employee_ctc_break_up.py:252
 msgid "Percent of CTC (%)"
 msgstr ""
 
@@ -7948,9 +7976,21 @@ msgstr "Пожалуйста, удалите сотрудника {0}, чтоб�
 msgid "Please enable default incoming account before creating Daily Work Summary Group"
 msgstr "Перед созданием группы ежедневных сводок работ включите входящую учетную запись по умолчанию."
 
+#: frontend/src/views/ForgotPassword.vue:109
+msgid "Please enter a valid email address"
+msgstr "Пожалуйста, введите действительный адрес электронной почты"
+
 #: hrms/hr/doctype/staffing_plan/staffing_plan.js:97
 msgid "Please enter the designation"
 msgstr "Пожалуйста, введите обозначение"
+
+#: frontend/src/views/ForgotPassword.vue:104
+msgid "Please enter your email address"
+msgstr ""
+
+#: frontend/src/views/ChangePassword.vue:107
+msgid "Please fill all fields"
+msgstr ""
 
 #: hrms/hr/doctype/overtime_slip/overtime_slip.js:11
 msgid "Please fill in Employee, Posting Date, and Company before fetching overtime details."
@@ -8104,7 +8144,7 @@ msgstr "Пожалуйста, установите диапазон дат ме�
 msgid "Please set account in Salary Component {0}"
 msgstr "Пожалуйста, установите счет в компоненте зарплаты {0}"
 
-#: hrms/payroll/report/employee_ctc_break_up/employee_ctc_break_up.py:53
+#: hrms/payroll/report/employee_ctc_break_up/employee_ctc_break_up.py:54
 msgid "Please set cost to company(CTC) for employee {0} in the {1}"
 msgstr ""
 
@@ -8161,7 +8201,7 @@ msgstr "Пожалуйста, установите {0} для сотрудник
 msgid "Please set {0} for the Employee: {1}"
 msgstr "Пожалуйста, установите {0} для Сотрудника: {1}"
 
-#: hrms/payroll/report/employee_ctc_break_up/employee_ctc_break_up.py:310
+#: hrms/payroll/report/employee_ctc_break_up/employee_ctc_break_up.py:312
 msgid "Please set {0} to get CTC report"
 msgstr ""
 
@@ -8406,15 +8446,15 @@ msgstr "Цель и сумма"
 msgid "Purpose of Travel"
 msgstr "Цель поездки"
 
-#: frontend/src/views/AppSettings.vue:128
+#: frontend/src/views/AppSettings.vue:152
 msgid "Push Notification permission denied"
 msgstr "Отказано в разрешении на push-уведомление"
 
-#: frontend/src/views/AppSettings.vue:96
+#: frontend/src/views/AppSettings.vue:121
 msgid "Push notifications disabled"
 msgstr "Push-уведомления отключены"
 
-#: frontend/src/views/AppSettings.vue:80
+#: frontend/src/views/AppSettings.vue:106
 msgid "Push notifications have been disabled on your site"
 msgstr "На вашем сайте отключены push-уведомления"
 
@@ -9012,7 +9052,7 @@ msgstr "Информация о зарплате"
 msgid "Salary Expectation"
 msgstr "Ожидаемая зарплата"
 
-#: frontend/src/views/Profile.vue:200
+#: frontend/src/views/Profile.vue:201
 msgid "Salary Information"
 msgstr "Информация о зарплате"
 
@@ -9186,7 +9226,7 @@ msgstr "Структура заработной платы"
 #. Label of a Workspace Sidebar Item
 #: hrms/payroll/doctype/income_tax_slab/income_tax_slab.js:8
 #: hrms/payroll/doctype/salary_structure_assignment/salary_structure_assignment.json
-#: hrms/payroll/report/employee_ctc_break_up/employee_ctc_break_up.js:34
+#: hrms/payroll/report/employee_ctc_break_up/employee_ctc_break_up.js:51
 #: hrms/payroll/workspace/payroll/payroll.json
 #: hrms/workspace_sidebar/payroll.json
 msgid "Salary Structure Assignment"
@@ -9499,6 +9539,10 @@ msgstr "Отправить напоминание о собеседовании"
 #: hrms/hr/doctype/hr_settings/hr_settings.json
 msgid "Send Leave Notification"
 msgstr "Отправить уведомление об отпуске"
+
+#: frontend/src/views/ForgotPassword.vue:45
+msgid "Send Reset Link"
+msgstr ""
 
 #. Label of the sender_copy (Link) field in DocType 'Payroll Settings'
 #: hrms/payroll/doctype/payroll_settings/payroll_settings.json
@@ -10747,7 +10791,7 @@ msgstr "Полное погашение кредита"
 msgid "Total Net Pay"
 msgstr "Общая чистая заработная плата"
 
-#: hrms/hr/report/employee_hours_utilization_based_on_timesheet/employee_hours_utilization_based_on_timesheet.py:228
+#: hrms/hr/report/employee_hours_utilization_based_on_timesheet/employee_hours_utilization_based_on_timesheet.py:230
 msgid "Total Non-Billed Hours"
 msgstr "Общее количество неоплаченных часов"
 
@@ -11153,7 +11197,7 @@ msgstr "Неурегулированные транзакции"
 msgid "Unsubmitted Appraisals"
 msgstr "Неотправленные оценки"
 
-#: hrms/hr/report/employee_hours_utilization_based_on_timesheet/employee_hours_utilization_based_on_timesheet.py:251
+#: hrms/hr/report/employee_hours_utilization_based_on_timesheet/employee_hours_utilization_based_on_timesheet.py:253
 msgid "Untracked Hours"
 msgstr "Неотслеживаемые часы"
 
@@ -11206,11 +11250,11 @@ msgstr "Обновить статус"
 msgid "Update Tax"
 msgstr "Обновление налога"
 
-#: hrms/hr/doctype/attendance_request/attendance_request.py:198
+#: hrms/hr/doctype/attendance_request/attendance_request.py:200
 msgid "Updated Status for Other Half from {0} to {1} for date {2} in the attendance record {3}"
 msgstr ""
 
-#: hrms/hr/doctype/attendance_request/attendance_request.py:181
+#: hrms/hr/doctype/attendance_request/attendance_request.py:183
 msgid "Updated status from {0} to {1} for date {2} in the attendance record {3}"
 msgstr "Обновлен статус с {0} на {1} для даты {2} в записи посещаемости {3}"
 
@@ -11589,7 +11633,7 @@ msgstr "Вы можете запланировать не более {0} вак�
 msgid "You can only submit Leave Encashment for a valid encashment amount"
 msgstr "Вы можете подать заявку на получение Leave Encashment только на допустимую сумму инкассации"
 
-#: hrms/api/__init__.py:741
+#: hrms/api/__init__.py:751
 msgid "You can only upload JPG, PNG, PDF, TXT or Microsoft documents."
 msgstr "Вы можете загружать только документы в формате JPG, PNG, PDF, TXT или Microsoft."
 
@@ -11646,7 +11690,11 @@ msgstr "Вы присутствовали только полдня в {}. Не 
 msgid "Your Interview session is rescheduled from {0} {1} - {2} to {3} {4} - {5}"
 msgstr "Ваша сессия собеседования перенесена с {0} {1} - {2} на {3} {4} - {5}"
 
-#: frontend/src/views/Login.vue:63
+#: frontend/src/views/ChangePassword.vue:85
+msgid "Your password has been updated."
+msgstr ""
+
+#: frontend/src/views/Login.vue:22
 msgid "Your password has expired. Please reset your password to continue"
 msgstr "Срок действия вашего пароля истёк. Пожалуйста, сбросьте пароль, чтобы продолжить"
 
@@ -11682,7 +11730,7 @@ msgstr "созданный"
 msgid "here"
 msgstr "здесь"
 
-#: frontend/src/views/Login.vue:16
+#: frontend/src/views/Login.vue:46
 msgid "johndoe@mail.com"
 msgstr "johndoe@mail.com"
 
@@ -11745,7 +11793,7 @@ msgstr "{0} & {1}"
 msgid "{0} & {1} more"
 msgstr "{0} и {1} больше"
 
-#: hrms/hr/doctype/overtime_slip/overtime_slip.py:513
+#: hrms/hr/doctype/overtime_slip/overtime_slip.py:512
 msgid "{0} : {1}"
 msgstr "{0} : {1}"
 
