@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: frappe\n"
 "Report-Msgid-Bugs-To: contact@frappe.io\n"
-"POT-Creation-Date: 2026-05-31 10:16+0000\n"
-"PO-Revision-Date: 2026-06-01 14:00\n"
+"POT-Creation-Date: 2026-06-07 10:18+0000\n"
+"PO-Revision-Date: 2026-06-08 15:41\n"
 "Last-Translator: contact@frappe.io\n"
 "Language-Team: Esperanto\n"
 "MIME-Version: 1.0\n"
@@ -1380,8 +1380,8 @@ msgstr "crwdns141042:0crwdne141042:0"
 msgid "Attendance To Date"
 msgstr "crwdns141044:0crwdne141044:0"
 
-#: hrms/hr/doctype/attendance_request/attendance_request.py:187
-#: hrms/hr/doctype/attendance_request/attendance_request.py:206
+#: hrms/hr/doctype/attendance_request/attendance_request.py:189
+#: hrms/hr/doctype/attendance_request/attendance_request.py:208
 msgid "Attendance Updated"
 msgstr "crwdns105366:0crwdne105366:0"
 
@@ -1433,11 +1433,11 @@ msgstr "crwdns105386:0crwdne105386:0"
 msgid "Attendance marked successfully."
 msgstr "crwdns199170:0crwdne199170:0"
 
-#: hrms/hr/doctype/attendance_request/attendance_request.py:225
+#: hrms/hr/doctype/attendance_request/attendance_request.py:227
 msgid "Attendance not submitted for {0} as it is a Holiday."
 msgstr "crwdns105388:0{0}crwdne105388:0"
 
-#: hrms/hr/doctype/attendance_request/attendance_request.py:234
+#: hrms/hr/doctype/attendance_request/attendance_request.py:236
 msgid "Attendance not submitted for {0} as {1} is on leave."
 msgstr "crwdns105390:0{0}crwdnd105390:0{1}crwdne105390:0"
 
@@ -1532,11 +1532,11 @@ msgstr "crwdns141074:0crwdne141074:0"
 msgid "Avg Feedback Score"
 msgstr "crwdns105416:0crwdne105416:0"
 
-#: hrms/hr/report/employee_hours_utilization_based_on_timesheet/employee_hours_utilization_based_on_timesheet.py:218
+#: hrms/hr/report/employee_hours_utilization_based_on_timesheet/employee_hours_utilization_based_on_timesheet.py:220
 msgid "Avg Utilization"
 msgstr "crwdns105418:0crwdne105418:0"
 
-#: hrms/hr/report/employee_hours_utilization_based_on_timesheet/employee_hours_utilization_based_on_timesheet.py:224
+#: hrms/hr/report/employee_hours_utilization_based_on_timesheet/employee_hours_utilization_based_on_timesheet.py:226
 msgid "Avg Utilization (Billed Only)"
 msgstr "crwdns105420:0crwdne105420:0"
 
@@ -1634,7 +1634,7 @@ msgstr "crwdns105458:0crwdne105458:0"
 msgid "Bill Amount"
 msgstr "crwdns105464:0crwdne105464:0"
 
-#: hrms/hr/report/employee_hours_utilization_based_on_timesheet/employee_hours_utilization_based_on_timesheet.py:249
+#: hrms/hr/report/employee_hours_utilization_based_on_timesheet/employee_hours_utilization_based_on_timesheet.py:251
 msgid "Billed Hours"
 msgstr "crwdns105466:0crwdne105466:0"
 
@@ -1747,7 +1747,7 @@ msgstr "crwdns141114:0crwdne141114:0"
 msgid "CTC"
 msgstr "crwdns105520:0crwdne105520:0"
 
-#: hrms/payroll/report/employee_ctc_break_up/employee_ctc_break_up.py:61
+#: hrms/payroll/report/employee_ctc_break_up/employee_ctc_break_up.py:62
 msgid "CTC Missing for Employee"
 msgstr "crwdns201899:0crwdne201899:0"
 
@@ -1874,15 +1874,15 @@ msgstr "crwdns105582:0crwdne105582:0"
 msgid "Cause of Grievance"
 msgstr "crwdns141130:0crwdne141130:0"
 
-#: hrms/hr/doctype/attendance_request/attendance_request.py:192
+#: hrms/hr/doctype/attendance_request/attendance_request.py:194
 msgid "Changed the Status for Other Half from {0} to {1} via Attendance Request as the status is Half Day"
 msgstr "crwdns202003:0{0}crwdnd202003:0{1}crwdne202003:0"
 
-#: hrms/hr/doctype/attendance_request/attendance_request.py:171
+#: hrms/hr/doctype/attendance_request/attendance_request.py:173
 msgid "Changed the status from {0} to {1} and Status for Other Half to {2} via Attendance Request"
 msgstr "crwdns159474:0{0}crwdnd159474:0{1}crwdnd159474:0{2}crwdne159474:0"
 
-#: hrms/hr/doctype/attendance_request/attendance_request.py:175
+#: hrms/hr/doctype/attendance_request/attendance_request.py:177
 msgid "Changed the status from {0} to {1} via Attendance Request"
 msgstr "crwdns159476:0{0}crwdnd159476:0{1}crwdne159476:0"
 
@@ -2030,7 +2030,7 @@ msgstr "crwdns105642:0crwdne105642:0"
 msgid "Closing Notes"
 msgstr "crwdns141156:0crwdne141156:0"
 
-#: frontend/src/views/Profile.vue:177
+#: frontend/src/views/Profile.vue:178
 msgid "Company Information"
 msgstr "crwdns151176:0crwdne151176:0"
 
@@ -2320,6 +2320,10 @@ msgstr "crwdns141244:0crwdne141244:0"
 #: hrms/hr/doctype/staffing_plan_detail/staffing_plan_detail.json
 msgid "Current Openings"
 msgstr "crwdns141246:0crwdne141246:0"
+
+#: frontend/src/views/ChangePassword.vue:22
+msgid "Current Password"
+msgstr "crwdns202387:0crwdne202387:0"
 
 #. Label of the current_payroll_period (Link) field in DocType 'Salary Slip'
 #: hrms/payroll/doctype/salary_slip/salary_slip.json
@@ -2630,7 +2634,7 @@ msgstr "crwdns106376:0{0}crwdnd106376:0{1}crwdne106376:0"
 msgid "Disable {0} or {1} to proceed."
 msgstr "crwdns106378:0{0}crwdnd106378:0{1}crwdne106378:0"
 
-#: frontend/src/views/AppSettings.vue:40
+#: frontend/src/views/AppSettings.vue:65
 msgid "Disabling Push Notifications..."
 msgstr "crwdns151190:0crwdne151190:0"
 
@@ -2984,7 +2988,7 @@ msgstr "crwdns106618:0crwdne106618:0"
 #. Other Income'
 #. Label of the section_break_24 (Section Break) field in DocType 'Payroll
 #. Entry'
-#: frontend/src/views/Profile.vue:165
+#: frontend/src/views/Profile.vue:166
 #: hrms/hr/doctype/employee_onboarding/employee_onboarding.json
 #: hrms/hr/doctype/employee_performance_feedback/employee_performance_feedback.json
 #: hrms/hr/doctype/exit_interview/exit_interview.json
@@ -3385,11 +3389,11 @@ msgstr "crwdns106884:0crwdne106884:0"
 msgid "Employee was marked Absent for other half due to missing Employee Checkins."
 msgstr "crwdns155412:0crwdne155412:0"
 
-#: hrms/hr/doctype/overtime_slip/overtime_slip.py:480
+#: hrms/hr/doctype/overtime_slip/overtime_slip.py:479
 msgid "Employee {0} : {1}"
 msgstr "crwdns159516:0{0}crwdnd159516:0{1}crwdne159516:0"
 
-#: hrms/hr/doctype/attendance_request/attendance_request.py:133
+#: hrms/hr/doctype/attendance_request/attendance_request.py:135
 msgid "Employee {0} already has an Attendance Request {1} that overlaps with this period"
 msgstr "crwdns106886:0{0}crwdnd106886:0{1}crwdne106886:0"
 
@@ -3530,7 +3534,7 @@ msgstr "crwdns141402:0crwdne141402:0"
 msgid "Enable Late Entry Marking"
 msgstr "crwdns141404:0crwdne141404:0"
 
-#: frontend/src/views/AppSettings.vue:25
+#: frontend/src/views/AppSettings.vue:50
 msgid "Enable Push Notifications"
 msgstr "crwdns151206:0crwdne151206:0"
 
@@ -3552,7 +3556,7 @@ msgstr "crwdns159522:0crwdne159522:0"
 msgid "Enabled only for Employee Benefit components from Salary Structure Assignment"
 msgstr "crwdns159524:0crwdne159524:0"
 
-#: frontend/src/views/AppSettings.vue:40
+#: frontend/src/views/AppSettings.vue:65
 msgid "Enabling Push Notifications..."
 msgstr "crwdns151208:0crwdne151208:0"
 
@@ -3625,6 +3629,10 @@ msgstr "crwdns107006:0crwdne107006:0"
 #: hrms/payroll/doctype/salary_structure/salary_structure.json
 msgid "Enter yearly benefit amounts"
 msgstr "crwdns159530:0crwdne159530:0"
+
+#: frontend/src/views/ForgotPassword.vue:22
+msgid "Enter your email address and we'll send you a link to reset your password."
+msgstr "crwdns202389:0crwdne202389:0"
 
 #: frontend/src/components/FormField.vue:40
 #: frontend/src/components/FormField.vue:52
@@ -4066,9 +4074,13 @@ msgstr "crwdns107188:0{0}crwdne107188:0"
 msgid "Failed to delete defaults for country {0}."
 msgstr "crwdns141486:0{0}crwdne141486:0"
 
-#: hrms/api/__init__.py:784
+#: hrms/api/__init__.py:796
 msgid "Failed to download PDF: {0}"
 msgstr "crwdns159538:0{0}crwdne159538:0"
+
+#: frontend/src/views/ForgotPassword.vue:83
+msgid "Failed to send reset link"
+msgstr "crwdns202391:0crwdne202391:0"
 
 #: hrms/hr/doctype/interview/interview.py:146
 msgid "Failed to send the Interview Reschedule notification. Please configure your email account."
@@ -4081,6 +4093,10 @@ msgstr "crwdns141488:0{0}crwdne141488:0"
 #: hrms/hr/doctype/leave_policy_assignment/leave_policy_assignment.py:489
 msgid "Failed to submit some leave policy assignments:"
 msgstr "crwdns107198:0crwdne107198:0"
+
+#: frontend/src/views/ChangePassword.vue:94
+msgid "Failed to update password"
+msgstr "crwdns202393:0crwdne202393:0"
 
 #: hrms/hr/doctype/interview/interview.py:239
 msgid "Failed to update the Job Applicant status"
@@ -4336,7 +4352,7 @@ msgstr "crwdns141534:0crwdne141534:0"
 msgid "Formula"
 msgstr "crwdns141536:0crwdne141536:0"
 
-#: hrms/payroll/report/employee_ctc_break_up/employee_ctc_break_up.py:227
+#: hrms/payroll/report/employee_ctc_break_up/employee_ctc_break_up.py:229
 msgid "Formula/Amount"
 msgstr "crwdns201903:0crwdne201903:0"
 
@@ -4534,7 +4550,7 @@ msgstr "crwdns141576:0crwdne141576:0"
 msgid "Go to Login"
 msgstr "crwdns151234:0crwdne151234:0"
 
-#: frontend/src/views/Login.vue:72
+#: frontend/src/views/Login.vue:29
 msgid "Go to Reset Password page"
 msgstr "crwdns151236:0crwdne151236:0"
 
@@ -4872,15 +4888,15 @@ msgstr "crwdns141624:0crwdne141624:0"
 msgid "Hourly Rate"
 msgstr "crwdns159550:0crwdne159550:0"
 
-#: hrms/regional/india/utils.py:184
+#: hrms/regional/india/utils.py:183
 msgid "House rent paid days overlapping with {0}"
 msgstr "crwdns107616:0{0}crwdne107616:0"
 
-#: hrms/regional/india/utils.py:162
+#: hrms/regional/india/utils.py:161
 msgid "House rented dates required for exemption calculation"
 msgstr "crwdns107618:0crwdne107618:0"
 
-#: hrms/regional/india/utils.py:165
+#: hrms/regional/india/utils.py:164
 msgid "House rented dates should be atleast 15 days apart"
 msgstr "crwdns107620:0crwdne107620:0"
 
@@ -6389,7 +6405,7 @@ msgstr "crwdns141854:0crwdne141854:0"
 msgid "Lodging Required"
 msgstr "crwdns141856:0crwdne141856:0"
 
-#: frontend/src/views/Profile.vue:107
+#: frontend/src/views/Profile.vue:106
 msgid "Log Out"
 msgstr "crwdns151256:0crwdne151256:0"
 
@@ -6407,7 +6423,7 @@ msgstr "crwdns108288:0{0}crwdne108288:0"
 msgid "Login Failed"
 msgstr "crwdns151260:0crwdne151260:0"
 
-#: frontend/src/views/Login.vue:8
+#: frontend/src/views/Login.vue:38
 msgid "Login to Frappe HR"
 msgstr "crwdns151262:0crwdne151262:0"
 
@@ -6443,6 +6459,10 @@ msgstr "crwdns159580:0crwdne159580:0"
 #: hrms/public/js/utils/index.js:37
 msgid "Mandatory fields required for this action:"
 msgstr "crwdns151984:0crwdne151984:0"
+
+#: hrms/payroll/doctype/payroll_entry/payroll_entry.js:213
+msgid "Mandatory fields required in {0}"
+msgstr "crwdns202395:0{0}crwdne202395:0"
 
 #. Option for the 'KRA Evaluation Method' (Select) field in DocType 'Appraisal
 #. Cycle'
@@ -6712,7 +6732,7 @@ msgstr "crwdns159592:0crwdne159592:0"
 msgid "Missing Tax Slab"
 msgstr "crwdns141918:0crwdne141918:0"
 
-#: hrms/payroll/report/employee_ctc_break_up/employee_ctc_break_up.py:311
+#: hrms/payroll/report/employee_ctc_break_up/employee_ctc_break_up.py:313
 msgid "Missing value for filters"
 msgstr "crwdns201907:0crwdne201907:0"
 
@@ -6857,6 +6877,10 @@ msgstr "crwdns141948:0crwdne141948:0"
 #: hrms/hr/doctype/leave_control_panel/leave_control_panel.json
 msgid "New Leaves Allocated (In Days)"
 msgstr "crwdns141950:0crwdne141950:0"
+
+#: frontend/src/views/ChangePassword.vue:112
+msgid "New passwords do not match"
+msgstr "crwdns202397:0crwdne202397:0"
 
 #. Description of the 'Create Shifts After' (Date) field in DocType 'Shift
 #. Schedule Assignment'
@@ -7033,7 +7057,7 @@ msgstr "crwdns108558:0{0}crwdnd108558:0{1}crwdne108558:0"
 msgid "No leaves have been allocated."
 msgstr "crwdns141970:0crwdne141970:0"
 
-#: frontend/src/views/Login.vue:53
+#: frontend/src/views/Login.vue:91
 msgid "No login methods are available. Please contact your administrator."
 msgstr "crwdns194930:0crwdne194930:0"
 
@@ -7089,7 +7113,7 @@ msgstr "crwdns141976:0crwdne141976:0"
 msgid "Non Taxable Earnings"
 msgstr "crwdns141978:0crwdne141978:0"
 
-#: hrms/hr/report/employee_hours_utilization_based_on_timesheet/employee_hours_utilization_based_on_timesheet.py:250
+#: hrms/hr/report/employee_hours_utilization_based_on_timesheet/employee_hours_utilization_based_on_timesheet.py:252
 msgid "Non-Billed Hours"
 msgstr "crwdns108574:0crwdne108574:0"
 
@@ -7176,11 +7200,11 @@ msgstr "crwdns143272:0crwdne143272:0"
 msgid "Number of leaves eligible for encashment based on leave type settings"
 msgstr "crwdns142000:0crwdne142000:0"
 
-#: frontend/src/views/Login.vue:88
+#: frontend/src/views/Login.vue:105
 msgid "OTP Code"
 msgstr "crwdns154558:0crwdne154558:0"
 
-#: frontend/src/views/Login.vue:79
+#: frontend/src/views/Login.vue:96
 msgid "OTP Verification"
 msgstr "crwdns154560:0crwdne154560:0"
 
@@ -7372,7 +7396,7 @@ msgstr "crwdns108724:0crwdne108724:0"
 msgid "Overall Average Rating"
 msgstr "crwdns142038:0crwdne142038:0"
 
-#: hrms/hr/doctype/attendance_request/attendance_request.py:138
+#: hrms/hr/doctype/attendance_request/attendance_request.py:140
 msgid "Overlapping Attendance Request"
 msgstr "crwdns108726:0crwdne108726:0"
 
@@ -7438,11 +7462,11 @@ msgstr "crwdns159620:0crwdne159620:0"
 msgid "Overtime Slip"
 msgstr "crwdns159622:0crwdne159622:0"
 
-#: hrms/hr/doctype/overtime_slip/overtime_slip.py:481
+#: hrms/hr/doctype/overtime_slip/overtime_slip.py:480
 msgid "Overtime Slip Creation Error for {0}"
 msgstr "crwdns159624:0{0}crwdne159624:0"
 
-#: hrms/hr/doctype/overtime_slip/overtime_slip.py:492
+#: hrms/hr/doctype/overtime_slip/overtime_slip.py:491
 msgid "Overtime Slip Creation Failed"
 msgstr "crwdns159626:0crwdne159626:0"
 
@@ -7451,19 +7475,19 @@ msgstr "crwdns159626:0crwdne159626:0"
 msgid "Overtime Slip Step"
 msgstr "crwdns159628:0crwdne159628:0"
 
-#: hrms/hr/doctype/overtime_slip/overtime_slip.py:515
+#: hrms/hr/doctype/overtime_slip/overtime_slip.py:514
 msgid "Overtime Slip Submission Error for {0}"
 msgstr "crwdns159630:0{0}crwdne159630:0"
 
-#: hrms/hr/doctype/overtime_slip/overtime_slip.py:526
+#: hrms/hr/doctype/overtime_slip/overtime_slip.py:525
 msgid "Overtime Slip Submission Failed"
 msgstr "crwdns159632:0crwdne159632:0"
 
-#: hrms/hr/doctype/overtime_slip/overtime_slip.py:521
+#: hrms/hr/doctype/overtime_slip/overtime_slip.py:520
 msgid "Overtime Slip Submitted"
 msgstr "crwdns159634:0crwdne159634:0"
 
-#: hrms/hr/doctype/overtime_slip/overtime_slip.py:485
+#: hrms/hr/doctype/overtime_slip/overtime_slip.py:484
 msgid "Overtime Slip created for {0} employee(s)"
 msgstr "crwdns159636:0{0}crwdne159636:0"
 
@@ -7479,11 +7503,11 @@ msgstr "crwdns159640:0crwdne159640:0"
 msgid "Overtime Slip:{0} has been created between {1} and {2}"
 msgstr "crwdns159642:0{0}crwdnd159642:0{1}crwdnd159642:0{2}crwdne159642:0"
 
-#: hrms/hr/doctype/overtime_slip/overtime_slip.py:487
+#: hrms/hr/doctype/overtime_slip/overtime_slip.py:486
 msgid "Overtime Slips Created"
 msgstr "crwdns159644:0crwdne159644:0"
 
-#: hrms/hr/doctype/overtime_slip/overtime_slip.py:519
+#: hrms/hr/doctype/overtime_slip/overtime_slip.py:518
 msgid "Overtime Slips submitted for {0} employee(s)"
 msgstr "crwdns159646:0{0}crwdne159646:0"
 
@@ -7583,6 +7607,10 @@ msgstr "crwdns108790:0crwdne108790:0"
 #: hrms/payroll/doctype/payroll_settings/payroll_settings.py:50
 msgid "Password policy for Salary Slips is not set"
 msgstr "crwdns108792:0crwdne108792:0"
+
+#: frontend/src/views/ForgotPassword.vue:74
+msgid "Password reset link has been sent to your email."
+msgstr "crwdns202399:0crwdne202399:0"
 
 #. Label of the pay_details_tab (Tab Break) field in DocType 'Job Opening'
 #. Label of the pay_details_section (Section Break) field in DocType 'Job
@@ -7862,7 +7890,7 @@ msgstr "crwdns108922:0crwdne108922:0"
 msgid "Percent Deduction"
 msgstr "crwdns142100:0crwdne142100:0"
 
-#: hrms/payroll/report/employee_ctc_break_up/employee_ctc_break_up.py:250
+#: hrms/payroll/report/employee_ctc_break_up/employee_ctc_break_up.py:252
 msgid "Percent of CTC (%)"
 msgstr "crwdns201909:0crwdne201909:0"
 
@@ -7920,9 +7948,21 @@ msgstr "crwdns108952:0{0}crwdne108952:0"
 msgid "Please enable default incoming account before creating Daily Work Summary Group"
 msgstr "crwdns108954:0crwdne108954:0"
 
+#: frontend/src/views/ForgotPassword.vue:109
+msgid "Please enter a valid email address"
+msgstr "crwdns202401:0crwdne202401:0"
+
 #: hrms/hr/doctype/staffing_plan/staffing_plan.js:97
 msgid "Please enter the designation"
 msgstr "crwdns108956:0crwdne108956:0"
+
+#: frontend/src/views/ForgotPassword.vue:104
+msgid "Please enter your email address"
+msgstr "crwdns202403:0crwdne202403:0"
+
+#: frontend/src/views/ChangePassword.vue:107
+msgid "Please fill all fields"
+msgstr "crwdns202405:0crwdne202405:0"
 
 #: hrms/hr/doctype/overtime_slip/overtime_slip.js:11
 msgid "Please fill in Employee, Posting Date, and Company before fetching overtime details."
@@ -8076,7 +8116,7 @@ msgstr "crwdns160444:0crwdne160444:0"
 msgid "Please set account in Salary Component {0}"
 msgstr "crwdns109004:0{0}crwdne109004:0"
 
-#: hrms/payroll/report/employee_ctc_break_up/employee_ctc_break_up.py:53
+#: hrms/payroll/report/employee_ctc_break_up/employee_ctc_break_up.py:54
 msgid "Please set cost to company(CTC) for employee {0} in the {1}"
 msgstr "crwdns201911:0{0}crwdnd201911:0{1}crwdne201911:0"
 
@@ -8133,7 +8173,7 @@ msgstr "crwdns109022:0{0}crwdnd109022:0{1}crwdne109022:0"
 msgid "Please set {0} for the Employee: {1}"
 msgstr "crwdns109024:0{0}crwdnd109024:0{1}crwdne109024:0"
 
-#: hrms/payroll/report/employee_ctc_break_up/employee_ctc_break_up.py:310
+#: hrms/payroll/report/employee_ctc_break_up/employee_ctc_break_up.py:312
 msgid "Please set {0} to get CTC report"
 msgstr "crwdns201915:0{0}crwdne201915:0"
 
@@ -8378,15 +8418,15 @@ msgstr "crwdns142166:0crwdne142166:0"
 msgid "Purpose of Travel"
 msgstr "crwdns109134:0crwdne109134:0"
 
-#: frontend/src/views/AppSettings.vue:128
+#: frontend/src/views/AppSettings.vue:152
 msgid "Push Notification permission denied"
 msgstr "crwdns151302:0crwdne151302:0"
 
-#: frontend/src/views/AppSettings.vue:96
+#: frontend/src/views/AppSettings.vue:121
 msgid "Push notifications disabled"
 msgstr "crwdns151304:0crwdne151304:0"
 
-#: frontend/src/views/AppSettings.vue:80
+#: frontend/src/views/AppSettings.vue:106
 msgid "Push notifications have been disabled on your site"
 msgstr "crwdns151306:0crwdne151306:0"
 
@@ -8984,7 +9024,7 @@ msgstr "crwdns142328:0crwdne142328:0"
 msgid "Salary Expectation"
 msgstr "crwdns142330:0crwdne142330:0"
 
-#: frontend/src/views/Profile.vue:200
+#: frontend/src/views/Profile.vue:201
 msgid "Salary Information"
 msgstr "crwdns151332:0crwdne151332:0"
 
@@ -9158,7 +9198,7 @@ msgstr "crwdns109504:0crwdne109504:0"
 #. Label of a Workspace Sidebar Item
 #: hrms/payroll/doctype/income_tax_slab/income_tax_slab.js:8
 #: hrms/payroll/doctype/salary_structure_assignment/salary_structure_assignment.json
-#: hrms/payroll/report/employee_ctc_break_up/employee_ctc_break_up.js:34
+#: hrms/payroll/report/employee_ctc_break_up/employee_ctc_break_up.js:51
 #: hrms/payroll/workspace/payroll/payroll.json
 #: hrms/workspace_sidebar/payroll.json
 msgid "Salary Structure Assignment"
@@ -9471,6 +9511,10 @@ msgstr "crwdns142376:0crwdne142376:0"
 #: hrms/hr/doctype/hr_settings/hr_settings.json
 msgid "Send Leave Notification"
 msgstr "crwdns142378:0crwdne142378:0"
+
+#: frontend/src/views/ForgotPassword.vue:45
+msgid "Send Reset Link"
+msgstr "crwdns202407:0crwdne202407:0"
 
 #. Label of the sender_copy (Link) field in DocType 'Payroll Settings'
 #: hrms/payroll/doctype/payroll_settings/payroll_settings.json
@@ -10719,7 +10763,7 @@ msgstr "crwdns148924:0crwdne148924:0"
 msgid "Total Net Pay"
 msgstr "crwdns110276:0crwdne110276:0"
 
-#: hrms/hr/report/employee_hours_utilization_based_on_timesheet/employee_hours_utilization_based_on_timesheet.py:228
+#: hrms/hr/report/employee_hours_utilization_based_on_timesheet/employee_hours_utilization_based_on_timesheet.py:230
 msgid "Total Non-Billed Hours"
 msgstr "crwdns110278:0crwdne110278:0"
 
@@ -11125,7 +11169,7 @@ msgstr "crwdns142680:0crwdne142680:0"
 msgid "Unsubmitted Appraisals"
 msgstr "crwdns110470:0crwdne110470:0"
 
-#: hrms/hr/report/employee_hours_utilization_based_on_timesheet/employee_hours_utilization_based_on_timesheet.py:251
+#: hrms/hr/report/employee_hours_utilization_based_on_timesheet/employee_hours_utilization_based_on_timesheet.py:253
 msgid "Untracked Hours"
 msgstr "crwdns110472:0crwdne110472:0"
 
@@ -11178,11 +11222,11 @@ msgstr "crwdns110488:0crwdne110488:0"
 msgid "Update Tax"
 msgstr "crwdns151364:0crwdne151364:0"
 
-#: hrms/hr/doctype/attendance_request/attendance_request.py:198
+#: hrms/hr/doctype/attendance_request/attendance_request.py:200
 msgid "Updated Status for Other Half from {0} to {1} for date {2} in the attendance record {3}"
 msgstr "crwdns202011:0{0}crwdnd202011:0{1}crwdnd202011:0{2}crwdnd202011:0{3}crwdne202011:0"
 
-#: hrms/hr/doctype/attendance_request/attendance_request.py:181
+#: hrms/hr/doctype/attendance_request/attendance_request.py:183
 msgid "Updated status from {0} to {1} for date {2} in the attendance record {3}"
 msgstr "crwdns110490:0{0}crwdnd110490:0{1}crwdnd110490:0{2}crwdnd110490:0{3}crwdne110490:0"
 
@@ -11561,7 +11605,7 @@ msgstr "crwdns110686:0{0}crwdnd110686:0{1}crwdnd110686:0{2}crwdnd110686:0{3}crwd
 msgid "You can only submit Leave Encashment for a valid encashment amount"
 msgstr "crwdns110688:0crwdne110688:0"
 
-#: hrms/api/__init__.py:741
+#: hrms/api/__init__.py:751
 msgid "You can only upload JPG, PNG, PDF, TXT or Microsoft documents."
 msgstr "crwdns110690:0crwdne110690:0"
 
@@ -11618,7 +11662,11 @@ msgstr "crwdns110694:0crwdne110694:0"
 msgid "Your Interview session is rescheduled from {0} {1} - {2} to {3} {4} - {5}"
 msgstr "crwdns110696:0{0}crwdnd110696:0{1}crwdnd110696:0{2}crwdnd110696:0{3}crwdnd110696:0{4}crwdnd110696:0{5}crwdne110696:0"
 
-#: frontend/src/views/Login.vue:63
+#: frontend/src/views/ChangePassword.vue:85
+msgid "Your password has been updated."
+msgstr "crwdns202409:0crwdne202409:0"
+
+#: frontend/src/views/Login.vue:22
 msgid "Your password has expired. Please reset your password to continue"
 msgstr "crwdns151382:0crwdne151382:0"
 
@@ -11654,7 +11702,7 @@ msgstr "crwdns142758:0crwdne142758:0"
 msgid "here"
 msgstr "crwdns194914:0crwdne194914:0"
 
-#: frontend/src/views/Login.vue:16
+#: frontend/src/views/Login.vue:46
 msgid "johndoe@mail.com"
 msgstr "crwdns154574:0crwdne154574:0"
 
@@ -11717,7 +11765,7 @@ msgstr "crwdns110716:0{0}crwdnd110716:0{1}crwdne110716:0"
 msgid "{0} & {1} more"
 msgstr "crwdns151392:0{0}crwdnd151392:0{1}crwdne151392:0"
 
-#: hrms/hr/doctype/overtime_slip/overtime_slip.py:513
+#: hrms/hr/doctype/overtime_slip/overtime_slip.py:512
 msgid "{0} : {1}"
 msgstr "crwdns159744:0{0}crwdnd159744:0{1}crwdne159744:0"
 
