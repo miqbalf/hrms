@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: frappe\n"
 "Report-Msgid-Bugs-To: contact@frappe.io\n"
-"POT-Creation-Date: 2026-05-31 10:16+0000\n"
-"PO-Revision-Date: 2026-06-01 14:00\n"
+"POT-Creation-Date: 2026-06-07 10:18+0000\n"
+"PO-Revision-Date: 2026-06-08 15:41\n"
 "Last-Translator: contact@frappe.io\n"
 "Language-Team: Bosnian\n"
 "MIME-Version: 1.0\n"
@@ -1405,8 +1405,8 @@ msgstr "Postavke Prisustva"
 msgid "Attendance To Date"
 msgstr "Prisustvo do Datuma"
 
-#: hrms/hr/doctype/attendance_request/attendance_request.py:187
-#: hrms/hr/doctype/attendance_request/attendance_request.py:206
+#: hrms/hr/doctype/attendance_request/attendance_request.py:189
+#: hrms/hr/doctype/attendance_request/attendance_request.py:208
 msgid "Attendance Updated"
 msgstr "Prisustvo Ažurirano"
 
@@ -1458,11 +1458,11 @@ msgstr "Prisustvo je uspješno navedeno"
 msgid "Attendance marked successfully."
 msgstr "Prisustvo je uspješno navedeno."
 
-#: hrms/hr/doctype/attendance_request/attendance_request.py:225
+#: hrms/hr/doctype/attendance_request/attendance_request.py:227
 msgid "Attendance not submitted for {0} as it is a Holiday."
 msgstr "Prisustvo nije prijavljeno za {0} jer je praznik."
 
-#: hrms/hr/doctype/attendance_request/attendance_request.py:234
+#: hrms/hr/doctype/attendance_request/attendance_request.py:236
 msgid "Attendance not submitted for {0} as {1} is on leave."
 msgstr "Prisustvo nije prijavljeno za {0} jer je {1} na odsustvu."
 
@@ -1557,11 +1557,11 @@ msgstr "Prosječna ocjena pokazanih vještina"
 msgid "Avg Feedback Score"
 msgstr "Prosječna Ocjena Povratnih Informacija"
 
-#: hrms/hr/report/employee_hours_utilization_based_on_timesheet/employee_hours_utilization_based_on_timesheet.py:218
+#: hrms/hr/report/employee_hours_utilization_based_on_timesheet/employee_hours_utilization_based_on_timesheet.py:220
 msgid "Avg Utilization"
 msgstr "Prosječna Iskorištenost"
 
-#: hrms/hr/report/employee_hours_utilization_based_on_timesheet/employee_hours_utilization_based_on_timesheet.py:224
+#: hrms/hr/report/employee_hours_utilization_based_on_timesheet/employee_hours_utilization_based_on_timesheet.py:226
 msgid "Avg Utilization (Billed Only)"
 msgstr "Prosječna Iskorištenost (Fakturisano)"
 
@@ -1659,7 +1659,7 @@ msgstr "Beneficije"
 msgid "Bill Amount"
 msgstr "Iznos Fakture"
 
-#: hrms/hr/report/employee_hours_utilization_based_on_timesheet/employee_hours_utilization_based_on_timesheet.py:249
+#: hrms/hr/report/employee_hours_utilization_based_on_timesheet/employee_hours_utilization_based_on_timesheet.py:251
 msgid "Billed Hours"
 msgstr "Fakturisani Sati"
 
@@ -1772,7 +1772,7 @@ msgstr "Prema standard postavkama, Konačni Rezultat izračunava se kao prosjek 
 msgid "CTC"
 msgstr "Godišnja Plata"
 
-#: hrms/payroll/report/employee_ctc_break_up/employee_ctc_break_up.py:61
+#: hrms/payroll/report/employee_ctc_break_up/employee_ctc_break_up.py:62
 msgid "CTC Missing for Employee"
 msgstr "Nedostaje Godišnja Plata za"
 
@@ -1899,15 +1899,15 @@ msgstr "Povremeni Dopust"
 msgid "Cause of Grievance"
 msgstr "Uzrok Pritužbe"
 
-#: hrms/hr/doctype/attendance_request/attendance_request.py:192
+#: hrms/hr/doctype/attendance_request/attendance_request.py:194
 msgid "Changed the Status for Other Half from {0} to {1} via Attendance Request as the status is Half Day"
 msgstr "Status za drugu polovinu promijenjen je iz {0} u {1} putem Zahtjeva za Prisustvo jer je status Pola Dana"
 
-#: hrms/hr/doctype/attendance_request/attendance_request.py:171
+#: hrms/hr/doctype/attendance_request/attendance_request.py:173
 msgid "Changed the status from {0} to {1} and Status for Other Half to {2} via Attendance Request"
 msgstr "Promijenjen status sa {0} na {1} i status za drugu polovinu na {2} putem Zahtjeva za prisustvo"
 
-#: hrms/hr/doctype/attendance_request/attendance_request.py:175
+#: hrms/hr/doctype/attendance_request/attendance_request.py:177
 msgid "Changed the status from {0} to {1} via Attendance Request"
 msgstr "Promijenjen status iz {0} u {1} putem Zahtjeva Prisustva"
 
@@ -2058,7 +2058,7 @@ msgstr "Zatvara se:"
 msgid "Closing Notes"
 msgstr "Završne Napomene"
 
-#: frontend/src/views/Profile.vue:177
+#: frontend/src/views/Profile.vue:178
 msgid "Company Information"
 msgstr "Informacije o Poduzeću"
 
@@ -2348,6 +2348,10 @@ msgstr "Trenutno očitavanje Odometra "
 #: hrms/hr/doctype/staffing_plan_detail/staffing_plan_detail.json
 msgid "Current Openings"
 msgstr "Trenutne Ponude Posla"
+
+#: frontend/src/views/ChangePassword.vue:22
+msgid "Current Password"
+msgstr "Trenutna Lozinka"
 
 #. Label of the current_payroll_period (Link) field in DocType 'Salary Slip'
 #: hrms/payroll/doctype/salary_slip/salary_slip.json
@@ -2658,7 +2662,7 @@ msgstr "Onemogući {0} za komponentu {1}, kako biste spriječili da se iznos dva
 msgid "Disable {0} or {1} to proceed."
 msgstr "Onemogući {0} ili {1} da nastavite."
 
-#: frontend/src/views/AppSettings.vue:40
+#: frontend/src/views/AppSettings.vue:65
 msgid "Disabling Push Notifications..."
 msgstr "Onemogućavanje Guranih Obavještenja u toku..."
 
@@ -3012,7 +3016,7 @@ msgstr "Centar Troškova"
 #. Other Income'
 #. Label of the section_break_24 (Section Break) field in DocType 'Payroll
 #. Entry'
-#: frontend/src/views/Profile.vue:165
+#: frontend/src/views/Profile.vue:166
 #: hrms/hr/doctype/employee_onboarding/employee_onboarding.json
 #: hrms/hr/doctype/employee_performance_feedback/employee_performance_feedback.json
 #: hrms/hr/doctype/exit_interview/exit_interview.json
@@ -3413,11 +3417,11 @@ msgstr "Personal je naveden kao Odsutan zbog neispunjavanja praga radnih sati ra
 msgid "Employee was marked Absent for other half due to missing Employee Checkins."
 msgstr "Personal je označen kao odsutan tokom druge polovine dana zbog nedostajućih prijava."
 
-#: hrms/hr/doctype/overtime_slip/overtime_slip.py:480
+#: hrms/hr/doctype/overtime_slip/overtime_slip.py:479
 msgid "Employee {0} : {1}"
 msgstr "Personal {0} : {1}"
 
-#: hrms/hr/doctype/attendance_request/attendance_request.py:133
+#: hrms/hr/doctype/attendance_request/attendance_request.py:135
 msgid "Employee {0} already has an Attendance Request {1} that overlaps with this period"
 msgstr "{0} već ima Zahtjev za prisustvo {1} koji se preklapa s ovim periodom"
 
@@ -3558,7 +3562,7 @@ msgstr "Omogući Odbir Rane Odjave"
 msgid "Enable Late Entry Marking"
 msgstr "Omogući Odabir Kasne Prijave"
 
-#: frontend/src/views/AppSettings.vue:25
+#: frontend/src/views/AppSettings.vue:50
 msgid "Enable Push Notifications"
 msgstr "Omogući Gurana Obavještenja"
 
@@ -3580,7 +3584,7 @@ msgstr "Omogućite ovo da biste koristili određeni multiplikator za vikende. Ak
 msgid "Enabled only for Employee Benefit components from Salary Structure Assignment"
 msgstr "Omogućeno samo za Komponente Beneficija za personal iz Dodjele Strukture Plata"
 
-#: frontend/src/views/AppSettings.vue:40
+#: frontend/src/views/AppSettings.vue:65
 msgid "Enabling Push Notifications..."
 msgstr "Omogućavanje Guranih Obavještenja u toku..."
 
@@ -3653,6 +3657,10 @@ msgstr "Unesite broj odsustva koje želite dodijeliti za period."
 #: hrms/payroll/doctype/salary_structure/salary_structure.json
 msgid "Enter yearly benefit amounts"
 msgstr "Unesite godišnje iznose beneficija"
+
+#: frontend/src/views/ForgotPassword.vue:22
+msgid "Enter your email address and we'll send you a link to reset your password."
+msgstr "Unesite vašu adresu e-pošte i poslat ćemo vam link za poništavanje lozinke."
 
 #: frontend/src/components/FormField.vue:40
 #: frontend/src/components/FormField.vue:52
@@ -4094,9 +4102,13 @@ msgstr "Nije uspjelo kreiranje/podnošenje {0} za:"
 msgid "Failed to delete defaults for country {0}."
 msgstr "Brisanje standard postavki za zemlju {0} nije uspjelo."
 
-#: hrms/api/__init__.py:784
+#: hrms/api/__init__.py:796
 msgid "Failed to download PDF: {0}"
 msgstr "Preuzimanje PDF-a nije uspjelo: {0}"
+
+#: frontend/src/views/ForgotPassword.vue:83
+msgid "Failed to send reset link"
+msgstr "Nije uspjelo slanje linka za poništavanje"
 
 #: hrms/hr/doctype/interview/interview.py:146
 msgid "Failed to send the Interview Reschedule notification. Please configure your email account."
@@ -4109,6 +4121,10 @@ msgstr "Postavljanje standard postavki za zemlju {0} nije uspjelo."
 #: hrms/hr/doctype/leave_policy_assignment/leave_policy_assignment.py:489
 msgid "Failed to submit some leave policy assignments:"
 msgstr "Nije uspjelo slanje nekih dodjela pravila o odsustvu:"
+
+#: frontend/src/views/ChangePassword.vue:94
+msgid "Failed to update password"
+msgstr "Ažuriranje lozinke nije uspjelo"
 
 #: hrms/hr/doctype/interview/interview.py:239
 msgid "Failed to update the Job Applicant status"
@@ -4364,7 +4380,7 @@ msgstr "Za dan uzetog odsustva, ako i dalje plaćate (recimo) 50% dnevne plate, 
 msgid "Formula"
 msgstr "Formula"
 
-#: hrms/payroll/report/employee_ctc_break_up/employee_ctc_break_up.py:227
+#: hrms/payroll/report/employee_ctc_break_up/employee_ctc_break_up.py:229
 msgid "Formula/Amount"
 msgstr "Formula/Iznos"
 
@@ -4562,7 +4578,7 @@ msgstr "Bez Glutena"
 msgid "Go to Login"
 msgstr "Idi na Prijavu"
 
-#: frontend/src/views/Login.vue:72
+#: frontend/src/views/Login.vue:29
 msgid "Go to Reset Password page"
 msgstr "Idi na stranicu za ponovno postavljanje lozinke"
 
@@ -4900,15 +4916,15 @@ msgstr "Satnica (Valuta Poduzeća)"
 msgid "Hourly Rate"
 msgstr "Satnica"
 
-#: hrms/regional/india/utils.py:184
+#: hrms/regional/india/utils.py:183
 msgid "House rent paid days overlapping with {0}"
 msgstr "Plaćeni dani za najam kuće se preklapaju sa {0}"
 
-#: hrms/regional/india/utils.py:162
+#: hrms/regional/india/utils.py:161
 msgid "House rented dates required for exemption calculation"
 msgstr "Datumi iznajmljivanja kuće potrebni za obračun izuzeća"
 
-#: hrms/regional/india/utils.py:165
+#: hrms/regional/india/utils.py:164
 msgid "House rented dates should be atleast 15 days apart"
 msgstr "Razmak između datuma iznajmljivanja kuće trebao bi biti najmanje 15 dana"
 
@@ -6417,7 +6433,7 @@ msgstr "Lokacija / ID Uređaja"
 msgid "Lodging Required"
 msgstr "Potreban Smještaj"
 
-#: frontend/src/views/Profile.vue:107
+#: frontend/src/views/Profile.vue:106
 msgid "Log Out"
 msgstr "Odjavi se"
 
@@ -6435,7 +6451,7 @@ msgstr "Tip Zapisnika je obavezan za prijave koje padaju u smjeni: {0}."
 msgid "Login Failed"
 msgstr "Prijava nije uspjela"
 
-#: frontend/src/views/Login.vue:8
+#: frontend/src/views/Login.vue:38
 msgid "Login to Frappe HR"
 msgstr "Prijava na Personal"
 
@@ -6471,6 +6487,10 @@ msgstr "Zahtjev Beneficiie Obavezan"
 #: hrms/public/js/utils/index.js:37
 msgid "Mandatory fields required for this action:"
 msgstr "Obavezna polja potrebna za ovu radnju:"
+
+#: hrms/payroll/doctype/payroll_entry/payroll_entry.js:213
+msgid "Mandatory fields required in {0}"
+msgstr "Obavezna polja nedostaju u {0}"
 
 #. Option for the 'KRA Evaluation Method' (Select) field in DocType 'Appraisal
 #. Cycle'
@@ -6740,7 +6760,7 @@ msgstr "Nedostaju Komponente Plate"
 msgid "Missing Tax Slab"
 msgstr "Nedostaje Porezna Tabela"
 
-#: hrms/payroll/report/employee_ctc_break_up/employee_ctc_break_up.py:311
+#: hrms/payroll/report/employee_ctc_break_up/employee_ctc_break_up.py:313
 msgid "Missing value for filters"
 msgstr "Nedostaje vrijednost za filtere"
 
@@ -6885,6 +6905,10 @@ msgstr "Novo Dodijeljeno Odsustvo"
 #: hrms/hr/doctype/leave_control_panel/leave_control_panel.json
 msgid "New Leaves Allocated (In Days)"
 msgstr "Novo Dodijeljeno Odsustvo (u danima)"
+
+#: frontend/src/views/ChangePassword.vue:112
+msgid "New passwords do not match"
+msgstr "Nove lozinke se ne podudaraju"
 
 #. Description of the 'Create Shifts After' (Date) field in DocType 'Shift
 #. Schedule Assignment'
@@ -7061,7 +7085,7 @@ msgstr "Nije pronađen yapisnik Odsustva za personal {0} na {1}"
 msgid "No leaves have been allocated."
 msgstr "Nema dodijeljenog odsustva."
 
-#: frontend/src/views/Login.vue:53
+#: frontend/src/views/Login.vue:91
 msgid "No login methods are available. Please contact your administrator."
 msgstr "Nema dostupnih metoda prijave. Obratite se administratoru."
 
@@ -7117,7 +7141,7 @@ msgstr "Nemliječni"
 msgid "Non Taxable Earnings"
 msgstr "Neoporezive Zarade"
 
-#: hrms/hr/report/employee_hours_utilization_based_on_timesheet/employee_hours_utilization_based_on_timesheet.py:250
+#: hrms/hr/report/employee_hours_utilization_based_on_timesheet/employee_hours_utilization_based_on_timesheet.py:252
 msgid "Non-Billed Hours"
 msgstr "Nefakturisani Sati"
 
@@ -7204,11 +7228,11 @@ msgstr "Broj Ciklusa Zadržavanja"
 msgid "Number of leaves eligible for encashment based on leave type settings"
 msgstr "Broj odsustva koji ispunjavaju uslove za naplatu na osnovu postavki tipa odsustva"
 
-#: frontend/src/views/Login.vue:88
+#: frontend/src/views/Login.vue:105
 msgid "OTP Code"
 msgstr "OTP Kod"
 
-#: frontend/src/views/Login.vue:79
+#: frontend/src/views/Login.vue:96
 msgid "OTP Verification"
 msgstr "OTP Verifikacija"
 
@@ -7400,7 +7424,7 @@ msgstr "Prekomjerna Dodjela"
 msgid "Overall Average Rating"
 msgstr "Ukupna Prosječna Ocjena"
 
-#: hrms/hr/doctype/attendance_request/attendance_request.py:138
+#: hrms/hr/doctype/attendance_request/attendance_request.py:140
 msgid "Overlapping Attendance Request"
 msgstr "Preklapajući Zahtjev za Prisustvo"
 
@@ -7466,11 +7490,11 @@ msgstr "Komponenta Plate za Prekovremeni Rad"
 msgid "Overtime Slip"
 msgstr "Specifikacija Prekovremenog Rada"
 
-#: hrms/hr/doctype/overtime_slip/overtime_slip.py:481
+#: hrms/hr/doctype/overtime_slip/overtime_slip.py:480
 msgid "Overtime Slip Creation Error for {0}"
 msgstr "Greška u kreiranju Specifikacije Prekovremenog Rada za {0}"
 
-#: hrms/hr/doctype/overtime_slip/overtime_slip.py:492
+#: hrms/hr/doctype/overtime_slip/overtime_slip.py:491
 msgid "Overtime Slip Creation Failed"
 msgstr "Kreiranje Specifikacije Prekovremenog Rada nije uspjelo"
 
@@ -7479,19 +7503,19 @@ msgstr "Kreiranje Specifikacije Prekovremenog Rada nije uspjelo"
 msgid "Overtime Slip Step"
 msgstr "Koraci Specifikacije Prekovremenog Rada"
 
-#: hrms/hr/doctype/overtime_slip/overtime_slip.py:515
+#: hrms/hr/doctype/overtime_slip/overtime_slip.py:514
 msgid "Overtime Slip Submission Error for {0}"
 msgstr "Greška pri podnoåenju Specifikacije Prekovremenog Radaza {0}"
 
-#: hrms/hr/doctype/overtime_slip/overtime_slip.py:526
+#: hrms/hr/doctype/overtime_slip/overtime_slip.py:525
 msgid "Overtime Slip Submission Failed"
 msgstr "Podnošenje Specifikacije Prekovremenog Rada nije uspjelo"
 
-#: hrms/hr/doctype/overtime_slip/overtime_slip.py:521
+#: hrms/hr/doctype/overtime_slip/overtime_slip.py:520
 msgid "Overtime Slip Submitted"
 msgstr "Specifikacija Prekovremenog Rada podnešena"
 
-#: hrms/hr/doctype/overtime_slip/overtime_slip.py:485
+#: hrms/hr/doctype/overtime_slip/overtime_slip.py:484
 msgid "Overtime Slip created for {0} employee(s)"
 msgstr "Specifikacija Prekovremenog Rada kreirana je za {0}"
 
@@ -7507,11 +7531,11 @@ msgstr "Podnošenje Specifikacije Prekovremenog Rada je u redu čekanja. Može p
 msgid "Overtime Slip:{0} has been created between {1} and {2}"
 msgstr "Specifikacija Prekovremenog Rada:{0} je kreirana između {1} i {2}"
 
-#: hrms/hr/doctype/overtime_slip/overtime_slip.py:487
+#: hrms/hr/doctype/overtime_slip/overtime_slip.py:486
 msgid "Overtime Slips Created"
 msgstr "Specifikacije Prekovremenog Rada Kreirane"
 
-#: hrms/hr/doctype/overtime_slip/overtime_slip.py:519
+#: hrms/hr/doctype/overtime_slip/overtime_slip.py:518
 msgid "Overtime Slips submitted for {0} employee(s)"
 msgstr "Specifikacija Prekovremenog Rada podnesene za {0}"
 
@@ -7611,6 +7635,10 @@ msgstr "Pravila Lozinke ne može sadržavati razmake ili istovremene crtice. For
 #: hrms/payroll/doctype/payroll_settings/payroll_settings.py:50
 msgid "Password policy for Salary Slips is not set"
 msgstr "Pravilo lozinke za Platni List nije postavljeno"
+
+#: frontend/src/views/ForgotPassword.vue:74
+msgid "Password reset link has been sent to your email."
+msgstr "Link za poništavanje lozinke je poslan na vašu adresu e-pošte."
 
 #. Label of the pay_details_tab (Tab Break) field in DocType 'Job Opening'
 #. Label of the pay_details_section (Section Break) field in DocType 'Job
@@ -7890,7 +7918,7 @@ msgstr "Upitnici na Čekanju"
 msgid "Percent Deduction"
 msgstr "Postotak Odbitka"
 
-#: hrms/payroll/report/employee_ctc_break_up/employee_ctc_break_up.py:250
+#: hrms/payroll/report/employee_ctc_break_up/employee_ctc_break_up.py:252
 msgid "Percent of CTC (%)"
 msgstr "Procenat Godišnje Plate (%)"
 
@@ -7948,9 +7976,21 @@ msgstr "Iizbriši {0} da poništite ovaj dokument"
 msgid "Please enable default incoming account before creating Daily Work Summary Group"
 msgstr "Omogući standard dolazni račun prije stvaranja Grupe Dnevnih Radnih Sažetaka"
 
+#: frontend/src/views/ForgotPassword.vue:109
+msgid "Please enter a valid email address"
+msgstr "Unesite ispravnu adresu e-pošte"
+
 #: hrms/hr/doctype/staffing_plan/staffing_plan.js:97
 msgid "Please enter the designation"
 msgstr "Unesi Poziciju"
+
+#: frontend/src/views/ForgotPassword.vue:104
+msgid "Please enter your email address"
+msgstr "Molimo unesite vašu adresu e-pošte"
+
+#: frontend/src/views/ChangePassword.vue:107
+msgid "Please fill all fields"
+msgstr "Molimo popunite sva polja"
 
 #: hrms/hr/doctype/overtime_slip/overtime_slip.js:11
 msgid "Please fill in Employee, Posting Date, and Company before fetching overtime details."
@@ -8104,7 +8144,7 @@ msgstr "Postavi raspon datuma kraći od 90 dana."
 msgid "Please set account in Salary Component {0}"
 msgstr "Postavi Račun u Komponenti Plate {0}"
 
-#: hrms/payroll/report/employee_ctc_break_up/employee_ctc_break_up.py:53
+#: hrms/payroll/report/employee_ctc_break_up/employee_ctc_break_up.py:54
 msgid "Please set cost to company(CTC) for employee {0} in the {1}"
 msgstr "Postavi trošak za poduzeće (Godišnja Plata) za {0} u {1}"
 
@@ -8161,7 +8201,7 @@ msgstr "Postavi {0} za Personal {1}"
 msgid "Please set {0} for the Employee: {1}"
 msgstr "Postavi {0} za Personal {1}"
 
-#: hrms/payroll/report/employee_ctc_break_up/employee_ctc_break_up.py:310
+#: hrms/payroll/report/employee_ctc_break_up/employee_ctc_break_up.py:312
 msgid "Please set {0} to get CTC report"
 msgstr "Postavi {0} za preuzimanje izvještaja godišnje plaće"
 
@@ -8406,15 +8446,15 @@ msgstr "Namjena & Iznos"
 msgid "Purpose of Travel"
 msgstr "Razlog Putovanja"
 
-#: frontend/src/views/AppSettings.vue:128
+#: frontend/src/views/AppSettings.vue:152
 msgid "Push Notification permission denied"
 msgstr "Odbijena dozvola Guranog Obavještenja"
 
-#: frontend/src/views/AppSettings.vue:96
+#: frontend/src/views/AppSettings.vue:121
 msgid "Push notifications disabled"
 msgstr "Gurana obavještenja su onemogućena"
 
-#: frontend/src/views/AppSettings.vue:80
+#: frontend/src/views/AppSettings.vue:106
 msgid "Push notifications have been disabled on your site"
 msgstr "Gurana obavještenja su onemogućena na vašoj Web Stranici"
 
@@ -9012,7 +9052,7 @@ msgstr "Detalji Plate"
 msgid "Salary Expectation"
 msgstr "Očekivana Plata"
 
-#: frontend/src/views/Profile.vue:200
+#: frontend/src/views/Profile.vue:201
 msgid "Salary Information"
 msgstr "Informacije Plate"
 
@@ -9186,7 +9226,7 @@ msgstr "Struktura Plate"
 #. Label of a Workspace Sidebar Item
 #: hrms/payroll/doctype/income_tax_slab/income_tax_slab.js:8
 #: hrms/payroll/doctype/salary_structure_assignment/salary_structure_assignment.json
-#: hrms/payroll/report/employee_ctc_break_up/employee_ctc_break_up.js:34
+#: hrms/payroll/report/employee_ctc_break_up/employee_ctc_break_up.js:51
 #: hrms/payroll/workspace/payroll/payroll.json
 #: hrms/workspace_sidebar/payroll.json
 msgid "Salary Structure Assignment"
@@ -9499,6 +9539,10 @@ msgstr "Poåalji Intervju Podsjetnik"
 #: hrms/hr/doctype/hr_settings/hr_settings.json
 msgid "Send Leave Notification"
 msgstr "Pošalji Obavještenje Odsustva"
+
+#: frontend/src/views/ForgotPassword.vue:45
+msgid "Send Reset Link"
+msgstr "Pošalji link za poništavanje"
 
 #. Label of the sender_copy (Link) field in DocType 'Payroll Settings'
 #: hrms/payroll/doctype/payroll_settings/payroll_settings.json
@@ -10747,7 +10791,7 @@ msgstr "Ukupna Otplata Kredita"
 msgid "Total Net Pay"
 msgstr "Ukupna Neto Plata"
 
-#: hrms/hr/report/employee_hours_utilization_based_on_timesheet/employee_hours_utilization_based_on_timesheet.py:228
+#: hrms/hr/report/employee_hours_utilization_based_on_timesheet/employee_hours_utilization_based_on_timesheet.py:230
 msgid "Total Non-Billed Hours"
 msgstr "Ukupnoj Nefakturisanih Sati"
 
@@ -11153,7 +11197,7 @@ msgstr "Neusaglašene Transakcije"
 msgid "Unsubmitted Appraisals"
 msgstr "Nepodnešena Ocjenjivanja"
 
-#: hrms/hr/report/employee_hours_utilization_based_on_timesheet/employee_hours_utilization_based_on_timesheet.py:251
+#: hrms/hr/report/employee_hours_utilization_based_on_timesheet/employee_hours_utilization_based_on_timesheet.py:253
 msgid "Untracked Hours"
 msgstr "Nepraćeni Sati"
 
@@ -11206,11 +11250,11 @@ msgstr "Ažuriraj Status"
 msgid "Update Tax"
 msgstr "Ažuriraj Porez"
 
-#: hrms/hr/doctype/attendance_request/attendance_request.py:198
+#: hrms/hr/doctype/attendance_request/attendance_request.py:200
 msgid "Updated Status for Other Half from {0} to {1} for date {2} in the attendance record {3}"
 msgstr "Ažuriran status za drugu polovinu sa {0} na {1} za datum {2} u evidenciji prisustva {3}"
 
-#: hrms/hr/doctype/attendance_request/attendance_request.py:181
+#: hrms/hr/doctype/attendance_request/attendance_request.py:183
 msgid "Updated status from {0} to {1} for date {2} in the attendance record {3}"
 msgstr "Ažuriran status sa {0} na {1} za datum {2} u zapisniku prisutnosti {3}"
 
@@ -11589,7 +11633,7 @@ msgstr "Možete planirati samo do {0} slobodnih radnih mjesta i budžet {1} za {
 msgid "You can only submit Leave Encashment for a valid encashment amount"
 msgstr "Možete poslati Naplatu Odsutva samo za važeći iznos unovčenja"
 
-#: hrms/api/__init__.py:741
+#: hrms/api/__init__.py:751
 msgid "You can only upload JPG, PNG, PDF, TXT or Microsoft documents."
 msgstr "Možete učitati samo JPG, PNG, PDF, TXT ili Microsoft dokumente."
 
@@ -11646,7 +11690,11 @@ msgstr "Bili ste prisutni samo na pola dana {}. Ne može se prijaviti za cjelodn
 msgid "Your Interview session is rescheduled from {0} {1} - {2} to {3} {4} - {5}"
 msgstr "Vaša Intervju je pomjeren sa {0} {1} - {2} na {3} {4} - {5}"
 
-#: frontend/src/views/Login.vue:63
+#: frontend/src/views/ChangePassword.vue:85
+msgid "Your password has been updated."
+msgstr "Vaša lozinka je ažurirana."
+
+#: frontend/src/views/Login.vue:22
 msgid "Your password has expired. Please reset your password to continue"
 msgstr "Vaša lozinka je istekla. Poništite lozinku da nastavite"
 
@@ -11682,7 +11730,7 @@ msgstr "kreirano"
 msgid "here"
 msgstr "ovdje"
 
-#: frontend/src/views/Login.vue:16
+#: frontend/src/views/Login.vue:46
 msgid "johndoe@mail.com"
 msgstr "johndoe@mail.com"
 
@@ -11745,7 +11793,7 @@ msgstr "{0} & {1}"
 msgid "{0} & {1} more"
 msgstr "{0} & {1} više"
 
-#: hrms/hr/doctype/overtime_slip/overtime_slip.py:513
+#: hrms/hr/doctype/overtime_slip/overtime_slip.py:512
 msgid "{0} : {1}"
 msgstr "{0} : {1}"
 

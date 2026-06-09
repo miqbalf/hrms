@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: frappe\n"
 "Report-Msgid-Bugs-To: contact@frappe.io\n"
-"POT-Creation-Date: 2026-05-31 10:16+0000\n"
-"PO-Revision-Date: 2026-06-01 14:00\n"
+"POT-Creation-Date: 2026-06-07 10:18+0000\n"
+"PO-Revision-Date: 2026-06-08 15:41\n"
 "Last-Translator: contact@frappe.io\n"
 "Language-Team: Chinese Simplified\n"
 "MIME-Version: 1.0\n"
@@ -1405,8 +1405,8 @@ msgstr "考勤设置"
 msgid "Attendance To Date"
 msgstr "考勤截止日期"
 
-#: hrms/hr/doctype/attendance_request/attendance_request.py:187
-#: hrms/hr/doctype/attendance_request/attendance_request.py:206
+#: hrms/hr/doctype/attendance_request/attendance_request.py:189
+#: hrms/hr/doctype/attendance_request/attendance_request.py:208
 msgid "Attendance Updated"
 msgstr "考勤已更新"
 
@@ -1458,11 +1458,11 @@ msgstr "考勤记录成功"
 msgid "Attendance marked successfully."
 msgstr "考勤记录成功."
 
-#: hrms/hr/doctype/attendance_request/attendance_request.py:225
+#: hrms/hr/doctype/attendance_request/attendance_request.py:227
 msgid "Attendance not submitted for {0} as it is a Holiday."
 msgstr "{0}为节假日，未提交考勤"
 
-#: hrms/hr/doctype/attendance_request/attendance_request.py:234
+#: hrms/hr/doctype/attendance_request/attendance_request.py:236
 msgid "Attendance not submitted for {0} as {1} is on leave."
 msgstr "{0}因{1}请假未提交考勤"
 
@@ -1557,11 +1557,11 @@ msgstr "展示技能的平均评分"
 msgid "Avg Feedback Score"
 msgstr "平均反馈分"
 
-#: hrms/hr/report/employee_hours_utilization_based_on_timesheet/employee_hours_utilization_based_on_timesheet.py:218
+#: hrms/hr/report/employee_hours_utilization_based_on_timesheet/employee_hours_utilization_based_on_timesheet.py:220
 msgid "Avg Utilization"
 msgstr "平均利用率"
 
-#: hrms/hr/report/employee_hours_utilization_based_on_timesheet/employee_hours_utilization_based_on_timesheet.py:224
+#: hrms/hr/report/employee_hours_utilization_based_on_timesheet/employee_hours_utilization_based_on_timesheet.py:226
 msgid "Avg Utilization (Billed Only)"
 msgstr "平均利用率（仅计费）"
 
@@ -1659,7 +1659,7 @@ msgstr "福利项目"
 msgid "Bill Amount"
 msgstr "账单金额"
 
-#: hrms/hr/report/employee_hours_utilization_based_on_timesheet/employee_hours_utilization_based_on_timesheet.py:249
+#: hrms/hr/report/employee_hours_utilization_based_on_timesheet/employee_hours_utilization_based_on_timesheet.py:251
 msgid "Billed Hours"
 msgstr "计费工时"
 
@@ -1772,7 +1772,7 @@ msgstr "默认最终得分为目标得分、反馈得分和自评得分的平均
 msgid "CTC"
 msgstr "人力总成本"
 
-#: hrms/payroll/report/employee_ctc_break_up/employee_ctc_break_up.py:61
+#: hrms/payroll/report/employee_ctc_break_up/employee_ctc_break_up.py:62
 msgid "CTC Missing for Employee"
 msgstr ""
 
@@ -1899,15 +1899,15 @@ msgstr "事假"
 msgid "Cause of Grievance"
 msgstr "申诉事由"
 
-#: hrms/hr/doctype/attendance_request/attendance_request.py:192
+#: hrms/hr/doctype/attendance_request/attendance_request.py:194
 msgid "Changed the Status for Other Half from {0} to {1} via Attendance Request as the status is Half Day"
 msgstr ""
 
-#: hrms/hr/doctype/attendance_request/attendance_request.py:171
+#: hrms/hr/doctype/attendance_request/attendance_request.py:173
 msgid "Changed the status from {0} to {1} and Status for Other Half to {2} via Attendance Request"
 msgstr "通过考勤申请将状态从{0}更改为{1}，并将另一半状态更改为{2}"
 
-#: hrms/hr/doctype/attendance_request/attendance_request.py:175
+#: hrms/hr/doctype/attendance_request/attendance_request.py:177
 msgid "Changed the status from {0} to {1} via Attendance Request"
 msgstr "通过考勤申请将状态从{0}更改为{1}"
 
@@ -2058,7 +2058,7 @@ msgstr "截止于："
 msgid "Closing Notes"
 msgstr "结案说明"
 
-#: frontend/src/views/Profile.vue:177
+#: frontend/src/views/Profile.vue:178
 msgid "Company Information"
 msgstr "公司信息"
 
@@ -2348,6 +2348,10 @@ msgstr "当前里程表读数"
 #: hrms/hr/doctype/staffing_plan_detail/staffing_plan_detail.json
 msgid "Current Openings"
 msgstr "当前空缺职位"
+
+#: frontend/src/views/ChangePassword.vue:22
+msgid "Current Password"
+msgstr ""
 
 #. Label of the current_payroll_period (Link) field in DocType 'Salary Slip'
 #: hrms/payroll/doctype/salary_slip/salary_slip.json
@@ -2658,7 +2662,7 @@ msgstr "请为{1}组件禁用{0}，因其公式已包含基于计薪天数的组
 msgid "Disable {0} or {1} to proceed."
 msgstr "禁用{0}或{1}以继续"
 
-#: frontend/src/views/AppSettings.vue:40
+#: frontend/src/views/AppSettings.vue:65
 msgid "Disabling Push Notifications..."
 msgstr "正在禁用推送通知..."
 
@@ -3012,7 +3016,7 @@ msgstr "员工成本中心"
 #. Other Income'
 #. Label of the section_break_24 (Section Break) field in DocType 'Payroll
 #. Entry'
-#: frontend/src/views/Profile.vue:165
+#: frontend/src/views/Profile.vue:166
 #: hrms/hr/doctype/employee_onboarding/employee_onboarding.json
 #: hrms/hr/doctype/employee_performance_feedback/employee_performance_feedback.json
 #: hrms/hr/doctype/exit_interview/exit_interview.json
@@ -3413,11 +3417,11 @@ msgstr "因未达到工时阈值，员工标记为缺勤"
 msgid "Employee was marked Absent for other half due to missing Employee Checkins."
 msgstr "由于缺少员工打卡记录，该员工另一半被标记为缺勤"
 
-#: hrms/hr/doctype/overtime_slip/overtime_slip.py:480
+#: hrms/hr/doctype/overtime_slip/overtime_slip.py:479
 msgid "Employee {0} : {1}"
 msgstr "员工{0}：{1}"
 
-#: hrms/hr/doctype/attendance_request/attendance_request.py:133
+#: hrms/hr/doctype/attendance_request/attendance_request.py:135
 msgid "Employee {0} already has an Attendance Request {1} that overlaps with this period"
 msgstr "员工{0}已有考勤申请{1}与本期间重叠"
 
@@ -3558,7 +3562,7 @@ msgstr "启用早退标记"
 msgid "Enable Late Entry Marking"
 msgstr "启用迟到标记"
 
-#: frontend/src/views/AppSettings.vue:25
+#: frontend/src/views/AppSettings.vue:50
 msgid "Enable Push Notifications"
 msgstr "启用推送通知"
 
@@ -3580,7 +3584,7 @@ msgstr "启用此项可为周末使用特定乘数。若未勾选，将使用标
 msgid "Enabled only for Employee Benefit components from Salary Structure Assignment"
 msgstr "仅对来自薪资结构分配的员工福利组件启用"
 
-#: frontend/src/views/AppSettings.vue:40
+#: frontend/src/views/AppSettings.vue:65
 msgid "Enabling Push Notifications..."
 msgstr "正在启用推送通知..."
 
@@ -3653,6 +3657,10 @@ msgstr "输入本期间需分配的假期天数"
 #: hrms/payroll/doctype/salary_structure/salary_structure.json
 msgid "Enter yearly benefit amounts"
 msgstr "输入年度福利金额"
+
+#: frontend/src/views/ForgotPassword.vue:22
+msgid "Enter your email address and we'll send you a link to reset your password."
+msgstr ""
 
 #: frontend/src/components/FormField.vue:40
 #: frontend/src/components/FormField.vue:52
@@ -4094,9 +4102,13 @@ msgstr "为员工创建/提交{0}失败："
 msgid "Failed to delete defaults for country {0}."
 msgstr "删除国家{0}默认设置失败"
 
-#: hrms/api/__init__.py:784
+#: hrms/api/__init__.py:796
 msgid "Failed to download PDF: {0}"
 msgstr "无法下载 PDF： {0}"
+
+#: frontend/src/views/ForgotPassword.vue:83
+msgid "Failed to send reset link"
+msgstr ""
 
 #: hrms/hr/doctype/interview/interview.py:146
 msgid "Failed to send the Interview Reschedule notification. Please configure your email account."
@@ -4109,6 +4121,10 @@ msgstr "设置国家{0}默认值失败"
 #: hrms/hr/doctype/leave_policy_assignment/leave_policy_assignment.py:489
 msgid "Failed to submit some leave policy assignments:"
 msgstr "部分休假政策分配提交失败："
+
+#: frontend/src/views/ChangePassword.vue:94
+msgid "Failed to update password"
+msgstr "密码更新失败"
 
 #: hrms/hr/doctype/interview/interview.py:239
 msgid "Failed to update the Job Applicant status"
@@ -4364,7 +4380,7 @@ msgstr "若员工请假当天仍支付（例如）50%日薪，则在此字段输
 msgid "Formula"
 msgstr "公式"
 
-#: hrms/payroll/report/employee_ctc_break_up/employee_ctc_break_up.py:227
+#: hrms/payroll/report/employee_ctc_break_up/employee_ctc_break_up.py:229
 msgid "Formula/Amount"
 msgstr ""
 
@@ -4562,7 +4578,7 @@ msgstr "无麸质"
 msgid "Go to Login"
 msgstr "前往登录"
 
-#: frontend/src/views/Login.vue:72
+#: frontend/src/views/Login.vue:29
 msgid "Go to Reset Password page"
 msgstr "前往重置密码页面"
 
@@ -4900,15 +4916,15 @@ msgstr "小时费率（公司币种）"
 msgid "Hourly Rate"
 msgstr "小时费率"
 
-#: hrms/regional/india/utils.py:184
+#: hrms/regional/india/utils.py:183
 msgid "House rent paid days overlapping with {0}"
 msgstr "房租支付天数与{0}重叠"
 
-#: hrms/regional/india/utils.py:162
+#: hrms/regional/india/utils.py:161
 msgid "House rented dates required for exemption calculation"
 msgstr "房租免税计算需提供租赁日期"
 
-#: hrms/regional/india/utils.py:165
+#: hrms/regional/india/utils.py:164
 msgid "House rented dates should be atleast 15 days apart"
 msgstr "房租起止日期至少间隔15天"
 
@@ -6417,7 +6433,7 @@ msgstr "地点/设备ID"
 msgid "Lodging Required"
 msgstr "需住宿"
 
-#: frontend/src/views/Profile.vue:107
+#: frontend/src/views/Profile.vue:106
 msgid "Log Out"
 msgstr "退出登录"
 
@@ -6435,7 +6451,7 @@ msgstr "班次{0}的签到需指定日志类型"
 msgid "Login Failed"
 msgstr "登录失败"
 
-#: frontend/src/views/Login.vue:8
+#: frontend/src/views/Login.vue:38
 msgid "Login to Frappe HR"
 msgstr "登录Frappe HR系统"
 
@@ -6471,6 +6487,10 @@ msgstr "强制福利申请"
 #: hrms/public/js/utils/index.js:37
 msgid "Mandatory fields required for this action:"
 msgstr "执行此操作需填写以下必填字段："
+
+#: hrms/payroll/doctype/payroll_entry/payroll_entry.js:213
+msgid "Mandatory fields required in {0}"
+msgstr "{0}中有必填字段"
 
 #. Option for the 'KRA Evaluation Method' (Select) field in DocType 'Appraisal
 #. Cycle'
@@ -6740,7 +6760,7 @@ msgstr "缺少工资组件"
 msgid "Missing Tax Slab"
 msgstr "缺失税级"
 
-#: hrms/payroll/report/employee_ctc_break_up/employee_ctc_break_up.py:311
+#: hrms/payroll/report/employee_ctc_break_up/employee_ctc_break_up.py:313
 msgid "Missing value for filters"
 msgstr ""
 
@@ -6885,6 +6905,10 @@ msgstr "新分配假期天数"
 #: hrms/hr/doctype/leave_control_panel/leave_control_panel.json
 msgid "New Leaves Allocated (In Days)"
 msgstr "新分配假期（天数）"
+
+#: frontend/src/views/ChangePassword.vue:112
+msgid "New passwords do not match"
+msgstr ""
 
 #. Description of the 'Create Shifts After' (Date) field in DocType 'Shift
 #. Schedule Assignment'
@@ -7061,7 +7085,7 @@ msgstr "未找到员工{0}在{1}的假期记录"
 msgid "No leaves have been allocated."
 msgstr "未分配假期"
 
-#: frontend/src/views/Login.vue:53
+#: frontend/src/views/Login.vue:91
 msgid "No login methods are available. Please contact your administrator."
 msgstr ""
 
@@ -7117,7 +7141,7 @@ msgstr "非日志"
 msgid "Non Taxable Earnings"
 msgstr "非应税收入"
 
-#: hrms/hr/report/employee_hours_utilization_based_on_timesheet/employee_hours_utilization_based_on_timesheet.py:250
+#: hrms/hr/report/employee_hours_utilization_based_on_timesheet/employee_hours_utilization_based_on_timesheet.py:252
 msgid "Non-Billed Hours"
 msgstr "非计费工时"
 
@@ -7204,11 +7228,11 @@ msgstr "代扣周期数"
 msgid "Number of leaves eligible for encashment based on leave type settings"
 msgstr "根据假期类型设置符合条件的可折现天数"
 
-#: frontend/src/views/Login.vue:88
+#: frontend/src/views/Login.vue:105
 msgid "OTP Code"
 msgstr "一次性验证码"
 
-#: frontend/src/views/Login.vue:79
+#: frontend/src/views/Login.vue:96
 msgid "OTP Verification"
 msgstr "一次性验证码核验"
 
@@ -7400,7 +7424,7 @@ msgstr "超额分配"
 msgid "Overall Average Rating"
 msgstr "总体平均评分"
 
-#: hrms/hr/doctype/attendance_request/attendance_request.py:138
+#: hrms/hr/doctype/attendance_request/attendance_request.py:140
 msgid "Overlapping Attendance Request"
 msgstr "重叠考勤申请"
 
@@ -7466,11 +7490,11 @@ msgstr "加班工资组件"
 msgid "Overtime Slip"
 msgstr "加班单"
 
-#: hrms/hr/doctype/overtime_slip/overtime_slip.py:481
+#: hrms/hr/doctype/overtime_slip/overtime_slip.py:480
 msgid "Overtime Slip Creation Error for {0}"
 msgstr "{0}的加班单创建错误"
 
-#: hrms/hr/doctype/overtime_slip/overtime_slip.py:492
+#: hrms/hr/doctype/overtime_slip/overtime_slip.py:491
 msgid "Overtime Slip Creation Failed"
 msgstr "加班单创建失败"
 
@@ -7479,19 +7503,19 @@ msgstr "加班单创建失败"
 msgid "Overtime Slip Step"
 msgstr "加班单步骤"
 
-#: hrms/hr/doctype/overtime_slip/overtime_slip.py:515
+#: hrms/hr/doctype/overtime_slip/overtime_slip.py:514
 msgid "Overtime Slip Submission Error for {0}"
 msgstr "{0}的加班单提交错误"
 
-#: hrms/hr/doctype/overtime_slip/overtime_slip.py:526
+#: hrms/hr/doctype/overtime_slip/overtime_slip.py:525
 msgid "Overtime Slip Submission Failed"
 msgstr "加班单提交失败"
 
-#: hrms/hr/doctype/overtime_slip/overtime_slip.py:521
+#: hrms/hr/doctype/overtime_slip/overtime_slip.py:520
 msgid "Overtime Slip Submitted"
 msgstr "加班单已提交"
 
-#: hrms/hr/doctype/overtime_slip/overtime_slip.py:485
+#: hrms/hr/doctype/overtime_slip/overtime_slip.py:484
 msgid "Overtime Slip created for {0} employee(s)"
 msgstr "已为{0}名员工创建加班单"
 
@@ -7507,11 +7531,11 @@ msgstr "加班单提交已加入队列。可能需要几分钟时间"
 msgid "Overtime Slip:{0} has been created between {1} and {2}"
 msgstr "加班单：{0}已在{1}至{2}期间创建"
 
-#: hrms/hr/doctype/overtime_slip/overtime_slip.py:487
+#: hrms/hr/doctype/overtime_slip/overtime_slip.py:486
 msgid "Overtime Slips Created"
 msgstr "加班单已创建"
 
-#: hrms/hr/doctype/overtime_slip/overtime_slip.py:519
+#: hrms/hr/doctype/overtime_slip/overtime_slip.py:518
 msgid "Overtime Slips submitted for {0} employee(s)"
 msgstr "已为{0}名员工提交加班单"
 
@@ -7611,6 +7635,10 @@ msgstr "密码策略不能包含空格或连续连字符。格式将自动调整
 #: hrms/payroll/doctype/payroll_settings/payroll_settings.py:50
 msgid "Password policy for Salary Slips is not set"
 msgstr "未设置工资条密码策略"
+
+#: frontend/src/views/ForgotPassword.vue:74
+msgid "Password reset link has been sent to your email."
+msgstr ""
 
 #. Label of the pay_details_tab (Tab Break) field in DocType 'Job Opening'
 #. Label of the pay_details_section (Section Break) field in DocType 'Job
@@ -7890,7 +7918,7 @@ msgstr "待处理问卷"
 msgid "Percent Deduction"
 msgstr "百分比扣除"
 
-#: hrms/payroll/report/employee_ctc_break_up/employee_ctc_break_up.py:250
+#: hrms/payroll/report/employee_ctc_break_up/employee_ctc_break_up.py:252
 msgid "Percent of CTC (%)"
 msgstr ""
 
@@ -7948,9 +7976,21 @@ msgstr "请先删除员工{0}以取消该单据"
 msgid "Please enable default incoming account before creating Daily Work Summary Group"
 msgstr "创建每日工作摘要组前请先设置默认收入账户"
 
+#: frontend/src/views/ForgotPassword.vue:109
+msgid "Please enter a valid email address"
+msgstr ""
+
 #: hrms/hr/doctype/staffing_plan/staffing_plan.js:97
 msgid "Please enter the designation"
 msgstr "请输入职级"
+
+#: frontend/src/views/ForgotPassword.vue:104
+msgid "Please enter your email address"
+msgstr ""
+
+#: frontend/src/views/ChangePassword.vue:107
+msgid "Please fill all fields"
+msgstr ""
 
 #: hrms/hr/doctype/overtime_slip/overtime_slip.js:11
 msgid "Please fill in Employee, Posting Date, and Company before fetching overtime details."
@@ -8104,7 +8144,7 @@ msgstr "请设置小于90天的日期范围。"
 msgid "Please set account in Salary Component {0}"
 msgstr "请在薪资组件{0}设置账户"
 
-#: hrms/payroll/report/employee_ctc_break_up/employee_ctc_break_up.py:53
+#: hrms/payroll/report/employee_ctc_break_up/employee_ctc_break_up.py:54
 msgid "Please set cost to company(CTC) for employee {0} in the {1}"
 msgstr ""
 
@@ -8161,7 +8201,7 @@ msgstr "请为员工{1}设置{0}"
 msgid "Please set {0} for the Employee: {1}"
 msgstr "请为员工{1}设置{0}"
 
-#: hrms/payroll/report/employee_ctc_break_up/employee_ctc_break_up.py:310
+#: hrms/payroll/report/employee_ctc_break_up/employee_ctc_break_up.py:312
 msgid "Please set {0} to get CTC report"
 msgstr ""
 
@@ -8406,15 +8446,15 @@ msgstr "用途与金额"
 msgid "Purpose of Travel"
 msgstr "差旅目的"
 
-#: frontend/src/views/AppSettings.vue:128
+#: frontend/src/views/AppSettings.vue:152
 msgid "Push Notification permission denied"
 msgstr "推送通知权限被拒绝"
 
-#: frontend/src/views/AppSettings.vue:96
+#: frontend/src/views/AppSettings.vue:121
 msgid "Push notifications disabled"
 msgstr "推送通知已禁用"
 
-#: frontend/src/views/AppSettings.vue:80
+#: frontend/src/views/AppSettings.vue:106
 msgid "Push notifications have been disabled on your site"
 msgstr "您的站点已禁用推送通知"
 
@@ -9012,7 +9052,7 @@ msgstr "薪资详情"
 msgid "Salary Expectation"
 msgstr "期望薪资"
 
-#: frontend/src/views/Profile.vue:200
+#: frontend/src/views/Profile.vue:201
 msgid "Salary Information"
 msgstr "薪资信息"
 
@@ -9186,7 +9226,7 @@ msgstr "薪资结构"
 #. Label of a Workspace Sidebar Item
 #: hrms/payroll/doctype/income_tax_slab/income_tax_slab.js:8
 #: hrms/payroll/doctype/salary_structure_assignment/salary_structure_assignment.json
-#: hrms/payroll/report/employee_ctc_break_up/employee_ctc_break_up.js:34
+#: hrms/payroll/report/employee_ctc_break_up/employee_ctc_break_up.js:51
 #: hrms/payroll/workspace/payroll/payroll.json
 #: hrms/workspace_sidebar/payroll.json
 msgid "Salary Structure Assignment"
@@ -9499,6 +9539,10 @@ msgstr "发送面试提醒"
 #: hrms/hr/doctype/hr_settings/hr_settings.json
 msgid "Send Leave Notification"
 msgstr "发送休假通知"
+
+#: frontend/src/views/ForgotPassword.vue:45
+msgid "Send Reset Link"
+msgstr ""
 
 #. Label of the sender_copy (Link) field in DocType 'Payroll Settings'
 #: hrms/payroll/doctype/payroll_settings/payroll_settings.json
@@ -10747,7 +10791,7 @@ msgstr "贷款偿还总额"
 msgid "Total Net Pay"
 msgstr "实发工资总额"
 
-#: hrms/hr/report/employee_hours_utilization_based_on_timesheet/employee_hours_utilization_based_on_timesheet.py:228
+#: hrms/hr/report/employee_hours_utilization_based_on_timesheet/employee_hours_utilization_based_on_timesheet.py:230
 msgid "Total Non-Billed Hours"
 msgstr "不计费总工时"
 
@@ -11153,7 +11197,7 @@ msgstr "未结算交易"
 msgid "Unsubmitted Appraisals"
 msgstr "未提交考核"
 
-#: hrms/hr/report/employee_hours_utilization_based_on_timesheet/employee_hours_utilization_based_on_timesheet.py:251
+#: hrms/hr/report/employee_hours_utilization_based_on_timesheet/employee_hours_utilization_based_on_timesheet.py:253
 msgid "Untracked Hours"
 msgstr "未跟踪工时"
 
@@ -11206,11 +11250,11 @@ msgstr "更新状态"
 msgid "Update Tax"
 msgstr "更新税务"
 
-#: hrms/hr/doctype/attendance_request/attendance_request.py:198
+#: hrms/hr/doctype/attendance_request/attendance_request.py:200
 msgid "Updated Status for Other Half from {0} to {1} for date {2} in the attendance record {3}"
 msgstr ""
 
-#: hrms/hr/doctype/attendance_request/attendance_request.py:181
+#: hrms/hr/doctype/attendance_request/attendance_request.py:183
 msgid "Updated status from {0} to {1} for date {2} in the attendance record {3}"
 msgstr "考勤记录{3}中日期{2}的状态已从{0}更新为{1}"
 
@@ -11589,7 +11633,7 @@ msgstr "根据母公司{4}的编制计划{3}，您最多可规划{2}的{0}个空
 msgid "You can only submit Leave Encashment for a valid encashment amount"
 msgstr "仅当存在有效兑现金额时可提交假期折现申请"
 
-#: hrms/api/__init__.py:741
+#: hrms/api/__init__.py:751
 msgid "You can only upload JPG, PNG, PDF, TXT or Microsoft documents."
 msgstr "仅可上传JPG、PNG、PDF、TXT或Microsoft文档"
 
@@ -11646,7 +11690,11 @@ msgstr "您仅于{}出勤半天，不可申请全天调休"
 msgid "Your Interview session is rescheduled from {0} {1} - {2} to {3} {4} - {5}"
 msgstr "您的面试时段已从{0}{1}-{2}调整至{3}{4}-{5}"
 
-#: frontend/src/views/Login.vue:63
+#: frontend/src/views/ChangePassword.vue:85
+msgid "Your password has been updated."
+msgstr ""
+
+#: frontend/src/views/Login.vue:22
 msgid "Your password has expired. Please reset your password to continue"
 msgstr "密码已过期，请重置密码以继续"
 
@@ -11682,7 +11730,7 @@ msgstr "已创建"
 msgid "here"
 msgstr "此处"
 
-#: frontend/src/views/Login.vue:16
+#: frontend/src/views/Login.vue:46
 msgid "johndoe@mail.com"
 msgstr "johndoe@mail.com"
 
@@ -11745,7 +11793,7 @@ msgstr "{0} & {1}"
 msgid "{0} & {1} more"
 msgstr "{0} 及另外{1}项"
 
-#: hrms/hr/doctype/overtime_slip/overtime_slip.py:513
+#: hrms/hr/doctype/overtime_slip/overtime_slip.py:512
 msgid "{0} : {1}"
 msgstr "{0}：{1}"
 
