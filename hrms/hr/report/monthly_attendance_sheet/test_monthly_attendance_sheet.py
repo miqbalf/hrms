@@ -323,13 +323,13 @@ class TestMonthlyAttendanceSheet(HRMSTestSuite):
 		self.assertEqual(leaves[2], 1)
 
 	def test_attendance_with_company_filter(self):
-		create_company("Test Parent Company", is_group=1)
-		create_company("Test Child Company", is_group=1, parent_company="Test Parent Company")
-		create_company("Test Grandchild Company", parent_company="Test Child Company")
+		create_company("HRMS Test Parent Company", is_group=1)
+		create_company("HRMS Test Child Company", is_group=1, parent_company="HRMS Test Parent Company")
+		create_company("HRMS Test Grandchild Company", parent_company="HRMS Test Child Company")
 
-		employee1 = make_employee("test_employee@parent.com", company="Test Parent Company")
-		employee2 = make_employee("test_employee@child.com", company="Test Child Company")
-		employee3 = make_employee("test_employee@grandchild.com", company="Test Grandchild Company")
+		employee1 = make_employee("test_employee@parent.com", company="HRMS Test Parent Company")
+		employee2 = make_employee("test_employee@child.com", company="HRMS Test Child Company")
+		employee3 = make_employee("test_employee@grandchild.com", company="HRMS Test Grandchild Company")
 
 		previous_month_first = get_first_day_for_prev_month()
 		mark_attendance(employee1, previous_month_first, "Present")
@@ -340,7 +340,7 @@ class TestMonthlyAttendanceSheet(HRMSTestSuite):
 			{
 				"month": previous_month_first.month,
 				"year": previous_month_first.year,
-				"company": "Test Parent Company",
+				"company": "HRMS Test Parent Company",
 				"include_company_descendants": 1,
 				"filter_based_on": self.filter_based_on,
 			}
