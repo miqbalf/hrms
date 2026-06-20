@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: frappe\n"
 "Report-Msgid-Bugs-To: contact@frappe.io\n"
 "POT-Creation-Date: 2026-06-14 10:34+0000\n"
-"PO-Revision-Date: 2026-06-19 20:20\n"
+"PO-Revision-Date: 2026-06-20 20:30\n"
 "Last-Translator: contact@frappe.io\n"
 "Language-Team: Swedish\n"
 "MIME-Version: 1.0\n"
@@ -1542,22 +1542,22 @@ msgstr "Tillgänglig Frånvaro"
 #: hrms/hr/doctype/appraisal/appraisal.json
 #: hrms/hr/doctype/appraisal_cycle/appraisal_cycle.js:84
 msgid "Average Feedback Score"
-msgstr "Medel Återkoppling Resultat"
+msgstr "Återkoppling Resultat Medelvärde"
 
 #. Label of the average_rating (Rating) field in DocType 'Interview Feedback'
 #: hrms/hr/doctype/interview_feedback/interview_feedback.json
 #: hrms/public/js/templates/feedback_summary.html:5
 msgid "Average Rating"
-msgstr "Medel Betyg"
+msgstr "Bedömning Medelvärde"
 
 #. Description of the 'Final Score' (Float) field in DocType 'Appraisal'
 #: hrms/hr/doctype/appraisal/appraisal.json
 msgid "Average of Goal Score, Feedback Score, and Self Appraisal Score"
-msgstr "Medel av Målsättning Resultat, Återkoppling Resultat och Självbedömning Resultat"
+msgstr "Målsättning Resultat, Återkoppling Resultat och Självbedömning Resultat Medelvärde"
 
 #: hrms/public/js/templates/interview_feedback.html:16
 msgid "Average rating of demonstrated skills"
-msgstr "Medel bedömning av uppvisade färdigheter"
+msgstr "Medelvärde bedömning av uppvisade färdigheter"
 
 #: hrms/hr/report/appraisal_overview/appraisal_overview.py:52
 msgid "Avg Feedback Score"
@@ -3948,7 +3948,7 @@ msgstr "Avgångar (Denna Månad)"
 #: hrms/hr/doctype/interview/interview.json
 #: hrms/hr/doctype/interview_type/interview_type.json
 msgid "Expected Average Rating"
-msgstr "Förväntad Medel Betyg"
+msgstr "Förväntad Bedömning Medelvärde"
 
 #. Label of the expected_by (Date) field in DocType 'Job Requisition'
 #: hrms/hr/doctype/job_requisition/job_requisition.json
@@ -4316,7 +4316,7 @@ msgstr "Förnamn"
 
 #: hrms/payroll/doctype/payroll_entry/payroll_entry.py:1571
 msgid "Fiscal Year {0} not found"
-msgstr "Bokföringsår {0} hittades inte"
+msgstr "Bokföring År {0} hittades inte"
 
 #. Option for the 'Overtime Amount Calculation' (Select) field in DocType
 #. 'Overtime Type'
@@ -7263,7 +7263,7 @@ msgstr "UT"
 #. Label of the average_rating (Rating) field in DocType 'Interview'
 #: hrms/hr/doctype/interview/interview.json
 msgid "Obtained Average Rating"
-msgstr "Medel Betyg"
+msgstr "Erhållen Bedömning Medelvärde"
 
 #: hrms/hr/report/monthly_attendance_sheet/monthly_attendance_sheet.js:45
 #: hrms/public/js/salary_slip_deductions_report_filters.js:28
@@ -7441,7 +7441,7 @@ msgstr "Övertildelning"
 
 #: hrms/public/js/templates/interview_feedback.html:4
 msgid "Overall Average Rating"
-msgstr "Övergripande Medel Betyg"
+msgstr "Övergripande Bedömning Medelvärde"
 
 #: hrms/hr/doctype/attendance_request/attendance_request.py:140
 msgid "Overlapping Attendance Request"
@@ -10918,7 +10918,7 @@ msgstr "Summan av alla personal förmåner kan inte vara högre än Maximal För
 #. Detail'
 #: hrms/payroll/doctype/salary_detail/salary_detail.json
 msgid "Total salary booked against this component for this employee from the beginning of the year (payroll period or fiscal year) up to the current salary slip's end date."
-msgstr "Totalt lön bokförd mot denna komponent för denna personal från början av året (löneperiod eller bokföringsår) fram till aktuell lönespecifikation slutdatum."
+msgstr "Totalt bokförd lön mot denna komponent för denna personal från början av året (löneperiod eller  bokföring år) fram till aktuell lönespecifikation slutdatum."
 
 #. Description of the 'Month To Date' (Currency) field in DocType 'Salary Slip'
 #: hrms/payroll/doctype/salary_slip/salary_slip.json
@@ -10928,7 +10928,7 @@ msgstr "Totalt lön bokförd för personal från början av månaden fram till a
 #. Description of the 'Year To Date' (Currency) field in DocType 'Salary Slip'
 #: hrms/payroll/doctype/salary_slip/salary_slip.json
 msgid "Total salary booked for this employee from the beginning of the year (payroll period or fiscal year) up to the current salary slip's end date."
-msgstr "Totalt lön bokförd för denna personal från början av året (löneperiod eller bokföringsår) fram till aktuell lönespecifikation slutdatum."
+msgstr "Totalt bokförd lön för denna personal från början av året (löneperiod eller bokföring) fram till aktuell lönespecifikation slutdatum."
 
 #: hrms/hr/doctype/appraisal/appraisal.py:193 hrms/mixins/appraisal.py:17
 msgid "Total weightage for all {0} must add up to 100. Currently, it is {1}%"
