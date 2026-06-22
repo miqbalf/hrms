@@ -152,7 +152,7 @@ services:
       - sites:/home/frappe/frappe-bench/sites
       - logs:/home/frappe/frappe-bench/logs
     depends_on:
-      configure:
+      configurator:
         condition: service_completed_successfully
 
   # Real-time websocket notifications
@@ -166,7 +166,7 @@ services:
       - sites:/home/frappe/frappe-bench/sites
       - logs:/home/frappe/frappe-bench/logs
     depends_on:
-      configure:
+      configurator:
         condition: service_completed_successfully
 
   # Frontend Nginx reverse proxy serving static assets
@@ -211,7 +211,7 @@ services:
       - sites:/home/frappe/frappe-bench/sites
       - logs:/home/frappe/frappe-bench/logs
     depends_on:
-      configure:
+      configurator:
         condition: service_completed_successfully
 
   # Queue Workers to execute background jobs
@@ -227,7 +227,7 @@ services:
       - sites:/home/frappe/frappe-bench/sites
       - logs:/home/frappe/frappe-bench/logs
     depends_on:
-      configure:
+      configurator:
         condition: service_completed_successfully
 
   worker-short:
@@ -242,7 +242,7 @@ services:
       - sites:/home/frappe/frappe-bench/sites
       - logs:/home/frappe/frappe-bench/logs
     depends_on:
-      configure:
+      configurator:
         condition: service_completed_successfully
 
   worker-long:
@@ -257,7 +257,7 @@ services:
       - sites:/home/frappe/frappe-bench/sites
       - logs:/home/frappe/frappe-bench/logs
     depends_on:
-      configure:
+      configurator:
         condition: service_completed_successfully
 
 volumes:
