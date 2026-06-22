@@ -128,10 +128,17 @@ services:
           echo "Site $$SITE_NAME already exists. Running migration..."
           bench --site $$SITE_NAME migrate
           apply_smtp_config
-          # Re-copy branding assets in case the sites volume was wiped
+          # Re-copy branding assets and re-apply DB settings on every restart
           mkdir -p sites/$$SITE_NAME/public/files
           cp /home/frappe/custom-assets/treeo_logo.png sites/$$SITE_NAME/public/files/treeo_logo.png
           cp /home/frappe/custom-assets/favicon.png    sites/$$SITE_NAME/public/files/favicon.png
+          bench --site $$SITE_NAME execute "frappe.db.set_single_value('Navbar Settings', 'app_logo', '/files/treeo_logo.png')"
+          bench --site $$SITE_NAME execute "frappe.db.set_single_value('Website Settings', 'app_logo', '/files/treeo_logo.png')"
+          bench --site $$SITE_NAME execute "frappe.db.set_single_value('Website Settings', 'favicon', '/files/favicon.png')"
+          bench --site $$SITE_NAME execute "frappe.db.set_single_value('Website Settings', 'brand_html', '<span class=\"brand-label\">TREEO HR system</span>')"
+          bench --site $$SITE_NAME execute "frappe.db.set_single_value('Website Settings', 'tagline', 'TREEO HR system')"
+          bench --site $$SITE_NAME execute "frappe.db.commit()"
+          echo "Branding re-applied to existing site."
         fi
 
         echo "=== Phase 4: Start Gunicorn backend ==="
