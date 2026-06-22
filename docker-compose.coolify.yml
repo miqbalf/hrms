@@ -11,6 +11,7 @@ services:
     entrypoint: ["bash", "-c"]
     command:
       - |
+        bench get-app hrms --branch version-15 || true
         ls -1 apps > sites/apps.txt
         bench set-config -g db_host $$DB_HOST
         bench set-config -gp db_port $$DB_PORT
