@@ -46,6 +46,17 @@ services:
           bench get-app hrms --branch version-15
           echo "Building hrms assets..."
           bench build --app hrms --production || true
+          # bench build creates a symlink sites/assets/hrms → apps/hrms/hrms/public
+          # The frontend nginx container shares only the sites volume, not apps/,
+          # so the symlink is broken there. Copy real files instead.
+          if [ -L "sites/assets/hrms" ]; then
+            cp -rL sites/assets/hrms /tmp/hrms-assets-tmp
+            rm sites/assets/hrms
+            mv /tmp/hrms-assets-tmp sites/assets/hrms
+          elif [ ! -d "sites/assets/hrms" ]; then
+            mkdir -p sites/assets/hrms
+            cp -r apps/hrms/hrms/public/. sites/assets/hrms/ 2>/dev/null || true
+          fi
         fi
         ls -1 apps > sites/apps.txt
         bench set-config -g db_host $$DB_HOST
