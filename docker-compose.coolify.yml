@@ -55,6 +55,23 @@ services:
         bench set-config -g redis_socketio "redis://$$REDIS_QUEUE"
         bench set-config -gp socketio_port $$SOCKETIO_PORT
 
+        apply_smtp_config() {
+          if [ -z "$$SMTP_HOST" ]; then
+            echo "SMTP_HOST not set — skipping email configuration."
+            return 0
+          fi
+          echo "Applying SMTP configuration for $$SITE_NAME..."
+          bench --site $$SITE_NAME set-config mail_server       "$$SMTP_HOST"
+          bench --site $$SITE_NAME set-config mail_login        "$$SMTP_LOGIN"
+          bench --site $$SITE_NAME set-config mail_password     "$$SMTP_PASSWORD"
+          bench --site $$SITE_NAME set-config -p mail_port      $$SMTP_PORT
+          bench --site $$SITE_NAME set-config -p use_tls        $$SMTP_USE_TLS
+          bench --site $$SITE_NAME set-config -p use_ssl        $$SMTP_USE_SSL
+          bench --site $$SITE_NAME set-config auto_email_id     "$$SMTP_FROM_EMAIL"
+          bench --site $$SITE_NAME set-config email_sender_name "$$SMTP_FROM_NAME"
+          echo "SMTP configuration applied."
+        }
+
         echo "=== Phase 2: Service availability checks ==="
         wait-for-it -t 120 db:3306
         wait-for-it -t 120 redis:6379
@@ -74,21 +91,31 @@ services:
           echo "Installing hrms app on $$SITE_NAME..."
           bench --site $$SITE_NAME install-app hrms
 
+          apply_smtp_config
+
           echo "Applying TREEO branding & taglines..."
           bench --site $$SITE_NAME set-config app_title "TREEO HR system"
           bench --site $$SITE_NAME set-config app_description "TREEO HR system - Empowering People, Restoring Nature"
           bench --site $$SITE_NAME enable-scheduler
 
-          bench --site $$SITE_NAME execute "frappe.db.set_single_value('Navbar Settings', 'app_logo', '/files/treeo_logo.png')"
-          bench --site $$SITE_NAME execute "frappe.db.set_single_value('Website Settings', 'app_logo', '/files/treeo_logo.png')"
-          bench --site $$SITE_NAME execute "frappe.db.set_single_value('Website Settings', 'favicon', '/files/treeo_logo.png')"
           bench --site $$SITE_NAME execute "frappe.db.set_single_value('Website Settings', 'brand_html', '<span class=\"brand-label\">TREEO HR system</span>')"
           bench --site $$SITE_NAME execute "frappe.db.set_single_value('Website Settings', 'tagline', 'TREEO HR system')"
+
+          if [ -f "sites/$$SITE_NAME/public/files/treeo_logo.png" ]; then
+            bench --site $$SITE_NAME execute "frappe.db.set_single_value('Navbar Settings', 'app_logo', '/files/treeo_logo.png')"
+            bench --site $$SITE_NAME execute "frappe.db.set_single_value('Website Settings', 'app_logo', '/files/treeo_logo.png')"
+            bench --site $$SITE_NAME execute "frappe.db.set_single_value('Website Settings', 'favicon', '/files/treeo_logo.png')"
+            echo "Logo configured."
+          else
+            echo "WARNING: treeo_logo.png not found. Upload it via Settings > Website Settings after first login."
+          fi
+
           bench --site $$SITE_NAME execute "frappe.db.commit()"
           echo "Site $$SITE_NAME initialized successfully!"
         else
           echo "Site $$SITE_NAME already exists. Running migration..."
           bench --site $$SITE_NAME migrate
+          apply_smtp_config
         fi
 
         echo "=== Phase 4: Start Gunicorn backend ==="
@@ -112,6 +139,15 @@ services:
       SITE_NAME: "${SITE_NAME:-hr.treeo.id}"
       DB_ROOT_PASSWORD: "${DB_ROOT_PASSWORD}"
       ADMIN_PASSWORD: "${ADMIN_PASSWORD}"
+      # SMTP (all optional — skipped when SMTP_HOST is empty)
+      SMTP_HOST: "${SMTP_HOST:-}"
+      SMTP_PORT: "${SMTP_PORT:-587}"
+      SMTP_LOGIN: "${SMTP_LOGIN:-}"
+      SMTP_PASSWORD: "${SMTP_PASSWORD:-}"
+      SMTP_USE_TLS: "${SMTP_USE_TLS:-1}"
+      SMTP_USE_SSL: "${SMTP_USE_SSL:-0}"
+      SMTP_FROM_EMAIL: "${SMTP_FROM_EMAIL:-}"
+      SMTP_FROM_NAME: "${SMTP_FROM_NAME:-TREEO HR System}"
     volumes:
       - sites:/home/frappe/frappe-bench/sites
       - logs:/home/frappe/frappe-bench/logs
