@@ -57,6 +57,10 @@ services:
             mkdir -p sites/assets/hrms
             cp -r apps/hrms/hrms/public/. sites/assets/hrms/ 2>/dev/null || true
           fi
+          # Replace default FrappeHR app icon with TREEO circle icon
+          mkdir -p sites/assets/hrms/images
+          cp /home/frappe/custom-assets/frappe-hr-logo.svg sites/assets/hrms/images/frappe-hr-logo.svg
+          echo "TREEO icon applied to FrappeHR app."
         fi
         ls -1 apps > sites/apps.txt
         bench set-config -g db_host $$DB_HOST
@@ -112,21 +116,22 @@ services:
           bench --site $$SITE_NAME execute "frappe.db.set_single_value('Website Settings', 'brand_html', '<span class=\"brand-label\">TREEO HR system</span>')"
           bench --site $$SITE_NAME execute "frappe.db.set_single_value('Website Settings', 'tagline', 'TREEO HR system')"
 
-          if [ -f "sites/$$SITE_NAME/public/files/treeo_logo.png" ]; then
-            bench --site $$SITE_NAME execute "frappe.db.set_single_value('Navbar Settings', 'app_logo', '/files/treeo_logo.png')"
-            bench --site $$SITE_NAME execute "frappe.db.set_single_value('Website Settings', 'app_logo', '/files/treeo_logo.png')"
-            bench --site $$SITE_NAME execute "frappe.db.set_single_value('Website Settings', 'favicon', '/files/treeo_logo.png')"
-            echo "Logo configured."
-          else
-            echo "WARNING: treeo_logo.png not found. Upload it via Settings > Website Settings after first login."
-          fi
-
+          mkdir -p sites/$$SITE_NAME/public/files
+          cp /home/frappe/custom-assets/treeo_logo.png sites/$$SITE_NAME/public/files/treeo_logo.png
+          cp /home/frappe/custom-assets/favicon.png    sites/$$SITE_NAME/public/files/favicon.png
+          bench --site $$SITE_NAME execute "frappe.db.set_single_value('Navbar Settings', 'app_logo', '/files/treeo_logo.png')"
+          bench --site $$SITE_NAME execute "frappe.db.set_single_value('Website Settings', 'app_logo', '/files/treeo_logo.png')"
+          bench --site $$SITE_NAME execute "frappe.db.set_single_value('Website Settings', 'favicon', '/files/favicon.png')"
           bench --site $$SITE_NAME execute "frappe.db.commit()"
           echo "Site $$SITE_NAME initialized successfully!"
         else
           echo "Site $$SITE_NAME already exists. Running migration..."
           bench --site $$SITE_NAME migrate
           apply_smtp_config
+          # Re-copy branding assets in case the sites volume was wiped
+          mkdir -p sites/$$SITE_NAME/public/files
+          cp /home/frappe/custom-assets/treeo_logo.png sites/$$SITE_NAME/public/files/treeo_logo.png
+          cp /home/frappe/custom-assets/favicon.png    sites/$$SITE_NAME/public/files/favicon.png
         fi
 
         echo "=== Phase 4: Start Gunicorn backend ==="
@@ -162,6 +167,7 @@ services:
     volumes:
       - sites:/home/frappe/frappe-bench/sites
       - logs:/home/frappe/frappe-bench/logs
+      - ./docker/assets:/home/frappe/custom-assets:ro
     depends_on:
       db:
         condition: service_healthy
