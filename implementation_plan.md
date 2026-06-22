@@ -1,3 +1,29 @@
+# Optimize Coolify Deployment for Low-Resource Setup (<10 Users)
+
+This plan optimizes the `docker-compose.coolify.yml` deployment configuration. It addresses the **degraded container status** issue in Coolify (caused by one-shot setup containers exiting) and minimizes server resource consumption (CPU and RAM) to make it highly efficient for a small team of under 10 users.
+
+## User Review Required
+
+> [!IMPORTANT]
+> The setup utilizes a single Redis instance instead of separate Cache and Queue containers. It also collapses the three background worker services (Short, Default, and Long) into a single worker process listening to all queues sequentially. This is highly recommended for under 10 users and reduces memory usage significantly, but execution of background jobs will be serialized.
+
+## Proposed Changes
+
+### Deployment Configuration
+
+#### [MODIFY] [docker-compose.coolify.yml](file:///Volumes/DATA_SSD/Github/hrms/docker-compose.coolify.yml)
+
+We will modify this file to:
+1. **Remove one-shot services** (`configurator` and `create-site`).
+2. **Consolidate configuration & setup logic** into the `backend` container's entrypoint. The setup will only run on the first startup or database migration, and then Gunicorn will start.
+3. **Consolidate worker queues**: Replace `worker-default`, `worker-short`, and `worker-long` with a single `worker` container running `bench worker --queue short,default,long`.
+4. **Reduce Gunicorn workers**: Configure Gunicorn with 1 worker to save RAM.
+5. **Consolidate Redis**: Combine `redis-cache` and `redis-queue` into a single `redis` container.
+6. **Add start synchronization**: Have the websocket, scheduler, and worker containers wait for the site config file to exist before starting up, ensuring zero startup crashes.
+
+Here is the proposed configuration:
+
+```yaml
 version: "3.8"
 
 services:
@@ -41,12 +67,7 @@ services:
     command:
       - |
         echo "=== Phase 1: Bench configuration ==="
-        if [ ! -d "apps/hrms" ]; then
-          echo "Fetching hrms app..."
-          bench get-app hrms --branch version-15
-          echo "Building hrms assets..."
-          bench build --app hrms --production || true
-        fi
+        bench get-app hrms --branch version-15 || true
         ls -1 apps > sites/apps.txt
         bench set-config -g db_host $$DB_HOST
         bench set-config -gp db_port $$DB_PORT
@@ -214,3 +235,12 @@ volumes:
   redis-data:
   sites:
   logs:
+```
+
+## Verification Plan
+
+### Manual Verification
+- Deploy the updated `docker-compose.coolify.yml` to the Coolify server.
+- Verify in Coolify that all containers are labeled as Green (Running/Healthy) and there are no degraded ones.
+- Check backend logs to verify that database configuration and site setup/migration ran successfully.
+- Verify that the frontend is accessible and background workers run correctly.
