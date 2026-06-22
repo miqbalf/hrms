@@ -79,9 +79,9 @@ services:
           bench --site ${SITE_NAME} enable-scheduler
 
           # Update DB configurations for navbar settings, logo, favicon, and tagline
-          bench --site ${SITE_NAME} execute "frappe.db.set_single_value('Navbar Settings', 'app_logo', 'https://fsn1.your-objectstorage.com/treeo-idn/original_images/logo_Ondjf8Q.png')"
-          bench --site ${SITE_NAME} execute "frappe.db.set_single_value('Website Settings', 'app_logo', 'https://fsn1.your-objectstorage.com/treeo-idn/original_images/logo_Ondjf8Q.png')"
-          bench --site ${SITE_NAME} execute "frappe.db.set_single_value('Website Settings', 'favicon', 'https://fsn1.your-objectstorage.com/treeo-idn/original_images/logo_Ondjf8Q.png')"
+          bench --site ${SITE_NAME} execute "frappe.db.set_single_value('Navbar Settings', 'app_logo', '/files/treeo_logo.png')"
+          bench --site ${SITE_NAME} execute "frappe.db.set_single_value('Website Settings', 'app_logo', '/files/treeo_logo.png')"
+          bench --site ${SITE_NAME} execute "frappe.db.set_single_value('Website Settings', 'favicon', '/files/treeo_logo.png')"
           bench --site ${SITE_NAME} execute "frappe.db.set_single_value('Website Settings', 'brand_html', '<span class=\"brand-label\">TREEO HR system</span>')"
           bench --site ${SITE_NAME} execute "frappe.db.set_single_value('Website Settings', 'tagline', 'TREEO HR system')"
           bench --site ${SITE_NAME} execute "frappe.db.commit()"
