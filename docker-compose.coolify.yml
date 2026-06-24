@@ -175,6 +175,8 @@ services:
       - sites:/home/frappe/frappe-bench/sites
       - logs:/home/frappe/frappe-bench/logs
       - ./docker/assets:/home/frappe/custom-assets:ro
+      - apps:/home/frappe/frappe-bench/apps
+      - env:/home/frappe/frappe-bench/env
     depends_on:
       db:
         condition: service_healthy
@@ -195,6 +197,8 @@ services:
     volumes:
       - sites:/home/frappe/frappe-bench/sites
       - logs:/home/frappe/frappe-bench/logs
+      - apps:/home/frappe/frappe-bench/apps
+      - env:/home/frappe/frappe-bench/env
     depends_on:
       backend:
         condition: service_started
@@ -245,6 +249,8 @@ services:
     volumes:
       - sites:/home/frappe/frappe-bench/sites
       - logs:/home/frappe/frappe-bench/logs
+      - apps:/home/frappe/frappe-bench/apps
+      - env:/home/frappe/frappe-bench/env
     depends_on:
       backend:
         condition: service_started
@@ -265,6 +271,8 @@ services:
     volumes:
       - sites:/home/frappe/frappe-bench/sites
       - logs:/home/frappe/frappe-bench/logs
+      - apps:/home/frappe/frappe-bench/apps
+      - env:/home/frappe/frappe-bench/env
     depends_on:
       backend:
         condition: service_started
@@ -274,3 +282,5 @@ volumes:
   redis-data:
   sites:
   logs:
+  apps:
+  env:
