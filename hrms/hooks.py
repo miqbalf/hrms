@@ -215,6 +215,9 @@ doc_events = {
 	},
 	"Project": {"validate": "hrms.controllers.employee_boarding_controller.update_employee_boarding_status"},
 	"Task": {"on_update": "hrms.controllers.employee_boarding_controller.update_task"},
+	"Email Queue": {
+		"after_insert": "hrms.utils.email_queue_trigger.send_instantly"
+	},
 }
 
 # Scheduled Tasks
