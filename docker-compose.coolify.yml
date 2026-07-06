@@ -68,9 +68,8 @@ services:
           fi
           # Replace default FrappeHR app icon with TREEO circle icon
           mkdir -p sites/assets/hrms/images
-          cp /home/frappe/custom-assets/frappe-hr-logo.svg sites/assets/hrms/images/frappe-hr-logo.svg
+          cp /home/frappe/custom-assets/frappe-hr-logo.svg sites/assets/hrms/images/frappe-hr-logo.svg 2>/dev/null || echo "WARNING: frappe-hr-logo.svg not found, skipping."
           echo "TREEO icon applied to FrappeHR app."
-        fi
         ls -1 apps > sites/apps.txt
         bench set-config -g db_host $$DB_HOST
         bench set-config -gp db_port $$DB_PORT
