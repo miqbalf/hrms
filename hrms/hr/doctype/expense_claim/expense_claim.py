@@ -502,6 +502,9 @@ class ExpenseClaim(AccountsController, PWANotificationsMixin):
 	def set_base_fields_amount(self, doc, fields, exchange_rate=None):
 		"""set values in base currency"""
 		for f in fields:
+			if not doc.meta.get_field("base_" + f):
+				continue
+
 			val = flt(
 				flt(doc.get(f), doc.precision(f))
 				* flt(exchange_rate if exchange_rate else self.exchange_rate),
