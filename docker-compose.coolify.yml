@@ -43,13 +43,13 @@ services:
         echo "=== Phase 1: Bench configuration ==="
         if [ ! -d "apps/hrms" ]; then
           echo "Fetching hrms app..."
-          bench get-app hrms https://github.com/miqbalf/hrms.git --branch version-15
+          bench get-app hrms https://github.com/miqbalf/hrms.git --branch main
         else
           echo "Updating hrms app to miqbalf/hrms fork..."
           cd apps/hrms
           git remote set-url upstream https://github.com/miqbalf/hrms.git
-          git fetch upstream version-15
-          git reset --hard upstream/version-15
+          git fetch upstream main
+          git reset --hard upstream/main
           cd /home/frappe/frappe-bench
           echo "hrms app updated."
         fi
