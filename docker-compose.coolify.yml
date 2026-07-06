@@ -112,17 +112,13 @@ services:
           bench --site $$SITE_NAME set-config app_title "TREEO HR system"
           bench --site $$SITE_NAME set-config app_description "TREEO HR system - Empowering People, Restoring Nature"
           bench --site $$SITE_NAME enable-scheduler
+          echo "Applying TREEO branding..."
+          bench --site $$SITE_NAME execute hrms.utils.apply_branding
 
-          bench --site $$SITE_NAME execute "frappe.db.set_single_value('Website Settings', 'brand_html', '<span class=\"brand-label\">TREEO HR system</span>')"
-          bench --site $$SITE_NAME execute "frappe.db.set_single_value('Website Settings', 'tagline', 'TREEO HR system')"
 
           mkdir -p sites/$$SITE_NAME/public/files
           cp /home/frappe/custom-assets/treeo_logo.png sites/$$SITE_NAME/public/files/treeo_logo.png
           cp /home/frappe/custom-assets/favicon.png    sites/$$SITE_NAME/public/files/favicon.png
-          bench --site $$SITE_NAME execute "frappe.db.set_single_value('Navbar Settings', 'app_logo', '/files/treeo_logo.png')"
-          bench --site $$SITE_NAME execute "frappe.db.set_single_value('Website Settings', 'app_logo', '/files/treeo_logo.png')"
-          bench --site $$SITE_NAME execute "frappe.db.set_single_value('Website Settings', 'favicon', '/files/favicon.png')"
-          bench --site $$SITE_NAME execute "frappe.db.commit()"
           echo "Site $$SITE_NAME initialized successfully!"
         else
           echo "Site $$SITE_NAME already exists. Running migration..."
@@ -132,12 +128,7 @@ services:
           mkdir -p sites/$$SITE_NAME/public/files
           cp /home/frappe/custom-assets/treeo_logo.png sites/$$SITE_NAME/public/files/treeo_logo.png
           cp /home/frappe/custom-assets/favicon.png    sites/$$SITE_NAME/public/files/favicon.png
-          bench --site $$SITE_NAME execute "frappe.db.set_single_value('Navbar Settings', 'app_logo', '/files/treeo_logo.png')"
-          bench --site $$SITE_NAME execute "frappe.db.set_single_value('Website Settings', 'app_logo', '/files/treeo_logo.png')"
-          bench --site $$SITE_NAME execute "frappe.db.set_single_value('Website Settings', 'favicon', '/files/favicon.png')"
-          bench --site $$SITE_NAME execute "frappe.db.set_single_value('Website Settings', 'brand_html', '<span class=\"brand-label\">TREEO HR system</span>')"
-          bench --site $$SITE_NAME execute "frappe.db.set_single_value('Website Settings', 'tagline', 'TREEO HR system')"
-          bench --site $$SITE_NAME execute "frappe.db.commit()"
+          bench --site $$SITE_NAME execute hrms.utils.apply_branding
           echo "Branding re-applied to existing site."
         fi
 
