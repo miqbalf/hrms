@@ -7,14 +7,14 @@ app_license = "GNU General Public License (v3)"
 required_apps = ["frappe/erpnext"]
 source_link = "http://github.com/frappe/hrms"
 app_logo_url = "/assets/hrms/images/frappe-hr-logo.svg"
-app_home = "/desk/recruitment"
+app_home = "/desk/people"
 
 add_to_apps_screen = [
 	{
 		"name": "hrms",
 		"logo": "/assets/hrms/images/frappe-hr-logo.svg",
 		"title": "Frappe HR",
-		"route": "/desk/recruitment",
+		"route": "/desk/people",
 		"has_permission": "hrms.hr.utils.check_app_permission",
 	}
 ]
@@ -215,9 +215,6 @@ doc_events = {
 	},
 	"Project": {"validate": "hrms.controllers.employee_boarding_controller.update_employee_boarding_status"},
 	"Task": {"on_update": "hrms.controllers.employee_boarding_controller.update_task"},
-	"Email Queue": {
-		"after_insert": "hrms.utils.email_queue_trigger.send_instantly"
-	},
 }
 
 # Scheduled Tasks
