@@ -3,7 +3,7 @@ from collections.abc import Generator
 import requests
 
 import frappe
-from frappe.utils import add_days, date_diff
+from frappe.utils import add_days, date_diff, today
 
 country_info = {}
 
@@ -44,6 +44,22 @@ def generate_date_range(start_date: str, end_date: str, reverse: bool = False) -
 
 	for n in range(no_of_days):
 		yield add_days(date_field, direction * n)
+
+
+def is_half_holiday(holiday_list: str, date: str | None = None) -> bool:
+	if date is None:
+		date = today()
+	if holiday_list:
+		from frappe.model import default_fields
+
+		meta = frappe.get_meta("Holiday")
+		if meta.has_field("is_half_day"):
+			return bool(
+				frappe.db.exists(
+					"Holiday", {"parent": holiday_list, "holiday_date": date, "is_half_day": 1}, cache=True
+				)
+			)
+	return False
 
 
 def get_employee_email(employee_id: str) -> str | None:
