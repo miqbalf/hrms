@@ -55,15 +55,17 @@ services:
         fi
         echo "Building hrms assets..."
         bench build --app hrms --production || true
-        # bench build replaces sites/assets/ with a symlink to the internal bench
-        # assets dir (/home/frappe/frappe-bench/assets/). The frontend nginx
-        # container shares only the sites volume, so the symlink is broken there.
-        # Copy real files onto the shared volume to fix this.
+        # bench build replaces sites/assets/ with an absolute symlink to the
+        # internal bench assets dir (/home/frappe/frappe-bench/assets/). The
+        # frontend nginx container shares only the sites volume, not that
+        # internal path. Fix: copy content (preserving inner symlinks) into
+        # a directory on the shared volume and use a relative symlink.
         if [ -L "sites/assets" ]; then
-          echo "Replacing sites/assets symlink with actual files..."
-          cp -rL sites/assets /tmp/assets-tmp
+          echo "Fixing sites/assets symlink for shared volume..."
+          SRC=$(readlink -f sites/assets)
           rm sites/assets
-          mv /tmp/assets-tmp sites/assets
+          mkdir -p sites/assets
+          cp -r "$SRC"/. sites/assets/
         fi
         # Replace default FrappeHR app icon with TREEO circle icon
         mkdir -p sites/assets/hrms/images
@@ -218,6 +220,7 @@ services:
     volumes:
       - sites:/home/frappe/frappe-bench/sites
       - logs:/home/frappe/frappe-bench/logs
+      - apps:/home/frappe/frappe-bench/apps
     depends_on:
       backend:
         condition: service_started
