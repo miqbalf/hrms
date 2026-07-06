@@ -55,21 +55,20 @@ services:
         fi
         echo "Building hrms assets..."
         bench build --app hrms --production || true
-          # bench build creates a symlink sites/assets/hrms → apps/hrms/hrms/public
-          # The frontend nginx container shares only the sites volume, not apps/,
-          # so the symlink is broken there. Copy real files instead.
-          if [ -L "sites/assets/hrms" ]; then
-            cp -rL sites/assets/hrms /tmp/hrms-assets-tmp
-            rm sites/assets/hrms
-            mv /tmp/hrms-assets-tmp sites/assets/hrms
-          elif [ ! -d "sites/assets/hrms" ]; then
-            mkdir -p sites/assets/hrms
-            cp -r apps/hrms/hrms/public/. sites/assets/hrms/ 2>/dev/null || true
-          fi
-          # Replace default FrappeHR app icon with TREEO circle icon
-          mkdir -p sites/assets/hrms/images
-          cp /home/frappe/custom-assets/frappe-hr-logo.svg sites/assets/hrms/images/frappe-hr-logo.svg 2>/dev/null || echo "WARNING: frappe-hr-logo.svg not found, skipping."
-          echo "TREEO icon applied to FrappeHR app."
+        # bench build replaces sites/assets/ with a symlink to the internal bench
+        # assets dir (/home/frappe/frappe-bench/assets/). The frontend nginx
+        # container shares only the sites volume, so the symlink is broken there.
+        # Copy real files onto the shared volume to fix this.
+        if [ -L "sites/assets" ]; then
+          echo "Replacing sites/assets symlink with actual files..."
+          cp -rL sites/assets /tmp/assets-tmp
+          rm sites/assets
+          mv /tmp/assets-tmp sites/assets
+        fi
+        # Replace default FrappeHR app icon with TREEO circle icon
+        mkdir -p sites/assets/hrms/images
+        cp /home/frappe/custom-assets/frappe-hr-logo.svg sites/assets/hrms/images/frappe-hr-logo.svg 2>/dev/null || echo "WARNING: frappe-hr-logo.svg not found, skipping."
+        echo "TREEO icon applied to FrappeHR app."
         ls -1 apps > sites/apps.txt
         bench set-config -g db_host $$DB_HOST
         bench set-config -gp db_port $$DB_PORT
