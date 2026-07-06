@@ -41,10 +41,10 @@ services:
     command:
       - |
         echo "=== Phase 1: Bench configuration ==="
-        if [ ! -d "apps/hrms" ]; then
-          echo "Fetching hrms app (upstream version-15)..."
-          bench get-app hrms https://github.com/frappe/hrms.git --branch version-15
-        fi
+        # Always install fresh from upstream v15 (existing v17 fork code is incompatible)
+        rm -rf apps/hrms
+        echo "Fetching hrms app (upstream version-15)..."
+        bench get-app hrms https://github.com/frappe/hrms.git --branch version-15
         # Inject TREEO custom functions into hrms utils
         if [ -f /home/frappe/custom-assets/hrms_utils_init.py ]; then
           cp /home/frappe/custom-assets/hrms_utils_init.py apps/hrms/hrms/utils/__init__.py
