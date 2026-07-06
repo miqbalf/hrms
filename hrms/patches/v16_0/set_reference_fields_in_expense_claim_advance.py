@@ -3,6 +3,11 @@ from frappe.query_builder.functions import IfNull
 
 
 def execute():
+	if not frappe.db.has_column(
+		"Expense Claim Advance", "payment_entry"
+	) or not frappe.db.has_column("Expense Claim Advance", "reference_name"):
+		return
+
 	ExpenseClaimAdvance = frappe.qb.DocType("Expense Claim Advance")
 
 	(

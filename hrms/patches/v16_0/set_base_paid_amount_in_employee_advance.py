@@ -3,6 +3,9 @@ from frappe.query_builder.functions import IfNull
 
 
 def execute():
+	if not frappe.db.has_column("Employee Advance", "base_paid_amount"):
+		return
+
 	EmployeeAdvance = frappe.qb.DocType("Employee Advance")
 	Company = frappe.qb.DocType("Company")
 
