@@ -617,7 +617,7 @@ def get_total_reimbursed_amount(doc):
 				"advance_voucher_type": None,
 				"docstatus": 1,
 			},
-			[{"SUM": "allocated_amount"}],
+			"sum(allocated_amount)",
 		)
 
 		return flt(amount_via_jv) + flt(amount_via_payment_entry)
