@@ -53,23 +53,20 @@ services:
           cd /home/frappe/frappe-bench
           echo "hrms app updated."
         fi
-        echo "Building hrms assets..."
-        bench build --app hrms --production || true
-        # bench build replaces sites/assets/ with an absolute symlink to the
-        # internal bench assets dir (/home/frappe/frappe-bench/assets/). The
-        # frontend nginx container shares only the sites volume, not that
-        # internal path. Fix: copy content (preserving inner symlinks) into
-        # a directory on the shared volume and use a relative symlink.
+        echo "Building assets..."
+        bench build || true
+        # bench build makes sites/assets a symlink to the bench-level assets
+        # dir. The frontend nginx only shares the sites volume, so copy the
+        # content onto the shared volume and replace the symlink.
         if [ -L "sites/assets" ]; then
-          echo "Fixing sites/assets symlink for shared volume..."
-          SRC=$(readlink -f sites/assets)
+          echo "Moving assets to shared volume..."
+          cp -rL sites/assets/ /tmp/assets-content
           rm sites/assets
-          mkdir -p sites/assets
-          cp -r "$SRC"/. sites/assets/
+          mv /tmp/assets-content sites/assets
         fi
         # Replace default FrappeHR app icon with TREEO circle icon
         mkdir -p sites/assets/hrms/images
-        cp /home/frappe/custom-assets/frappe-hr-logo.svg sites/assets/hrms/images/frappe-hr-logo.svg 2>/dev/null || echo "WARNING: frappe-hr-logo.svg not found, skipping."
+        cp /home/frappe/custom-assets/frappe-hr-logo.svg sites/assets/hrms/images/frappe-hr-logo.svg 2>/dev/null || true
         echo "TREEO icon applied to FrappeHR app."
         ls -1 apps > sites/apps.txt
         bench set-config -g db_host $$DB_HOST
@@ -220,7 +217,6 @@ services:
     volumes:
       - sites:/home/frappe/frappe-bench/sites
       - logs:/home/frappe/frappe-bench/logs
-      - apps:/home/frappe/frappe-bench/apps
     depends_on:
       backend:
         condition: service_started
