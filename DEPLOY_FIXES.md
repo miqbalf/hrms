@@ -175,6 +175,15 @@ The compose file already handles missing files gracefully (all `cp` operations h
 
 ---
 
+### 16. Traefik 503 — `${SITE_NAME}` not substituted in labels by Coolify
+- **Symptom**: Site returns 503 immediately after deployment. All containers healthy. Nginx returns 200 when accessed directly.
+- **Root cause**: Coolify does NOT perform Docker Compose variable substitution inside the `labels:` block. The label `Host(\`${SITE_NAME:-hr.treeo.id}\`)` was stored literally on the container; Traefik rejected it as an invalid hostname (`"${site_name:-hr.treeo.id}" is not a valid hostname`) and created no HTTPS route.
+- **Evidence**: `docker logs coolify-proxy | grep "Error while adding route"` shows the exact error.
+- **Fix**: Hardcode the hostname in the Traefik router rule — no variable substitution needed: `Host(\`hr.treeo.id\`)`.
+- **Long-term rule**: Never use `${VAR}` in `labels:` in Coolify-managed compose files. Use literals or set the value directly in Coolify's environment variables UI so it's substituted at the shell level.
+
+---
+
 ## Known Remaining Issues
 
 1. **`cp: cannot stat treeo_logo.png / favicon.png`** — non-fatal, branding images missing but site still runs.
