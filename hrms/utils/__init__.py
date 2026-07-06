@@ -60,3 +60,15 @@ def get_employee_email(employee_id: str) -> str | None:
 		or employee_emails.company_email
 		or employee_emails.personal_email
 	)
+
+
+def apply_branding():
+	"""Apply TREEO branding to all relevant DocTypes."""
+	frappe.db.set_single_value("Website Settings", "brand_html",
+		'<span class="brand-label">TREEO HR system</span>')
+	frappe.db.set_single_value("Website Settings", "tagline", "TREEO HR system")
+	frappe.db.set_single_value("Website Settings", "app_logo", "/files/treeo_logo.png")
+	frappe.db.set_single_value("Website Settings", "favicon", "/files/favicon.png")
+	frappe.db.set_single_value("Navbar Settings", "app_logo", "/files/treeo_logo.png")
+	frappe.db.set_single_value("System Settings", "app_name", "TREEO HR system")
+	frappe.db.commit()
