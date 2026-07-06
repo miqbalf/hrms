@@ -43,7 +43,7 @@ services:
         echo "=== Phase 1: Bench configuration ==="
         if [ ! -d "apps/hrms" ]; then
           echo "Fetching hrms app..."
-          bench get-app hrms --branch version-15
+          bench get-app hrms https://github.com/miqbalf/hrms.git --branch version-15
           echo "Building hrms assets..."
           bench build --app hrms --production || true
           # bench build creates a symlink sites/assets/hrms → apps/hrms/hrms/public
