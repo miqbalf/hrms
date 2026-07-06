@@ -227,7 +227,7 @@ services:
         condition: service_started
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.frappe-hr-router.rule=Host(`${SITE_NAME:-hr.treeo.id}`)"
+      - "traefik.http.routers.frappe-hr-router.rule=Host(`hr.treeo.id`)"
       - "traefik.http.routers.frappe-hr-router.entryPoints=https"
       - "traefik.http.routers.frappe-hr-router.tls=true"
       - "traefik.http.routers.frappe-hr-router.tls.certresolver=letsencrypt"
