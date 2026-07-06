@@ -15,6 +15,10 @@ def execute():
 		.where(ExpenseClaim.currency.isnull() | (ExpenseClaim.currency == ""))
 	).run()
 
+	# base fields are v16-only — skip on v15
+	if not frappe.db.has_column("Expense Claim", "base_total_sanctioned_amount"):
+		return
+
 	# set base fields in expense claim
 	(
 		frappe.qb.update(ExpenseClaim)
