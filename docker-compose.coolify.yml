@@ -54,16 +54,19 @@ services:
           echo "hrms app updated."
         fi
         echo "Building assets..."
+        # Remove any previous assets so bench build can create clean symlinks.
+        # On the first deploy sites/assets is a bench-created symlink; on
+        # subsequent deploys it's a real directory from the copy below.
+        # bench build can't create symlinks when a directory already exists.
+        rm -rf sites/assets
         bench build || true
         # bench build makes sites/assets a symlink to the bench-level assets
         # dir. The frontend nginx only shares the sites volume, so copy the
-        # content onto the shared volume and replace the symlink.
-        if [ -L "sites/assets" ]; then
-          echo "Moving assets to shared volume..."
-          cp -rL sites/assets/ /tmp/assets-content
-          rm sites/assets
-          mv /tmp/assets-content sites/assets
-        fi
+        # dereferenced content as real files onto the shared volume.
+        echo "Moving assets to shared volume..."
+        cp -rL sites/assets/ /tmp/assets-content
+        rm -rf sites/assets
+        mv /tmp/assets-content sites/assets
         # Replace default FrappeHR app icon with TREEO circle icon
         mkdir -p sites/assets/hrms/images
         cp /home/frappe/custom-assets/frappe-hr-logo.svg sites/assets/hrms/images/frappe-hr-logo.svg 2>/dev/null || true
