@@ -203,6 +203,12 @@ doc_events = {
 		],
 	},
 	"Loan": {"validate": "hrms.hr.utils.validate_loan_repay_from_salary"},
+	"Leave Application": {
+		"on_submit": "hrms.hr.doctype.leave_application.leave_calendar_sync.sync_leave_to_google_calendar",
+		"on_update": "hrms.hr.doctype.leave_application.leave_calendar_sync.update_google_calendar_event",
+		"on_cancel": "hrms.hr.doctype.leave_application.leave_calendar_sync.delete_google_calendar_event",
+		"on_trash": "hrms.hr.doctype.leave_application.leave_calendar_sync.delete_google_calendar_event",
+	},
 	"Employee": {
 		"validate": "hrms.overrides.employee_master.validate_onboarding_process",
 		"on_update": [
