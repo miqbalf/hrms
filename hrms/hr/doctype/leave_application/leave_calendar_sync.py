@@ -265,3 +265,30 @@ def _build_event_body(doc) -> dict:
         "transparency": "opaque",
         "reminders": {"useDefault": False, "overrides": []},
     }
+
+
+@frappe.whitelist()
+def resync_employee_leaves(employee: str):
+    """
+    Utility to re-sync all approved leaves for an employee.
+    Useful after changing calendar settings or fixing sync issues.
+    Call via: bench execute hrms.hr.doctype.leave_application.leave_calendar_sync.resync_employee_leaves --kwargs "{'employee': 'HR-EMP-00002'}"
+    """
+    frappe.has_permission("Leave Application", "read", throw=True)
+
+    leaves = frappe.get_all(
+        "Leave Application",
+        filters={"employee": employee, "status": "Approved", "docstatus": 1},
+        pluck="name",
+    )
+
+    for name in leaves:
+        doc = frappe.get_doc("Leave Application", name)
+        # Clear old event so it creates a fresh one on primary calendar
+        frappe.db.set_value("Leave Application", name, "google_calendar_event_id", None)
+        frappe.db.set_value("Leave Application", name, "google_calendar_synced", 0)
+        doc.reload()
+        sync_leave_to_google_calendar(doc)
+        frappe.db.commit()
+
+    return f"Re-synced {len(leaves)} approved leaves for {employee}"
