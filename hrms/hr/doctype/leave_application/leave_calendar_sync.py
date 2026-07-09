@@ -248,19 +248,13 @@ def _build_event_body(doc) -> dict:
 
     summary = "OOO: {} - {}".format(employee_name, leave_type_name)
 
-    description = doc.leave_type
-    if doc.description:
-        description += "\n\n{}".format(doc.description)
-
     from_date = getdate(doc.from_date)
     to_date = getdate(doc.to_date)
     timezone = frappe.get_system_settings("time_zone") or "UTC"
 
-    # Google Calendar requires dateTime for outOfOffice events (not all-day dates).
-    # Start at midnight of from_date, end at midnight of the day after to_date.
+    # Google Calendar uses exclusive end dates; OOO events can't have descriptions.
     return {
         "summary": summary,
-        "description": description,
         "start": {
             "dateTime": "{}T00:00:00".format(from_date),
             "timeZone": timezone,
