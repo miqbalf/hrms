@@ -232,7 +232,8 @@ def _get_google_calendar_service(doc):
 
     try:
         service = build("calendar", "v3", credentials=credentials, static_discovery=False)
-        return service, google_calendar_doc.google_calendar_id or "primary"
+        # Always sync to the employee's primary calendar so OOO is visible to colleagues
+        return service, "primary"
     except Exception:
         return None, None
 
