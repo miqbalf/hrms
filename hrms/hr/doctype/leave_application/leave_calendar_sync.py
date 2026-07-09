@@ -254,13 +254,21 @@ def _build_event_body(doc) -> dict:
 
     from_date = getdate(doc.from_date)
     to_date = getdate(doc.to_date)
+    timezone = frappe.db.get_system_settings("time_zone") or "UTC"
 
-    # Google Calendar uses exclusive end dates for all-day events
+    # Google Calendar requires dateTime for outOfOffice events (not all-day dates).
+    # Start at midnight of from_date, end at midnight of the day after to_date.
     return {
         "summary": summary,
         "description": description,
-        "start": {"date": str(from_date)},
-        "end": {"date": str(add_days(to_date, 1))},
+        "start": {
+            "dateTime": "{}T00:00:00".format(from_date),
+            "timeZone": timezone,
+        },
+        "end": {
+            "dateTime": "{}T00:00:00".format(add_days(to_date, 1)),
+            "timeZone": timezone,
+        },
         "eventType": "outOfOffice",
         "transparency": "opaque",
         "reminders": {"useDefault": False, "overrides": []},
