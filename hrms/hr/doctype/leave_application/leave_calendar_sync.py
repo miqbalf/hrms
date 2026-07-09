@@ -260,6 +260,7 @@ def _build_event_body(doc) -> dict:
         "description": description,
         "start": {"date": str(from_date)},
         "end": {"date": str(add_days(to_date, 1))},
+        "eventType": "outOfOffice",
         "transparency": "opaque",
         "reminders": {"useDefault": False, "overrides": []},
     }
