@@ -232,7 +232,8 @@ def _get_google_calendar_service(doc):
 
     try:
         service = build("calendar", "v3", credentials=credentials, static_discovery=False)
-        return service, google_calendar_doc.google_calendar_id or "primary"
+        # Always sync to the employee's primary calendar so OOO is visible to colleagues
+        return service, "primary"
     except Exception:
         return None, None
 
@@ -247,19 +248,49 @@ def _build_event_body(doc) -> dict:
 
     summary = "OOO: {} - {}".format(employee_name, leave_type_name)
 
-    description = doc.leave_type
-    if doc.description:
-        description += "\n\n{}".format(doc.description)
-
     from_date = getdate(doc.from_date)
     to_date = getdate(doc.to_date)
+    timezone = frappe.get_system_settings("time_zone") or "UTC"
 
-    # Google Calendar uses exclusive end dates for all-day events
+    # Google Calendar uses exclusive end dates; OOO events can't have descriptions.
     return {
         "summary": summary,
-        "description": description,
-        "start": {"date": str(from_date)},
-        "end": {"date": str(add_days(to_date, 1))},
+        "start": {
+            "dateTime": "{}T00:00:00".format(from_date),
+            "timeZone": timezone,
+        },
+        "end": {
+            "dateTime": "{}T00:00:00".format(add_days(to_date, 1)),
+            "timeZone": timezone,
+        },
+        "eventType": "outOfOffice",
         "transparency": "opaque",
         "reminders": {"useDefault": False, "overrides": []},
     }
+
+
+@frappe.whitelist()
+def resync_employee_leaves(employee: str):
+    """
+    Utility to re-sync all approved leaves for an employee.
+    Useful after changing calendar settings or fixing sync issues.
+    Call via: bench execute hrms.hr.doctype.leave_application.leave_calendar_sync.resync_employee_leaves --kwargs "{'employee': 'HR-EMP-00002'}"
+    """
+    frappe.has_permission("Leave Application", "read", throw=True)
+
+    leaves = frappe.get_all(
+        "Leave Application",
+        filters={"employee": employee, "status": "Approved", "docstatus": 1},
+        pluck="name",
+    )
+
+    for name in leaves:
+        doc = frappe.get_doc("Leave Application", name)
+        # Clear old event so it creates a fresh one on primary calendar
+        frappe.db.set_value("Leave Application", name, "google_calendar_event_id", None)
+        frappe.db.set_value("Leave Application", name, "google_calendar_synced", 0)
+        doc.reload()
+        sync_leave_to_google_calendar(doc)
+        frappe.db.commit()
+
+    return f"Re-synced {len(leaves)} approved leaves for {employee}"
