@@ -56,6 +56,10 @@ services:
           echo "" >> apps/hrms/hrms/utils/__init__.py
           echo "from hrms.utils.treeo_branding import apply_branding, is_half_holiday" >> apps/hrms/hrms/utils/__init__.py
         fi
+        # Inject cancelled-document email print fix (skip print attach so email can send)
+        if [ -f /home/frappe/custom-assets/inject_email_queue_fix.sh ]; then
+          bash /home/frappe/custom-assets/inject_email_queue_fix.sh
+        fi
         echo "Building assets..."
         # Remove any previous assets so bench build can create clean symlinks.
         # On the first deploy sites/assets is a bench-created symlink; on
