@@ -46,8 +46,8 @@ class EmailQueue(CoreEmailQueue):
 			self.attachments = json.dumps(filtered)
 
 	def validate(self):
+		# Document has no validate(); Frappe runs doc-type validate via hooks/_validate.
 		self.strip_cancelled_print_attachments()
-		super().validate()
 
 	def send(self, smtp_server_instance=None, force_send: bool = False):
 		# Cover retries of queues created before strip-on-validate existed.
