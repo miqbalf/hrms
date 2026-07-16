@@ -85,6 +85,10 @@ services:
         bench set-config -g redis_queue "redis://$$REDIS_QUEUE"
         bench set-config -g redis_socketio "redis://$$REDIS_QUEUE"
         bench set-config -gp socketio_port $$SOCKETIO_PORT
+        # Email flush "All" jobs use minute cron from scheduler_interval (min practical: 60s).
+        # Tick at 30s so due jobs are picked up quickly; instant send also wired in EmailQueue override.
+        bench set-config -gp scheduler_interval 60
+        bench set-config -gp scheduler_tick_interval 30
 
         apply_smtp_config() {
           if [ -z "$$SMTP_HOST" ]; then

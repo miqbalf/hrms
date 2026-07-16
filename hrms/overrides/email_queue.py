@@ -49,6 +49,11 @@ class EmailQueue(CoreEmailQueue):
 		# Document has no validate(); Frappe runs doc-type validate via hooks/_validate.
 		self.strip_cancelled_print_attachments()
 
+	def after_insert(self):
+		# Send immediately after commit instead of waiting for scheduler flush (~1–4 min).
+		if self.status == "Not Sent":
+			frappe.db.after_commit.add(self.send)
+
 	def send(self, smtp_server_instance=None, force_send: bool = False):
 		# Cover retries of queues created before strip-on-validate existed.
 		self.strip_cancelled_print_attachments()
