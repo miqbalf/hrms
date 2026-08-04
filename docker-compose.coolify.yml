@@ -46,10 +46,27 @@ services:
         rm -rf apps/hrms
         echo "Fetching hrms app (upstream version-15)..."
         bench get-app hrms https://github.com/frappe/hrms.git --branch version-15
+        # Take TREEO customizations from git, not the bind mount. Coolify only
+        # places the compose file on the server — ./docker/assets is NOT synced
+        # from the repo (DEPLOY_FIXES.md #13), so anything that relies on the
+        # bind mount silently disappears whenever that directory is cleared.
+        # Falls back to the bind mount if the clone fails, so a GitHub outage
+        # degrades to the old behaviour instead of breaking the deploy.
+        ASSETS=/home/frappe/custom-assets
+        FORK_ROOT=""
+        rm -rf /tmp/treeo-fork
+        if GIT_TERMINAL_PROMPT=0 git clone --depth 1 --branch main \
+             https://github.com/miqbalf/hrms.git /tmp/treeo-fork; then
+          FORK_ROOT=/tmp/treeo-fork
+          ASSETS=/tmp/treeo-fork/docker/assets
+          echo "TREEO customizations source: git ($$ASSETS)"
+        else
+          echo "WARNING: could not clone TREEO fork — falling back to bind mount $$ASSETS"
+        fi
         # Inject TREEO custom functions
         mkdir -p apps/hrms/hrms/utils
-        if [ -f /home/frappe/custom-assets/treeo_branding.py ]; then
-          cp /home/frappe/custom-assets/treeo_branding.py apps/hrms/hrms/utils/treeo_branding.py
+        if [ -f $$ASSETS/treeo_branding.py ]; then
+          cp $$ASSETS/treeo_branding.py apps/hrms/hrms/utils/treeo_branding.py
         fi
         # Ensure apply_branding is importable from hrms.utils
         if ! grep -q "apply_branding" apps/hrms/hrms/utils/__init__.py 2>/dev/null; then
@@ -57,12 +74,12 @@ services:
           echo "from hrms.utils.treeo_branding import apply_branding, is_half_holiday" >> apps/hrms/hrms/utils/__init__.py
         fi
         # Inject cancelled-document email print fix (skip print attach so email can send)
-        if [ -f /home/frappe/custom-assets/inject_email_queue_fix.sh ]; then
-          bash /home/frappe/custom-assets/inject_email_queue_fix.sh
+        if [ -f $$ASSETS/inject_email_queue_fix.sh ]; then
+          bash $$ASSETS/inject_email_queue_fix.sh $$ASSETS
         fi
         # Inject Google Calendar sync for approved leaves (doc_events + hourly sweep)
-        if [ -f /home/frappe/custom-assets/inject_calendar_sync.sh ]; then
-          bash /home/frappe/custom-assets/inject_calendar_sync.sh
+        if [ -f $$ASSETS/inject_calendar_sync.sh ]; then
+          bash $$ASSETS/inject_calendar_sync.sh $$FORK_ROOT
         fi
         echo "Building assets..."
         # Remove any previous assets so bench build can create clean symlinks.
@@ -80,7 +97,7 @@ services:
         mv /tmp/assets-content sites/assets
         # Replace default FrappeHR app icon with TREEO circle icon
         mkdir -p sites/assets/hrms/images
-        cp /home/frappe/custom-assets/frappe-hr-logo.svg sites/assets/hrms/images/frappe-hr-logo.svg 2>/dev/null || true
+        cp $$ASSETS/frappe-hr-logo.svg sites/assets/hrms/images/frappe-hr-logo.svg 2>/dev/null || true
         echo "TREEO icon applied to FrappeHR app."
         ls -1 apps > sites/apps.txt
         bench set-config -g db_host $$DB_HOST
@@ -140,16 +157,16 @@ services:
           bench --site $$SITE_NAME execute hrms.hr.doctype.leave_application.leave_calendar_sync.ensure_custom_fields || echo "Calendar sync fields failed (non-fatal)"
 
           mkdir -p sites/$$SITE_NAME/public/files
-          cp /home/frappe/custom-assets/treeo_logo.png sites/$$SITE_NAME/public/files/treeo_logo.png 2>/dev/null || true
-          cp /home/frappe/custom-assets/favicon.png    sites/$$SITE_NAME/public/files/favicon.png 2>/dev/null || true
+          cp $$ASSETS/treeo_logo.png sites/$$SITE_NAME/public/files/treeo_logo.png 2>/dev/null || true
+          cp $$ASSETS/favicon.png    sites/$$SITE_NAME/public/files/favicon.png 2>/dev/null || true
           echo "Site $$SITE_NAME initialized successfully!"
         else
           echo "Site $$SITE_NAME already exists. Running migration..."
           bench --site $$SITE_NAME migrate
           apply_smtp_config
           mkdir -p sites/$$SITE_NAME/public/files
-          cp /home/frappe/custom-assets/treeo_logo.png sites/$$SITE_NAME/public/files/treeo_logo.png 2>/dev/null || true
-          cp /home/frappe/custom-assets/favicon.png    sites/$$SITE_NAME/public/files/favicon.png 2>/dev/null || true
+          cp $$ASSETS/treeo_logo.png sites/$$SITE_NAME/public/files/treeo_logo.png 2>/dev/null || true
+          cp $$ASSETS/favicon.png    sites/$$SITE_NAME/public/files/favicon.png 2>/dev/null || true
           bench --site $$SITE_NAME execute hrms.utils.apply_branding || echo "Branding apply failed (non-fatal)"
           bench --site $$SITE_NAME execute hrms.hr.doctype.leave_application.leave_calendar_sync.ensure_custom_fields || echo "Calendar sync fields failed (non-fatal)"
           echo "Branding re-applied to existing site."

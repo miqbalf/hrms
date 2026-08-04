@@ -85,6 +85,7 @@
 - **Root cause**: Coolify does not copy `docker/assets/` directory contents during deployment (directory exists but empty on server).
 - **Manual fix**: Uploaded files via `ssh_upload` to `/data/coolify/applications/i3p27fxovl8lexv26fdq477z/docker/assets/`.
 - **Compose fix**: All `cp` operations from `custom-assets/` now have `2>/dev/null || true` — non-fatal.
+- **Permanent fix (see #18)**: the deploy no longer depends on the bind mount. Phase 1 shallow-clones the fork and reads all customizations from it, so git is the single source of truth. Confirmed on the 2026-08-04 deploy that Coolify does **not** repopulate `docker/assets/` — the files kept their manual-upload timestamps while every other file kept its July date.
 
 ### 14. YAML heredoc broke docker-compose parsing
 - **Symptom**: Deploy failed with "no service selected" — YAML scanner error.
@@ -197,14 +198,28 @@ The compose file already handles missing files gracefully (all `cp` operations h
   - **`scheduler_events`** are *not* read from hooks at run time. v15 syncs them into `Scheduled Job Type` records via `sync_jobs()` (which `bench migrate` calls), and the scheduler enqueues from that table. So a new scheduled job needs `bench --site <site> execute frappe.core.doctype.scheduled_job_type.scheduled_job_type.sync_jobs` — restarting the scheduler container does nothing on its own.
   - A newly created job's first run is based on its `creation` timestamp, not `last_execution` — an `Hourly` job created at 19:40 first fires at 20:00, not immediately. Force one with `frappe.get_doc("Scheduled Job Type", name).enqueue(force=True)` to verify the chain.
 
+### 18. Customizations depended on a bind mount Coolify never populates
+- **Symptom**: every customization had to be hand-uploaded to the server, and any deploy that cleared `docker/assets/` silently dropped it. This is the mechanism behind #13, Known Issue 1 (`cp: cannot stat treeo_logo.png`) and the calendar sync loss in #17.
+- **Root cause**: the compose bind mount `./docker/assets:/home/frappe/custom-assets:ro` is relative to the compose file, and **Coolify places only the compose file on the server — not the repo tree**. Verified on the 2026-08-04 deploy: after a full rebuild the assets directory still held the manually uploaded files at their original timestamps, so committing files to git had no effect on what production actually read.
+- **Fix**: Phase 1 now shallow-clones the fork and uses it as the asset source, with the bind mount kept only as a fallback so a GitHub outage degrades to the old behaviour rather than breaking the deploy:
+  ```bash
+  ASSETS=/home/frappe/custom-assets
+  FORK_ROOT=""
+  if git clone --depth 1 --branch main https://github.com/miqbalf/hrms.git /tmp/treeo-fork; then
+    FORK_ROOT=/tmp/treeo-fork; ASSETS=/tmp/treeo-fork/docker/assets
+  fi
+  ```
+  Both injection scripts take the source directory as `$1`, and `inject_calendar_sync.sh` prefers the fork's **real** module path (`hrms/hr/doctype/leave_application/leave_calendar_sync.py`) over the `docker/assets/` copy — so there is one source of truth instead of two files to keep in sync. The branding/logo `cp`s read from `$ASSETS` too, which is what fixes Known Issue 1.
+- **Loud on failure**: if no module source can be found, the script prints a `WARNING: approved leaves will NOT sync` banner and exits 0. Non-fatal by design (a missing logo must not break a deploy) but no longer silent — silence is what let #17 go unnoticed for three weeks.
+- **Note**: the fork must stay publicly cloneable for this to work. Verified from inside the container with no credentials. If it is ever made private, the deploy falls back to the bind mount and the warning tells you.
+
 ---
 
 ## Known Remaining Issues
 
-1. **`cp: cannot stat treeo_logo.png / favicon.png`** — non-fatal, branding images missing but site still runs.
-2. **`Assets for Release /bin/sh: Syntax error`** — harmless bench build warning, can be ignored.
-3. **npm peer dependency warnings** — Vite packages complaining about missing peers, harmless.
-4. **Bind mount files may not survive Coolify redeploys** — if Coolify cleans the application directory, re-upload files.
+1. **`Assets for Release /bin/sh: Syntax error`** — harmless bench build warning, can be ignored.
+2. **npm peer dependency warnings** — Vite packages complaining about missing peers, harmless.
+3. **Only one employee has an authorized Google Calendar** — leave sync works, but each employee must click **Authorize** on their own Google Calendar record before their leaves can reach a calendar. Check with `bench --site hr.treeo.id execute hrms.hr.doctype.leave_application.leave_calendar_sync.get_sync_readiness`.
 
 ---
 
