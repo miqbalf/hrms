@@ -60,6 +60,10 @@ services:
         if [ -f /home/frappe/custom-assets/inject_email_queue_fix.sh ]; then
           bash /home/frappe/custom-assets/inject_email_queue_fix.sh
         fi
+        # Inject Google Calendar sync for approved leaves (doc_events + hourly sweep)
+        if [ -f /home/frappe/custom-assets/inject_calendar_sync.sh ]; then
+          bash /home/frappe/custom-assets/inject_calendar_sync.sh
+        fi
         echo "Building assets..."
         # Remove any previous assets so bench build can create clean symlinks.
         # On the first deploy sites/assets is a bench-created symlink; on
@@ -133,6 +137,7 @@ services:
           bench --site $$SITE_NAME set-config app_description "TREEO HR system - Empowering People, Restoring Nature"
           bench --site $$SITE_NAME enable-scheduler
           bench --site $$SITE_NAME execute hrms.utils.apply_branding || echo "Branding apply failed (non-fatal)"
+          bench --site $$SITE_NAME execute hrms.hr.doctype.leave_application.leave_calendar_sync.ensure_custom_fields || echo "Calendar sync fields failed (non-fatal)"
 
           mkdir -p sites/$$SITE_NAME/public/files
           cp /home/frappe/custom-assets/treeo_logo.png sites/$$SITE_NAME/public/files/treeo_logo.png 2>/dev/null || true
@@ -146,6 +151,7 @@ services:
           cp /home/frappe/custom-assets/treeo_logo.png sites/$$SITE_NAME/public/files/treeo_logo.png 2>/dev/null || true
           cp /home/frappe/custom-assets/favicon.png    sites/$$SITE_NAME/public/files/favicon.png 2>/dev/null || true
           bench --site $$SITE_NAME execute hrms.utils.apply_branding || echo "Branding apply failed (non-fatal)"
+          bench --site $$SITE_NAME execute hrms.hr.doctype.leave_application.leave_calendar_sync.ensure_custom_fields || echo "Calendar sync fields failed (non-fatal)"
           echo "Branding re-applied to existing site."
         fi
 

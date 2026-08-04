@@ -182,6 +182,21 @@ The compose file already handles missing files gracefully (all `cp` operations h
 - **Fix**: Hardcode the hostname in the Traefik router rule — no variable substitution needed: `Host(\`hr.treeo.id\`)`.
 - **Long-term rule**: Never use `${VAR}` in `labels:` in Coolify-managed compose files. Use literals or set the value directly in Coolify's environment variables UI so it's substituted at the shell level.
 
+### 17. Google Calendar leave sync silently disappeared after redeploy
+- **Symptom**: Approved leave applications stopped appearing on employees' Google Calendars. `google_calendar_synced = 0`, `google_calendar_event_id = NULL`, and **zero Error Log rows** — the hook was never firing at all.
+- **Root cause**: The calendar sync feature lives only in this fork (`hrms/hr/doctype/leave_application/leave_calendar_sync.py` + the `Leave Application` entry in `doc_events`). Production does `rm -rf apps/hrms && bench get-app hrms https://github.com/frappe/hrms.git` on every deploy, so **fork code is never present at runtime**. The feature only ever worked because the file had been hand-copied into the live container; the 2026-07-16 redeploy re-cloned upstream and wiped it. The branding and Email Queue customizations survived because the compose file explicitly re-injects them — calendar sync had no such injection step.
+- **Why it looked like a config problem**: the custom fields (`google_calendar_synced`, `google_calendar_event_id`, `enable_google_calendar_sync`) live in the **database**, which persists across redeploys. So the fields and the enabled checkbox all looked correct while the code implementing them was absent.
+- **Fix**:
+  - `docker/assets/leave_calendar_sync.py` — the module, shipped via the `custom-assets` bind mount.
+  - `docker/assets/inject_calendar_sync.sh` — copies it into the freshly cloned app and appends the `doc_events` + `scheduler_events` registration to the end of `hooks.py` (append-only, so it never has to match upstream's dict formatting). Idempotent via a `grep -q leave_calendar_sync` guard.
+  - `docker-compose.coolify.yml` — calls the injection script in Phase 1, and runs `leave_calendar_sync.ensure_custom_fields` after migrate so a rebuilt site recreates the custom fields (fork `hrms/patches/` never runs in production either, for the same reason).
+  - Added `sync_pending_leaves` on the **hourly** scheduler as a safety net: any approved, submitted, not-yet-synced leave whose `to_date >= today` gets retried. This self-heals transient Google API failures and missed hooks. Scoped to current/future leaves so it can't spin forever on old rows that can never succeed.
+- **Lesson — the general rule**: any change to hrms Python source must ship as a `docker/assets/` file **plus** an injection step in the compose Phase 1. A change committed only to the fork's `hrms/` tree is dead code in production. Same goes for anything in `hrms/patches/` — write it as an idempotent function and call it from the deploy script instead.
+- **After changing hooks, running processes must be refreshed** — `hooks.py` is cached in `sys.modules` per process, so `bench clear-cache` is *not* enough:
+  - **`doc_events`** (real-time sync on submit) are read per request by the gunicorn **workers**. Send `SIGHUP` to the gunicorn master (`docker kill -s HUP <backend>`) — workers re-fork and import the new file. Do *not* `docker restart` the backend: its entrypoint re-runs Phase 1 (re-clone + `bench build`), which is minutes of downtime. SIGHUP is safe even with `--preload`, because hooks are imported lazily per request (after the fork), so the stale module lives in the worker, not the master.
+  - **`scheduler_events`** are *not* read from hooks at run time. v15 syncs them into `Scheduled Job Type` records via `sync_jobs()` (which `bench migrate` calls), and the scheduler enqueues from that table. So a new scheduled job needs `bench --site <site> execute frappe.core.doctype.scheduled_job_type.scheduled_job_type.sync_jobs` — restarting the scheduler container does nothing on its own.
+  - A newly created job's first run is based on its `creation` timestamp, not `last_execution` — an `Hourly` job created at 19:40 first fires at 20:00, not immediately. Force one with `frappe.get_doc("Scheduled Job Type", name).enqueue(force=True)` to verify the chain.
+
 ---
 
 ## Known Remaining Issues

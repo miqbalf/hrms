@@ -206,7 +206,7 @@ doc_events = {
 	"Loan": {"validate": "hrms.hr.utils.validate_loan_repay_from_salary"},
 	"Leave Application": {
 		"on_submit": "hrms.hr.doctype.leave_application.leave_calendar_sync.sync_leave_to_google_calendar",
-		"on_update": "hrms.hr.doctype.leave_application.leave_calendar_sync.update_google_calendar_event",
+		"on_update_after_submit": "hrms.hr.doctype.leave_application.leave_calendar_sync.update_google_calendar_event",
 		"on_cancel": "hrms.hr.doctype.leave_application.leave_calendar_sync.delete_google_calendar_event",
 		"on_trash": "hrms.hr.doctype.leave_application.leave_calendar_sync.delete_google_calendar_event",
 	},
@@ -233,6 +233,7 @@ scheduler_events = {
 	],
 	"hourly": [
 		"hrms.hr.doctype.daily_work_summary_group.daily_work_summary_group.trigger_emails",
+		"hrms.hr.doctype.leave_application.leave_calendar_sync.sync_pending_leaves",
 	],
 	"hourly_long": [
 		"hrms.hr.doctype.shift_type.shift_type.update_last_sync_of_checkin",
