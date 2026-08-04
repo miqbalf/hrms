@@ -1,11 +1,16 @@
 #!/bin/bash
+# Usage: inject_email_queue_fix.sh [ASSETS_DIR]
+# ASSETS_DIR defaults to the custom-assets bind mount. The deploy passes the
+# fork's docker/assets instead, because Coolify does not sync the bind mount
+# from git — see DEPLOY_FIXES.md #13.
 set -e
+SRC="${1:-/home/frappe/custom-assets}"
 mkdir -p apps/hrms/hrms/overrides apps/hrms/hrms/public/js/utils
-if [ -f /home/frappe/custom-assets/email_queue.py ]; then
-  cp /home/frappe/custom-assets/email_queue.py apps/hrms/hrms/overrides/email_queue.py
+if [ -f "$SRC/email_queue.py" ]; then
+  cp "$SRC/email_queue.py" apps/hrms/hrms/overrides/email_queue.py
 fi
-if [ -f /home/frappe/custom-assets/communication_composer.js ]; then
-  cp /home/frappe/custom-assets/communication_composer.js apps/hrms/hrms/public/js/utils/communication_composer.js
+if [ -f "$SRC/communication_composer.js" ]; then
+  cp "$SRC/communication_composer.js" apps/hrms/hrms/public/js/utils/communication_composer.js
 fi
 if [ -f apps/hrms/hrms/overrides/email_queue.py ] && ! grep -q '"Email Queue"' apps/hrms/hrms/hooks.py; then
   python3 - <<'PY'
