@@ -70,7 +70,7 @@ export default defineConfig({
 		commonjsOptions: {
 			include: [/tailwind.config.js/, /node_modules/],
 		},
-		sourcemap: true,
+		sourcemap: false,
 		rollupOptions: {
 			output: {
 				manualChunks: {
