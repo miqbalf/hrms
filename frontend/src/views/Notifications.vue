@@ -70,7 +70,7 @@
 								<div class="flex flex-col gap-0.5 grow ml-3">
 									<div
 										class="text-sm leading-5 font-normal text-gray-800"
-										v-html="item.message"
+										v-html="sanitizeHTML(item.message)"
 									></div>
 									<div class="text-xs font-normal text-gray-500">
 										{{ dayjs(item.creation).fromNow() }}
@@ -104,6 +104,7 @@ import { createResource, FeatherIcon } from "frappe-ui"
 import { computed, inject, onMounted, ref } from "vue"
 import EmployeeAvatar from "@/components/EmployeeAvatar.vue"
 import EmptyState from "@/components/EmptyState.vue"
+import { sanitizeHTML } from "@/utils/sanitize"
 
 import {
 	unreadNotificationsCount,
