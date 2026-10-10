@@ -11,6 +11,12 @@
 		<div class="bg-white h-full w-full overflow-auto touch-pinch-zoom">
 			<img v-if="isImageFile" :src="src" class="h-auto image-preview" />
 			<iframe
+				v-else-if="isPdfFile"
+				:src="src"
+				class="w-full h-full"
+				referrerpolicy="no-referrer"
+			></iframe>
+			<iframe
 				v-else
 				:src="src"
 				class="w-full h-full"
@@ -53,6 +59,10 @@ const src = computed(() => {
 const isImageFile = computed(() => {
 	return /\.(gif|jpg|jpeg|tiff|png|svg)$/i.test(filename.value)
 })
+
+const isPdfFile = computed(() =>
+	/\.pdf$/i.test((props.file.file_url || filename.value).split("?")[0])
+)
 
 onBeforeUnmount(() => {
 	URL.revokeObjectURL(src.value)
