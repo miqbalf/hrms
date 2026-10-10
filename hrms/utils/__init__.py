@@ -1,3 +1,5 @@
+import ipaddress
+from collections import OrderedDict
 from collections.abc import Generator
 
 import requests
@@ -5,29 +7,44 @@ import requests
 import frappe
 from frappe.utils import add_days, date_diff, today
 
-country_info = {}
+country_info: OrderedDict[str, dict] = OrderedDict()
+COUNTRY_INFO_CACHE_SIZE = 1024
+COUNTRY_LOOKUP_TIMEOUT = 5
+
+
+def _remember_country(ip: str, info: dict) -> None:
+	country_info[ip] = info
+	country_info.move_to_end(ip)
+	while len(country_info) > COUNTRY_INFO_CACHE_SIZE:
+		country_info.popitem(last=False)
 
 
 @frappe.whitelist(allow_guest=True)
 def get_country(fields: list | None = None) -> dict:
-	global country_info
-	ip = frappe.local.request_ip
+	try:
+		ip = str(ipaddress.ip_address((frappe.local.request_ip or "").strip()))
+	except ValueError:
+		return {}
 
-	if ip not in country_info:
-		fields = ["countryCode", "country", "regionName", "city"]
+	if ip in country_info:
+		country_info.move_to_end(ip)
+		return country_info[ip]
+
+	fields = ["countryCode", "country", "regionName", "city"]
+	try:
 		res = requests.get(
-			"https://pro.ip-api.com/json/{ip}?key={key}&fields={fields}".format(
-				ip=ip, key=frappe.conf.get("ip-api-key"), fields=",".join(fields)
-			)
+			f"https://pro.ip-api.com/json/{ip}",
+			params={"key": frappe.conf.get("ip-api-key"), "fields": ",".join(fields)},
+			timeout=COUNTRY_LOOKUP_TIMEOUT,
 		)
+		info = res.json()
+		if not isinstance(info, dict):
+			info = {}
+	except Exception:
+		info = {}
 
-		try:
-			country_info[ip] = res.json()
-
-		except Exception:
-			country_info[ip] = {}
-
-	return country_info[ip]
+	_remember_country(ip, info)
+	return info
 
 
 def get_date_range(start_date: str, end_date: str) -> list[str]:
