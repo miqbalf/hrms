@@ -404,6 +404,7 @@ def resync_employee_leaves(employee: str):
     Useful after changing calendar settings or fixing sync issues.
     Call via: bench execute hrms.hr.doctype.leave_application.leave_calendar_sync.resync_employee_leaves --kwargs "{'employee': 'HR-EMP-00002'}"
     """
+    frappe.only_for(("HR Manager", "System Manager"))
     frappe.has_permission("Leave Application", "read", throw=True)
 
     leaves = frappe.get_all(
