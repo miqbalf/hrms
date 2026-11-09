@@ -110,7 +110,7 @@ services:
         # change to develop, wait for the GitLab->GitHub mirror, review that
         # commit, put its full 40-char SHA below, then merge develop to main.
         # The pinned commit must be reachable from a branch on the fork.
-        TREEO_FORK_SHA=2fd6dac941f7e6fb45941b981566d051ac1471ee
+        TREEO_FORK_SHA=7cf479b419d75c8e1e03ee4dd3dd952a524e9102
         mkdir -p /tmp/treeo-fork && git init -q /tmp/treeo-fork
         if GIT_TERMINAL_PROMPT=0 git -C /tmp/treeo-fork fetch -q --depth 1 \
              https://github.com/miqbalf/hrms.git $$TREEO_FORK_SHA \
