@@ -25,6 +25,9 @@
 #       permission; we only verify that and warn if it ever disappears
 #   M5  payroll / payment helpers: read permission on the referenced document
 #       or employee before amounts are returned
+#   G1  hrms.utils.get_country (guest): validate request_ip, pass key/fields as
+#       request params, 5 s timeout, LRU-bounded per-IP cache (1024 entries).
+#       Same code as hrms/utils/__init__.py in this repo (commit da19ae060).
 
 APP_DIR="${1:-apps/hrms}"
 
@@ -44,6 +47,7 @@ app = Path(sys.argv[1])
 #           `after` is set, after that exact line inside the function body.
 #   replace: swap the exact line `old` for `new`.
 #   verify: only check that `expect` is present.
+#   block: swap the exact run of lines `old` (must occur once) for `new`.
 # `needs`: strings that must exist in the file (imports the patch relies on).
 PATCHES = [
 	{
@@ -138,6 +142,80 @@ PATCHES = [
 		"func": "def get_earning_components_max_benefits(",
 		"lines": ['\tfrappe.has_permission("Employee", "read", employee, throw=True)  # TREEO-SEC M5g'],
 	},
+	{
+		"id": "G1",
+		"file": "hrms/utils/__init__.py",
+		"mode": "block",
+		"old": [
+			"country_info = {}",
+			"",
+			"",
+			"@frappe.whitelist(allow_guest=True)",
+			"def get_country(fields=None):",
+			"\tglobal country_info",
+			"\tip = frappe.local.request_ip",
+			"",
+			"\tif ip not in country_info:",
+			'\t\tfields = ["countryCode", "country", "regionName", "city"]',
+			"\t\tres = requests.get(",
+			'\t\t\t"https://pro.ip-api.com/json/{ip}?key={key}&fields={fields}".format(',
+			'\t\t\t\tip=ip, key=frappe.conf.get("ip-api-key"), fields=",".join(fields)',
+			"\t\t\t)",
+			"\t\t)",
+			"",
+			"\t\ttry:",
+			"\t\t\tcountry_info[ip] = res.json()",
+			"",
+			"\t\texcept Exception:",
+			"\t\t\tcountry_info[ip] = {}",
+			"",
+			"\treturn country_info[ip]",
+		],
+		"new": [
+			"# TREEO-SEC G1: hardened guest geo-IP lookup (validated IP, params, timeout, bounded cache)",
+			"import ipaddress  # noqa: E402",
+			"from collections import OrderedDict  # noqa: E402",
+			"",
+			"country_info = OrderedDict()",
+			"COUNTRY_INFO_CACHE_SIZE = 1024",
+			"COUNTRY_LOOKUP_TIMEOUT = 5",
+			"",
+			"",
+			"def _remember_country(ip, info):",
+			"\tcountry_info[ip] = info",
+			"\tcountry_info.move_to_end(ip)",
+			"\twhile len(country_info) > COUNTRY_INFO_CACHE_SIZE:",
+			"\t\tcountry_info.popitem(last=False)",
+			"",
+			"",
+			"@frappe.whitelist(allow_guest=True)",
+			"def get_country(fields=None):",
+			"\ttry:",
+			'\t\tip = str(ipaddress.ip_address((frappe.local.request_ip or "").strip()))',
+			"\texcept ValueError:",
+			"\t\treturn {}",
+			"",
+			"\tif ip in country_info:",
+			"\t\tcountry_info.move_to_end(ip)",
+			"\t\treturn country_info[ip]",
+			"",
+			'\tfields = ["countryCode", "country", "regionName", "city"]',
+			"\ttry:",
+			"\t\tres = requests.get(",
+			'\t\t\tf"https://pro.ip-api.com/json/{ip}",',
+			'\t\t\tparams={"key": frappe.conf.get("ip-api-key"), "fields": ",".join(fields)},',
+			"\t\t\ttimeout=COUNTRY_LOOKUP_TIMEOUT,",
+			"\t\t)",
+			"\t\tinfo = res.json()",
+			"\t\tif not isinstance(info, dict):",
+			"\t\t\tinfo = {}",
+			"\texcept Exception:",
+			"\t\tinfo = {}",
+			"",
+			"\t_remember_country(ip, info)",
+			"\treturn info",
+		],
+	},
 ]
 
 counts = {"applied": 0, "already": 0, "ok": 0, "skipped": 0}
@@ -169,6 +247,15 @@ def apply_insert(p, lines):
 		if at is None:
 			return f"anchor line not found in {p['func']}...)"
 	lines[at:at] = p["lines"]
+	return None
+
+
+def apply_block(p, lines):
+	old, n = p["old"], len(p["old"])
+	hits = [i for i in range(len(lines) - n + 1) if [l.rstrip() for l in lines[i : i + n]] == old]
+	if len(hits) != 1:
+		return f"found {len(hits)} copies of the block to replace (expected 1; upstream changed?)"
+	lines[hits[0] : hits[0] + n] = p["new"]
 	return None
 
 
@@ -207,7 +294,8 @@ for p in PATCHES:
 		continue
 
 	lines = text.split("\n")
-	err = apply_insert(p, lines) if p["mode"] == "insert" else apply_replace(p, lines)
+	apply = {"insert": apply_insert, "replace": apply_replace, "block": apply_block}[p["mode"]]
+	err = apply(p, lines)
 	if err:
 		warn(pid, f"{p['file']}: {err}")
 		continue
