@@ -680,6 +680,8 @@ def get_advances(expense_claim: str | dict | Document, advance_id: str | None = 
 	if isinstance(expense_claim, str):
 		expense_claim = frappe._dict(json.loads(expense_claim))
 	expense_claim_doc = frappe.get_doc(expense_claim)
+	# TREEO-SEC M5: the doc is built from client data, so check the employee it names
+	frappe.has_permission("Employee", "read", expense_claim_doc.employee, throw=True)
 	expense_claim_doc.advances = []
 
 	advance = frappe.qb.DocType("Employee Advance")

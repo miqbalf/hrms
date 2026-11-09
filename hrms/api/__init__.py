@@ -126,8 +126,17 @@ def are_push_notifications_enabled() -> bool:
 
 
 # Attendance
+MAX_CALENDAR_RANGE_DAYS = 366
+
+
 @frappe.whitelist()
 def get_attendance_calendar_events(from_date: str, to_date: str) -> dict[str, str]:
+	# TREEO-SEC M1: bound the range so one request cannot loop over millions of days
+	if not 0 <= date_diff(to_date, from_date) <= MAX_CALENDAR_RANGE_DAYS:
+		frappe.throw(
+			_("Date range must be between 0 and {0} days.").format(MAX_CALENDAR_RANGE_DAYS),
+			frappe.ValidationError,
+		)
 	employee = get_current_employee()
 	holidays = get_holidays_for_calendar(employee, from_date, to_date)
 	attendance = get_attendance_for_calendar(employee, from_date, to_date)
@@ -701,6 +710,7 @@ def get_currency_symbols() -> dict:
 
 @frappe.whitelist()
 def get_company_cost_center_and_expense_account(company: str) -> dict:
+	frappe.has_permission("Company", "read", company, throw=True)  # TREEO-SEC M2
 	return frappe.db.get_value(
 		"Company", company, ["cost_center", "default_expense_claim_payable_account"], as_dict=True
 	)
@@ -804,6 +814,7 @@ def _download_pdf(doctype: str, docname: str) -> str:
 # Workflow
 @frappe.whitelist()
 def get_workflow(doctype: str) -> dict:
+	frappe.has_permission(doctype, "read", throw=True)  # TREEO-SEC M2
 	workflow = get_workflow_name(doctype)
 	if not workflow:
 		return frappe._dict()

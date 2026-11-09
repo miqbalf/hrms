@@ -202,7 +202,7 @@ def create_expiry_ledger_entry(allocations):
 		if allocation.is_carry_forward:
 			expire_carried_forward_allocation(allocation)
 		else:
-			expire_allocation(allocation)
+			_expire_allocation(allocation)
 
 
 def get_remaining_leaves(allocation):
@@ -219,15 +219,29 @@ def get_remaining_leaves(allocation):
 	)
 
 
-@frappe.whitelist()
+@frappe.whitelist(methods=["POST"])
 def expire_allocation(allocation: str | Document | frappe._dict, expiry_date: datetime.date | None = None):
-	"""expires non-carry forwarded allocation"""
+	"""Whitelisted entry point: expire a non-carry-forwarded allocation.
+
+	TREEO-SEC M4: the allocation is always reloaded by name (never trusted from the
+	client payload) and the caller needs write permission on it. Internal callers
+	(scheduler, Leave Allocation.on_submit) use _expire_allocation directly.
+	"""
 	import json
 
 	if isinstance(allocation, str):
-		allocation = json.loads(allocation)
-		allocation = frappe.get_doc("Leave Allocation", allocation["name"])
+		try:
+			allocation = json.loads(allocation)
+		except ValueError:
+			allocation = {"name": allocation}
 
+	allocation = frappe.get_doc("Leave Allocation", allocation.get("name"))
+	frappe.has_permission("Leave Allocation", "write", allocation.name, throw=True)
+	_expire_allocation(allocation, expiry_date)
+
+
+def _expire_allocation(allocation: Document | frappe._dict, expiry_date: datetime.date | None = None):
+	"""expires non-carry forwarded allocation (internal, no permission check)"""
 	leaves = get_remaining_leaves(allocation)
 	expiry_date = expiry_date if expiry_date else allocation.to_date
 

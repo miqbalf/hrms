@@ -82,6 +82,7 @@ def get_payment_entry_for_employee(
 ):
 	"""Function to make Payment Entry for Employee Advance, Gratuity, Expense Claim, Leave Encashment"""
 	doc = frappe.get_doc(dt, dn)
+	doc.check_permission("read")  # TREEO-SEC M5
 
 	party_account = get_party_account(doc)
 	party_account_currency = get_account_currency(party_account)
@@ -255,6 +256,7 @@ def get_reference_details_for_employee(
 	total_amount = outstanding_amount = exchange_rate = None
 
 	ref_doc = frappe.get_doc(reference_doctype, reference_name)
+	ref_doc.check_permission("read")  # TREEO-SEC M5
 	company_currency = ref_doc.get("company_currency") or erpnext.get_company_currency(ref_doc.company)
 
 	total_amount, exchange_rate = get_total_amount_and_exchange_rate(

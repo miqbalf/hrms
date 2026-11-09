@@ -5,7 +5,7 @@ import frappe
 
 @frappe.whitelist()
 def get_data(start: int = 0):
-	# frappe.only_for('Employee', 'System Manager')
+	frappe.only_for(("Employee", "System Manager"))  # TREEO-SEC M3: same roles as the page
 	data = frappe.get_all(
 		"Communication",
 		fields=("content", "text_content", "sender", "creation"),
