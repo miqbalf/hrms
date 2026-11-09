@@ -31,11 +31,11 @@ echo "== first run"
 out1="$(bash "$SCRIPT" apps/hrms)"; rc1=$?
 echo "$out1"
 check "first run exits 0" '[ $rc1 -eq 0 ]'
-check "first run applies 60 patches, verifies M4 and M5h, skips none" \
-  'echo "$out1" | grep -q "60 applied, 0 already present, 2 verified upstream, 0 skipped"'
+check "first run applies 69 patches, verifies M4 and M5h, skips none" \
+  'echo "$out1" | grep -q "69 applied, 0 already present, 2 verified upstream, 0 skipped"'
 check "no WARNING on first run" '! echo "$out1" | grep -q WARNING'
 count=$(git -C apps/hrms grep -c "TREEO-SEC" | awk -F: '{s+=$2} END {print s}')
-check "TREEO-SEC markers present (got $count)" '[ "$count" -ge 60 ]'
+check "TREEO-SEC markers present (got $count)" '[ "$count" -ge 69 ]'
 check "patched files compile" 'python3 -m py_compile $(git -C apps/hrms diff --name-only -- "*.py" | sed "s#^#apps/hrms/#")'
 if python3 -m pyflakes --version >/dev/null 2>&1; then
   # only names the patches could break; upstream has its own unrelated lint noise
@@ -158,7 +158,7 @@ for dt in ("Salary Slip", "Salary Structure Assignment", "Employee Promotion", "
     assert hp[dt] == P + "_has_permission" and qc[dt] == P + "_query_conditions", dt
 C = "hrms.hr.doctype.employee_checkin.employee_checkin.treeo_checkin_"
 assert hp["Employee Checkin"] == C + "has_permission" and qc["Employee Checkin"] == C + "query_conditions"
-assert len(hp) == len(qc) == 12
+assert len(qc) == 12 and len([d for d in hp if "treeo_stored_up_has_permission" not in str(hp[d])]) == 12
 PYT'
 check "M21c / M12c hook targets exist" 'grep -q "^def treeo_own_payroll_has_permission(" $H/hrms/payroll/doctype/salary_slip/salary_slip.py && grep -q "^def treeo_checkin_has_permission(" $H/hrms/hr/doctype/employee_checkin/employee_checkin.py && grep -q "^def treeo_checkin_query_conditions(" $H/hrms/hr/doctype/employee_checkin/employee_checkin.py'
 check "M12b checkin rule: HR / System Manager / Administrator all, others own only (also before a change)" 'python3 - "$H/hrms/hr/doctype/employee_checkin/employee_checkin.py" <<"PYT"
@@ -347,6 +347,121 @@ except PermissionError:
     pass
 assert decoded == [], "decoded before the permission check"
 PYT'
+check "M27a stored-doc User Permission hook: write / submit / cancel / amend / delete need access to the STORED doc" 'python3 - "$H/hrms/hr/utils.py" <<"PYT"
+import sys, types
+src = open(sys.argv[1]).read()
+code = src[src.index("# TREEO-SEC M27a"):]
+# User Permission: emp@x is scoped to EMP-1; mgr@x to EMP-1 and EMP-2 (reports_to chain)
+ALLOWED = {"emp@x": {"EMP-1"}, "mgr@x": {"EMP-1", "EMP-2"}}
+STORED = {"EC-1": {"employee": "EMP-2"}, "EC-2": {"employee": "EMP-1"}}
+seen = []
+class Doc(dict):
+    doctype = "Expense Claim"
+def has_user_permission(doc, user=None, debug=False, ptype=None):
+    seen.append((doc["name"], doc["employee"], user))
+    return doc["employee"] in ALLOWED.get(user, set())
+perms_mod = types.ModuleType("frappe.permissions"); perms_mod.has_user_permission = has_user_permission
+frappe = types.ModuleType("frappe"); frappe.permissions = perms_mod
+sys.modules["frappe"] = frappe; sys.modules["frappe.permissions"] = perms_mod
+frappe.session = types.SimpleNamespace(user="emp@x")
+frappe.db = types.SimpleNamespace(exists=lambda dt, n: dt == "Expense Claim" and n in STORED)
+frappe.get_doc = lambda dt, n: Doc(name=n, **STORED[n])
+g = {"frappe": frappe}; exec(code, g)
+hp = g["treeo_stored_up_has_permission"]
+# the attack: a colleague\x27s draft (stored EMP-2) PUT with employee set to oneself
+for ptype in ("write", "submit", "cancel", "amend", "delete"):
+    assert hp(Doc(name="EC-1", employee="EMP-1"), ptype, "emp@x") is False, ptype
+    assert hp(Doc(name="EC-1", employee="EMP-1"), ptype) is False, ptype  # session user
+    assert hp(Doc(name="EC-2", employee="EMP-1"), ptype, "emp@x") is None, ptype
+    assert hp(Doc(name="EC-1", employee="EMP-2"), ptype, "mgr@x") is None, ptype
+assert seen[0] == ("EC-1", "EMP-2", "emp@x"), seen  # checked the stored doc, not the new values
+seen.clear()
+for ptype in ("read", "create", "print", "email", "report", None):
+    assert hp(Doc(name="EC-1", employee="EMP-1"), ptype, "emp@x") is None, ptype
+assert hp(Doc(name="EC-1", employee="EMP-1"), "write", "Administrator") is None
+assert hp(Doc(name="NEW-1", employee="EMP-1"), "write", "emp@x") is None  # not stored yet
+assert hp(Doc(employee="EMP-1"), "write", "emp@x") is None
+assert hp(Doc(name="EC-1", employee="EMP-1", __islocal=1), "write", "emp@x") is None
+assert seen == [], seen
+PYT'
+check "M27b hooks: 12 self-service doctypes chain the stored-doc hook after any existing one" 'python3 - "$H/hrms/hooks.py" <<"PYT"
+import sys
+src = open(sys.argv[1]).read()
+g = {}; exec(src, g)
+hp = g["has_permission"]
+M = "hrms.hr.utils.treeo_stored_up_has_permission"
+DTS = ("Employee Grievance", "Expense Claim", "Employee Advance", "Leave Application", "Leave Encashment",
+       "Attendance Request", "Compensatory Leave Request", "Shift Request", "Appraisal",
+       "Employee Performance Feedback", "Employee Referral", "Training Feedback")
+for dt in DTS:
+    assert hp[dt] == [M], (dt, hp[dt])
+assert sorted(d for d in hp if M in hp[d]) == sorted(DTS)
+# chaining: an existing hook (string or list) is kept and M27a goes last, so frappe\x27s
+# has_controller_permissions (reversed(), first non-None wins) asks M27a first
+code = src[src.index("# TREEO-SEC M27b"):]
+g = {"has_permission": {"Expense Claim": "x.ec", "Leave Application": ["y.la1", "y.la2"], "Salary Slip": "z.ss"}}
+exec(code, g)
+hp = g["has_permission"]
+assert hp["Expense Claim"] == ["x.ec", M] and hp["Leave Application"] == ["y.la1", "y.la2", M], hp
+assert hp["Salary Slip"] == "z.ss" and hp["Appraisal"] == [M]
+def controller(methods, results):  # frappe.permissions.has_controller_permissions v15
+    for m in reversed(methods):
+        r = results[m]
+        if r is not None:
+            return bool(r)
+    return True
+assert controller(hp["Expense Claim"], {"x.ec": None, M: False}) is False
+assert controller(hp["Expense Claim"], {"x.ec": False, M: None}) is False
+assert controller(hp["Expense Claim"], {"x.ec": True, M: False}) is False  # M27a deny not overridden
+assert controller(hp["Expense Claim"], {"x.ec": None, M: None}) is True
+PYT'
+if [ -n "${FRAPPE_DIR:-}" ] && [ -f "$FRAPPE_DIR/frappe/permissions.py" ]; then
+  check "M27a frappe has_user_permission signature and hook combination match the assumptions" 'python3 - "$FRAPPE_DIR/frappe/permissions.py" "$FRAPPE_DIR/frappe/__init__.py" <<"PYT"
+import sys
+p, i = open(sys.argv[1]).read(), open(sys.argv[2]).read()
+assert "def has_user_permission(doc, user=None, debug=False, ptype=None):" in p
+assert "\tfor method in reversed(methods):\n\t\tcontroller_permission = frappe.call(method, doc=doc, ptype=ptype, user=user, debug=debug)" in p
+assert "\t\tif controller_permission is not None:\n\t\t\treturn bool(controller_permission)" in p
+assert "\tif not has_controller_permissions(doc, ptype, user=user, debug=debug):" in p
+assert "\t\tif not isinstance(value, list):\n\t\t\tvalue = [value]\n\t\ttarget[key].extend(value)" in i
+assert "\t\t\tif not key.startswith(\"_\"):\n\t\t\t\tappend_hook(hooks, key, value)" in i
+PYT'
+else
+  echo "SKIP: FRAPPE_DIR not set (frappe v15 checkout) - has_permission hook semantics check"
+fi
+check "M27d-g, j read gate is the first statement of the whitelisted function" 'python3 - "$H" <<"PYT"
+import ast, sys
+want = {
+    ("hrms/hr/doctype/vehicle_log/vehicle_log.py", "make_expense_claim"):
+        "frappe.has_permission(\x27Vehicle Log\x27, \x27read\x27, docname, throw=True)",
+    ("hrms/api/roster.py", "get_schedule_from_assignment"):
+        "frappe.has_permission(\x27Shift Schedule Assignment\x27, \x27read\x27, shift_schedule_assignment, throw=True)",
+    ("hrms/hr/doctype/training_result/training_result.py", "get_employees"):
+        "frappe.has_permission(\x27Training Event\x27, \x27read\x27, training_event, throw=True)",
+    ("hrms/hr/doctype/staffing_plan/staffing_plan.py", "get_designation_counts"):
+        "frappe.has_permission(\x27Staffing Plan\x27, \x27read\x27, throw=True)",
+    ("hrms/hr/doctype/expense_claim/expense_claim.py", "get_expense_claim"):
+        "frappe.has_permission(\x27Employee Advance\x27, \x27read\x27, employee_advance_name, throw=True)",
+}
+for (rel, fn), first in want.items():
+    tree = ast.parse(open(sys.argv[1] + "/" + rel).read())
+    f = next(n for n in tree.body if isinstance(n, ast.FunctionDef) and n.name == fn)
+    assert ast.unparse(f.body[0]) == first, (rel, fn, ast.unparse(f.body[0]))
+PYT'
+check "M27h/i payroll frequency / employee currency assert own payroll first" 'python3 - "$H" <<"PYT"
+import ast, sys
+want = {
+    ("hrms/payroll/doctype/salary_withholding/salary_withholding.py", "get_payroll_frequency"): "Salary Withholding",
+    ("hrms/payroll/doctype/salary_structure_assignment/salary_structure_assignment.py", "get_employee_currency"):
+        "Salary Structure Assignment",
+}
+for (rel, fn), dt in want.items():
+    tree = ast.parse(open(sys.argv[1] + "/" + rel).read())
+    f = next(n for n in tree.body if isinstance(n, ast.FunctionDef) and n.name == fn)
+    s = [ast.unparse(x) for x in f.body[:2]]
+    assert s[0] == "from hrms.payroll.doctype.salary_slip.salary_slip import treeo_assert_own_payroll", (fn, s)
+    assert s[1] == "treeo_assert_own_payroll(\x27%s\x27, employee)" % dt, (fn, s)
+PYT'
 check "every TREEO-SEC marker in the repo source has an injector patch (file, id, function)" 'python3 - "$REPO" "$SCRIPT" <<"PYT"
 import ast, re, sys
 from pathlib import Path
@@ -390,7 +505,7 @@ echo "== second run (idempotency)"
 out2="$(bash "$SCRIPT" apps/hrms)"; rc2=$?
 echo "$out2"
 check "second run exits 0" '[ $rc2 -eq 0 ]'
-check "second run applies nothing" 'echo "$out2" | grep -q "0 applied, 60 already present, 2 verified upstream, 0 skipped"'
+check "second run applies nothing" 'echo "$out2" | grep -q "0 applied, 69 already present, 2 verified upstream, 0 skipped"'
 check "second run leaves tree unchanged" '[ "$(git -C apps/hrms diff | sha256sum)" = "$state1" ]'
 
 echo "== missing anchor"
@@ -400,7 +515,7 @@ out3="$(bash "$SCRIPT" apps/hrms)"; rc3=$?
 echo "$out3" | grep -E "WARNING|Security patches"
 check "missing anchor exits 0" '[ $rc3 -eq 0 ]'
 check "missing anchor logs WARNING for M2a" 'echo "$out3" | grep -q "WARNING: security patch M2a"'
-check "other patches still applied" 'echo "$out3" | grep -q "59 applied"'
+check "other patches still applied" 'echo "$out3" | grep -q "68 applied"'
 check "loud summary for 1 skipped" 'echo "$out3" | grep -q "SECURITY WARNING: 1 patches skipped"'
 
 echo "== G1 block changed upstream"
@@ -419,8 +534,18 @@ out7="$(bash "$SCRIPT" apps/hrms)"; rc7=$?
 echo "$out7" | grep -E "M21|Security patches"
 check "M21a already-marked file without helpers: M21b skipped, hooks untouched" \
   'echo "$out7" | grep -q "WARNING: security patch M21b" && ! grep -q "treeo_own_payroll" apps/hrms/hrms/hooks.py'
-check "F12 skipped M21b / M21c is critical: exit 3 with SECURITY ERROR" \
-  '[ $rc7 -eq 3 ] && echo "$out7" | grep -q "SECURITY ERROR: critical security patch(es) M21b, M21c skipped"'
+check "F12 skipped M21b / M21c (and M27b, which extends the M21b dict) is critical: exit 3 with SECURITY ERROR" \
+  '[ $rc7 -eq 3 ] && echo "$out7" | grep -q "SECURITY ERROR: critical security patch(es) M21b, M21c, M27b skipped"'
+
+echo "== M27b needs the M27a hook (cross-file prerequisite, critical)"
+git -C apps/hrms checkout -q -- .
+printf "\n# TREEO-SEC M27a placeholder\n" >> apps/hrms/hrms/hr/utils.py
+out11="$(bash "$SCRIPT" apps/hrms)"; rc11=$?
+echo "$out11" | grep -E "M27|SECURITY|Security patches"
+check "M27a already-marked file without the hook: M27b skipped, hooks.py has no M27b" \
+  'echo "$out11" | grep -q "WARNING: security patch M27b" && ! grep -q "treeo_stored_up_has_permission" apps/hrms/hrms/hooks.py'
+check "F12 skipped M27b is critical: exit 3 with SECURITY ERROR" \
+  '[ $rc11 -eq 3 ] && echo "$out11" | grep -q "SECURITY ERROR: critical security patch(es) M27b skipped"'
 
 echo "== F12 critical patch skipped (M10 anchor gone)"
 git -C apps/hrms checkout -q -- .

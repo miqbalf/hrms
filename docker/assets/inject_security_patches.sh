@@ -22,8 +22,8 @@
 #     "SECURITY ERROR: ..." and exits 1 (docker-compose.coolify.yml then
 #     refuses to start).
 #   - Fails closed on a critical skip (F12): when any of M10, M12, M15, M21a,
-#     M21b, M21c or M24 is skipped it prints "SECURITY ERROR: critical security
-#     patch(es) ... skipped" and exits 3. Otherwise it exits 0.
+#     M21b, M21c, M24, M27a or M27b is skipped it prints "SECURITY ERROR:
+#     critical security patch(es) ... skipped" and exits 3. Otherwise it exits 0.
 #
 # Patches:
 #   M1  hrms.api.get_attendance_calendar_events: date range bounded to 366 days
@@ -102,6 +102,19 @@
 #   M24 exit_interview.send_exit_questionnaire: email permission on every interview
 #   M25 a JobApplicant.validate, b EmployeeReferral.validate: resume_link http(s) only
 #   M26 hrms.api.upload_base64_file: write permission checked before the base64 decode
+#   M27 Strix triage 2026-11-09: a hr.utils.treeo_stored_up_has_permission, b hooks.py
+#       registers it (after any existing hook) for Employee Grievance, Expense Claim,
+#       Employee Advance, Leave Application, Leave Encashment, Attendance Request,
+#       Compensatory Leave Request, Shift Request, Appraisal, Employee Performance Feedback,
+#       Employee Referral and Training Feedback: write / submit / cancel / amend / delete
+#       also need User Permission access to the STORED document (frappe checked only the
+#       new values, so an employee could take over a colleague's draft); read gates on
+#       d vehicle_log.make_expense_claim (Vehicle Log), e roster.get_schedule_from_assignment
+#       (Shift Schedule Assignment), f training_result.get_employees (Training Event),
+#       g staffing_plan.get_designation_counts (Staffing Plan, as M14c), j expense_claim.
+#       get_expense_claim (Employee Advance); h salary_withholding.get_payroll_frequency and
+#       i salary_structure_assignment.get_employee_currency call treeo_assert_own_payroll
+#       (M23a). M27c (manager grievance visibility) is an open owner decision, not here.
 #   JS / HTML / Vue patches (M18-M20b, M22b, M22d-f) edit source before `bench build`;
 #   the compose runs this injector before `bench build`, so they reach the bundle.
 
@@ -1034,6 +1047,133 @@ PATCHES = [
 		],
 	},
 	{
+		"id": "M27a",
+		"file": "hrms/hr/utils.py",
+		"mode": "append",
+		"needs": ["import frappe"],
+		"lines": [
+			"# TREEO-SEC M27a: frappe v15 checks User Permissions for write / submit / cancel / amend /",
+			"# delete only against the values being saved, so a user scoped to their own Employee could",
+			"# PUT a colleague's draft with employee set to themselves. Registered as a has_permission",
+			"# hook (M27b), this also requires User Permission access to the STORED document. It only",
+			"# denies (False) or defers (None); read, create and new documents are unchanged.",
+			"TREEO_STORED_UP_PTYPES = {\"write\", \"submit\", \"cancel\", \"amend\", \"delete\"}",
+			"",
+			"",
+			"def treeo_stored_up_has_permission(doc, ptype=None, user=None, debug=False):",
+			"\tif ptype not in TREEO_STORED_UP_PTYPES or not doc.get(\"name\") or doc.get(\"__islocal\"):",
+			"\t\treturn None",
+			"\tuser = user or frappe.session.user",
+			"\tif user == \"Administrator\" or not frappe.db.exists(doc.doctype, doc.get(\"name\")):",
+			"\t\treturn None",
+			"\tfrom frappe.permissions import has_user_permission",
+			"",
+			"\tstored = frappe.get_doc(doc.doctype, doc.get(\"name\"))",
+			"\treturn None if has_user_permission(stored, user, debug=debug, ptype=ptype) else False",
+		],
+	},
+	{
+		"id": "M27b",
+		"file": "hrms/hooks.py",
+		"mode": "append",
+		"needs": ["TREEO-SEC M21b"],
+		"needs_file": {"hrms/hr/utils.py": ["def treeo_stored_up_has_permission("]},
+		"lines": [
+			"# TREEO-SEC M27b: self-service doctypes also need User Permission access to the stored",
+			"# document for write / submit / cancel / amend / delete (M27a). Appended after any existing",
+			"# hook for the doctype, never replacing it: frappe runs the hooks in reverse order and the",
+			"# first non-None answer wins, and every TREEO hook only returns None or False.",
+			"for _treeo_dt in (",
+			"\t\"Employee Grievance\",",
+			"\t\"Expense Claim\",",
+			"\t\"Employee Advance\",",
+			"\t\"Leave Application\",",
+			"\t\"Leave Encashment\",",
+			"\t\"Attendance Request\",",
+			"\t\"Compensatory Leave Request\",",
+			"\t\"Shift Request\",",
+			"\t\"Appraisal\",",
+			"\t\"Employee Performance Feedback\",",
+			"\t\"Employee Referral\",",
+			"\t\"Training Feedback\",",
+			"):",
+			"\t_treeo_prev = has_permission.get(_treeo_dt) or []",
+			"\thas_permission[_treeo_dt] = ([_treeo_prev] if isinstance(_treeo_prev, str) else list(_treeo_prev)) + [",
+			"\t\t\"hrms.hr.utils.treeo_stored_up_has_permission\"",
+			"\t]",
+		],
+	},
+	{
+		"id": "M27d",
+		"file": "hrms/hr/doctype/vehicle_log/vehicle_log.py",
+		"mode": "insert",
+		"func": "def make_expense_claim(",
+		"lines": ['\tfrappe.has_permission("Vehicle Log", "read", docname, throw=True)  # TREEO-SEC M27d'],
+	},
+	{
+		"id": "M27e",
+		"file": "hrms/api/roster.py",
+		"mode": "insert",
+		"func": "def get_schedule_from_assignment(",
+		"lines": [
+			"\tfrappe.has_permission(  # TREEO-SEC M27e",
+			"\t\t\"Shift Schedule Assignment\", \"read\", shift_schedule_assignment, throw=True",
+			"\t)",
+		],
+	},
+	{
+		"id": "M27f",
+		"file": "hrms/hr/doctype/training_result/training_result.py",
+		"mode": "insert",
+		"func": "def get_employees(",
+		"lines": ['\tfrappe.has_permission("Training Event", "read", training_event, throw=True)  # TREEO-SEC M27f'],
+	},
+	{
+		"id": "M27g",
+		"file": "hrms/hr/doctype/staffing_plan/staffing_plan.py",
+		"mode": "insert",
+		"func": "def get_designation_counts(",
+		"lines": [
+			"\t# TREEO-SEC M27g: headcount per designation / company; same gate as M14c",
+			'\tfrappe.has_permission("Staffing Plan", "read", throw=True)',
+		],
+	},
+	{
+		"id": "M27h",
+		"file": "hrms/payroll/doctype/salary_withholding/salary_withholding.py",
+		"mode": "insert",
+		"func": "def get_payroll_frequency(",
+		"needs_file": {"hrms/payroll/doctype/salary_slip/salary_slip.py": ["def treeo_assert_own_payroll("]},
+		"lines": [
+			"\tfrom hrms.payroll.doctype.salary_slip.salary_slip import treeo_assert_own_payroll  # TREEO-SEC M27h",
+			"",
+			"\ttreeo_assert_own_payroll(\"Salary Withholding\", employee)",
+		],
+	},
+	{
+		"id": "M27i",
+		"file": "hrms/payroll/doctype/salary_structure_assignment/salary_structure_assignment.py",
+		"mode": "insert",
+		"func": "def get_employee_currency(",
+		"needs_file": {"hrms/payroll/doctype/salary_slip/salary_slip.py": ["def treeo_assert_own_payroll("]},
+		"lines": [
+			"\tfrom hrms.payroll.doctype.salary_slip.salary_slip import treeo_assert_own_payroll  # TREEO-SEC M27i",
+			"",
+			"\ttreeo_assert_own_payroll(\"Salary Structure Assignment\", employee)",
+		],
+	},
+	{
+		"id": "M27j",
+		"file": "hrms/hr/doctype/expense_claim/expense_claim.py",
+		"mode": "insert",
+		"func": "def get_expense_claim(",
+		"before": '\tadvance_currency = frappe.db.get_value("Employee Advance", employee_advance_name, "currency")',
+		"lines": [
+			"\t# TREEO-SEC M27j: the claim is built from the advance's amounts; read access to it first",
+			'\tfrappe.has_permission("Employee Advance", "read", employee_advance_name, throw=True)',
+		],
+	},
+	{
 		"id": "G1",
 		"file": "hrms/utils/__init__.py",
 		"mode": "block",
@@ -1113,7 +1253,7 @@ counts = {"applied": 0, "already": 0, "ok": 0, "skipped": 0}
 skipped_ids = []
 # F12: a skip of one of these leaves cross-employee payroll / checkin data or a role-gated
 # action open, so it stops the container instead of only warning
-CRITICAL = ("M10", "M12", "M15", "M21a", "M21b", "M21c", "M24")
+CRITICAL = ("M10", "M12", "M15", "M21a", "M21b", "M21c", "M24", "M27a", "M27b")
 
 
 def warn(pid, msg):
