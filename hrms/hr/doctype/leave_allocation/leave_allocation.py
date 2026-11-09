@@ -9,8 +9,8 @@ from frappe.utils import add_days, date_diff, flt, formatdate, get_link_to_form,
 
 from hrms.hr.doctype.leave_application.leave_application import get_approved_leaves_for_period
 from hrms.hr.doctype.leave_ledger_entry.leave_ledger_entry import (
+	_expire_allocation,
 	create_leave_ledger_entry,
-	expire_allocation,
 	process_expired_allocation,
 )
 from hrms.hr.utils import create_additional_leave_ledger_entry, get_leave_period, set_employee_name
@@ -116,7 +116,7 @@ class LeaveAllocation(Document):
 		# expire all unused leaves in the ledger on creation of carry forward allocation
 		allocation = get_previous_allocation(self.from_date, self.leave_type, self.employee)
 		if self.carry_forward and allocation:
-			expire_allocation(allocation)
+			_expire_allocation(allocation)
 
 	def on_cancel(self):
 		self.create_leave_ledger_entry(submit=False)
