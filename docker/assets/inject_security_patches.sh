@@ -50,8 +50,10 @@
 #   M11 employee_checkin.add_log_based_on_employee_field: employee_fieldname
 #       limited to attendance_device_id / name (no lookup by arbitrary field)
 #   M12 EmployeeCheckin.validate: without HR Manager / HR User / System Manager,
-#       a checkin must be for the caller's own employee and (on insert or time
-#       change) within 5 minutes of server time. The Employee role has create.
+#       a checkin must be for the caller's own employee (the Employee role has
+#       create). Opt-in time window: site config treeo_checkin_max_skew_seconds
+#       (unset/0 = off); when set, the time on insert or change must be within
+#       that many seconds of server time or of now in the user's User.time_zone.
 #   M13 hr.utils.get_employee_field_property: only the fields the Employee
 #       Promotion / Transfer dialog offers, and only at a readable permlevel
 #   M14 read gates on whitelisted readers: a organizational_chart.get_children
@@ -283,19 +285,26 @@ PATCHES = [
 		"file": "hrms/hr/doctype/employee_checkin/employee_checkin.py",
 		"mode": "insert",
 		"func": "\tdef validate(self):",
-		"needs": ["from frappe import _", "get_datetime"],
+		"needs": ["from frappe import _", "get_datetime", "cint"],
 		"lines": [
 			"\t\t# TREEO-SEC M12: the Employee role may create checkins, so without HR roles a user",
-			"\t\t# may only log their own employee, at the current time (5 minute tolerance)",
+			"\t\t# may only log their own employee. Optional time window (site config",
+			"\t\t# treeo_checkin_max_skew_seconds, off when unset/0): the PWA sends device-local",
+			"\t\t# time, so accept server time or the user's own User.time_zone.",
 			'\t\tif not {"HR Manager", "HR User", "System Manager"} & set(frappe.get_roles()):',
 			'\t\t\town = frappe.get_all("Employee", filters={"user_id": frappe.session.user}, pluck="name")',
 			"\t\t\tif not self.employee or self.employee not in own:",
 			'\t\t\t\tfrappe.throw(_("You can only log check-ins for yourself."), frappe.PermissionError)',
-			'\t\t\tif self.is_new() or self.has_value_changed("time"):',
-			"\t\t\t\tdrift = (get_datetime(self.time) - frappe.utils.now_datetime()).total_seconds()",
-			"\t\t\t\tif abs(drift) > 300:",
+			'\t\t\tmax_skew = cint(frappe.conf.get("treeo_checkin_max_skew_seconds"))',
+			'\t\t\tif max_skew > 0 and (self.is_new() or self.has_value_changed("time")):',
+			"\t\t\t\tlogged = get_datetime(self.time)",
+			"\t\t\t\tnows = [frappe.utils.now_datetime()]",
+			'\t\t\t\tuser_tz = frappe.db.get_value("User", frappe.session.user, "time_zone")',
+			"\t\t\t\tif user_tz:",
+			"\t\t\t\t\tnows.append(frappe.utils.get_datetime_in_timezone(user_tz).replace(tzinfo=None))",
+			"\t\t\t\tif all(abs((logged - n).total_seconds()) > max_skew for n in nows):",
 			"\t\t\t\t\tfrappe.throw(",
-			'\t\t\t\t\t\t_("Check-in time must be within 5 minutes of the current time."),',
+			'\t\t\t\t\t\t_("Check-in time must be within {0} seconds of the current time.").format(max_skew),',
 			"\t\t\t\t\t\tfrappe.ValidationError,",
 			"\t\t\t\t\t)",
 		],
