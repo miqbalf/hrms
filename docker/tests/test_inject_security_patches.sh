@@ -30,12 +30,19 @@ echo "== first run"
 out1="$(bash "$SCRIPT" apps/hrms)"; rc1=$?
 echo "$out1"
 check "first run exits 0" '[ $rc1 -eq 0 ]'
-check "first run applies 21 patches, verifies M4, skips none" \
-  'echo "$out1" | grep -q "21 applied, 0 already present, 1 verified upstream, 0 skipped"'
+check "first run applies 32 patches, verifies M4, skips none" \
+  'echo "$out1" | grep -q "32 applied, 0 already present, 1 verified upstream, 0 skipped"'
 check "no WARNING on first run" '! echo "$out1" | grep -q WARNING'
 count=$(git -C apps/hrms grep -c "TREEO-SEC" | awk -F: '{s+=$2} END {print s}')
-check "TREEO-SEC markers present (got $count)" '[ "$count" -ge 21 ]'
+check "TREEO-SEC markers present (got $count)" '[ "$count" -ge 32 ]'
 check "patched files compile" 'python3 -m py_compile $(git -C apps/hrms diff --name-only | sed "s#^#apps/hrms/#")'
+if python3 -m pyflakes --version >/dev/null 2>&1; then
+  # only names the patches could break; upstream has its own unrelated lint noise
+  check "pyflakes: no undefined names in patched files" \
+    '! python3 -m pyflakes $(git -C apps/hrms diff --name-only | sed "s#^#apps/hrms/#") | grep -i "undefined name"'
+else
+  echo "SKIP: pyflakes not installed (pip install pyflakes to enable)"
+fi
 git -C apps/hrms diff --stat
 state1="$(git -C apps/hrms diff | sha256sum)"
 
@@ -43,7 +50,7 @@ echo "== second run (idempotency)"
 out2="$(bash "$SCRIPT" apps/hrms)"; rc2=$?
 echo "$out2"
 check "second run exits 0" '[ $rc2 -eq 0 ]'
-check "second run applies nothing" 'echo "$out2" | grep -q "0 applied, 21 already present, 1 verified upstream, 0 skipped"'
+check "second run applies nothing" 'echo "$out2" | grep -q "0 applied, 32 already present, 1 verified upstream, 0 skipped"'
 check "second run leaves tree unchanged" '[ "$(git -C apps/hrms diff | sha256sum)" = "$state1" ]'
 
 echo "== missing anchor"
@@ -53,7 +60,7 @@ out3="$(bash "$SCRIPT" apps/hrms)"; rc3=$?
 echo "$out3" | grep -E "WARNING|Security patches"
 check "missing anchor exits 0" '[ $rc3 -eq 0 ]'
 check "missing anchor logs WARNING for M2a" 'echo "$out3" | grep -q "WARNING: security patch M2a"'
-check "other patches still applied" 'echo "$out3" | grep -q "20 applied"'
+check "other patches still applied" 'echo "$out3" | grep -q "31 applied"'
 check "loud summary for 1 skipped" 'echo "$out3" | grep -q "SECURITY WARNING: 1 patches skipped"'
 
 echo "== G1 block changed upstream"
@@ -68,7 +75,14 @@ check "changed G1 block leaves get_country untouched" '! grep -q "TREEO-SEC G1" 
 echo "== missing app dir"
 out4="$(bash "$SCRIPT" "$WORK/does-not-exist")"; rc4=$?
 echo "$out4"
-check "missing app dir exits 0 with WARNING" '[ $rc4 -eq 0 ] && echo "$out4" | grep -q WARNING'
+check "missing app dir exits 1 with SECURITY ERROR" '[ $rc4 -eq 1 ] && echo "$out4" | grep -q "SECURITY ERROR"'
+
+echo "== nothing applied or present"
+mkdir -p "$WORK/empty-app/hrms"
+out6="$(bash "$SCRIPT" "$WORK/empty-app")"; rc6=$?
+echo "$out6" | grep -E "SECURITY|Security patches"
+check "zero patches exits 1" '[ $rc6 -eq 1 ]'
+check "zero patches prints SECURITY ERROR" 'echo "$out6" | grep -q "SECURITY ERROR: no security patch"'
 
 [ $fail -eq 0 ] && echo "ALL PASS" || echo "SOME TESTS FAILED"
 exit $fail

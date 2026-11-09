@@ -12,11 +12,15 @@
 # Guarantees:
 #   - Idempotent: every patch carries a "TREEO-SEC <id>" marker and is skipped
 #     when the marker is already present. Re-running changes nothing.
-#   - Never breaks container start: a missing anchor or file, or a patch that
-#     would not compile, logs a WARNING and that patch is skipped. The script
-#     always exits 0 (owner decision 2026-11-09: warn, do not fail closed).
+#   - A single missed patch never breaks container start: a missing anchor or
+#     file, or a patch that would not compile, logs a WARNING and that patch
+#     is skipped (owner decision 2026-11-09: warn per patch).
 #   - Loud when something is missed: any skipped patch ends with a line
 #     "SECURITY WARNING: N patches skipped" - grep the start log for it.
+#   - Fails closed when nothing is protected: a missing app dir, an injector
+#     crash, or a run where no patch was applied or already present prints
+#     "SECURITY ERROR: ..." and exits 1 (docker-compose.coolify.yml then
+#     refuses to start). Otherwise it exits 0.
 #
 # Patches:
 #   M1  hrms.api.get_attendance_calendar_events: date range bounded to 366 days
@@ -45,16 +49,32 @@
 #       could read every employee's leaves and shifts.
 #   M11 employee_checkin.add_log_based_on_employee_field: employee_fieldname
 #       limited to attendance_device_id / name (no lookup by arbitrary field)
+#   M12 EmployeeCheckin.validate: without HR Manager / HR User / System Manager,
+#       a checkin must be for the caller's own employee and (on insert or time
+#       change) within 5 minutes of server time. The Employee role has create.
+#   M13 hr.utils.get_employee_field_property: only the fields the Employee
+#       Promotion / Transfer dialog offers, and only at a readable permlevel
+#   M14 read gates on whitelisted readers: a organizational_chart.get_children
+#       (page roles), b leave_application.get_leave_approver (Employee read on
+#       direct API calls), c staffing_plan.get_active_staffing_plan_details
+#       (Staffing Plan read), d payroll_entry.get_payroll_entries_for_jv
+#       (Payroll Entry read or Journal Entry create), e appraisal_cycle.
+#       get_appraisal_cycle_summary (cycle read), f employee_boarding_controller.
+#       get_onboarding_details (template allow-list + read/create), g hrms.api.
+#       get_doctype_fields (doctype read for non-child doctypes)
+#   M15 salary_slip.enqueue_email_salary_slips: email permission on every slip
+#   M16 hierarchy_chart.get_all_nodes: method limited to the org chart getter
 
 APP_DIR="${1:-apps/hrms}"
 
 if [ ! -d "$APP_DIR/hrms" ]; then
-  echo "SECURITY WARNING: $APP_DIR/hrms not found; security patches NOT applied."
-  exit 0
+  echo "SECURITY ERROR: $APP_DIR/hrms not found; security patches NOT applied."
+  exit 1
 fi
 
-python3 - "$APP_DIR" <<'PY' || echo "SECURITY WARNING: security patch injector crashed; patches may NOT be applied."
+python3 - "$APP_DIR" <<'PY'
 import re
+import shutil
 import sys
 from pathlib import Path
 
@@ -259,6 +279,166 @@ PATCHES = [
 		],
 	},
 	{
+		"id": "M12",
+		"file": "hrms/hr/doctype/employee_checkin/employee_checkin.py",
+		"mode": "insert",
+		"func": "\tdef validate(self):",
+		"needs": ["from frappe import _", "get_datetime"],
+		"lines": [
+			"\t\t# TREEO-SEC M12: the Employee role may create checkins, so without HR roles a user",
+			"\t\t# may only log their own employee, at the current time (5 minute tolerance)",
+			'\t\tif not {"HR Manager", "HR User", "System Manager"} & set(frappe.get_roles()):',
+			'\t\t\town = frappe.get_all("Employee", filters={"user_id": frappe.session.user}, pluck="name")',
+			"\t\t\tif not self.employee or self.employee not in own:",
+			'\t\t\t\tfrappe.throw(_("You can only log check-ins for yourself."), frappe.PermissionError)',
+			'\t\t\tif self.is_new() or self.has_value_changed("time"):',
+			"\t\t\t\tdrift = (get_datetime(self.time) - frappe.utils.now_datetime()).total_seconds()",
+			"\t\t\t\tif abs(drift) > 300:",
+			"\t\t\t\t\tfrappe.throw(",
+			'\t\t\t\t\t\t_("Check-in time must be within 5 minutes of the current time."),',
+			"\t\t\t\t\t\tfrappe.ValidationError,",
+			"\t\t\t\t\t)",
+		],
+	},
+	{
+		"id": "M13",
+		"file": "hrms/hr/utils.py",
+		"mode": "insert",
+		"func": "def get_employee_field_property(",
+		"after": '\tdoc = frappe.get_doc("Employee", employee, check_permission=True)',
+		"needs": ["from frappe import _"],
+		"lines": [
+			"\t# TREEO-SEC M13: only fields the Employee Promotion / Transfer dialog offers",
+			"\t# (employee_property_update.js), and only at a permlevel the caller can read",
+			"\tif (",
+			"\t\tfield.hidden",
+			"\t\tor field.read_only",
+			"\t\tor field.fieldtype",
+			'\t\tin ("HTML", "Section Break", "Column Break", "Button", "Read Only", "Tab Break", "Table",',
+			'\t\t\t"Table MultiSelect", "Password")',
+			"\t\tor fieldname",
+			'\t\tin ("naming_series", "employee", "first_name", "middle_name", "last_name", "marital_status",',
+			'\t\t\t"ctc", "employee_name", "status", "image", "gender", "date_of_birth", "date_of_joining",',
+			'\t\t\t"lft", "rgt", "old_parent")',
+			'\t\tor not doc.has_permlevel_access_to(fieldname, df=field, permission_type="read")',
+			"\t):",
+			'\t\tfrappe.throw(_("Not permitted to read this employee field."), frappe.PermissionError)',
+		],
+	},
+	{
+		"id": "M14a",
+		"file": "hrms/hr/page/organizational_chart/organizational_chart.py",
+		"mode": "insert",
+		"func": "def get_children(",
+		"lines": [
+			"\t# TREEO-SEC M14a: same roles as the Organizational Chart page (fields are already minimal)",
+			'\tfrappe.only_for(("Employee", "HR User", "HR Manager", "System Manager"))',
+		],
+	},
+	{
+		"id": "M14b",
+		"file": "hrms/hr/doctype/leave_application/leave_application.py",
+		"mode": "insert",
+		"func": "def get_leave_approver(",
+		"lines": [
+			"\t# TREEO-SEC M14b: a direct API call needs read access to the employee; internal callers",
+			"\t# (validate_leave_access, get_leave_details) run their own checks and are not affected",
+			'\trequest = getattr(frappe.local, "request", None)',
+			"\trpc = f\"{request.path if request else ''} {(frappe.form_dict or {}).get('cmd') or ''}\"",
+			'\tif "get_leave_approver" in rpc:',
+			'\t\tfrappe.has_permission("Employee", "read", employee, throw=True)',
+		],
+	},
+	{
+		"id": "M14c",
+		"file": "hrms/hr/doctype/staffing_plan/staffing_plan.py",
+		"mode": "insert",
+		"func": "def get_active_staffing_plan_details(",
+		"lines": [
+			"\t# TREEO-SEC M14c: returns vacancies and total_estimated_cost (HR User / HR Manager only)",
+			'\tfrappe.has_permission("Staffing Plan", "read", throw=True)',
+		],
+	},
+	{
+		"id": "M14d",
+		"file": "hrms/payroll/doctype/payroll_entry/payroll_entry.py",
+		"mode": "insert",
+		"func": "def get_payroll_entries_for_jv(",
+		"lines": [
+			"\t# TREEO-SEC M14d: Journal Entry link search; Payroll Entry readers or JE creators only",
+			'\tif not (frappe.has_permission("Payroll Entry", "read") or frappe.has_permission("Journal Entry", "create")):',
+			"\t\traise frappe.PermissionError",
+		],
+	},
+	{
+		"id": "M14e",
+		"file": "hrms/hr/doctype/appraisal_cycle/appraisal_cycle.py",
+		"mode": "insert",
+		"func": "def get_appraisal_cycle_summary(",
+		"lines": ['\tfrappe.has_permission("Appraisal Cycle", "read", cycle_name, throw=True)  # TREEO-SEC M14e'],
+	},
+	{
+		"id": "M14f",
+		"file": "hrms/controllers/employee_boarding_controller.py",
+		"mode": "insert",
+		"func": "def get_onboarding_details(",
+		"needs": ["from frappe import _"],
+		"lines": [
+			"\t# TREEO-SEC M14f: only the two boarding templates, for users who can read the template",
+			"\t# or create / edit the onboarding or separation it is copied into",
+			'\ttarget = {"Employee Onboarding Template": "Employee Onboarding",',
+			'\t\t"Employee Separation Template": "Employee Separation"}.get(parenttype)',
+			"\tif not target:",
+			'\t\tfrappe.throw(_("Unsupported parenttype."), frappe.ValidationError)',
+			"\tif not (",
+			'\t\tfrappe.has_permission(parenttype, "read", parent)',
+			'\t\tor frappe.has_permission(target, "create")',
+			'\t\tor frappe.has_permission(target, "write")',
+			"\t):",
+			"\t\traise frappe.PermissionError",
+		],
+	},
+	{
+		"id": "M14g",
+		"file": "hrms/api/__init__.py",
+		"mode": "insert",
+		"func": "def get_doctype_fields(",
+		"lines": [
+			"\t# TREEO-SEC M14g: schema only for doctypes the caller can read (child tables hold no rows here)",
+			"\tif not frappe.get_meta(doctype).istable:",
+			'\t\tfrappe.has_permission(doctype, "read", throw=True)',
+		],
+	},
+	{
+		"id": "M15",
+		"file": "hrms/payroll/doctype/salary_slip/salary_slip.py",
+		"mode": "insert",
+		"func": "def enqueue_email_salary_slips(",
+		"before": '\tfrappe.enqueue("hrms.payroll.doctype.salary_slip.salary_slip.email_salary_slips", names=names)',
+		"needs": ["from frappe import _"],
+		"lines": [
+			"\t# TREEO-SEC M15: the caller needs email permission on every slip (the Employee role has none)",
+			"\tif not isinstance(names, list):",
+			'\t\tfrappe.throw(_("names must be a list."), frappe.ValidationError)',
+			"\tfor n in names:",
+			'\t\tfrappe.has_permission("Salary Slip", "email", n, throw=True)',
+			"",
+		],
+	},
+	{
+		"id": "M16",
+		"file": "hrms/utils/hierarchy_chart.py",
+		"mode": "insert",
+		"func": "def get_all_nodes(",
+		"before": "\tmethod = frappe.get_attr(method)",
+		"needs": ["from frappe import _"],
+		"lines": [
+			"\t# TREEO-SEC M16: only the org chart getter (get_attr would import any dotted path)",
+			'\tif method != "hrms.hr.page.organizational_chart.organizational_chart.get_children":',
+			'\t\tfrappe.throw(_("Not Permitted"), frappe.PermissionError)',
+		],
+	},
+	{
 		"id": "G1",
 		"file": "hrms/utils/__init__.py",
 		"mode": "block",
@@ -429,6 +609,7 @@ for p in PATCHES:
 
 	tmp = path.with_suffix(path.suffix + ".treeo-tmp")
 	tmp.write_text(new_text)
+	shutil.copymode(path, tmp)  # keep the upstream file mode (some files are 0755)
 	tmp.replace(path)
 	counts["applied"] += 1
 	print(f"security patch {pid}: applied to {p['file']}.")
@@ -439,6 +620,15 @@ print(
 )
 if counts["skipped"]:
 	print(f"SECURITY WARNING: {counts['skipped']} patches skipped - production is missing those fixes; review the WARNING lines above.")
+if counts["applied"] + counts["already"] == 0:
+	# nothing applied and nothing present: wrong tree or every anchor moved
+	print("SECURITY ERROR: no security patch is applied or present - refusing to continue.")
+	sys.exit(3)
 PY
+rc=$?
+if [ $rc -ne 0 ]; then
+  [ $rc -eq 3 ] || echo "SECURITY ERROR: security patch injector crashed (exit $rc); patches may NOT be applied."
+  exit 1
+fi
 
 exit 0
