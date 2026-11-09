@@ -78,7 +78,8 @@
 #       b team_update_row.html escapes the sender name in the title attribute
 #   M21 payroll scoping: a salary_slip.py helpers, b hooks.py has_permission +
 #       permission_query_conditions for Salary Slip / Salary Structure Assignment:
-#       a user whose only read grant is Employee / All sees only own records
+#       full access only for Administrator, HR Manager, HR User (System Manager only
+#       with its own doctype grant); everyone else sees only own-Employee records
 #       (also covers hrms.api.download_salary_slip, which uses print permission)
 #   M22 job board: a JobOpening.validate rejects a route with a scheme or //host,
 #       b www/jobs/index.js navigates to "/" + route (path only)
@@ -628,12 +629,12 @@ PATCHES = [
 		"file": "hrms/payroll/doctype/salary_slip/salary_slip.py",
 		"mode": "append",
 		"lines": [
-			"# TREEO-SEC M21a: the Employee role reads every Salary Slip / Salary Structure Assignment",
-			"# (no if_owner); only User Permissions narrow it, and those depend on data (any user with",
-			"# the Employee role but no linked Employee, or create_user_permission unticked, sees all).",
-			"# When a user's only read grant on the doctype comes from Employee / All, limit them to",
-			"# records of their own employee. HR / custom payroll roles are not affected.",
-			"TREEO_SELF_SCOPE_ROLES = {\"Employee\", \"Employee Self Service\", \"All\"}",
+			"# TREEO-SEC M21a: Employee / Employee Self Service read every Salary Slip and Salary",
+			"# Structure Assignment (no if_owner, also in prod Custom DocPerm); only data-dependent User",
+			"# Permissions narrowed it. Explicit rule: full access for Administrator, HR Manager and",
+			"# HR User (System Manager only when that role itself has a read grant on the doctype);",
+			"# everyone else only records of their own Employee (Employee.user_id == user).",
+			"TREEO_PAYROLL_FULL_ROLES = {\"HR Manager\", \"HR User\"}",
 			"",
 			"",
 			"def treeo_only_own_payroll(doctype, user):",
@@ -641,9 +642,13 @@ PATCHES = [
 			"",
 			"\tif user == \"Administrator\":",
 			"\t\treturn False",
-			"\tfor p in get_valid_perms(doctype, user):",
-			"\t\tif p.get(\"read\") and not p.get(\"permlevel\") and p.get(\"role\") not in TREEO_SELF_SCOPE_ROLES:",
-			"\t\t\treturn False",
+			"\troles = set(frappe.get_roles(user))",
+			"\tif roles & TREEO_PAYROLL_FULL_ROLES:",
+			"\t\treturn False",
+			"\tif \"System Manager\" in roles and any(",
+			"\t\tp.get(\"read\") and p.get(\"role\") == \"System Manager\" for p in get_valid_perms(doctype, user)",
+			"\t):",
+			"\t\treturn False",
 			"\treturn True",
 			"",
 			"",

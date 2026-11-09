@@ -86,6 +86,39 @@ fi
 check "M21b hooks register payroll scoping" 'grep -q "treeo_own_payroll" $H/hrms/hooks.py && python3 -c "import ast,sys;ast.parse(open(sys.argv[1]).read())" $H/hrms/hooks.py'
 
 echo "== behaviour of pure-python patch logic"
+check "M21a payroll rule: only Administrator / HR Manager / HR User (SysMgr with own grant) see all" 'python3 - "$H/hrms/payroll/doctype/salary_slip/salary_slip.py" <<"PYT"
+import sys, types
+src = open(sys.argv[1]).read()
+code = src[src.index("# TREEO-SEC M21a"):]
+ROLES = {"admin@x": ["System Manager"], "sm_grant@x": ["System Manager", "Employee"],
+         "hrm@x": ["HR Manager"], "hru@x": ["HR User", "Employee"],
+         "emp@x": ["Employee"], "ess@x": ["Employee Self Service"], "sm@x": ["System Manager", "Employee"]}
+PERMS = [{"role": "HR Manager", "read": 1}, {"role": "HR User", "read": 1},
+         {"role": "Employee", "read": 1}, {"role": "Employee Self Service", "read": 1}]
+OWNER = {"EMP-1": "emp@x", "EMP-2": "ess@x"}
+perms_mod = types.ModuleType("frappe.permissions")
+perms_mod.get_valid_perms = lambda dt, user: PERMS + ([{"role": "System Manager", "read": 1}] if user == "sm_grant@x" else [])
+frappe = types.ModuleType("frappe"); frappe.permissions = perms_mod
+sys.modules["frappe"] = frappe; sys.modules["frappe.permissions"] = perms_mod
+frappe.get_roles = lambda user: ROLES.get(user, [])
+frappe.session = types.SimpleNamespace(user="emp@x")
+frappe.db = types.SimpleNamespace(get_value=lambda dt, n, f: OWNER.get(n), escape=lambda s: "\x27%s\x27" % s)
+g = {"frappe": frappe}; exec(code, g)
+class Doc(dict):
+    doctype = "Salary Slip"
+hp, qc = g["treeo_own_payroll_has_permission"], g["treeo_own_payroll_query_conditions"]
+for u in ("Administrator", "hrm@x", "hru@x", "sm_grant@x"):
+    assert hp(Doc(employee="EMP-1"), "read", u) is None and qc(u, "Salary Slip") == "", u
+for u in ("emp@x", "ess@x", "sm@x", "nobody@x"):
+    assert "`tabSalary Slip`.`employee` in (select `name` from `tabEmployee` where `user_id` = \x27%s\x27)" % u == qc(u, "Salary Slip"), u
+    assert qc(u, "Salary Structure Assignment").startswith("`tabSalary Structure Assignment`.`employee`"), u
+assert hp(Doc(employee="EMP-1"), "read", "emp@x") is None
+assert hp(Doc(employee="EMP-2"), "read", "emp@x") is False
+assert hp(Doc(employee="EMP-2"), "read", "ess@x") is None
+assert hp(Doc(employee="EMP-1"), "read", "ess@x") is False
+assert hp(Doc(employee="EMP-1"), "print", "sm@x") is False
+assert hp(Doc(), "read", "emp@x") is False
+PYT'
 check "M22a route check rejects schemes and //host, keeps paths" 'python3 - <<"PYT"
 def bad(r):
     route = r.strip().replace("\\", "/")
