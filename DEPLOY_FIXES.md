@@ -1,8 +1,8 @@
 # HRMS Deployment Fixes — Summary
 
 **Target**: `hr.treeo.id` on Coolify v4.1.2 (server: `root@167.233.97.207`)
-**Stack**: Frappe Framework v15.112.0, ERPNext v15.112.0, Frappe HR upstream version-15
-**Base Image**: `frappe/erpnext:v15` (does NOT include hrms pre-installed)
+**Stack**: Frappe Framework v15.126.0, ERPNext v15.124.5 (image `frappe/erpnext:v15.124.5`, #21), Frappe HR upstream version-15
+**Base Image**: `frappe/erpnext:v15.124.5` (does NOT include hrms pre-installed)
 
 ---
 
@@ -230,6 +230,12 @@ The compose file already handles missing files gracefully (all `cp` operations h
 - **Symptom**: a guest call to a protected method returned 403 with the full Python traceback in `exc`.
 - **Cause**: Frappe v15 `report_error` / `frappe.errprint` add the traceback when **System Settings > Allow Error Traceback** (`allow_error_traceback`) is on, for every user including Guest. `developer_mode` is not set on this site.
 - **Fix**: Phase 3 runs `bench --site $SITE_NAME execute frappe.db.set_single_value --args "['System Settings', 'allow_error_traceback', 0]"` after every migrate and on new sites, so it stays off even if someone re-enables it in the UI. Errors still go to the Error Log. The log line is `System Settings: allow_error_traceback = 0`.
+
+### 21. Redis without a password; frappe/erpnext frozen at the first deploy (2026-11)
+- **Redis**: the `redis` service answered `PING` with no auth. It now runs with `--requirepass ${REDIS_PASSWORD:?}` (Coolify env var, hex), the healthcheck authenticates through `REDISCLI_AUTH`, and backend writes `redis://:<pw>@redis:6379` for `redis_cache`, `redis_queue` and `redis_socketio` on every start. Image pinned to `redis:6.2.24-alpine` (frappe_docker still uses 6.2).
+- **Frozen frappe**: the `apps` and `env` named volumes were filled from the image only once (Docker fills a named volume only while it is empty), so prod ran frappe/erpnext 15.112.0 while `frappe/erpnext:v15` moved to 15.126.0/15.124.5. `FRAPPE_VERSION` now defaults to the exact tag `v15.124.5`, and the one-shot `code-sync` service copies `apps/frappe`, `apps/erpnext` and `env` from the image into the volumes before backend starts. Backend re-installs hrms (`bench get-app`) and runs `bench migrate` as before. websocket, scheduler and worker wait for `backend:8000`.
+- **To upgrade frappe/erpnext**: pick a newer `frappe/erpnext:v15.x.y` tag, back up the DB, set it as the default (or `FRAPPE_VERSION` in Coolify) and redeploy.
+- Owner runbook (backup, env vars, deploy order, health checks, rollback): `docs/runbook-redis-auth-frappe-pin.md`.
 
 ---
 
