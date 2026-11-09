@@ -66,6 +66,24 @@
 #       get_doctype_fields (doctype read for non-child doctypes)
 #   M15 salary_slip.enqueue_email_salary_slips: email permission on every slip
 #   M16 hierarchy_chart.get_all_nodes: method limited to the org chart getter
+#   M17 goal.py: a..c Goal.validate / Goal.on_trash call treeo_goal_write_gate; only
+#       HR roles, the goal's employee or their direct manager may save or delete a
+#       goal (upstream only guarded update_progress / update_status; a REST save
+#       rewrote the linked Appraisal score)
+#   M18 feedback_history.html (Interview / Appraisal feedback): a feedback text,
+#       b reviewer name, c designation escaped (frappe templates do not escape)
+#   M19 roster MonthViewTable.vue: holiday description rendered as text, not v-html
+#   M20 team updates: a get_data only returns replies of the caller's own Daily
+#       Work Summary groups (HR roles see all) and sanitises the reply HTML;
+#       b team_update_row.html escapes the sender name in the title attribute
+#   M21 payroll scoping: a salary_slip.py helpers, b hooks.py has_permission +
+#       permission_query_conditions for Salary Slip / Salary Structure Assignment:
+#       a user whose only read grant is Employee / All sees only own records
+#       (also covers hrms.api.download_salary_slip, which uses print permission)
+#   M22 job board: a JobOpening.validate rejects a route with a scheme or //host,
+#       b www/jobs/index.js navigates to "/" + route (path only)
+#   JS / HTML / Vue patches (M18-M20b, M22b) edit source before `bench build`;
+#   the compose runs this injector before `bench build`, so they reach the bundle.
 
 APP_DIR="${1:-apps/hrms}"
 
@@ -90,7 +108,11 @@ app = Path(sys.argv[1])
 #   replace: swap the exact line `old` for `new`.
 #   verify: only check that `expect` is present.
 #   block: swap the exact run of lines `old` (must occur once) for `new`.
+#   append: add `lines` at the end of the file (module-level helpers).
 # `needs`: strings that must exist in the file (imports the patch relies on).
+# `needs_file`: {other file: [strings]} that must exist there (e.g. a hook target).
+# Python files must still compile after the patch; .html / .js / .vue files are
+# patched before `bench build` and checked by the test greps instead.
 PATCHES = [
 	{
 		"id": "M1",
@@ -448,6 +470,257 @@ PATCHES = [
 		],
 	},
 	{
+		"id": "M17a",
+		"file": "hrms/hr/doctype/goal/goal.py",
+		"mode": "append",
+		"needs": ["from frappe import _", "has_common", "HR_ROLES = "],
+		"lines": [
+			"# TREEO-SEC M17a: update_progress / update_status call validate_goal_access, but a plain",
+			"# save or delete (REST /api/resource/Goal, desk form) did not, and the Employee role has",
+			"# unscoped write on Goal. Saving a goal rewrites the linked Appraisal score. Only HR, the",
+			"# goal's employee or that employee's direct manager may change it (old and new employee).",
+			"def treeo_goal_write_gate(goal):",
+			"\tif has_common(HR_ROLES, frappe.get_roles()):",
+			"\t\treturn",
+			"\tbefore = None if goal.is_new() else goal.get_doc_before_save()",
+			"\temployees = {goal.employee, before.employee if before else goal.employee}",
+			"\tfor employee in employees:",
+			"\t\temp = frappe.db.get_value(\"Employee\", employee, [\"user_id\", \"reports_to\"], as_dict=True) if employee else None",
+			"\t\tif emp and emp.user_id == frappe.session.user:",
+			"\t\t\tcontinue",
+			"\t\tif emp and emp.reports_to and frappe.db.get_value(\"Employee\", emp.reports_to, \"user_id\") == frappe.session.user:",
+			"\t\t\tcontinue",
+			"\t\tfrappe.throw(",
+			"\t\t\t_(\"You are not permitted to change another employee's goal.\"),",
+			"\t\t\tfrappe.PermissionError,",
+			"\t\t\ttitle=_(\"Not Permitted\"),",
+			"\t\t)",
+		],
+	},
+	{
+		"id": "M17b",
+		"file": "hrms/hr/doctype/goal/goal.py",
+		"mode": "insert",
+		"func": "\tdef validate(self):",
+		"needs": ["def treeo_goal_write_gate("],
+		"lines": ["\t\ttreeo_goal_write_gate(self)  # TREEO-SEC M17b"],
+	},
+	{
+		"id": "M17c",
+		"file": "hrms/hr/doctype/goal/goal.py",
+		"mode": "insert",
+		"func": "\tdef on_trash(self):",
+		"needs": ["def treeo_goal_write_gate("],
+		"lines": ["\t\ttreeo_goal_write_gate(self)  # TREEO-SEC M17c"],
+	},
+	{
+		"id": "M18a",
+		"file": "hrms/public/js/templates/feedback_history.html",
+		"mode": "replace",
+		"old": "\t\t\t\t\t\t{{ feedback_history[i].feedback }}",
+		"new": "\t\t\t\t\t\t{{ frappe.utils.escape_html(strip_html(feedback_history[i].feedback)) }}<!-- TREEO-SEC M18a -->",
+	},
+	{
+		"id": "M18b",
+		"file": "hrms/public/js/templates/feedback_history.html",
+		"mode": "replace",
+		"old": "\t\t\t\t\t\t\t\t\t{{ strip_html(feedback_history[i].reviewer_name || feedback_history[i].user) }}",
+		"new": "\t\t\t\t\t\t\t\t\t{{ frappe.utils.escape_html(strip_html(feedback_history[i].reviewer_name || feedback_history[i].user)) }}<!-- TREEO-SEC M18b -->",
+	},
+	{
+		"id": "M18c",
+		"file": "hrms/public/js/templates/feedback_history.html",
+		"mode": "replace",
+		"old": "\t\t\t\t\t\t\t\t\t\t{{ strip_html(feedback_history[i].reviewer_designation) }}",
+		"new": "\t\t\t\t\t\t\t\t\t\t{{ frappe.utils.escape_html(strip_html(feedback_history[i].reviewer_designation)) }}<!-- TREEO-SEC M18c -->",
+	},
+	{
+		"id": "M19",
+		"file": "roster/src/components/MonthViewTable.vue",
+		"mode": "block",
+		"old": [
+			"\t\t\t\t\t\t\t<div",
+			"\t\t\t\t\t\t\t\tv-html=\"",
+			"\t\t\t\t\t\t\t\t\tevents.data[employee.name][day.date].weekly_off",
+			"\t\t\t\t\t\t\t\t\t\t? '<strong>WO</strong>'",
+			"\t\t\t\t\t\t\t\t\t\t: events.data[employee.name][day.date].description",
+			"\t\t\t\t\t\t\t\t\"",
+			"\t\t\t\t\t\t\t></div>",
+		],
+		"new": [
+			"\t\t\t\t\t\t\t<!-- TREEO-SEC M19: holiday description as text, not raw HTML -->",
+			"\t\t\t\t\t\t\t<div v-if=\"events.data[employee.name][day.date].weekly_off\"><strong>WO</strong></div>",
+			"\t\t\t\t\t\t\t<div",
+			"\t\t\t\t\t\t\t\tv-else",
+			"\t\t\t\t\t\t\t\tv-text=\"String(events.data[employee.name][day.date].description || '').replace(/<[^>]*>/g, ' ').trim()\"",
+			"\t\t\t\t\t\t\t></div>",
+		],
+	},
+	{
+		"id": "M20a",
+		"file": "hrms/hr/page/team_updates/team_updates.py",
+		"mode": "block",
+		"old": [
+			"\tdata = frappe.get_all(",
+			"\t\t\"Communication\",",
+			"\t\tfields=(\"content\", \"text_content\", \"sender\", \"creation\"),",
+			"\t\tfilters=dict(reference_doctype=\"Daily Work Summary\"),",
+			"\t\torder_by=\"creation desc\",",
+			"\t\tlimit=40,",
+			"\t\tstart=start,",
+			"\t)",
+			"",
+			"\tfor d in data:",
+			"\t\td.sender_name = frappe.db.get_value(\"Employee\", {\"user_id\": d.sender}, \"employee_name\") or d.sender",
+			"\t\tif d.text_content:",
+			"\t\t\td.content = frappe.utils.md_to_html(EmailReplyParser.parse_reply(d.text_content))",
+			"",
+			"\treturn data",
+		],
+		"new": [
+			"\t# TREEO-SEC M20a: without an HR role, only replies of the caller's own Daily Work Summary",
+			"\t# groups; and the reply HTML is sanitised (md_to_html passes raw HTML through, and the",
+			"\t# page inserts it unescaped)",
+			"\tfrom frappe.utils.html_utils import sanitize_html",
+			"",
+			"\tfilters = dict(reference_doctype=\"Daily Work Summary\")",
+			"\tif not {\"HR Manager\", \"HR User\", \"System Manager\"} & set(frappe.get_roles()):",
+			"\t\tgroups = frappe.get_all(",
+			"\t\t\t\"Daily Work Summary Group User\",",
+			"\t\t\tfilters={\"user\": frappe.session.user, \"parenttype\": \"Daily Work Summary Group\"},",
+			"\t\t\tpluck=\"parent\",",
+			"\t\t)",
+			"\t\tsummaries = (",
+			"\t\t\tfrappe.get_all(\"Daily Work Summary\", filters={\"daily_work_summary_group\": [\"in\", groups]}, pluck=\"name\")",
+			"\t\t\tif groups",
+			"\t\t\telse []",
+			"\t\t)",
+			"\t\tif not summaries:",
+			"\t\t\treturn []",
+			"\t\tfilters[\"reference_name\"] = [\"in\", summaries]",
+			"\tdata = frappe.get_all(",
+			"\t\t\"Communication\",",
+			"\t\tfields=(\"content\", \"text_content\", \"sender\", \"creation\"),",
+			"\t\tfilters=filters,",
+			"\t\torder_by=\"creation desc\",",
+			"\t\tlimit=40,",
+			"\t\tstart=start,",
+			"\t)",
+			"",
+			"\tfor d in data:",
+			"\t\td.sender_name = frappe.db.get_value(\"Employee\", {\"user_id\": d.sender}, \"employee_name\") or d.sender",
+			"\t\tif d.text_content:",
+			"\t\t\td.content = frappe.utils.md_to_html(EmailReplyParser.parse_reply(d.text_content))",
+			"\t\td.content = sanitize_html(d.content or \"\", always_sanitize=True)",
+			"",
+			"\treturn data",
+		],
+	},
+	{
+		"id": "M20b",
+		"file": "hrms/hr/page/team_updates/team_update_row.html",
+		"mode": "replace",
+		"old": "\t\ttitle=\"{%= by %} / {%= frappe.datetime.str_to_user(creation) %}\">",
+		"new": "\t\ttitle=\"{%= frappe.utils.escape_html(by) %} / {%= frappe.datetime.str_to_user(creation) %}\"><!-- TREEO-SEC M20b -->",
+	},
+	{
+		"id": "M21a",
+		"file": "hrms/payroll/doctype/salary_slip/salary_slip.py",
+		"mode": "append",
+		"lines": [
+			"# TREEO-SEC M21a: the Employee role reads every Salary Slip / Salary Structure Assignment",
+			"# (no if_owner); only User Permissions narrow it, and those depend on data (any user with",
+			"# the Employee role but no linked Employee, or create_user_permission unticked, sees all).",
+			"# When a user's only read grant on the doctype comes from Employee / All, limit them to",
+			"# records of their own employee. HR / custom payroll roles are not affected.",
+			"TREEO_SELF_SCOPE_ROLES = {\"Employee\", \"Employee Self Service\", \"All\"}",
+			"",
+			"",
+			"def treeo_only_own_payroll(doctype, user):",
+			"\tfrom frappe.permissions import get_valid_perms",
+			"",
+			"\tif user == \"Administrator\":",
+			"\t\treturn False",
+			"\tfor p in get_valid_perms(doctype, user):",
+			"\t\tif p.get(\"read\") and not p.get(\"permlevel\") and p.get(\"role\") not in TREEO_SELF_SCOPE_ROLES:",
+			"\t\t\treturn False",
+			"\treturn True",
+			"",
+			"",
+			"def treeo_own_payroll_has_permission(doc, ptype=None, user=None, debug=False):",
+			"\tuser = user or frappe.session.user",
+			"\tif not treeo_only_own_payroll(doc.doctype, user):",
+			"\t\treturn None",
+			"\tif doc.get(\"employee\") and frappe.db.get_value(\"Employee\", doc.get(\"employee\"), \"user_id\") == user:",
+			"\t\treturn None",
+			"\treturn False",
+			"",
+			"",
+			"def treeo_own_payroll_query_conditions(user=None, doctype=None):",
+			"\tuser = user or frappe.session.user",
+			"\tdoctype = doctype or \"Salary Slip\"",
+			"\tif not treeo_only_own_payroll(doctype, user):",
+			"\t\treturn \"\"",
+			"\treturn \"`tab{0}`.`employee` in (select `name` from `tabEmployee` where `user_id` = {1})\".format(",
+			"\t\tdoctype, frappe.db.escape(user)",
+			"\t)",
+		],
+	},
+	{
+		"id": "M21b",
+		"file": "hrms/hooks.py",
+		"mode": "block",
+		"needs_file": {
+			"hrms/payroll/doctype/salary_slip/salary_slip.py": [
+				"def treeo_own_payroll_has_permission(",
+				"def treeo_own_payroll_query_conditions(",
+			]
+		},
+		"old": [
+			"# has_permission = {",
+			"# \t\"Event\": \"frappe.desk.doctype.event.event.has_permission\",",
+			"# }",
+		],
+		"new": [
+			"# has_permission = {",
+			"# \t\"Event\": \"frappe.desk.doctype.event.event.has_permission\",",
+			"# }",
+			"",
+			"# TREEO-SEC M21b: Employee-only readers see only their own payroll records",
+			"_treeo_payroll = \"hrms.payroll.doctype.salary_slip.salary_slip.treeo_own_payroll\"",
+			"has_permission = {",
+			"\t\"Salary Slip\": _treeo_payroll + \"_has_permission\",",
+			"\t\"Salary Structure Assignment\": _treeo_payroll + \"_has_permission\",",
+			"}",
+			"permission_query_conditions = {",
+			"\t\"Salary Slip\": _treeo_payroll + \"_query_conditions\",",
+			"\t\"Salary Structure Assignment\": _treeo_payroll + \"_query_conditions\",",
+			"}",
+		],
+	},
+	{
+		"id": "M22a",
+		"file": "hrms/hr/doctype/job_opening/job_opening.py",
+		"mode": "insert",
+		"func": "\tdef validate(self):",
+		"before": "\t\tself.update_closing_date()",
+		"needs": ["from frappe import _"],
+		"lines": [
+			"\t\t# TREEO-SEC M22a: /jobs navigates to the route on click; only a path on this site",
+			"\t\t# (no javascript: or other scheme in the first segment, no //host)",
+			"\t\troute = self.route.strip().replace(\"\\\\\", \"/\")",
+			"\t\tif \":\" in route.split(\"/\")[0] or route.startswith(\"//\"):",
+			"\t\t\tfrappe.throw(_(\"Route must be a path on this site.\"), frappe.ValidationError)",
+		],
+	},
+	{
+		"id": "M22b",
+		"file": "hrms/www/jobs/index.js",
+		"mode": "replace",
+		"old": "\t\twindow.location.href = this.id;",
+		"new": "\t\twindow.location.href = \"/\" + String(this.id).replace(/^[\\s/\\\\]+/, \"\"); // TREEO-SEC M22b: path only",
+	},
+	{
 		"id": "G1",
 		"file": "hrms/utils/__init__.py",
 		"mode": "block",
@@ -567,6 +840,13 @@ def apply_block(p, lines):
 	return None
 
 
+def apply_append(p, lines):
+	while lines and lines[-1] == "":
+		lines.pop()
+	lines[len(lines) :] = ["", ""] + p["lines"] + [""]
+	return None
+
+
 def apply_replace(p, lines):
 	hits = [i for i, l in enumerate(lines) if l.rstrip() == p["old"]]
 	if len(hits) != 1:
@@ -601,20 +881,32 @@ for p in PATCHES:
 	if missing:
 		warn(pid, f"{p['file']} lacks {missing}")
 		continue
+	other_missing = [
+		f"{f}: {n}"
+		for f, ns in p.get("needs_file", {}).items()
+		for n in ns
+		if not (app / f).is_file() or n not in (app / f).read_text()
+	]
+	if other_missing:
+		warn(pid, f"prerequisite missing ({other_missing})")
+		continue
 
 	lines = text.split("\n")
-	apply = {"insert": apply_insert, "replace": apply_replace, "block": apply_block}[p["mode"]]
+	apply = {"insert": apply_insert, "replace": apply_replace, "block": apply_block, "append": apply_append}[
+		p["mode"]
+	]
 	err = apply(p, lines)
 	if err:
 		warn(pid, f"{p['file']}: {err}")
 		continue
 
 	new_text = "\n".join(lines)
-	try:
-		compile(new_text, str(path), "exec")
-	except SyntaxError as e:
-		warn(pid, f"patched {p['file']} would not compile ({e})")
-		continue
+	if path.suffix == ".py":
+		try:
+			compile(new_text, str(path), "exec")
+		except SyntaxError as e:
+			warn(pid, f"patched {p['file']} would not compile ({e})")
+			continue
 
 	tmp = path.with_suffix(path.suffix + ".treeo-tmp")
 	tmp.write_text(new_text)
