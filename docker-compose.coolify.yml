@@ -63,8 +63,9 @@ services:
         # places the compose file on the server — ./docker/assets is NOT synced
         # from the repo (DEPLOY_FIXES.md #13), so anything that relies on the
         # bind mount silently disappears whenever that directory is cleared.
-        # Falls back to the bind mount if the clone fails, so a GitHub outage
-        # degrades to the old behaviour instead of breaking the deploy.
+        # Fails closed (Strix 2026-11 re-scan): if the pinned fork cannot be
+        # fetched, the container refuses to start rather than run without the
+        # security patches. The upstream fetch above already needs GitHub.
         ASSETS=/home/frappe/custom-assets
         FORK_ROOT=""
         rm -rf /tmp/treeo-fork
@@ -84,10 +85,12 @@ services:
           TREEO_FORK_ACTUAL=$$(git -C /tmp/treeo-fork rev-parse HEAD 2>/dev/null)
           echo "TREEO customizations source: git ($$ASSETS) at $$TREEO_FORK_ACTUAL"
           if [ "$$TREEO_FORK_ACTUAL" != "$$TREEO_FORK_SHA" ]; then
-            echo "WARNING: TREEO fork is at '$$TREEO_FORK_ACTUAL', expected pin $$TREEO_FORK_SHA - review!"
+            echo "FATAL: TREEO fork is at '$$TREEO_FORK_ACTUAL', expected pin $$TREEO_FORK_SHA - refusing to start."
+            exit 1
           fi
         else
-          echo "WARNING: could not fetch TREEO fork at pin $$TREEO_FORK_SHA — falling back to bind mount $$ASSETS"
+          echo "FATAL: could not fetch TREEO fork at pin $$TREEO_FORK_SHA - refusing to start."
+          exit 1
         fi
         # Inject TREEO custom functions
         mkdir -p apps/hrms/hrms/utils
@@ -109,11 +112,13 @@ services:
         fi
         # Security hardening (Strix 2026-11): permission checks and a bounded
         # calendar range patched into upstream code. Idempotent; a missing
-        # anchor only logs a WARNING, it never stops the container.
+        # anchor only logs a WARNING. A missing or crashing injector stops the
+        # container, so production never runs with no patches at all.
         if [ -f $$ASSETS/inject_security_patches.sh ]; then
-          bash $$ASSETS/inject_security_patches.sh apps/hrms || echo "WARNING: security patch injection failed; continuing."
+          bash $$ASSETS/inject_security_patches.sh apps/hrms || { echo "FATAL: security patch injection failed - refusing to start."; exit 1; }
         else
-          echo "WARNING: inject_security_patches.sh not found in $$ASSETS - security patches NOT applied."
+          echo "FATAL: inject_security_patches.sh not found in $$ASSETS - refusing to start."
+          exit 1
         fi
         echo "Building assets..."
         # Remove any previous assets so bench build can create clean symlinks.
