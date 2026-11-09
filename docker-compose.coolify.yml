@@ -42,10 +42,20 @@ services:
       - |
         echo "=== Phase 1: Bench configuration ==="
         cd /home/frappe/frappe-bench
-        # Always reinstall from upstream v15 (clean slate, v15-compatible)
+        # Always reinstall from upstream v15 (clean slate, v15-compatible).
+        # Pinned to a reviewed release tag instead of the moving version-15
+        # branch, so a new upstream commit cannot change production on restart
+        # (Strix 2026-11, L1). To upgrade: pick a newer v15.x.y tag, review it,
+        # update both values below. v15.64.8 == version-15 HEAD on 2026-11-09.
+        HRMS_UPSTREAM_REF=v15.64.8
+        HRMS_UPSTREAM_SHA=186900a6e3db4e6f927f1ee20df745bbb082638a
         rm -rf apps/hrms
-        echo "Fetching hrms app (upstream version-15)..."
-        bench get-app hrms https://github.com/frappe/hrms.git --branch version-15
+        echo "Fetching hrms app (upstream $$HRMS_UPSTREAM_REF)..."
+        bench get-app hrms https://github.com/frappe/hrms.git --branch $$HRMS_UPSTREAM_REF
+        HRMS_ACTUAL_SHA=$$(git -C apps/hrms rev-parse HEAD 2>/dev/null)
+        if [ "$$HRMS_ACTUAL_SHA" != "$$HRMS_UPSTREAM_SHA" ]; then
+          echo "WARNING: apps/hrms is at '$$HRMS_ACTUAL_SHA', expected $$HRMS_UPSTREAM_SHA ($$HRMS_UPSTREAM_REF). Upstream tag moved or clone failed - review!"
+        fi
         # Take TREEO customizations from git, not the bind mount. Coolify only
         # places the compose file on the server — ./docker/assets is NOT synced
         # from the repo (DEPLOY_FIXES.md #13), so anything that relies on the
@@ -55,6 +65,11 @@ services:
         ASSETS=/home/frappe/custom-assets
         FORK_ROOT=""
         rm -rf /tmp/treeo-fork
+        # OWNER DECISION (Strix 2026-11, L1): this still tracks the fork's main
+        # branch, so any push to miqbalf/hrms main changes production on the
+        # next restart. Proposal: pin a reviewed commit, e.g. after the clone
+        # run `git -C /tmp/treeo-fork checkout <sha>` (needs a non-shallow
+        # fetch of that sha) and warn if it is missing.
         if GIT_TERMINAL_PROMPT=0 git clone --depth 1 --branch main \
              https://github.com/miqbalf/hrms.git /tmp/treeo-fork; then
           FORK_ROOT=/tmp/treeo-fork
@@ -80,6 +95,14 @@ services:
         # Inject Google Calendar sync for approved leaves (doc_events + hourly sweep)
         if [ -f $$ASSETS/inject_calendar_sync.sh ]; then
           bash $$ASSETS/inject_calendar_sync.sh $$FORK_ROOT
+        fi
+        # Security hardening (Strix 2026-11): permission checks and a bounded
+        # calendar range patched into upstream code. Idempotent; a missing
+        # anchor only logs a WARNING, it never stops the container.
+        if [ -f $$ASSETS/inject_security_patches.sh ]; then
+          bash $$ASSETS/inject_security_patches.sh apps/hrms || echo "WARNING: security patch injection failed; continuing."
+        else
+          echo "WARNING: inject_security_patches.sh not found in $$ASSETS - security patches NOT applied."
         fi
         echo "Building assets..."
         # Remove any previous assets so bench build can create clean symlinks.
