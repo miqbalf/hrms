@@ -20,7 +20,10 @@
 #   - Fails closed when nothing is protected: a missing app dir, an injector
 #     crash, or a run where no patch was applied or already present prints
 #     "SECURITY ERROR: ..." and exits 1 (docker-compose.coolify.yml then
-#     refuses to start). Otherwise it exits 0.
+#     refuses to start).
+#   - Fails closed on a critical skip (F12): when any of M10, M12, M15, M21a,
+#     M21b, M21c or M24 is skipped it prints "SECURITY ERROR: critical security
+#     patch(es) ... skipped" and exits 3. Otherwise it exits 0.
 #
 # Patches:
 #   M1  hrms.api.get_attendance_calendar_events: date range bounded to 366 days
@@ -82,8 +85,24 @@
 #       with its own doctype grant); everyone else sees only own-Employee records
 #       (also covers hrms.api.download_salary_slip, which uses print permission)
 #   M22 job board: a JobOpening.validate rejects a route with a scheme or //host,
-#       b www/jobs/index.js navigates to "/" + route (path only)
-#   JS / HTML / Vue patches (M18-M20b, M22b) edit source before `bench build`;
+#       b www/jobs/index.js navigates to "/" + route (path only), c JobOpening.validate
+#       rejects quotes, <, >, backtick, whitespace and // in route / job_application_route
+#       and quotes, <, > in job_title, d www/jobs/index.html and e, f the job page
+#       (templates/generators/job_opening.html) escape them (|e) in id / title / href
+#   M5h expense_claim.get_advances: v15.64.8 already checks Employee read (verify only;
+#       the repo's TREEO-SEC M5 fix is for the develop signature)
+#   M12b Employee Checkin has_permission + query conditions (c hooks): without HR Manager /
+#       HR User / System Manager only own-Employee checkins (read, write, delete)
+#   M21c the M21 rule also for Employee Promotion, Employee Incentive, Retention Bonus,
+#       Salary Withholding, Employee Benefit Application / Claim, Employee Tax Exemption
+#       Declaration / Proof Submission and Employee Other Income
+#   M23 a salary_slip.treeo_assert_own_payroll; b..d employee_benefit_application.
+#       get_max_benefits / get_max_benefits_remaining / get_earning_components_max_benefits
+#       call it after the M5e-g Employee read check (own employee unless HR)
+#   M24 exit_interview.send_exit_questionnaire: email permission on every interview
+#   M25 a JobApplicant.validate, b EmployeeReferral.validate: resume_link http(s) only
+#   M26 hrms.api.upload_base64_file: write permission checked before the base64 decode
+#   JS / HTML / Vue patches (M18-M20b, M22b, M22d-f) edit source before `bench build`;
 #   the compose runs this injector before `bench build`, so they reach the bundle.
 
 APP_DIR="${1:-apps/hrms}"
@@ -145,6 +164,7 @@ PATCHES = [
 		"id": "M3",
 		"file": "hrms/hr/page/team_updates/team_updates.py",
 		"mode": "replace",
+		"func": "def get_data(",  # informational (marker coverage test)
 		"old": "\t# frappe.only_for('Employee', 'System Manager')",
 		"new": '\tfrappe.only_for(("Employee", "System Manager"))  # TREEO-SEC M3',
 	},
@@ -152,6 +172,7 @@ PATCHES = [
 		"id": "M4",
 		"file": "hrms/hr/doctype/leave_ledger_entry/leave_ledger_entry.py",
 		"mode": "verify",
+		"func": "def expire_allocation(",  # informational (marker coverage test)
 		"expect": 'frappe.has_permission("Leave Allocation", "write", allocation.name, throw=True)',
 	},
 	{
@@ -656,7 +677,12 @@ PATCHES = [
 			"\tuser = user or frappe.session.user",
 			"\tif not treeo_only_own_payroll(doc.doctype, user):",
 			"\t\treturn None",
-			"\tif doc.get(\"employee\") and frappe.db.get_value(\"Employee\", doc.get(\"employee\"), \"user_id\") == user:",
+			"\t# the stored employee too, so a write cannot move another employee's record to oneself",
+			"\temployees = {doc.get(\"employee\")}",
+			"\tstored = frappe.db.get_value(doc.doctype, doc.get(\"name\"), \"employee\") if doc.get(\"name\") else None",
+			"\tif stored:",
+			"\t\temployees.add(stored)",
+			"\tif all(e and frappe.db.get_value(\"Employee\", e, \"user_id\") == user for e in employees):",
 			"\t\treturn None",
 			"\treturn False",
 			"",
@@ -724,6 +750,288 @@ PATCHES = [
 		"mode": "replace",
 		"old": "\t\twindow.location.href = this.id;",
 		"new": "\t\twindow.location.href = \"/\" + String(this.id).replace(/^[\\s/\\\\]+/, \"\"); // TREEO-SEC M22b: path only",
+	},
+	{
+		# repo source has TREEO-SEC M5 in get_advances (3b7078cc5, develop signature taking an
+		# expense_claim doc); v15.64.8 takes `employee` and already checks Employee read on it
+		"id": "M5h",
+		"file": "hrms/hr/doctype/expense_claim/expense_claim.py",
+		"mode": "verify",
+		"func": "def get_advances(",
+		"expect": 'def get_advances(employee: str, advance_id: str | None = None, company: str | None = None):\n\tfrappe.has_permission("Employee", "read", employee, throw=True)',
+	},
+	{
+		"id": "M12b",
+		"file": "hrms/hr/doctype/employee_checkin/employee_checkin.py",
+		"mode": "append",
+		"lines": [
+			"# TREEO-SEC M12b: the Employee role has read / write / delete on every Employee Checkin",
+			"# (GPS coordinates included) and M12 only guards validate (not delete, read, or a save with",
+			"# ignore_validate such as bulk_fetch_shift). Without HR Manager / HR User / System Manager",
+			"# a user may only use checkins of their own employee, before and after the change. The",
+			"# PWA / mobile check-in runs as the employee, so own checkins keep working.",
+			"TREEO_CHECKIN_FULL_ROLES = {\"HR Manager\", \"HR User\", \"System Manager\"}",
+			"",
+			"",
+			"def treeo_checkin_full_access(user):",
+			"\treturn user == \"Administrator\" or bool(TREEO_CHECKIN_FULL_ROLES & set(frappe.get_roles(user)))",
+			"",
+			"",
+			"def treeo_checkin_has_permission(doc, ptype=None, user=None, debug=False):",
+			"\tuser = user or frappe.session.user",
+			"\tif treeo_checkin_full_access(user):",
+			"\t\treturn None",
+			"\temployees = {doc.get(\"employee\")}",
+			"\tstored = frappe.db.get_value(\"Employee Checkin\", doc.get(\"name\"), \"employee\") if doc.get(\"name\") else None",
+			"\tif stored:",
+			"\t\temployees.add(stored)",
+			"\tif all(e and frappe.db.get_value(\"Employee\", e, \"user_id\") == user for e in employees):",
+			"\t\treturn None",
+			"\treturn False",
+			"",
+			"",
+			"def treeo_checkin_query_conditions(user=None, doctype=None):",
+			"\tuser = user or frappe.session.user",
+			"\tif treeo_checkin_full_access(user):",
+			"\t\treturn \"\"",
+			"\treturn \"`tabEmployee Checkin`.`employee` in (select `name` from `tabEmployee` where `user_id` = {0})\".format(",
+			"\t\tfrappe.db.escape(user)",
+			"\t)",
+		],
+	},
+	{
+		"id": "M21c",
+		"file": "hrms/hooks.py",
+		"mode": "block",
+		"needs": ["TREEO-SEC M21b"],
+		"old": [
+			"permission_query_conditions = {",
+			"\t\"Salary Slip\": _treeo_payroll + \"_query_conditions\",",
+			"\t\"Salary Structure Assignment\": _treeo_payroll + \"_query_conditions\",",
+			"}",
+		],
+		"new": [
+			"permission_query_conditions = {",
+			"\t\"Salary Slip\": _treeo_payroll + \"_query_conditions\",",
+			"\t\"Salary Structure Assignment\": _treeo_payroll + \"_query_conditions\",",
+			"}",
+			"# TREEO-SEC M21c: the sibling payroll doctypes (Employee has unscoped read) follow the M21 rule",
+			"for _treeo_dt in (",
+			"\t\"Employee Promotion\",",
+			"\t\"Employee Incentive\",",
+			"\t\"Retention Bonus\",",
+			"\t\"Salary Withholding\",",
+			"\t\"Employee Benefit Application\",",
+			"\t\"Employee Benefit Claim\",",
+			"\t\"Employee Tax Exemption Declaration\",",
+			"\t\"Employee Tax Exemption Proof Submission\",",
+			"\t\"Employee Other Income\",",
+			"):",
+			"\thas_permission[_treeo_dt] = _treeo_payroll + \"_has_permission\"",
+			"\tpermission_query_conditions[_treeo_dt] = _treeo_payroll + \"_query_conditions\"",
+		],
+	},
+	{
+		"id": "M12c",
+		"file": "hrms/hooks.py",
+		"mode": "block",
+		"needs": ["TREEO-SEC M21b"],
+		"needs_file": {
+			"hrms/hr/doctype/employee_checkin/employee_checkin.py": [
+				"def treeo_checkin_has_permission(",
+				"def treeo_checkin_query_conditions(",
+			]
+		},
+		"old": [
+			"permission_query_conditions = {",
+			"\t\"Salary Slip\": _treeo_payroll + \"_query_conditions\",",
+			"\t\"Salary Structure Assignment\": _treeo_payroll + \"_query_conditions\",",
+			"}",
+		],
+		"new": [
+			"permission_query_conditions = {",
+			"\t\"Salary Slip\": _treeo_payroll + \"_query_conditions\",",
+			"\t\"Salary Structure Assignment\": _treeo_payroll + \"_query_conditions\",",
+			"}",
+			"# TREEO-SEC M12c: Employee Checkin, own records only without an HR role (M12b)",
+			"has_permission[\"Employee Checkin\"] = \"hrms.hr.doctype.employee_checkin.employee_checkin.treeo_checkin_has_permission\"",
+			"permission_query_conditions[\"Employee Checkin\"] = (",
+			"\t\"hrms.hr.doctype.employee_checkin.employee_checkin.treeo_checkin_query_conditions\"",
+			")",
+		],
+	},
+	{
+		"id": "M22c",
+		"file": "hrms/hr/doctype/job_opening/job_opening.py",
+		"mode": "insert",
+		"func": "\tdef validate(self):",
+		"before": "\t\tself.update_closing_date()",
+		"needs": ["from frappe import _"],
+		"lines": [
+			"\t\t# TREEO-SEC M22c: /jobs and the job page put route / job_application_route in id and",
+			"\t\t# href attributes and job_title in title attributes: no quote, tag, backtick, space or //",
+			"\t\tfor value in (self.route, self.job_application_route):",
+			"\t\t\tif value and (any(c in value for c in \"\\\"'<>`\") or any(c.isspace() for c in value) or \"//\" in value):",
+			"\t\t\t\tfrappe.throw(_(\"Route must not contain quotes, <, >, backticks, spaces or //.\"), frappe.ValidationError)",
+			"\t\tif self.job_title and any(c in self.job_title for c in \"\\\"<>\"):",
+			"\t\t\tfrappe.throw(_(\"Job Title must not contain quotes, < or >.\"), frappe.ValidationError)",
+		],
+	},
+	{
+		"id": "M22d",
+		"file": "hrms/www/jobs/index.html",
+		"mode": "block",
+		"old": [
+			"\t\t\t\t\tid=\"{{ jo.route }}\"",
+			"\t\t\t\t\tname=\"card\"",
+			"\t\t\t\t\tclass=\"card border h-100 flex flex-col\"",
+			"\t\t\t\t\trole=\"button\"",
+			"\t\t\t\t>",
+			"\t\t\t\t\t<div class=\"p-6\">",
+			"\t\t\t\t\t\t<div class=\"flex mb-5\">",
+			"\t\t\t\t\t\t\t<div class=\"col-12 {{ 'col-lg-9' if jo.employment_type }} px-0\">",
+			"\t\t\t\t\t\t\t\t<h4",
+			"\t\t\t\t\t\t\t\t\tclass=\"mt-0 mb-1 jobs-page text-truncate\"",
+			"\t\t\t\t\t\t\t\t\ttitle=\"{{ jo.job_title }}\"",
+			"\t\t\t\t\t\t\t\t>",
+			"\t\t\t\t\t\t\t\t\t{{ jo.job_title }}",
+		],
+		"new": [
+			"\t\t\t\t\tid=\"{{ jo.route|e }}\"{# TREEO-SEC M22d: route / job_title escaped #}",
+			"\t\t\t\t\tname=\"card\"",
+			"\t\t\t\t\tclass=\"card border h-100 flex flex-col\"",
+			"\t\t\t\t\trole=\"button\"",
+			"\t\t\t\t>",
+			"\t\t\t\t\t<div class=\"p-6\">",
+			"\t\t\t\t\t\t<div class=\"flex mb-5\">",
+			"\t\t\t\t\t\t\t<div class=\"col-12 {{ 'col-lg-9' if jo.employment_type }} px-0\">",
+			"\t\t\t\t\t\t\t\t<h4",
+			"\t\t\t\t\t\t\t\t\tclass=\"mt-0 mb-1 jobs-page text-truncate\"",
+			"\t\t\t\t\t\t\t\t\ttitle=\"{{ jo.job_title|e }}\"",
+			"\t\t\t\t\t\t\t\t>",
+			"\t\t\t\t\t\t\t\t\t{{ jo.job_title|e }}",
+		],
+	},
+	{
+		"id": "M22e",
+		"file": "hrms/templates/generators/job_opening.html",
+		"mode": "replace",
+		"old": "\t\t\t\t\t\thref=\"/{{ job_application_route if job_application_route else 'job_application' }}/new?job_title={{ name }}\"",
+		"new": "\t\t\t\t\t\thref=\"/{{ (job_application_route if job_application_route else 'job_application')|e }}/new?job_title={{ name|e }}\"{# TREEO-SEC M22e #}",
+	},
+	{
+		"id": "M22f",
+		"file": "hrms/templates/generators/job_opening.html",
+		"mode": "replace",
+		"old": "\t\t\t\t\thref=\"/{{ job_application_route if job_application_route else 'job_application' }}/new?job_title={{ name }}\"",
+		"new": "\t\t\t\t\thref=\"/{{ (job_application_route if job_application_route else 'job_application')|e }}/new?job_title={{ name|e }}\"{# TREEO-SEC M22f #}",
+	},
+	{
+		"id": "M23a",
+		"file": "hrms/payroll/doctype/salary_slip/salary_slip.py",
+		"mode": "append",
+		"needs": ["def treeo_only_own_payroll(", "from frappe import _"],
+		"lines": [
+			"# TREEO-SEC M23a: whitelisted payroll calculators that take an employee argument",
+			"# (employee_benefit_application.get_max_benefits & co.) follow the M21 rule: only",
+			"# Administrator / HR Manager / HR User (System Manager with its own grant) for anyone,",
+			"# everyone else only for their own Employee.",
+			"def treeo_assert_own_payroll(doctype, employee, user=None):",
+			"\tuser = user or frappe.session.user",
+			"\tif not treeo_only_own_payroll(doctype, user):",
+			"\t\treturn",
+			"\tif employee and frappe.db.get_value(\"Employee\", employee, \"user_id\") == user:",
+			"\t\treturn",
+			"\tfrappe.throw(_(\"Not permitted to read payroll data of another employee.\"), frappe.PermissionError)",
+		],
+	},
+	{
+		"id": "M23b",
+		"file": "hrms/payroll/doctype/employee_benefit_application/employee_benefit_application.py",
+		"mode": "insert",
+		"func": "def get_max_benefits(",
+		"after": '\tfrappe.has_permission("Employee", "read", employee, throw=True)  # TREEO-SEC M5e',
+		"needs_file": {"hrms/payroll/doctype/salary_slip/salary_slip.py": ["def treeo_assert_own_payroll("]},
+		"lines": [
+			"\tfrom hrms.payroll.doctype.salary_slip.salary_slip import treeo_assert_own_payroll  # TREEO-SEC M23b",
+			"",
+			"\ttreeo_assert_own_payroll(\"Employee Benefit Application\", employee)",
+		],
+	},
+	{
+		"id": "M23c",
+		"file": "hrms/payroll/doctype/employee_benefit_application/employee_benefit_application.py",
+		"mode": "insert",
+		"func": "def get_max_benefits_remaining(",
+		"after": '\tfrappe.has_permission("Employee", "read", employee, throw=True)  # TREEO-SEC M5f',
+		"needs_file": {"hrms/payroll/doctype/salary_slip/salary_slip.py": ["def treeo_assert_own_payroll("]},
+		"lines": [
+			"\tfrom hrms.payroll.doctype.salary_slip.salary_slip import treeo_assert_own_payroll  # TREEO-SEC M23c",
+			"",
+			"\ttreeo_assert_own_payroll(\"Employee Benefit Application\", employee)",
+		],
+	},
+	{
+		"id": "M23d",
+		"file": "hrms/payroll/doctype/employee_benefit_application/employee_benefit_application.py",
+		"mode": "insert",
+		"func": "def get_earning_components_max_benefits(",
+		"after": '\tfrappe.has_permission("Employee", "read", employee, throw=True)  # TREEO-SEC M5g',
+		"needs_file": {"hrms/payroll/doctype/salary_slip/salary_slip.py": ["def treeo_assert_own_payroll("]},
+		"lines": [
+			"\tfrom hrms.payroll.doctype.salary_slip.salary_slip import treeo_assert_own_payroll  # TREEO-SEC M23d",
+			"",
+			"\ttreeo_assert_own_payroll(\"Employee Benefit Application\", employee)",
+		],
+	},
+	{
+		"id": "M24",
+		"file": "hrms/hr/doctype/exit_interview/exit_interview.py",
+		"mode": "insert",
+		"func": "def send_exit_questionnaire(",
+		"before": "\temail_success = []",
+		"lines": [
+			"\t# TREEO-SEC M24: email permission on every selected interview, before anything is sent",
+			"\t# (upstream has no check: any user could mail exit questionnaires and learn who leaves)",
+			"\tfor exit_interview in interviews:",
+			"\t\tfrappe.has_permission(\"Exit Interview\", \"email\", exit_interview.get(\"name\"), throw=True)",
+			"",
+		],
+	},
+	{
+		"id": "M25a",
+		"file": "hrms/hr/doctype/job_applicant/job_applicant.py",
+		"mode": "insert",
+		"func": "\tdef validate(self):",
+		"needs": ["from frappe import _"],
+		"lines": [
+			"\t\t# TREEO-SEC M25a: the desk opens / embeds resume_link; only http(s) URLs",
+			"\t\tif self.resume_link and not self.resume_link.strip().lower().startswith((\"http://\", \"https://\")):",
+			"\t\t\tfrappe.throw(_(\"Resume Link must start with http:// or https://.\"), frappe.ValidationError)",
+		],
+	},
+	{
+		"id": "M25b",
+		"file": "hrms/hr/doctype/employee_referral/employee_referral.py",
+		"mode": "insert",
+		"func": "\tdef validate(self):",
+		"needs": ["from frappe import _"],
+		"lines": [
+			"\t\t# TREEO-SEC M25b: copied into the Job Applicant's resume_link; only http(s) URLs",
+			"\t\tif self.resume_link and not self.resume_link.strip().lower().startswith((\"http://\", \"https://\")):",
+			"\t\t\tfrappe.throw(_(\"Resume Link must start with http:// or https://.\"), frappe.ValidationError)",
+		],
+	},
+	{
+		"id": "M26",
+		"file": "hrms/api/__init__.py",
+		"mode": "insert",
+		"func": "def upload_base64_file(",
+		"before": "\tdecoded_content = base64.b64decode(content)",
+		"lines": [
+			"\t# TREEO-SEC M26: check write permission before decoding (upstream decoded any payload first)",
+			"\tfrappe.has_permission(dt, \"write\", dn, throw=True)",
+		],
 	},
 	{
 		"id": "G1",
@@ -802,10 +1110,15 @@ PATCHES = [
 ]
 
 counts = {"applied": 0, "already": 0, "ok": 0, "skipped": 0}
+skipped_ids = []
+# F12: a skip of one of these leaves cross-employee payroll / checkin data or a role-gated
+# action open, so it stops the container instead of only warning
+CRITICAL = ("M10", "M12", "M15", "M21a", "M21b", "M21c", "M24")
 
 
 def warn(pid, msg):
 	counts["skipped"] += 1
+	skipped_ids.append(pid)
 	print(f"WARNING: security patch {pid}: {msg}; skipped.")
 
 
@@ -930,8 +1243,15 @@ if counts["applied"] + counts["already"] == 0:
 	# nothing applied and nothing present: wrong tree or every anchor moved
 	print("SECURITY ERROR: no security patch is applied or present - refusing to continue.")
 	sys.exit(3)
+critical = [i for i in CRITICAL if i in skipped_ids]
+if critical:
+	print(f"SECURITY ERROR: critical security patch(es) {', '.join(critical)} skipped - refusing to continue.")
+	sys.exit(4)
 PY
 rc=$?
+if [ $rc -eq 4 ]; then
+  exit 3  # F12: a critical patch was skipped (SECURITY ERROR printed above)
+fi
 if [ $rc -ne 0 ]; then
   [ $rc -eq 3 ] || echo "SECURITY ERROR: security patch injector crashed (exit $rc); patches may NOT be applied."
   exit 1
