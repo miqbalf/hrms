@@ -22,26 +22,61 @@ services:
       retries: 20
 
   # Combined Redis Cache & Queue Service
+  # Password required (2026-11): before this, anyone on the Docker network
+  # could read/write the cache and job queues without auth. REDIS_PASSWORD
+  # must be set in Coolify (hex only, e.g. `openssl rand -hex 32`); the
+  # deploy fails fast if it is missing.
+  # Pinned to an exact 6.2 patch (frappe_docker still ships 6.2 for v15/v16;
+  # staying on 6.2 keeps the RDB file readable on rollback).
   redis:
-    image: "${REDIS_IMAGE:-redis:6.2-alpine}"
+    image: "${REDIS_IMAGE:-redis:6.2.24-alpine}"
     restart: unless-stopped
+    command: ["redis-server", "--requirepass", "${REDIS_PASSWORD:?REDIS_PASSWORD must be set in Coolify}"]
+    environment:
+      REDISCLI_AUTH: "${REDIS_PASSWORD:?REDIS_PASSWORD must be set in Coolify}"
     volumes:
       - redis-data:/data
     healthcheck:
-      test: ["CMD", "redis-cli", "ping"]
+      # redis-cli authenticates via REDISCLI_AUTH; without it PING gets NOAUTH.
+      test: ["CMD-SHELL", "redis-cli ping | grep -q PONG"]
       interval: 5s
       timeout: 3s
       retries: 5
 
   # Python backend (Gunicorn) service + Configurator & Site Setup
   backend:
-    image: "${FRAPPE_IMAGE:-frappe/erpnext}:${FRAPPE_VERSION:-v15}"
+    image: "${FRAPPE_IMAGE:-frappe/erpnext}:${FRAPPE_VERSION:-v15.124.5}"
     restart: unless-stopped
     entrypoint: ["bash", "-c"]
     command:
       - |
         echo "=== Phase 1: Bench configuration ==="
         cd /home/frappe/frappe-bench
+        # Redis requires a password (2026-11). Written first, because bench
+        # get-app / bench build below already talk to redis. Plain json, not
+        # `bench set-config`: bench cannot load yet (apps.txt lists hrms, which
+        # code-sync removed from env until get-app re-installs it). Rewritten
+        # on every start, so rotating REDIS_PASSWORD in Coolify + redeploy
+        # updates all services. URL-safe characters only (it is in a URL).
+        case "$$REDIS_PASSWORD" in
+          ""|*[!A-Za-z0-9._~-]*)
+            echo "FATAL: REDIS_PASSWORD is empty or not URL-safe (use: openssl rand -hex 32)."
+            exit 1 ;;
+        esac
+        mkdir -p sites
+        env/bin/python -c '
+        import json, os
+        p = "sites/common_site_config.json"
+        c = json.load(open(p)) if os.path.exists(p) else {}
+        pw = os.environ["REDIS_PASSWORD"]
+        c["redis_cache"] = "redis://:%s@%s" % (pw, os.environ["REDIS_CACHE"])
+        c["redis_queue"] = "redis://:%s@%s" % (pw, os.environ["REDIS_QUEUE"])
+        c["redis_socketio"] = c["redis_queue"]
+        json.dump(c, open(p + ".tmp", "w"), indent=1, sort_keys=True)
+        os.replace(p + ".tmp", p)
+        ' || { echo "FATAL: could not write redis URLs to common_site_config.json"; exit 1; }
+        echo "Redis URLs (with password) written to common_site_config.json"
+
         # Always reinstall from upstream v15 (clean slate, v15-compatible).
         # Pinned to a reviewed release tag instead of the moving version-15
         # branch, so a new upstream commit cannot change production on restart
@@ -136,9 +171,7 @@ services:
         ls -1 apps > sites/apps.txt
         bench set-config -g db_host $$DB_HOST
         bench set-config -gp db_port $$DB_PORT
-        bench set-config -g redis_cache "redis://$$REDIS_CACHE"
-        bench set-config -g redis_queue "redis://$$REDIS_QUEUE"
-        bench set-config -g redis_socketio "redis://$$REDIS_QUEUE"
+        # (redis_cache / redis_queue / redis_socketio are set at the top of Phase 1.)
         bench set-config -gp socketio_port $$SOCKETIO_PORT
         # Email flush "All" jobs use minute cron from scheduler_interval (min practical: 60s).
         # Tick at 30s so due jobs are picked up quickly; instant send also wired in EmailQueue override.
@@ -233,6 +266,7 @@ services:
       DB_PORT: "3306"
       REDIS_CACHE: redis:6379
       REDIS_QUEUE: redis:6379
+      REDIS_PASSWORD: "${REDIS_PASSWORD:?REDIS_PASSWORD must be set in Coolify}"
       SOCKETIO_PORT: "9000"
       SITE_NAME: "${SITE_NAME:-hr.treeo.id}"
       DB_ROOT_PASSWORD: "${DB_ROOT_PASSWORD}"
@@ -253,6 +287,8 @@ services:
       - apps:/home/frappe/frappe-bench/apps
       - env:/home/frappe/frappe-bench/env
     depends_on:
+      code-sync:
+        condition: service_completed_successfully
       db:
         condition: service_healthy
       redis:
@@ -260,13 +296,17 @@ services:
 
   # Real-time websocket notifications
   websocket:
-    image: "${FRAPPE_IMAGE:-frappe/erpnext}:${FRAPPE_VERSION:-v15}"
+    image: "${FRAPPE_IMAGE:-frappe/erpnext}:${FRAPPE_VERSION:-v15.124.5}"
     restart: unless-stopped
     entrypoint: ["bash", "-c"]
     command:
       - |
         echo "Waiting for site config..."
         until [ -f sites/common_site_config.json ]; do sleep 2; done
+        # Wait until backend has finished setup (redis password written to
+        # config, hrms installed, migrate done) so we never start on stale
+        # config or code. Gunicorn binds :8000 only after all of that.
+        wait-for-it -t 0 backend:8000
         echo "Site config ready! Starting websocket server..."
         exec node /home/frappe/frappe-bench/apps/frappe/socketio.js
     volumes:
@@ -280,7 +320,7 @@ services:
 
   # Frontend Nginx proxy serving static assets
   frontend:
-    image: "${FRAPPE_IMAGE:-frappe/erpnext}:${FRAPPE_VERSION:-v15}"
+    image: "${FRAPPE_IMAGE:-frappe/erpnext}:${FRAPPE_VERSION:-v15.124.5}"
     restart: unless-stopped
     command:
       - nginx-entrypoint.sh
@@ -310,13 +350,14 @@ services:
 
   # Scheduler for background crons
   scheduler:
-    image: "${FRAPPE_IMAGE:-frappe/erpnext}:${FRAPPE_VERSION:-v15}"
+    image: "${FRAPPE_IMAGE:-frappe/erpnext}:${FRAPPE_VERSION:-v15.124.5}"
     restart: unless-stopped
     entrypoint: ["bash", "-c"]
     command:
       - |
         echo "Waiting for site config..."
         until [ -f "sites/$$SITE_NAME/site_config.json" ]; do sleep 5; done
+        wait-for-it -t 0 backend:8000
         echo "Site ready! Starting scheduler..."
         exec bench schedule
     environment:
@@ -332,13 +373,14 @@ services:
 
   # Single Combined Queue Worker (Default, Short, Long)
   worker:
-    image: "${FRAPPE_IMAGE:-frappe/erpnext}:${FRAPPE_VERSION:-v15}"
+    image: "${FRAPPE_IMAGE:-frappe/erpnext}:${FRAPPE_VERSION:-v15.124.5}"
     restart: unless-stopped
     entrypoint: ["bash", "-c"]
     command:
       - |
         echo "Waiting for site config..."
         until [ -f "sites/$$SITE_NAME/site_config.json" ]; do sleep 5; done
+        wait-for-it -t 0 backend:8000
         echo "Site ready! Starting worker..."
         exec bench worker --queue short,default,long
     environment:
@@ -351,6 +393,39 @@ services:
     depends_on:
       backend:
         condition: service_started
+
+  # Refresh frappe/erpnext code and the Python env from the image (2026-11).
+  # The `apps` and `env` named volumes are shared by backend, websocket,
+  # scheduler and worker (they all need the hrms app the backend installs).
+  # Docker only fills a named volume from the image while it is empty, so an
+  # image update never reached the code: prod stayed on frappe/erpnext
+  # 15.112.0 while the image moved on. This one-shot service copies the
+  # image's apps/frappe, apps/erpnext and env into the volumes on every
+  # deploy, before backend starts; backend then re-installs hrms into env
+  # (bench get-app) and runs `bench migrate`. apps/hrms is left to backend.
+  code-sync:
+    image: "${FRAPPE_IMAGE:-frappe/erpnext}:${FRAPPE_VERSION:-v15.124.5}"
+    restart: "no"
+    exclude_from_hc: true
+    entrypoint: ["bash", "-c"]
+    command:
+      - |
+        set -euo pipefail
+        BENCH=/home/frappe/frappe-bench
+        for app in frappe erpnext; do
+          echo "code-sync: refreshing apps/$$app from image..."
+          rm -rf "/mnt/apps/$$app.new"
+          cp -a "$$BENCH/apps/$$app" "/mnt/apps/$$app.new"
+          rm -rf "/mnt/apps/$$app"
+          mv "/mnt/apps/$$app.new" "/mnt/apps/$$app"
+        done
+        echo "code-sync: refreshing env from image (backend re-installs hrms)..."
+        find /mnt/env -mindepth 1 -maxdepth 1 -exec rm -rf {} +
+        cp -a "$$BENCH/env/." /mnt/env/
+        echo "code-sync: done; image has frappe $$(grep -m1 __version__ $$BENCH/apps/frappe/frappe/__init__.py), erpnext $$(grep -m1 __version__ $$BENCH/apps/erpnext/erpnext/__init__.py)"
+    volumes:
+      - apps:/mnt/apps
+      - env:/mnt/env
 
 volumes:
   db-data:
