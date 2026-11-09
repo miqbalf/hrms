@@ -30,11 +30,11 @@ echo "== first run"
 out1="$(bash "$SCRIPT" apps/hrms)"; rc1=$?
 echo "$out1"
 check "first run exits 0" '[ $rc1 -eq 0 ]'
-check "first run applies 11 patches, verifies M4, skips none" \
-  'echo "$out1" | grep -q "11 applied, 0 already present, 1 verified upstream, 0 skipped"'
+check "first run applies 12 patches, verifies M4, skips none" \
+  'echo "$out1" | grep -q "12 applied, 0 already present, 1 verified upstream, 0 skipped"'
 check "no WARNING on first run" '! echo "$out1" | grep -q WARNING'
 count=$(git -C apps/hrms grep -c "TREEO-SEC" | awk -F: '{s+=$2} END {print s}')
-check "TREEO-SEC markers present (got $count)" '[ "$count" -ge 11 ]'
+check "TREEO-SEC markers present (got $count)" '[ "$count" -ge 12 ]'
 check "patched files compile" 'python3 -m py_compile $(git -C apps/hrms diff --name-only | sed "s#^#apps/hrms/#")'
 git -C apps/hrms diff --stat
 state1="$(git -C apps/hrms diff | sha256sum)"
@@ -43,7 +43,7 @@ echo "== second run (idempotency)"
 out2="$(bash "$SCRIPT" apps/hrms)"; rc2=$?
 echo "$out2"
 check "second run exits 0" '[ $rc2 -eq 0 ]'
-check "second run applies nothing" 'echo "$out2" | grep -q "0 applied, 11 already present, 1 verified upstream, 0 skipped"'
+check "second run applies nothing" 'echo "$out2" | grep -q "0 applied, 12 already present, 1 verified upstream, 0 skipped"'
 check "second run leaves tree unchanged" '[ "$(git -C apps/hrms diff | sha256sum)" = "$state1" ]'
 
 echo "== missing anchor"
@@ -53,7 +53,17 @@ out3="$(bash "$SCRIPT" apps/hrms)"; rc3=$?
 echo "$out3" | grep -E "WARNING|Security patches"
 check "missing anchor exits 0" '[ $rc3 -eq 0 ]'
 check "missing anchor logs WARNING for M2a" 'echo "$out3" | grep -q "WARNING: security patch M2a"'
-check "other patches still applied" 'echo "$out3" | grep -q "10 applied"'
+check "other patches still applied" 'echo "$out3" | grep -q "11 applied"'
+check "loud summary for 1 skipped" 'echo "$out3" | grep -q "SECURITY WARNING: 1 patches skipped"'
+
+echo "== G1 block changed upstream"
+git -C apps/hrms checkout -q -- .
+sed -i 's/^\tglobal country_info$/\tglobal country_info  # upstream edit/' apps/hrms/hrms/utils/__init__.py
+out5="$(bash "$SCRIPT" apps/hrms)"; rc5=$?
+echo "$out5" | grep -E "WARNING|Security patches"
+check "changed G1 block exits 0" '[ $rc5 -eq 0 ]'
+check "changed G1 block logs WARNING for G1" 'echo "$out5" | grep -q "WARNING: security patch G1"'
+check "changed G1 block leaves get_country untouched" '! grep -q "TREEO-SEC G1" apps/hrms/hrms/utils/__init__.py'
 
 echo "== missing app dir"
 out4="$(bash "$SCRIPT" "$WORK/does-not-exist")"; rc4=$?

@@ -65,18 +65,26 @@ services:
         ASSETS=/home/frappe/custom-assets
         FORK_ROOT=""
         rm -rf /tmp/treeo-fork
-        # OWNER DECISION (Strix 2026-11, L1): this still tracks the fork's main
-        # branch, so any push to miqbalf/hrms main changes production on the
-        # next restart. Proposal: pin a reviewed commit, e.g. after the clone
-        # run `git -C /tmp/treeo-fork checkout <sha>` (needs a non-shallow
-        # fetch of that sha) and warn if it is missing.
-        if GIT_TERMINAL_PROMPT=0 git clone --depth 1 --branch main \
-             https://github.com/miqbalf/hrms.git /tmp/treeo-fork; then
+        # Fork assets are pinned to a reviewed commit (Strix 2026-11, L1), so a
+        # push to miqbalf/hrms main no longer changes production on restart.
+        # TO BUMP THE PIN (DEPLOY_FIXES.md #19): commit + push the docker/assets
+        # change to develop, wait for the GitLab->GitHub mirror, review that
+        # commit, put its full 40-char SHA below, then merge develop to main.
+        # The pinned commit must be reachable from a branch on the fork.
+        TREEO_FORK_SHA=b09f1d6fdfd993617fc12f5d025714f40c95b025
+        mkdir -p /tmp/treeo-fork && git init -q /tmp/treeo-fork
+        if GIT_TERMINAL_PROMPT=0 git -C /tmp/treeo-fork fetch -q --depth 1 \
+             https://github.com/miqbalf/hrms.git $$TREEO_FORK_SHA \
+           && git -C /tmp/treeo-fork checkout -q FETCH_HEAD; then
           FORK_ROOT=/tmp/treeo-fork
           ASSETS=/tmp/treeo-fork/docker/assets
-          echo "TREEO customizations source: git ($$ASSETS)"
+          TREEO_FORK_ACTUAL=$$(git -C /tmp/treeo-fork rev-parse HEAD 2>/dev/null)
+          echo "TREEO customizations source: git ($$ASSETS) at $$TREEO_FORK_ACTUAL"
+          if [ "$$TREEO_FORK_ACTUAL" != "$$TREEO_FORK_SHA" ]; then
+            echo "WARNING: TREEO fork is at '$$TREEO_FORK_ACTUAL', expected pin $$TREEO_FORK_SHA - review!"
+          fi
         else
-          echo "WARNING: could not clone TREEO fork — falling back to bind mount $$ASSETS"
+          echo "WARNING: could not fetch TREEO fork at pin $$TREEO_FORK_SHA — falling back to bind mount $$ASSETS"
         fi
         # Inject TREEO custom functions
         mkdir -p apps/hrms/hrms/utils
@@ -178,6 +186,11 @@ services:
           bench --site $$SITE_NAME enable-scheduler
           bench --site $$SITE_NAME execute hrms.utils.apply_branding || echo "Branding apply failed (non-fatal)"
           bench --site $$SITE_NAME execute hrms.hr.doctype.leave_application.leave_calendar_sync.ensure_custom_fields || echo "Calendar sync fields failed (non-fatal)"
+          # No tracebacks in API error responses (Strix 2026-11): v15 sends the
+          # full traceback as "exc" to anyone, guests included, while this is on.
+          bench --site $$SITE_NAME execute frappe.db.set_single_value --args "['System Settings', 'allow_error_traceback', 0]" \
+            && echo "System Settings: allow_error_traceback = 0" \
+            || echo "SECURITY WARNING: could not turn off allow_error_traceback"
 
           mkdir -p sites/$$SITE_NAME/public/files
           cp $$ASSETS/treeo_logo.png sites/$$SITE_NAME/public/files/treeo_logo.png 2>/dev/null || true
@@ -192,6 +205,11 @@ services:
           cp $$ASSETS/favicon.png    sites/$$SITE_NAME/public/files/favicon.png 2>/dev/null || true
           bench --site $$SITE_NAME execute hrms.utils.apply_branding || echo "Branding apply failed (non-fatal)"
           bench --site $$SITE_NAME execute hrms.hr.doctype.leave_application.leave_calendar_sync.ensure_custom_fields || echo "Calendar sync fields failed (non-fatal)"
+          # No tracebacks in API error responses (Strix 2026-11): v15 sends the
+          # full traceback as "exc" to anyone, guests included, while this is on.
+          bench --site $$SITE_NAME execute frappe.db.set_single_value --args "['System Settings', 'allow_error_traceback', 0]" \
+            && echo "System Settings: allow_error_traceback = 0" \
+            || echo "SECURITY WARNING: could not turn off allow_error_traceback"
           echo "Branding re-applied to existing site."
         fi
 

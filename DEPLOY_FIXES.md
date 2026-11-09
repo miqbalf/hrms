@@ -213,6 +213,24 @@ The compose file already handles missing files gracefully (all `cp` operations h
 - **Loud on failure**: if no module source can be found, the script prints a `WARNING: approved leaves will NOT sync` banner and exits 0. Non-fatal by design (a missing logo must not break a deploy) but no longer silent — silence is what let #17 go unnoticed for three weeks.
 - **Note**: the fork must stay publicly cloneable for this to work. Verified from inside the container with no credentials. If it is ever made private, the deploy falls back to the bind mount and the warning tells you.
 
+### 19. Fork assets pinned to a reviewed commit; security patches injected at start (Strix 2026-11)
+- **Why**: #18 cloned the fork's moving `main`, so any push to GitLab `main` (mirrored to `miqbalf/hrms` by a GitLab push mirror) changed what production ran on its next restart, reviewed or not.
+- **Now**: Phase 1 fetches exactly `TREEO_FORK_SHA` (`git init` + `git fetch --depth 1 <url> <sha>` + `checkout FETCH_HEAD`) and logs `TREEO customizations source: git (...) at <sha>`. A different SHA logs `WARNING: TREEO fork is at ...`; a failed fetch logs a WARNING and falls back to the bind mount as before. Upstream hrms is likewise pinned (`HRMS_UPSTREAM_REF`/`HRMS_UPSTREAM_SHA`, warning `apps/hrms is at ...` on mismatch).
+- **Security patches**: `docker/assets/inject_security_patches.sh` patches the upstream app at start (M1-M5 permission checks, G1 `get_country` hardening). Warn-only by owner decision: a missed anchor never stops the container, but the log ends with `SECURITY WARNING: N patches skipped`. Healthy start: `Security patches: 12 applied, 0 already present, 1 verified upstream, 0 skipped.` Test: `docker/tests/test_inject_security_patches.sh` (needs github.com access).
+- **How to bump the fork pin** (any change under `docker/assets/`, or the fork's `leave_calendar_sync.py`):
+  1. Commit the asset change on `develop` and push to GitLab.
+  2. Wait for the push mirror: `git ls-remote https://github.com/miqbalf/hrms.git develop` shows the new SHA (about 1 minute).
+  3. Review that commit, then set `TREEO_FORK_SHA` in `docker-compose.coolify.yml` to its full 40-character SHA in a second commit on `develop`. The compose file itself is read by Coolify from `main`, not from the pin, so it does not need to be inside the pinned commit.
+  4. Merge `develop` into `main` and push. The mirror pushes the fork's `main`, and the GitHub App webhook redeploys Coolify automatically.
+  5. Check the start log for `... at <new sha>`, no `WARNING: TREEO fork`, and the `Security patches:` line.
+  The pinned commit must stay reachable from a branch on the fork (do not force-push it away), or the fetch fails and the deploy falls back to the bind mount.
+- **Rollback**: point `TREEO_FORK_SHA` back to the previous value (or revert `main` to the previous merge) and push `main`.
+
+### 20. Tracebacks returned to logged-out callers
+- **Symptom**: a guest call to a protected method returned 403 with the full Python traceback in `exc`.
+- **Cause**: Frappe v15 `report_error` / `frappe.errprint` add the traceback when **System Settings > Allow Error Traceback** (`allow_error_traceback`) is on, for every user including Guest. `developer_mode` is not set on this site.
+- **Fix**: Phase 3 runs `bench --site $SITE_NAME execute frappe.db.set_single_value --args "['System Settings', 'allow_error_traceback', 0]"` after every migrate and on new sites, so it stays off even if someone re-enables it in the UI. Errors still go to the Error Log. The log line is `System Settings: allow_error_traceback = 0`.
+
 ---
 
 ## Known Remaining Issues
@@ -227,4 +245,5 @@ The compose file already handles missing files gracefully (all `cp` operations h
 
 - `develop` — latest fixes applied
 - `main` — synced with develop (Coolify deploys from main)
+- GitLab pushes every branch to the GitHub fork through a push mirror; Coolify (GitHub App source, fork `main`) redeploys from the webhook on each `main` push. At start, `docker/assets` come from the pinned `TREEO_FORK_SHA` (#19), not from `main`.
 - Both point to `miqbalf/hrms` fork, but only `docker-compose.coolify.yml` and `docker/assets/` are relevant. The hrms source in the fork is NOT used at runtime (we use upstream `frappe/hrms`).
