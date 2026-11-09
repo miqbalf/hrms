@@ -53,8 +53,11 @@ services:
         echo "Fetching hrms app (upstream $$HRMS_UPSTREAM_REF)..."
         bench get-app hrms https://github.com/frappe/hrms.git --branch $$HRMS_UPSTREAM_REF
         HRMS_ACTUAL_SHA=$$(git -C apps/hrms rev-parse HEAD 2>/dev/null)
+        # Fail closed (Strix 2026-11, L1): the security patches are anchored on
+        # this exact upstream text, so never start on unreviewed upstream code.
         if [ "$$HRMS_ACTUAL_SHA" != "$$HRMS_UPSTREAM_SHA" ]; then
-          echo "WARNING: apps/hrms is at '$$HRMS_ACTUAL_SHA', expected $$HRMS_UPSTREAM_SHA ($$HRMS_UPSTREAM_REF). Upstream tag moved or clone failed - review!"
+          echo "FATAL: apps/hrms is at '$$HRMS_ACTUAL_SHA', expected $$HRMS_UPSTREAM_SHA ($$HRMS_UPSTREAM_REF). Upstream tag moved or clone failed - refusing to start."
+          exit 1
         fi
         # Take TREEO customizations from git, not the bind mount. Coolify only
         # places the compose file on the server — ./docker/assets is NOT synced
