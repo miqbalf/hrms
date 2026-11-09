@@ -14,7 +14,9 @@
 #     when the marker is already present. Re-running changes nothing.
 #   - Never breaks container start: a missing anchor or file, or a patch that
 #     would not compile, logs a WARNING and that patch is skipped. The script
-#     always exits 0.
+#     always exits 0 (owner decision 2026-11-09: warn, do not fail closed).
+#   - Loud when something is missed: any skipped patch ends with a line
+#     "SECURITY WARNING: N patches skipped" - grep the start log for it.
 #
 # Patches:
 #   M1  hrms.api.get_attendance_calendar_events: date range bounded to 366 days
@@ -27,16 +29,17 @@
 #       or employee before amounts are returned
 #   G1  hrms.utils.get_country (guest): validate request_ip, pass key/fields as
 #       request params, 5 s timeout, LRU-bounded per-IP cache (1024 entries).
-#       Same code as hrms/utils/__init__.py in this repo (commit da19ae060).
+#       Same code as hrms/utils/__init__.py in this repo (commit da19ae060);
+#       this patch is the only way it reaches production.
 
 APP_DIR="${1:-apps/hrms}"
 
 if [ ! -d "$APP_DIR/hrms" ]; then
-  echo "WARNING: $APP_DIR/hrms not found; skipping security patches."
+  echo "SECURITY WARNING: $APP_DIR/hrms not found; security patches NOT applied."
   exit 0
 fi
 
-python3 - "$APP_DIR" <<'PY' || echo "WARNING: security patch injector crashed; continuing without it."
+python3 - "$APP_DIR" <<'PY' || echo "SECURITY WARNING: security patch injector crashed; patches may NOT be applied."
 import sys
 from pathlib import Path
 
@@ -317,6 +320,8 @@ print(
 	"Security patches: {applied} applied, {already} already present, "
 	"{ok} verified upstream, {skipped} skipped.".format(**counts)
 )
+if counts["skipped"]:
+	print(f"SECURITY WARNING: {counts['skipped']} patches skipped - production is missing those fixes; review the WARNING lines above.")
 PY
 
 exit 0

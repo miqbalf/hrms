@@ -54,6 +54,7 @@ echo "$out3" | grep -E "WARNING|Security patches"
 check "missing anchor exits 0" '[ $rc3 -eq 0 ]'
 check "missing anchor logs WARNING for M2a" 'echo "$out3" | grep -q "WARNING: security patch M2a"'
 check "other patches still applied" 'echo "$out3" | grep -q "11 applied"'
+check "loud summary for 1 skipped" 'echo "$out3" | grep -q "SECURITY WARNING: 1 patches skipped"'
 
 echo "== G1 block changed upstream"
 git -C apps/hrms checkout -q -- .
