@@ -31,6 +31,20 @@
 #       request params, 5 s timeout, LRU-bounded per-IP cache (1024 entries).
 #       Same code as hrms/utils/__init__.py in this repo (commit da19ae060);
 #       this patch is the only way it reaches production.
+#   M6  full_and_final_statement.get_account_and_amount: read permission on the
+#       referenced document
+#   M7  attendance.get_unmarked_days: date range bounded to 366 days (as M1)
+#   M8  interview.get_feedback / get_skill_wise_average_rating: read permission
+#       on the Interview; interview.get_interviewers: read permission on the
+#       Interview Round (its only argument); job_applicant.get_interview_details:
+#       read permission on the Job Applicant
+#   M9  appraisal.get_feedback_history: read permission on the Appraisal
+#   M10 hrms.api.roster.get_events: role gate (HR Manager, HR User, System
+#       Manager) and allow-listed filter keys. frappe v15 frappe.qb.get_query
+#       does no permission or user-permission checks, so without this any user
+#       could read every employee's leaves and shifts.
+#   M11 employee_checkin.add_log_based_on_employee_field: employee_fieldname
+#       limited to attendance_device_id / name (no lookup by arbitrary field)
 
 APP_DIR="${1:-apps/hrms}"
 
@@ -40,6 +54,7 @@ if [ ! -d "$APP_DIR/hrms" ]; then
 fi
 
 python3 - "$APP_DIR" <<'PY' || echo "SECURITY WARNING: security patch injector crashed; patches may NOT be applied."
+import re
 import sys
 from pathlib import Path
 
@@ -47,7 +62,9 @@ app = Path(sys.argv[1])
 
 # Each patch: id, file, mode, and mode-specific fields.
 #   insert: put `lines` after the `def` line starting with `func`, or, when
-#           `after` is set, after that exact line inside the function body.
+#           `after` is set, after that exact line inside the function body,
+#           or, when `before` is set, before that exact line inside the
+#           function body (for multi-line signatures).
 #   replace: swap the exact line `old` for `new`.
 #   verify: only check that `expect` is present.
 #   block: swap the exact run of lines `old` (must occur once) for `new`.
@@ -146,6 +163,102 @@ PATCHES = [
 		"lines": ['\tfrappe.has_permission("Employee", "read", employee, throw=True)  # TREEO-SEC M5g'],
 	},
 	{
+		"id": "M6",
+		"file": "hrms/hr/doctype/full_and_final_statement/full_and_final_statement.py",
+		"mode": "insert",
+		"func": "def get_account_and_amount(",
+		"after": "\t\treturn None",
+		"lines": [
+			"",
+			'\tfrappe.has_permission(ref_doctype, "read", ref_document, throw=True)  # TREEO-SEC M6',
+		],
+	},
+	{
+		"id": "M7",
+		"file": "hrms/hr/doctype/attendance/attendance.py",
+		"mode": "insert",
+		"func": "def get_unmarked_days(",
+		"after": '\tfrappe.has_permission("Employee", "read", employee, throw=True)',
+		"needs": ["from frappe import _"],
+		"lines": [
+			"\t# TREEO-SEC M7: bound the range so one request cannot loop over millions of days",
+			"\tif not 0 <= frappe.utils.date_diff(to_date, from_date) <= 366:",
+			'\t\tfrappe.throw(_("Date range must be between 0 and 366 days."), frappe.ValidationError)',
+		],
+	},
+	{
+		"id": "M8a",
+		"file": "hrms/hr/doctype/interview/interview.py",
+		"mode": "insert",
+		"func": "def get_feedback(",
+		"lines": ['\tfrappe.has_permission("Interview", "read", interview, throw=True)  # TREEO-SEC M8a'],
+	},
+	{
+		"id": "M8b",
+		"file": "hrms/hr/doctype/interview/interview.py",
+		"mode": "insert",
+		"func": "def get_skill_wise_average_rating(",
+		"lines": ['\tfrappe.has_permission("Interview", "read", interview, throw=True)  # TREEO-SEC M8b'],
+	},
+	{
+		"id": "M8c",
+		"file": "hrms/hr/doctype/interview/interview.py",
+		"mode": "insert",
+		"func": "def get_interviewers(",
+		"lines": [
+			'\tfrappe.has_permission("Interview Round", "read", interview_round, throw=True)  # TREEO-SEC M8c'
+		],
+	},
+	{
+		"id": "M8d",
+		"file": "hrms/hr/doctype/job_applicant/job_applicant.py",
+		"mode": "insert",
+		"func": "def get_interview_details(",
+		"lines": ['\tfrappe.has_permission("Job Applicant", "read", job_applicant, throw=True)  # TREEO-SEC M8d'],
+	},
+	{
+		"id": "M9",
+		"file": "hrms/hr/doctype/appraisal/appraisal.py",
+		"mode": "insert",
+		"func": "def get_feedback_history(",
+		"lines": ['\tfrappe.has_permission("Appraisal", "read", appraisal, throw=True)  # TREEO-SEC M9'],
+	},
+	{
+		"id": "M10",
+		"file": "hrms/api/roster.py",
+		"mode": "insert",
+		"func": "def get_events(",
+		"before": "\tholidays = get_holidays(month_start, month_end, employee_filters)",
+		"needs": ["from frappe import _"],
+		"lines": [
+			"\t# TREEO-SEC M10: frappe v15 qb.get_query applies no permissions, so gate by role",
+			"\t# and only accept the filter keys the roster UI sends (they become raw WHERE columns)",
+			'\tfrappe.only_for(("HR Manager", "HR User", "System Manager"))',
+			"\temployee_filters = frappe.parse_json(employee_filters) or {}",
+			"\tshift_filters = frappe.parse_json(shift_filters) or {}",
+			"\tif not isinstance(employee_filters, dict) or not isinstance(shift_filters, dict):",
+			'\t\tfrappe.throw(_("Filters must be objects."), frappe.ValidationError)',
+			'\tallowed_employee = {"company", "department", "branch", "designation", "status"}',
+			'\tallowed_shift = {"shift_type", "shift_location"}',
+			"\tif set(employee_filters) - allowed_employee or set(shift_filters) - allowed_shift:",
+			'\t\tfrappe.throw(_("Unsupported roster filter."), frappe.ValidationError)',
+		],
+	},
+	{
+		"id": "M11",
+		"file": "hrms/hr/doctype/employee_checkin/employee_checkin.py",
+		"mode": "insert",
+		"func": "def add_log_based_on_employee_field(",
+		"before": "\tif not employee_field_value or not timestamp:",
+		"needs": ["from frappe import _"],
+		"lines": [
+			"\t# TREEO-SEC M11: only look employees up by the device id or the record name",
+			'\tif employee_fieldname not in ("attendance_device_id", "name"):',
+			'\t\tfrappe.throw(_("Unsupported employee_fieldname."), frappe.ValidationError)',
+			"",
+		],
+	},
+	{
 		"id": "G1",
 		"file": "hrms/utils/__init__.py",
 		"mode": "block",
@@ -234,18 +347,21 @@ def apply_insert(p, lines):
 	if len(starts) != 1:
 		return f"found {len(starts)} definitions of '{p['func']}' (expected 1)"
 	i = starts[0]
-	if "after" not in p:
+	if "after" not in p and "before" not in p:
 		if not lines[i].rstrip().endswith(":"):
 			return "def line does not end with ':' (multi-line signature)"
 		at = i + 1
 	else:
+		anchor, offset = (p["after"], 1) if "after" in p else (p["before"], 0)
 		at = None
 		for j in range(i + 1, len(lines)):
 			l = lines[j]
-			if l and not l[0].isspace():  # next top-level statement: end of function
+			# next top-level statement: end of function (a multi-line signature
+			# closes with an unindented ") ...:" line, which is still the def)
+			if l and not l[0].isspace() and not l.startswith(")"):
 				break
-			if l.rstrip() == p["after"]:
-				at = j + 1
+			if l.rstrip() == anchor:
+				at = j + offset
 				break
 		if at is None:
 			return f"anchor line not found in {p['func']}...)"
@@ -286,7 +402,8 @@ for p in PATCHES:
 			warn(pid, f"expected upstream check missing from {p['file']} - review manually")
 		continue
 
-	if f"TREEO-SEC {pid}" in text:
+	# word boundary: the marker of M1 must not match "TREEO-SEC M10" / "M11"
+	if re.search(rf"TREEO-SEC {re.escape(pid)}\b", text):
 		counts["already"] += 1
 		print(f"security patch {pid}: already applied.")
 		continue

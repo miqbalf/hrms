@@ -53,8 +53,11 @@ services:
         echo "Fetching hrms app (upstream $$HRMS_UPSTREAM_REF)..."
         bench get-app hrms https://github.com/frappe/hrms.git --branch $$HRMS_UPSTREAM_REF
         HRMS_ACTUAL_SHA=$$(git -C apps/hrms rev-parse HEAD 2>/dev/null)
+        # Fail closed (Strix 2026-11, L1): the security patches are anchored on
+        # this exact upstream text, so never start on unreviewed upstream code.
         if [ "$$HRMS_ACTUAL_SHA" != "$$HRMS_UPSTREAM_SHA" ]; then
-          echo "WARNING: apps/hrms is at '$$HRMS_ACTUAL_SHA', expected $$HRMS_UPSTREAM_SHA ($$HRMS_UPSTREAM_REF). Upstream tag moved or clone failed - review!"
+          echo "FATAL: apps/hrms is at '$$HRMS_ACTUAL_SHA', expected $$HRMS_UPSTREAM_SHA ($$HRMS_UPSTREAM_REF). Upstream tag moved or clone failed - refusing to start."
+          exit 1
         fi
         # Take TREEO customizations from git, not the bind mount. Coolify only
         # places the compose file on the server — ./docker/assets is NOT synced
@@ -71,7 +74,7 @@ services:
         # change to develop, wait for the GitLab->GitHub mirror, review that
         # commit, put its full 40-char SHA below, then merge develop to main.
         # The pinned commit must be reachable from a branch on the fork.
-        TREEO_FORK_SHA=b09f1d6fdfd993617fc12f5d025714f40c95b025
+        TREEO_FORK_SHA=075f09ab5ce4b22b2487e1004c9b217f6bb9a7b6
         mkdir -p /tmp/treeo-fork && git init -q /tmp/treeo-fork
         if GIT_TERMINAL_PROMPT=0 git -C /tmp/treeo-fork fetch -q --depth 1 \
              https://github.com/miqbalf/hrms.git $$TREEO_FORK_SHA \
