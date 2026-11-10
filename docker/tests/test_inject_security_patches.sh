@@ -31,11 +31,11 @@ echo "== first run"
 out1="$(bash "$SCRIPT" apps/hrms)"; rc1=$?
 echo "$out1"
 check "first run exits 0" '[ $rc1 -eq 0 ]'
-check "first run applies 69 patches, verifies M4 and M5h, skips none" \
-  'echo "$out1" | grep -q "69 applied, 0 already present, 2 verified upstream, 0 skipped"'
+check "first run applies 70 patches, verifies M4 and M5h, skips none" \
+  'echo "$out1" | grep -q "70 applied, 0 already present, 2 verified upstream, 0 skipped"'
 check "no WARNING on first run" '! echo "$out1" | grep -q WARNING'
 count=$(git -C apps/hrms grep -c "TREEO-SEC" | awk -F: '{s+=$2} END {print s}')
-check "TREEO-SEC markers present (got $count)" '[ "$count" -ge 69 ]'
+check "TREEO-SEC markers present (got $count)" '[ "$count" -ge 70 ]'
 check "patched files compile" 'python3 -m py_compile $(git -C apps/hrms diff --name-only -- "*.py" | sed "s#^#apps/hrms/#")'
 if python3 -m pyflakes --version >/dev/null 2>&1; then
   # only names the patches could break; upstream has its own unrelated lint noise
@@ -462,6 +462,57 @@ for (rel, fn), dt in want.items():
     assert s[0] == "from hrms.payroll.doctype.salary_slip.salary_slip import treeo_assert_own_payroll", (fn, s)
     assert s[1] == "treeo_assert_own_payroll(\x27%s\x27, employee)" % dt, (fn, s)
 PYT'
+check "M28 update_salary_structures: write gates and field allow-list run before any Salary Structure is touched" 'python3 - "$H/hrms/payroll/doctype/salary_component/salary_component.py" <<"PYT"
+import ast, sys, types
+src = open(sys.argv[1]).read()
+tree = ast.parse(src)
+cls = next(n for n in tree.body if isinstance(n, ast.ClassDef) and n.name == "SalaryComponent")
+f = next(n for n in cls.body if isinstance(n, ast.FunctionDef) and n.name == "update_salary_structures")
+assert [a.arg for a in f.args.args] == ["self", "field", "value", "structures"], ast.dump(f.args)
+head = [ast.unparse(x) for x in f.body[:3]]
+assert head[0] == "self.check_permission(\x27write\x27)", head
+assert head[1] == "frappe.has_permission(\x27Salary Structure\x27, \x27write\x27, throw=True)", head
+assert head[2].startswith("if field not in (\x27condition\x27, \x27formula\x27):"), head
+# behaviour: run the patched method with stubs; reaching the upstream body = gate passed
+class Denied(Exception): pass
+class Reached(Exception): pass
+class Invalid(Exception): pass
+state = {}
+def has_permission(dt, ptype, doc=None, throw=False):
+    assert (dt, ptype, throw) == ("Salary Structure", "write", True)
+    if not state["ss_write"]:
+        raise Denied("ss")
+    return True
+def throw(msg, exc=None):
+    raise (exc or Exception)(msg)
+frappe = types.ModuleType("frappe")
+frappe.has_permission, frappe.throw, frappe.ValidationError = has_permission, throw, Invalid
+frappe.get_doc = lambda *a: (_ for _ in ()).throw(Reached("get_doc"))
+class Comp:
+    def check_permission(self, ptype):
+        assert ptype == "write"
+        if not state["sc_write"]:
+            raise Denied("sc")
+    def get_structures_to_be_updated(self):
+        raise Reached("structures")
+g = {"frappe": frappe, "_": lambda m: m, "copy": __import__("copy")}
+f.decorator_list = []  # @frappe.whitelist
+exec(compile(ast.Module(body=[f], type_ignores=[]), "m28", "exec"), g)
+fn = g["update_salary_structures"]
+def outcome(sc, ss, field):
+    state.update(sc_write=sc, ss_write=ss)
+    try:
+        fn(Comp(), field, "1", None)
+    except (Denied, Reached, Invalid) as e:
+        return type(e).__name__
+    return "returned"
+assert outcome(False, True, "formula") == "Denied"   # Employee: read only on Salary Component
+assert outcome(True, False, "formula") == "Denied"   # no Salary Structure write
+assert outcome(True, True, "amount") == "Invalid"
+assert outcome(True, True, "salary_component") == "Invalid"
+assert outcome(True, True, "formula") == "Reached"
+assert outcome(True, True, "condition") == "Reached"
+PYT'
 check "every TREEO-SEC marker in the repo source has an injector patch (file, id, function)" 'python3 - "$REPO" "$SCRIPT" <<"PYT"
 import ast, re, sys
 from pathlib import Path
@@ -505,7 +556,7 @@ echo "== second run (idempotency)"
 out2="$(bash "$SCRIPT" apps/hrms)"; rc2=$?
 echo "$out2"
 check "second run exits 0" '[ $rc2 -eq 0 ]'
-check "second run applies nothing" 'echo "$out2" | grep -q "0 applied, 69 already present, 2 verified upstream, 0 skipped"'
+check "second run applies nothing" 'echo "$out2" | grep -q "0 applied, 70 already present, 2 verified upstream, 0 skipped"'
 check "second run leaves tree unchanged" '[ "$(git -C apps/hrms diff | sha256sum)" = "$state1" ]'
 
 echo "== missing anchor"
@@ -515,7 +566,7 @@ out3="$(bash "$SCRIPT" apps/hrms)"; rc3=$?
 echo "$out3" | grep -E "WARNING|Security patches"
 check "missing anchor exits 0" '[ $rc3 -eq 0 ]'
 check "missing anchor logs WARNING for M2a" 'echo "$out3" | grep -q "WARNING: security patch M2a"'
-check "other patches still applied" 'echo "$out3" | grep -q "68 applied"'
+check "other patches still applied" 'echo "$out3" | grep -q "69 applied"'
 check "loud summary for 1 skipped" 'echo "$out3" | grep -q "SECURITY WARNING: 1 patches skipped"'
 
 echo "== G1 block changed upstream"
@@ -561,6 +612,13 @@ sed -i 's/^\temail_success = \[\]$/\temail_success = list()/' apps/hrms/hrms/hr/
 out9="$(bash "$SCRIPT" apps/hrms)"; rc9=$?
 echo "$out9" | grep -E "WARNING|SECURITY|Security patches"
 check "skipped M24 exits 3 with SECURITY ERROR" '[ $rc9 -eq 3 ] && echo "$out9" | grep -q "SECURITY ERROR: critical security patch(es) M24 skipped"'
+
+echo "== F12 critical patch skipped (M28 anchor gone)"
+git -C apps/hrms checkout -q -- .
+sed -i 's/^\tdef update_salary_structures(/\tdef update_salary_structures_renamed(/' apps/hrms/hrms/payroll/doctype/salary_component/salary_component.py
+out12="$(bash "$SCRIPT" apps/hrms)"; rc12=$?
+echo "$out12" | grep -E "WARNING|SECURITY|Security patches"
+check "skipped M28 exits 3 with SECURITY ERROR" '[ $rc12 -eq 3 ] && echo "$out12" | grep -q "SECURITY ERROR: critical security patch(es) M28 skipped"'
 
 echo "== M5h upstream check removed"
 git -C apps/hrms checkout -q -- .

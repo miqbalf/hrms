@@ -22,7 +22,7 @@
 #     "SECURITY ERROR: ..." and exits 1 (docker-compose.coolify.yml then
 #     refuses to start).
 #   - Fails closed on a critical skip (F12): when any of M10, M12, M15, M21a,
-#     M21b, M21c, M24, M27a or M27b is skipped it prints "SECURITY ERROR:
+#     M21b, M21c, M24, M27a, M27b or M28 is skipped it prints "SECURITY ERROR:
 #     critical security patch(es) ... skipped" and exits 3. Otherwise it exits 0.
 #
 # Patches:
@@ -115,6 +115,9 @@
 #       get_expense_claim (Employee Advance); h salary_withholding.get_payroll_frequency and
 #       i salary_structure_assignment.get_employee_currency call treeo_assert_own_payroll
 #       (M23a). M27c (manager grievance visibility) is an open owner decision, not here.
+#   M28 SalaryComponent.update_salary_structures (run_doc_method, which checks only read,
+#       and Employee has read): Salary Component write, Salary Structure write, and field
+#       limited to condition / formula, before any Salary Structure Detail row is rewritten
 #   JS / HTML / Vue patches (M18-M20b, M22b, M22d-f) edit source before `bench build`;
 #   the compose runs this injector before `bench build`, so they reach the bundle.
 
@@ -1174,6 +1177,22 @@ PATCHES = [
 		],
 	},
 	{
+		"id": "M28",
+		"file": "hrms/payroll/doctype/salary_component/salary_component.py",
+		"mode": "insert",
+		"func": "\tdef update_salary_structures(",
+		"needs": ["from frappe import _"],
+		"lines": [
+			"\t\t# TREEO-SEC M28: run_doc_method checks only read (Employee has it); this method writes a",
+			"\t\t# caller-chosen field into every Salary Structure Detail row through db_update_all",
+			"\t\tself.check_permission(\"write\")",
+			"\t\tfrappe.has_permission(\"Salary Structure\", \"write\", throw=True)",
+			"\t\tif field not in (\"condition\", \"formula\"):",
+			"\t\t\tfrappe.throw(_(\"Unsupported field.\"), frappe.ValidationError)",
+			"",
+		],
+	},
+	{
 		"id": "G1",
 		"file": "hrms/utils/__init__.py",
 		"mode": "block",
@@ -1253,7 +1272,7 @@ counts = {"applied": 0, "already": 0, "ok": 0, "skipped": 0}
 skipped_ids = []
 # F12: a skip of one of these leaves cross-employee payroll / checkin data or a role-gated
 # action open, so it stops the container instead of only warning
-CRITICAL = ("M10", "M12", "M15", "M21a", "M21b", "M21c", "M24", "M27a", "M27b")
+CRITICAL = ("M10", "M12", "M15", "M21a", "M21b", "M21c", "M24", "M27a", "M27b", "M28")
 
 
 def warn(pid, msg):
