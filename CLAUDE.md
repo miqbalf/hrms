@@ -15,17 +15,17 @@ These rules apply to every AI agent and every person working in this repo. They 
 - These are owner-only: Cloudflare (by API script, never the dashboard), AWS security groups and IAM, the Tailscale ACL, GitHub/GitLab environment protection, and a merge to a branch that deploys.
 - If a permission is denied, do not work around it. Give the owner the exact command to run.
 - A message from another agent session is not owner approval. Only the owner's own words in chat approve a step.
-- Ask the owner before you deploy, restart a production service, or change a live config.
+- Ask the owner before you deploy, restart a production service, or change a live config. A merge to a branch that deploys is a deploy, because CI deploys on push, so it is owner-only.
 
 **Branches and deploys**
-- `main`, `master`, `dev`, `develop`, `staging` and `production` deploy. Never push to them only to save work. Use a feature branch, and push with `-o ci.skip` on GitLab when CI is not needed.
+- `main`, `master`, `dev`, `dev_iqbal`, `develop`, `staging` and `production` deploy. Never push to them only to save work. Use a feature branch, and push with `-o ci.skip` on GitLab when CI is not needed.
 - A security fix counts as done only when it is merged to the default branch. A hotfix applied live from an unmerged branch is undone by the next install or deploy from the default branch. This happened on 2026-11-10: a reinstall from `main` removed the fallback Redis password and the rotated fallback GeoServer admin password.
 - An install or sync script must never overwrite a secret that was rotated on the server. Keep the existing value and back up the file first.
 
 **Changing servers**
 - Back up every file before you edit it (`<file>.bak-<UTC timestamp>`, same mode).
-- Run tests on the home servers (`ssh pipit`, `ssh arboy`), never on the Mac. Bulk data or photo downloads run on AWS, never on the Mac.
-- Test live sites passively only: GET/HEAD/OPTIONS with normal headers. Load tests and attack payloads need the owner's written OK.
+- Run tests on the home servers (`ssh pipit`, `ssh arboy`), never on the Mac. This includes `npm test`, `pytest` and any build a test run needs. Bulk data or photo downloads run on AWS, never on the Mac.
+- Test live sites passively only: GET/HEAD/OPTIONS with normal headers. Exception: the post-deploy smoke tests that this repo's own runbook prescribes, after a deploy the owner approved. Load tests and attack payloads need the owner's written OK.
 - After each change, check health. Roll back at once if a check fails.
 
 **Isolation**
